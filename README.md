@@ -1,2 +1,2 @@
 # Shop
-My final project
+My final project"Computer shop selling components"
