@@ -1,2 +1,2 @@
-# shop
+# Shop
 My final project
