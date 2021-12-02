@@ -1,4 +1,4 @@
-package com.epam.shop.dao.exception.dao_exception_string;
+package com.epam.shop.dao.exception.string_exception;
 
 public interface DaoAccountExceptionStrings {
     String FIND_ACCOUND_BY_USER_ID_EXCEPTION = "Account isn't found";

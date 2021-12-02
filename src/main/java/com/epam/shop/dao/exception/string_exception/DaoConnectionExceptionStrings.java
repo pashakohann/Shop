@@ -1,4 +1,4 @@
-package com.epam.shop.dao.exception.dao_exception_string;
+package com.epam.shop.dao.exception.string_exception;
 
 public interface DaoConnectionExceptionStrings {
     String CREATE_CONNECTION_EXCEPTION = "Failed to create connection";

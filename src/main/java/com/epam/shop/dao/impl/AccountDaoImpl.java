@@ -5,7 +5,7 @@ import com.epam.shop.dao.api.AccountDao;
 import com.epam.shop.dao.connection_pool.api.ConnectionPool;
 import com.epam.shop.dao.connection_pool.impl.ConnectionPoolImpl;
 import com.epam.shop.dao.exception.DaoException;
-import com.epam.shop.dao.exception.dao_exception_string.DaoAccountExceptionStrings;
+import com.epam.shop.dao.exception.string_exception.DaoAccountExceptionStrings;
 import com.epam.shop.dao.model.Account;
 import com.epam.shop.dao.sql_string.AccountSql;
 import org.apache.logging.log4j.LogManager;
