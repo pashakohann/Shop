@@ -5,7 +5,7 @@ import com.epam.shop.dao.api.OrderDao;
 import com.epam.shop.dao.connection_pool.api.ConnectionPool;
 import com.epam.shop.dao.connection_pool.impl.ConnectionPoolImpl;
 import com.epam.shop.dao.exception.DaoException;
-import com.epam.shop.dao.exception.string_exception.DaoOrderExceptionStrings;
+import com.epam.shop.dao.exception.string_exception.DaoOrderExceptionString;
 import com.epam.shop.dao.model.Order;
 import com.epam.shop.dao.model.Product;
 import com.epam.shop.dao.sql_string.OrderSql;
@@ -55,8 +55,8 @@ public class OrderDaoImpl implements OrderDao {
             }
 
         } catch (SQLException e) {
-            logger.error(DaoOrderExceptionStrings.SQL_SAVE_ORDER_EXCEPTION, e);
-            throw new DaoException(DaoOrderExceptionStrings.SQL_SAVE_ORDER_EXCEPTION, e);
+            logger.error(DaoOrderExceptionString.SQL_SAVE_ORDER_EXCEPTION, e);
+            throw new DaoException(DaoOrderExceptionString.SQL_SAVE_ORDER_EXCEPTION, e);
         }
         return order;
     }
@@ -79,8 +79,8 @@ public class OrderDaoImpl implements OrderDao {
             preparedStatement.executeUpdate();
 
         } catch (SQLException e) {
-            logger.error(DaoOrderExceptionStrings.SQL_DELETE_ORDER_EXCEPTION, e);
-            throw new DaoException(DaoOrderExceptionStrings.SQL_DELETE_ORDER_EXCEPTION);
+            logger.error(DaoOrderExceptionString.SQL_DELETE_ORDER_EXCEPTION, e);
+            throw new DaoException(DaoOrderExceptionString.SQL_DELETE_ORDER_EXCEPTION);
         }
     }
 
@@ -91,8 +91,8 @@ public class OrderDaoImpl implements OrderDao {
             preparedStatement.setInt(1, productId);
 
         } catch (SQLException e) {
-            logger.error(DaoOrderExceptionStrings.SQL_DELETE_PRODUCT_IN_ORDER_EXCEPTION, e);
-            throw new DaoException(DaoOrderExceptionStrings.SQL_DELETE_PRODUCT_IN_ORDER_EXCEPTION, e);
+            logger.error(DaoOrderExceptionString.SQL_DELETE_PRODUCT_IN_ORDER_EXCEPTION, e);
+            throw new DaoException(DaoOrderExceptionString.SQL_DELETE_PRODUCT_IN_ORDER_EXCEPTION, e);
         }
     }
 
@@ -103,8 +103,8 @@ public class OrderDaoImpl implements OrderDao {
             preparedStatement.setInt(1, orderId);
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
-            logger.error(DaoOrderExceptionStrings.SQL_DELETE_PRODUCT_IN_ORDER_EXCEPTION, e);
-            throw new DaoException(DaoOrderExceptionStrings.SQL_DELETE_PRODUCT_IN_ORDER_EXCEPTION, e);
+            logger.error(DaoOrderExceptionString.SQL_DELETE_PRODUCT_IN_ORDER_EXCEPTION, e);
+            throw new DaoException(DaoOrderExceptionString.SQL_DELETE_PRODUCT_IN_ORDER_EXCEPTION, e);
         }
     }
 
@@ -127,8 +127,8 @@ public class OrderDaoImpl implements OrderDao {
                 }
             }
         } catch (SQLException e) {
-            logger.error(DaoOrderExceptionStrings.SQL_FIND_ORDER_BY_ID_EXCEPTION, e);
-            throw new DaoException(DaoOrderExceptionStrings.SQL_FIND_ORDER_BY_ID_EXCEPTION, e);
+            logger.error(DaoOrderExceptionString.SQL_FIND_ORDER_BY_ID_EXCEPTION, e);
+            throw new DaoException(DaoOrderExceptionString.SQL_FIND_ORDER_BY_ID_EXCEPTION, e);
         }
         return order;
     }
@@ -152,8 +152,8 @@ public class OrderDaoImpl implements OrderDao {
 
             }
         } catch (SQLException e) {
-            logger.error(DaoOrderExceptionStrings.SQL_FIND_ALL_ORDERS_EXCEPTION, e);
-            throw new DaoException(DaoOrderExceptionStrings.SQL_FIND_ALL_ORDERS_EXCEPTION, e);
+            logger.error(DaoOrderExceptionString.SQL_FIND_ALL_ORDERS_EXCEPTION, e);
+            throw new DaoException(DaoOrderExceptionString.SQL_FIND_ALL_ORDERS_EXCEPTION, e);
         }
         return listOrders;
     }
@@ -177,8 +177,8 @@ public class OrderDaoImpl implements OrderDao {
                 }
             }
         } catch (SQLException e) {
-            logger.error(DaoOrderExceptionStrings.SQL_FIND_ALL_PRODUCTS_FROM_ORDER_EXCEPTION, e);
-            throw new DaoException(DaoOrderExceptionStrings.SQL_FIND_ALL_PRODUCTS_FROM_ORDER_EXCEPTION, e);
+            logger.error(DaoOrderExceptionString.SQL_FIND_ALL_PRODUCTS_FROM_ORDER_EXCEPTION, e);
+            throw new DaoException(DaoOrderExceptionString.SQL_FIND_ALL_PRODUCTS_FROM_ORDER_EXCEPTION, e);
         }
 
         return list;
@@ -195,8 +195,8 @@ public class OrderDaoImpl implements OrderDao {
                 preparedStatement.executeUpdate();
             }
         } catch (SQLException e) {
-            logger.error(DaoOrderExceptionStrings.SQL_ADD_PRODUCTS_IN_ORDER_EXCEPTION, e);
-            throw new DaoException(DaoOrderExceptionStrings.SQL_ADD_PRODUCTS_IN_ORDER_EXCEPTION, e);
+            logger.error(DaoOrderExceptionString.SQL_ADD_PRODUCTS_IN_ORDER_EXCEPTION, e);
+            throw new DaoException(DaoOrderExceptionString.SQL_ADD_PRODUCTS_IN_ORDER_EXCEPTION, e);
         }
     }
 }

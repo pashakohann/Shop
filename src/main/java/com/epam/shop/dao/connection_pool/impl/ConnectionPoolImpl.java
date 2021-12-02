@@ -3,7 +3,7 @@ package com.epam.shop.dao.connection_pool.impl;
 
 import com.epam.shop.dao.connection_pool.api.ConnectionPool;
 import com.epam.shop.dao.exception.DaoException;
-import com.epam.shop.dao.exception.string_exception.DaoConnectionExceptionStrings;
+import com.epam.shop.dao.exception.string_exception.DaoConnectionExceptionString;
 import com.epam.shop.dao.sql_string.ConfigSql;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -59,7 +59,7 @@ public final class ConnectionPoolImpl implements ConnectionPool {
             givenAwayConnections.put(connection);
             return connection;
         } catch (InterruptedException e) {
-            logger.error(DaoConnectionExceptionStrings.SQL_TAKE_CONNECTION_EXCEPTION, e);
+            logger.error(DaoConnectionExceptionString.SQL_TAKE_CONNECTION_EXCEPTION, e);
         }
 
         return null;
@@ -70,7 +70,7 @@ public final class ConnectionPoolImpl implements ConnectionPool {
         try {
             availableConnections.put(givenAwayConnections.take());
         } catch (InterruptedException e) {
-            logger.error(DaoConnectionExceptionStrings.SQL_RETURN_CONNECTION_EXCEPTION, e);
+            logger.error(DaoConnectionExceptionString.SQL_RETURN_CONNECTION_EXCEPTION, e);
 
         }
 
@@ -87,9 +87,9 @@ public final class ConnectionPoolImpl implements ConnectionPool {
             return true;
 
         } catch (SQLException e) {
-            logger.error(DaoConnectionExceptionStrings.CREATE_CONNECTION_EXCEPTION, e);
+            logger.error(DaoConnectionExceptionString.CREATE_CONNECTION_EXCEPTION, e);
         } catch (ClassNotFoundException e) {
-            logger.error(DaoConnectionExceptionStrings.FIND_CLASS_EXCEPTION, e);
+            logger.error(DaoConnectionExceptionString.FIND_CLASS_EXCEPTION, e);
 
         }
         return false;
@@ -120,7 +120,7 @@ public final class ConnectionPoolImpl implements ConnectionPool {
         try {
             connection.realClose();
         } catch (SQLException e) {
-            logger.error(DaoConnectionExceptionStrings.SQL_CLOSE_CONNECTION_EXCEPTION, e);
+            logger.error(DaoConnectionExceptionString.SQL_CLOSE_CONNECTION_EXCEPTION, e);
         }
     }
 

@@ -1,6 +1,6 @@
 package com.epam.shop.dao.exception.string_exception;
 
-public interface DaoProductExceptionStrings {
+public interface DaoProductExceptionString {
     String SQL_FIND_ALL_PRODUCTS_EXCEPTION = "failed to find products";
     String SQL_FIND_ALL_PRODUCTS_WITH_CATEGORY_EXCEPTION = "Failed to find products with the category";
     String SQL_FIND_ALL_PRODUCTS_WITH_BRAND_EXCEPTION = "Failed to find products with the brand";

@@ -5,7 +5,7 @@ import com.epam.shop.dao.api.AccountDao;
 import com.epam.shop.dao.connection_pool.api.ConnectionPool;
 import com.epam.shop.dao.connection_pool.impl.ConnectionPoolImpl;
 import com.epam.shop.dao.exception.DaoException;
-import com.epam.shop.dao.exception.string_exception.DaoAccountExceptionStrings;
+import com.epam.shop.dao.exception.string_exception.DaoAccountExceptionString;
 import com.epam.shop.dao.model.Account;
 import com.epam.shop.dao.sql_string.AccountSql;
 import org.apache.logging.log4j.LogManager;
@@ -61,8 +61,8 @@ public class AccountDaoImpl implements AccountDao {
             }
 
         } catch (SQLException e) {
-            logger.error(DaoAccountExceptionStrings.SQL_SAVE_ACCOUNT_EXCEPTION, e);
-            throw new DaoException(DaoAccountExceptionStrings.SQL_SAVE_ACCOUNT_EXCEPTION, e);
+            logger.error(DaoAccountExceptionString.SQL_SAVE_ACCOUNT_EXCEPTION, e);
+            throw new DaoException(DaoAccountExceptionString.SQL_SAVE_ACCOUNT_EXCEPTION, e);
         }
         return account;
     }
@@ -88,8 +88,8 @@ public class AccountDaoImpl implements AccountDao {
 
 
         } catch (SQLException e) {
-            logger.error(DaoAccountExceptionStrings.SQL_UPDATE_ACCOUNT_INFORMATION_EXCEPTION, e);
-            throw new DaoException(DaoAccountExceptionStrings.SQL_UPDATE_ACCOUNT_INFORMATION_EXCEPTION, e);
+            logger.error(DaoAccountExceptionString.SQL_UPDATE_ACCOUNT_INFORMATION_EXCEPTION, e);
+            throw new DaoException(DaoAccountExceptionString.SQL_UPDATE_ACCOUNT_INFORMATION_EXCEPTION, e);
         }
         return account;
     }
@@ -105,8 +105,8 @@ public class AccountDaoImpl implements AccountDao {
 
 
         } catch (SQLException e) {
-            logger.error(DaoAccountExceptionStrings.SQL_DELETE_ACCOUNT_EXCEPTION, e);
-            throw new DaoException(DaoAccountExceptionStrings.SQL_DELETE_ACCOUNT_EXCEPTION, e);
+            logger.error(DaoAccountExceptionString.SQL_DELETE_ACCOUNT_EXCEPTION, e);
+            throw new DaoException(DaoAccountExceptionString.SQL_DELETE_ACCOUNT_EXCEPTION, e);
         }
 
     }
@@ -139,8 +139,8 @@ public class AccountDaoImpl implements AccountDao {
 
 
         } catch (SQLException e) {
-            logger.error(DaoAccountExceptionStrings.FIND_ACCOUNT_BY_USER_ID_EXCEPTION, e);
-            throw new DaoException(DaoAccountExceptionStrings.FIND_ACCOUNT_BY_USER_ID_EXCEPTION, e);
+            logger.error(DaoAccountExceptionString.FIND_ACCOUNT_BY_USER_ID_EXCEPTION, e);
+            throw new DaoException(DaoAccountExceptionString.FIND_ACCOUNT_BY_USER_ID_EXCEPTION, e);
         }
         return account;
     }
@@ -172,8 +172,8 @@ public class AccountDaoImpl implements AccountDao {
                 }
             }
         } catch (SQLException e) {
-            logger.error(DaoAccountExceptionStrings.SQL_FIND_ALL_ACCOUNTS_EXCEPTION, e);
-            throw new DaoException(DaoAccountExceptionStrings.SQL_FIND_ALL_ACCOUNTS_EXCEPTION, e);
+            logger.error(DaoAccountExceptionString.SQL_FIND_ALL_ACCOUNTS_EXCEPTION, e);
+            throw new DaoException(DaoAccountExceptionString.SQL_FIND_ALL_ACCOUNTS_EXCEPTION, e);
         }
         return list;
     }

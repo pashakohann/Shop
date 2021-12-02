@@ -6,7 +6,7 @@ import com.epam.shop.dao.api.UserDao;
 import com.epam.shop.dao.connection_pool.api.ConnectionPool;
 import com.epam.shop.dao.connection_pool.impl.ConnectionPoolImpl;
 import com.epam.shop.dao.exception.DaoException;
-import com.epam.shop.dao.exception.string_exception.DaoUserExceptionStrings;
+import com.epam.shop.dao.exception.string_exception.DaoUserExceptionString;
 import com.epam.shop.dao.model.User;
 import com.epam.shop.dao.model.UserRole;
 import com.epam.shop.dao.sql_string.UserSql;
@@ -63,8 +63,8 @@ public class UserDaoImpl implements UserDao {
             }
 
         } catch (SQLException e) {
-            logger.error(DaoUserExceptionStrings.SQL_SAVE_USER_EXCEPTION, e);
-            throw new DaoException(DaoUserExceptionStrings.SQL_SAVE_USER_EXCEPTION, e);
+            logger.error(DaoUserExceptionString.SQL_SAVE_USER_EXCEPTION, e);
+            throw new DaoException(DaoUserExceptionString.SQL_SAVE_USER_EXCEPTION, e);
         }
         return user;
     }
@@ -81,8 +81,8 @@ public class UserDaoImpl implements UserDao {
 
 
         } catch (SQLException e) {
-            logger.error(DaoUserExceptionStrings.SQL_UPDATE_USER_PASSWORD_EXCEPTION, e);
-            throw new DaoException(DaoUserExceptionStrings.SQL_UPDATE_USER_PASSWORD_EXCEPTION, e);
+            logger.error(DaoUserExceptionString.SQL_UPDATE_USER_PASSWORD_EXCEPTION, e);
+            throw new DaoException(DaoUserExceptionString.SQL_UPDATE_USER_PASSWORD_EXCEPTION, e);
         }
         return user;
     }
@@ -97,8 +97,8 @@ public class UserDaoImpl implements UserDao {
 
 
         } catch (SQLException e) {
-            logger.error(DaoUserExceptionStrings.SQL_DELETE_USER_EXCEPTION, e);
-            throw new DaoException(DaoUserExceptionStrings.SQL_DELETE_USER_EXCEPTION, e);
+            logger.error(DaoUserExceptionString.SQL_DELETE_USER_EXCEPTION, e);
+            throw new DaoException(DaoUserExceptionString.SQL_DELETE_USER_EXCEPTION, e);
         }
     }
 
@@ -123,8 +123,8 @@ public class UserDaoImpl implements UserDao {
 
             }
         } catch (SQLException e) {
-            logger.error(DaoUserExceptionStrings.SQL_FIND_USER_BY_ID_EXCEPTION, e);
-            throw new DaoException(DaoUserExceptionStrings.SQL_FIND_USER_BY_ID_EXCEPTION, e);
+            logger.error(DaoUserExceptionString.SQL_FIND_USER_BY_ID_EXCEPTION, e);
+            throw new DaoException(DaoUserExceptionString.SQL_FIND_USER_BY_ID_EXCEPTION, e);
         }
         return user;
     }
@@ -152,8 +152,8 @@ public class UserDaoImpl implements UserDao {
             }
 
         } catch (SQLException e) {
-            logger.error(DaoUserExceptionStrings.SQL_FIND_USER_BY_ID_EXCEPTION, e);
-            throw new DaoException(DaoUserExceptionStrings.SQL_FIND_USER_BY_ID_EXCEPTION, e);
+            logger.error(DaoUserExceptionString.SQL_FIND_USER_BY_ID_EXCEPTION, e);
+            throw new DaoException(DaoUserExceptionString.SQL_FIND_USER_BY_ID_EXCEPTION, e);
         }
         return user;
     }
@@ -181,8 +181,8 @@ public class UserDaoImpl implements UserDao {
             }
 
         } catch (SQLException e) {
-            logger.error(DaoUserExceptionStrings.SQL_FIND_ALL_USERS_EXCEPTION, e);
-            throw new DaoException(DaoUserExceptionStrings.SQL_FIND_ALL_USERS_EXCEPTION, e);
+            logger.error(DaoUserExceptionString.SQL_FIND_ALL_USERS_EXCEPTION, e);
+            throw new DaoException(DaoUserExceptionString.SQL_FIND_ALL_USERS_EXCEPTION, e);
         }
         return list;
     }
