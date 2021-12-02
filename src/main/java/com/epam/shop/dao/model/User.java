@@ -1,8 +1,7 @@
 package com.epam.shop.dao.model;
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
 
+import java.time.LocalDateTime;
 import java.util.Objects;
 
 public class User extends AbstractModel<Integer> {
