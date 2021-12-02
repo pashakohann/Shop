@@ -8,5 +8,6 @@ public interface DaoOrderExceptionStrings {
     String SQL_DELETE_PRODUCT_IN_ORDER_EXCEPTION = "Failed to delete product in order";
     String SQL_DELETE_ORDER_EXCEPTION = "Failed to delete order";
     String SQL_FIND_ALL_PRODUCTS_FROM_ORDER_EXCEPTION = "Failed to find products from order";
+    String SQL_ADD_PRODUCTS_IN_ORDER_EXCEPTION = "Failed to add product in order";
 
 }

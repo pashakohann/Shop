@@ -148,8 +148,8 @@ public class ProductDaoImpl implements ProductDao {
             }
 
         } catch (SQLException e) {
-            logger.error(DaoProductExceptionStrings.SQL_FIND_ALL_PRODUCTS_WITH_BREND_EXCEPTION, e);
-            throw new DaoException(DaoProductExceptionStrings.SQL_FIND_ALL_PRODUCTS_WITH_BREND_EXCEPTION, e);
+            logger.error(DaoProductExceptionStrings.SQL_FIND_ALL_PRODUCTS_WITH_BRAND_EXCEPTION, e);
+            throw new DaoException(DaoProductExceptionStrings.SQL_FIND_ALL_PRODUCTS_WITH_BRAND_EXCEPTION, e);
         }
         return list;
     }
@@ -204,8 +204,8 @@ public class ProductDaoImpl implements ProductDao {
             }
 
         } catch (SQLException e) {
-            logger.error(DaoProductExceptionStrings.SQL_FIND_ALL_PRODUCTS_WITH_BREND_AND_CATEGORY_EXCEPTION, e);
-            throw new DaoException(DaoProductExceptionStrings.SQL_FIND_ALL_PRODUCTS_WITH_BREND_AND_CATEGORY_EXCEPTION, e);
+            logger.error(DaoProductExceptionStrings.SQL_FIND_ALL_PRODUCTS_WITH_BRAND_AND_CATEGORY_EXCEPTION, e);
+            throw new DaoException(DaoProductExceptionStrings.SQL_FIND_ALL_PRODUCTS_WITH_BRAND_AND_CATEGORY_EXCEPTION, e);
         }
         return list;
     }

@@ -88,8 +88,8 @@ public class AccountDaoImpl implements AccountDao {
 
 
         } catch (SQLException e) {
-            logger.error(DaoAccountExceptionStrings.SQL_UPDATE_ACCOUND_INFORMATION_EXCEPTION, e);
-            throw new DaoException(DaoAccountExceptionStrings.SQL_UPDATE_ACCOUND_INFORMATION_EXCEPTION, e);
+            logger.error(DaoAccountExceptionStrings.SQL_UPDATE_ACCOUNT_INFORMATION_EXCEPTION, e);
+            throw new DaoException(DaoAccountExceptionStrings.SQL_UPDATE_ACCOUNT_INFORMATION_EXCEPTION, e);
         }
         return account;
     }
@@ -119,27 +119,28 @@ public class AccountDaoImpl implements AccountDao {
                      (AccountSql.FIND_ACCOUNT_BY_USER_ID)) {
             preparedStatement.setInt(1, userId);
 
-            String FIND_ACCOUNT_BY_USER_ID = "SELECT id,first_name,last_name,date_of_birth,telephone_number,email,city,street,flat,amout WHERE user_id=?";
             try (ResultSet resultSet = preparedStatement.executeQuery()) {
                 if (resultSet.next()) {
-                    account = new Account();
-                    account.setId(resultSet.getInt(1));
-                    account.setFirstName(resultSet.getString(2));
-                    account.setLastName(resultSet.getString(3));
-                    account.setDateOfBirth(resultSet.getDate(4).toLocalDate());
-                    account.setTelephoneNumber(resultSet.getString(5));
-                    account.setEmail(resultSet.getString(6));
-                    account.setCity(resultSet.getString(7));
-                    account.setStreet(resultSet.getString(8));
-                    account.setFlat(resultSet.getInt(9));
-                    account.setAmount(resultSet.getDouble(10));
+                    account = new Account.Builder().
+                            withId(resultSet.getInt(1)).
+                            withFirstName(resultSet.getString(2)).
+                            withLastName(resultSet.getString(3)).
+                            withDateOfBirth(resultSet.getDate(4).toLocalDate()).
+                            withTelephoneNumber(resultSet.getString(5)).
+                            withEmail(resultSet.getString(6)).
+                            withCity(resultSet.getString(7)).
+                            withStreet(resultSet.getString(8)).
+                            withFlat(resultSet.getInt(9)).
+                            withAmount(resultSet.getDouble(10)).
+                            withUserId(resultSet.getInt(11)).
+                            build();
                 }
             }
 
 
         } catch (SQLException e) {
-            logger.error(DaoAccountExceptionStrings.FIND_ACCOUND_BY_USER_ID_EXCEPTION, e);
-            throw new DaoException(DaoAccountExceptionStrings.FIND_ACCOUND_BY_USER_ID_EXCEPTION, e);
+            logger.error(DaoAccountExceptionStrings.FIND_ACCOUNT_BY_USER_ID_EXCEPTION, e);
+            throw new DaoException(DaoAccountExceptionStrings.FIND_ACCOUNT_BY_USER_ID_EXCEPTION, e);
         }
         return account;
     }

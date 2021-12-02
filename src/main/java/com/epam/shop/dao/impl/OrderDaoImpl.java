@@ -12,6 +12,7 @@ import com.epam.shop.dao.sql_string.OrderSql;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -24,6 +25,8 @@ public class OrderDaoImpl implements OrderDao {
     private static OrderDao instance;
     private static Logger logger = LogManager.getLogger(OrderDaoImpl.class);
     private static ConnectionPool connectionPool = ConnectionPoolImpl.getInstance();
+
+
 
     private OrderDaoImpl() {
 
@@ -61,17 +64,9 @@ public class OrderDaoImpl implements OrderDao {
     @Override
     public Order update(Order order) throws DaoException {
 
-        try (Connection connection = connectionPool.takeConnection();
-             PreparedStatement preparedStatement =
-                     connection.prepareStatement(OrderSql.SQL_DELETE_ALL_PRODUCTS_FROM_ORDER)) {
-            preparedStatement.setInt(1, order.getId());
-            deleteAllProductInOrder(order.getId());
-            addProductsInOrder(order);
+        deleteAllProductInOrder(order.getId());
+        addProductsInOrder(order);
 
-        } catch (SQLException e) {
-            logger.error(DaoOrderExceptionStrings.SQL_UPDATE_PRODUCT_IN_ORDER_EXCEPTION, e);
-            throw new DaoException(DaoOrderExceptionStrings.SQL_UPDATE_PRODUCT_IN_ORDER_EXCEPTION, e);
-        }
         return order;
     }
 
@@ -200,8 +195,8 @@ public class OrderDaoImpl implements OrderDao {
                 preparedStatement.executeUpdate();
             }
         } catch (SQLException e) {
-            logger.error(DaoOrderExceptionStrings.SQL_UPDATE_PRODUCT_IN_ORDER_EXCEPTION, e);
-            throw new DaoException(DaoOrderExceptionStrings.SQL_UPDATE_PRODUCT_IN_ORDER_EXCEPTION, e);
+            logger.error(DaoOrderExceptionStrings.SQL_ADD_PRODUCTS_IN_ORDER_EXCEPTION, e);
+            throw new DaoException(DaoOrderExceptionStrings.SQL_ADD_PRODUCTS_IN_ORDER_EXCEPTION, e);
         }
     }
 }
