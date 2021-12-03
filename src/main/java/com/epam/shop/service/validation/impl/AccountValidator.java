@@ -89,7 +89,7 @@ public class AccountValidator implements Validator<AccountDto, Integer> {
 
     }
 
-    private static void checkAge(Integer age) throws ServerException {
+    private  void checkAge(Integer age) throws ServerException {
         if (age < AccountValidationString.AGE) {
             throw new ServerException(ServiceAccountExceptionString.YEARS_OF_BIRTH_EXCEPTION);
         }
