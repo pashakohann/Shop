@@ -8,6 +8,6 @@ import java.rmi.ServerException;
 public class ProductValidator  implements Validator<ProductDto,Integer> {
     @Override
     public void validate(ProductDto dto) throws ServerException {
-
+        String PRODUCT_COST_REGEX = "^[1-9]([0-9]{0,5})[.][0-9]{2}$";
     }
 }
