@@ -1,7 +1,10 @@
 package com.epam.shop.service.impl;
 
 
+import com.epam.shop.dao.factory.FactoryDao;
 import com.epam.shop.service.api.UserService;
+import com.epam.shop.service.converter.api.Converter;
+import com.epam.shop.service.converter.impl.UserConverterImpl;
 import com.epam.shop.service.dto.model.UserDto;
 import com.epam.shop.service.exception.ServiceException;
 import com.epam.shop.service.validation.api.Validator;
@@ -13,6 +16,7 @@ public class UserServiceImpl implements UserService {
     private static UserService instance;
     private Validator validatorInstance = UserValidatorImpl.getInstance();
     private static Logger logger = LogManager.getLogger(UserServiceImpl.class);
+    private Converter converter = UserConverterImpl.getConverterInstance();
 
     private UserServiceImpl() {
     }
@@ -26,6 +30,8 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserDto create(UserDto model) throws ServiceException {
+         validatorInstance.validate(model);
+
         return null;
     }
 

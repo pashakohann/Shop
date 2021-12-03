@@ -1,6 +1,8 @@
 package com.epam.shop.service.impl;
 
 import com.epam.shop.service.api.AccountService;
+import com.epam.shop.service.converter.api.Converter;
+import com.epam.shop.service.converter.impl.AccountConverterImpl;
 import com.epam.shop.service.dto.model.AccountDto;
 import com.epam.shop.service.exception.ServiceException;
 import com.epam.shop.service.validation.api.Validator;
@@ -12,6 +14,7 @@ public class AccountServiceImpl implements AccountService {
     private static AccountService instance;
     private Validator validatorInstance = AccountValidatorImpl.getInstance();
     private static Logger logger = LogManager.getLogger(AccountServiceImpl.class);
+    private Converter converter = AccountConverterImpl.getConverterInstance();
 
     private AccountServiceImpl() {
     }
