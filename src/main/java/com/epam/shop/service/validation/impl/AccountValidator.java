@@ -11,6 +11,8 @@ import java.time.LocalDate;
 public class AccountValidator implements Validator<AccountDto, Integer> {
     private static  AccountValidator instance;
 
+
+
     private AccountValidator() {
     }
 
@@ -87,8 +89,8 @@ public class AccountValidator implements Validator<AccountDto, Integer> {
 
     }
 
-    private void checkAge(Integer age) throws ServerException {
-        if (!(age >= AccountValidationString.AGE)) {
+    private static void checkAge(Integer age) throws ServerException {
+        if (age < AccountValidationString.AGE) {
             throw new ServerException(ServiceAccountExceptionString.YEARS_OF_BIRTH_EXCEPTION);
         }
 
