@@ -1,36 +1,45 @@
 package com.epam.shop.service.impl;
 
-//
-//public class UserServiceImpl implements Service<UserDto,Integer> {
-//    private Dao<User,Integer> userDao = new DaoUserImpl();
-//    private UserConverter converter = new UserConverter();
-//    private Validator<UserDto> validator = new ValidatorImpl();
-//
-//
-//    @Override
-//    public UserDto create(UserDto user) throws ServerException {
-//        //validation
-//        validator.validate(user);
-//        return converter.convert(userDao.save(converter.convert(user)));
-//    }
-//
-//    @Override
-//    public UserDto update(UserDto user) {
-//        return null;
-//    }
-//
-//    @Override
-//    public void delete(UserDto user) {
-//
-//    }
-//
-//    @Override
-//    public UserDto getById(Integer id) {
-//        return null;
-//    }
-//
-//    @Override
-//    public UserDto getAll() {
-//        return null;
-//    }
-//}
+
+import com.epam.shop.service.api.UserService;
+import com.epam.shop.service.dto.model.UserDto;
+import com.epam.shop.service.exception.ServiceException;
+
+public class UserServiceImpl implements UserService {
+    private static UserService instance;
+
+    private UserServiceImpl() {
+    }
+
+    public static UserService getInstance() {
+        if (instance == null) {
+            instance = new UserServiceImpl();
+        }
+        return instance;
+    }
+
+    @Override
+    public UserDto create(UserDto model) throws ServiceException {
+        return null;
+    }
+
+    @Override
+    public UserDto update(UserDto model) {
+        return null;
+    }
+
+    @Override
+    public void delete(UserDto model) {
+
+    }
+
+    @Override
+    public UserDto getById(Integer id) {
+        return null;
+    }
+
+    @Override
+    public UserDto getAll() {
+        return null;
+    }
+}

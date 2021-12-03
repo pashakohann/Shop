@@ -9,7 +9,7 @@ import com.epam.shop.dao.exception.DaoException;
 import com.epam.shop.dao.exception.string_exception.DaoUserExceptionString;
 import com.epam.shop.dao.model.User;
 import com.epam.shop.dao.model.UserRole;
-import com.epam.shop.dao.sql_string.UserSql;
+import com.epam.shop.dao.sql_query.UserSql;
 import com.epam.shop.dao.util.security.api.Crypt;
 import com.epam.shop.dao.util.security.impl.CryptImpl;
 import org.apache.logging.log4j.LogManager;

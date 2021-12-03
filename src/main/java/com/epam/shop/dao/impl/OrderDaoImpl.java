@@ -8,7 +8,7 @@ import com.epam.shop.dao.exception.DaoException;
 import com.epam.shop.dao.exception.string_exception.DaoOrderExceptionString;
 import com.epam.shop.dao.model.Order;
 import com.epam.shop.dao.model.Product;
-import com.epam.shop.dao.sql_string.OrderSql;
+import com.epam.shop.dao.sql_query.OrderSql;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -171,7 +171,7 @@ public class OrderDaoImpl implements OrderDao {
                     product.setName(resultSet.getString(2));
                     product.setCost(resultSet.getDouble(3));
                     product.setCategoryId(resultSet.getInt(4));
-                    product.setBrendId(resultSet.getInt(5));
+                    product.setBrandId(resultSet.getInt(5));
 
                     list.add(product);
                 }

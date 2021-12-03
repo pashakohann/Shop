@@ -1,4 +1,4 @@
-package com.epam.shop.dao.sql_string;
+package com.epam.shop.dao.sql_query;
 
 public interface ProductSql {
     String SQL_FIND_ALL_PRODUCTS = "SELECT id,name,category_id,brand_id,cost FROM products;";

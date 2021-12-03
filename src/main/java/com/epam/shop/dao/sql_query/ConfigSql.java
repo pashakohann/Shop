@@ -1,4 +1,4 @@
-package com.epam.shop.dao.sql_string;
+package com.epam.shop.dao.sql_query;
 
 public interface ConfigSql {
     String DB_URL = "jdbc:mysql://127.0.0.1:3307/shop";

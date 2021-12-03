@@ -1,4 +1,4 @@
-package com.epam.shop.dao.sql_string;
+package com.epam.shop.dao.sql_query;
 
 public interface OrderSql {
     String SQL_SAVE_ORDER = "INSERT INTO orders(order_cost,account_id) VALUES(?,?)";

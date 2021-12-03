@@ -1,4 +1,4 @@
-package com.epam.shop.dao.sql_string;
+package com.epam.shop.dao.sql_query;
 
 public interface UserSql {
     String SQL_SAVE_USER = "INSERT INTO users(account,password,role_id) VALUES(?,?,?)";

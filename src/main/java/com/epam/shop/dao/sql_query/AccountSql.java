@@ -1,4 +1,4 @@
-package com.epam.shop.dao.sql_string;
+package com.epam.shop.dao.sql_query;
 
 public interface AccountSql {
     String FIND_ACCOUNT_BY_USER_ID = "SELECT id,first_name,last_name,date_of_birth,telephone_number,email,city,street,flat,amount,user_id FROM accounts WHERE user_id=?";

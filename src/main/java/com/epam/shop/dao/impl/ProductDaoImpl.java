@@ -7,7 +7,7 @@ import com.epam.shop.dao.connection_pool.impl.ConnectionPoolImpl;
 import com.epam.shop.dao.exception.DaoException;
 import com.epam.shop.dao.exception.string_exception.DaoProductExceptionString;
 import com.epam.shop.dao.model.Product;
-import com.epam.shop.dao.sql_string.ProductSql;
+import com.epam.shop.dao.sql_query.ProductSql;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
