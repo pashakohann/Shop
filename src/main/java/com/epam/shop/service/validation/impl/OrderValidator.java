@@ -2,9 +2,10 @@ package com.epam.shop.service.validation.impl;
 
 
 import com.epam.shop.service.dto.model.OrderDto;
+import com.epam.shop.service.exception.ServiceException;
 import com.epam.shop.service.validation.api.Validator;
 
-import java.rmi.ServerException;
+
 
 public class OrderValidator implements Validator<OrderDto,Integer> {
     private static  OrderValidator instance;
@@ -20,7 +21,7 @@ public class OrderValidator implements Validator<OrderDto,Integer> {
         return instance;
     }
     @Override
-    public void validate(OrderDto dto) throws ServerException {
+    public void validate(OrderDto dto) throws ServiceException {
 
     }
 }
