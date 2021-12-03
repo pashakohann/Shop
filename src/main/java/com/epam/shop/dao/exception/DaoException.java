@@ -2,7 +2,6 @@ package com.epam.shop.dao.exception;
 
 public class DaoException extends Exception{
     public DaoException() {
-        super();
     }
 
     public DaoException(String message) {
@@ -17,7 +16,7 @@ public class DaoException extends Exception{
         super(cause);
     }
 
-    protected DaoException(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
+    public DaoException(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
         super(message, cause, enableSuppression, writableStackTrace);
     }
 }
