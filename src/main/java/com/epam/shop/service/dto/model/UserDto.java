@@ -6,7 +6,7 @@ import java.time.LocalDateTime;
 import java.util.Objects;
 
 
-public class UserDto extends AbstractDto<Integer> {
+public class UserDto extends AbstractModelDto<Integer> {
     private UserRole role;
     private String account;
     private String password;

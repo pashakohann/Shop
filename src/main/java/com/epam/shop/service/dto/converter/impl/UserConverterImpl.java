@@ -5,9 +5,20 @@ import com.epam.shop.dao.exception.DaoException;
 import com.epam.shop.dao.model.User;
 import com.epam.shop.service.dto.converter.api.Converter;
 import com.epam.shop.service.dto.model.UserDto;
-import com.epam.shop.service.exception.ServiceException;
 
 public class UserConverterImpl implements Converter<UserDto, User,Integer> {
+    private static Converter converterInstance;
+
+
+    private UserConverterImpl() {
+    }
+
+    public static Converter getConverterInstance() {
+        if (converterInstance == null) {
+            converterInstance = new UserConverterImpl();
+        }
+        return converterInstance;
+    }
 
 
     @Override

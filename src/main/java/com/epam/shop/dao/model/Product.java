@@ -46,12 +46,12 @@ public class Product extends AbstractModel<Integer> {
         this.categoryId = categoryId;
     }
 
-    public Integer getBrendId() {
+    public Integer getBrandId() {
         return brandId;
     }
 
-    public void setBrendId(Integer brendId) {
-        this.brandId = brendId;
+    public void setBrandId(Integer brandId) {
+        this.brandId = brandId;
     }
 
     @Override

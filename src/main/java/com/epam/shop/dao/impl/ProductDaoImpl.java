@@ -46,7 +46,7 @@ public class ProductDaoImpl implements ProductDao {
             preparedStatement.setString(1, product.getName());
             preparedStatement.setDouble(2, product.getCost());
             preparedStatement.setInt(3, product.getCategoryId());
-            preparedStatement.setInt(4, product.getBrendId());
+            preparedStatement.setInt(4, product.getBrandId());
             preparedStatement.executeUpdate();
             try (ResultSet resultSet = preparedStatement.getGeneratedKeys()) {
                 if (resultSet.next()) {
@@ -71,7 +71,7 @@ public class ProductDaoImpl implements ProductDao {
             preparedStatement.setString(1, product.getName());
             preparedStatement.setDouble(2, product.getCost());
             preparedStatement.setInt(3, product.getCategoryId());
-            preparedStatement.setInt(4, product.getBrendId());
+            preparedStatement.setInt(4, product.getBrandId());
             preparedStatement.setInt(5, product.getId());
             preparedStatement.executeUpdate();
 
@@ -114,7 +114,7 @@ public class ProductDaoImpl implements ProductDao {
                     product.setId(resultSet.getInt(1));
                     product.setName(resultSet.getString(2));
                     product.setCategoryId(resultSet.getInt(3));
-                    product.setBrendId(resultSet.getInt(4));
+                    product.setBrandId(resultSet.getInt(4));
                     product.setCost(resultSet.getDouble(5));
                 }
             }
@@ -141,7 +141,7 @@ public class ProductDaoImpl implements ProductDao {
                     product.setId(resultSet.getInt(1));
                     product.setName(resultSet.getString(2));
                     product.setCategoryId(resultSet.getInt(3));
-                    product.setBrendId(resultSet.getInt(4));
+                    product.setBrandId(resultSet.getInt(4));
                     product.setCost(resultSet.getDouble(5));
                     list.add(product);
                 }
@@ -168,7 +168,7 @@ public class ProductDaoImpl implements ProductDao {
                     product.setId(resultSet.getInt(1));
                     product.setName(resultSet.getString(2));
                     product.setCategoryId(resultSet.getInt(3));
-                    product.setBrendId(resultSet.getInt(4));
+                    product.setBrandId(resultSet.getInt(4));
                     product.setCost(resultSet.getDouble(5));
                     list.add(product);
                 }
@@ -196,7 +196,7 @@ public class ProductDaoImpl implements ProductDao {
                     product.setId(resultSet.getInt(1));
                     product.setName(resultSet.getString(2));
                     product.setCategoryId(resultSet.getInt(3));
-                    product.setBrendId(resultSet.getInt(4));
+                    product.setBrandId(resultSet.getInt(4));
                     product.setCost(resultSet.getDouble(5));
 
                     list.add(product);
@@ -224,7 +224,7 @@ public class ProductDaoImpl implements ProductDao {
                     product.setId(resultSet.getInt(1));
                     product.setName(resultSet.getString(2));
                     product.setCategoryId(resultSet.getInt(3));
-                    product.setBrendId(resultSet.getInt(4));
+                    product.setBrandId(resultSet.getInt(4));
                     product.setCost(resultSet.getDouble(5));
                     list.add(product);
                 }

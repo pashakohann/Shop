@@ -5,7 +5,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Objects;
 
-public class OrderDto extends AbstractDto<Integer> {
+public class OrderDto extends AbstractModelDto<Integer> {
     private List<ProductDto> listProducts;
     private LocalDateTime orderDate;
     private Double orderCost;

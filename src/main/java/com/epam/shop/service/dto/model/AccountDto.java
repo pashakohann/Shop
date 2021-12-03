@@ -1,11 +1,9 @@
 package com.epam.shop.service.dto.model;
 
-import com.epam.shop.dao.model.Account;
-
 import java.time.LocalDate;
 import java.util.Objects;
 
-public class AccountDto extends AbstractDto<Integer> {
+public class AccountDto extends AbstractModelDto<Integer> {
     private String firstName;
     private String lastName;
     private LocalDate dateOfBirth;
@@ -206,8 +204,8 @@ public class AccountDto extends AbstractDto<Integer> {
             return this;
         }
 
-        public Account build() {
-            Account account = new Account();
+        public AccountDto build() {
+            AccountDto account = new AccountDto();
             account.setId(this.id);
             account.setFirstName(this.firstName);
             account.setLastName(this.lastName);

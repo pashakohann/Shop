@@ -2,7 +2,7 @@ package com.epam.shop.service.dto.model;
 
 import java.util.Objects;
 
-public class ProductDto extends AbstractDto<Integer> {
+public class ProductDto extends AbstractModelDto<Integer> {
     private String name;
     private Double cost;
     private Integer categoryId;

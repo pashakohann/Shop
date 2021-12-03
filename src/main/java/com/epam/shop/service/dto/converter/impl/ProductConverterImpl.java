@@ -5,16 +5,41 @@ import com.epam.shop.dao.exception.DaoException;
 import com.epam.shop.dao.model.Product;
 import com.epam.shop.service.dto.converter.api.Converter;
 import com.epam.shop.service.dto.model.ProductDto;
-import com.epam.shop.service.exception.ServiceException;
 
-public class ProductConverterImpl implements Converter<ProductDto, Product,Integer> {
-    @Override
-    public ProductDto convert(Product model) throws DaoException {
-        return null;
+
+public class ProductConverterImpl implements Converter<ProductDto, Product, Integer> {
+    private static Converter converterInstance;
+
+
+    private ProductConverterImpl() {
+    }
+
+    public static Converter getConverterInstance() {
+        if (converterInstance == null) {
+            converterInstance = new ProductConverterImpl();
+        }
+        return converterInstance;
     }
 
     @Override
-    public Product convert(ProductDto modelDto)  {
-        return null;
+    public ProductDto convert(Product model) throws DaoException {
+        ProductDto productDto = new ProductDto();
+        productDto.setId(model.getId());
+        productDto.setCost(model.getCost());
+        productDto.setName(model.getName());
+        productDto.setCategoryId(model.getCategoryId());
+        productDto.setBrandId(model.getBrandId());
+        return productDto;
+    }
+
+    @Override
+    public Product convert(ProductDto modelDto) {
+        Product product = new Product();
+        product.setId(modelDto.getId());
+        product.setCost(modelDto.getCost());
+        product.setName(modelDto.getName());
+        product.setCategoryId(modelDto.getCategoryId());
+        product.setBrandId(modelDto.getBrandId());
+        return product;
     }
 }

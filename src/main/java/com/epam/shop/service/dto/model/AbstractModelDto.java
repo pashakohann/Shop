@@ -1,13 +1,13 @@
 package com.epam.shop.service.dto.model;
 
-public class AbstractDto<T> {
+public class AbstractModelDto<T> {
     protected T id;
 
-    public AbstractDto() {
+    public AbstractModelDto() {
 
     }
 
-    public AbstractDto(T id) {
+    public AbstractModelDto(T id) {
         this.id = id;
     }
 
