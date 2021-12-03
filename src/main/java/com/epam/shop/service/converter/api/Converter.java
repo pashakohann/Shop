@@ -1,4 +1,4 @@
-package com.epam.shop.service.dto.converter.api;
+package com.epam.shop.service.converter.api;
 
 import com.epam.shop.dao.exception.DaoException;
 import com.epam.shop.dao.model.AbstractModel;

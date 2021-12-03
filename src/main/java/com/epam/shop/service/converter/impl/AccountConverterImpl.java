@@ -1,9 +1,9 @@
-package com.epam.shop.service.dto.converter.impl;
+package com.epam.shop.service.converter.impl;
 
 
 import com.epam.shop.dao.exception.DaoException;
 import com.epam.shop.dao.model.Account;
-import com.epam.shop.service.dto.converter.api.Converter;
+import com.epam.shop.service.converter.api.Converter;
 import com.epam.shop.service.dto.model.AccountDto;
 
 

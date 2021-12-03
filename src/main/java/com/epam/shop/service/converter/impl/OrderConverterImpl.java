@@ -1,10 +1,10 @@
-package com.epam.shop.service.dto.converter.impl;
+package com.epam.shop.service.converter.impl;
 
 
 import com.epam.shop.dao.exception.DaoException;
 import com.epam.shop.dao.model.Order;
 import com.epam.shop.dao.model.Product;
-import com.epam.shop.service.dto.converter.api.Converter;
+import com.epam.shop.service.converter.api.Converter;
 import com.epam.shop.service.dto.model.OrderDto;
 import com.epam.shop.service.dto.model.ProductDto;
 
