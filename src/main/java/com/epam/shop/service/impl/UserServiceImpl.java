@@ -4,9 +4,15 @@ package com.epam.shop.service.impl;
 import com.epam.shop.service.api.UserService;
 import com.epam.shop.service.dto.model.UserDto;
 import com.epam.shop.service.exception.ServiceException;
+import com.epam.shop.service.validation.api.Validator;
+import com.epam.shop.service.validation.impl.UserValidatorImpl;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class UserServiceImpl implements UserService {
     private static UserService instance;
+    private Validator validatorInstance = UserValidatorImpl.getInstance();
+    private static Logger logger = LogManager.getLogger(UserServiceImpl.class);
 
     private UserServiceImpl() {
     }

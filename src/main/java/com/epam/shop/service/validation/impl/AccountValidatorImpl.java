@@ -9,18 +9,18 @@ import com.epam.shop.service.validation.validation_string.AccountValidationStrin
 
 import java.time.LocalDate;
 
-public class AccountValidator implements Validator<AccountDto, Integer> {
-    private static  AccountValidator instance;
+public class AccountValidatorImpl implements Validator<AccountDto, Integer> {
+    private static AccountValidatorImpl instance;
 
 
 
-    private AccountValidator() {
+    private AccountValidatorImpl() {
     }
 
 
-    public static AccountValidator getInstance() {
+    public static AccountValidatorImpl getInstance() {
         if (instance == null) {
-            instance = new AccountValidator();
+            instance = new AccountValidatorImpl();
         }
         return instance;
     }

@@ -6,16 +6,16 @@ import com.epam.shop.service.validation.api.Validator;
 
 
 
-public class UserValidator implements Validator<UserDto, Integer> {
-    private static UserValidator instance;
+public class UserValidatorImpl implements Validator<UserDto, Integer> {
+    private static UserValidatorImpl instance;
 
-    private UserValidator() {
+    private UserValidatorImpl() {
     }
 
 
-    public static UserValidator getInstance() {
+    public static UserValidatorImpl getInstance() {
         if (instance == null) {
-            instance = new UserValidator();
+            instance = new UserValidatorImpl();
         }
         return instance;
     }

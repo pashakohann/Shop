@@ -3,10 +3,15 @@ package com.epam.shop.service.impl;
 import com.epam.shop.service.api.ProductService;
 import com.epam.shop.service.dto.model.ProductDto;
 import com.epam.shop.service.exception.ServiceException;
+import com.epam.shop.service.validation.api.Validator;
+import com.epam.shop.service.validation.impl.ProductValidatorImpl;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class ProductServiceImpl implements ProductService {
     private static ProductService instance;
-
+    private Validator validatorInstance = ProductValidatorImpl.getInstance();
+    private static Logger logger = LogManager.getLogger(ProductServiceImpl.class);
     private ProductServiceImpl() {
     }
 

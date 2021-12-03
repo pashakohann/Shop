@@ -7,16 +7,16 @@ import com.epam.shop.service.validation.api.Validator;
 
 
 
-public class OrderValidator implements Validator<OrderDto,Integer> {
-    private static  OrderValidator instance;
+public class OrderValidatorImpl implements Validator<OrderDto,Integer> {
+    private static OrderValidatorImpl instance;
 
-    private OrderValidator() {
+    private OrderValidatorImpl() {
     }
 
 
-    public static OrderValidator getInstance() {
+    public static OrderValidatorImpl getInstance() {
         if (instance == null) {
-            instance = new OrderValidator();
+            instance = new OrderValidatorImpl();
         }
         return instance;
     }
