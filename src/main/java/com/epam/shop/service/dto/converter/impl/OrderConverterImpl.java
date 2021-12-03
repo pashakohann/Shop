@@ -9,12 +9,12 @@ import com.epam.shop.service.exception.ServiceException;
 
 public class OrderConverterImpl implements Converter<OrderDto, Order,Integer> {
     @Override
-    public OrderDto convert(Order model) throws ServiceException {
+    public OrderDto convert(Order model) throws DaoException {
         return null;
     }
 
     @Override
-    public Order convert(OrderDto modelDto) throws DaoException {
+    public Order convert(OrderDto modelDto)  {
         return null;
     }
 }

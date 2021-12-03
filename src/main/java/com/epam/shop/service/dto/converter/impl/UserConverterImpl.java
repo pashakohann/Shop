@@ -11,12 +11,12 @@ public class UserConverterImpl implements Converter<UserDto, User,Integer> {
 
 
     @Override
-    public UserDto convert(User model) throws ServiceException {
+    public UserDto convert(User model) throws DaoException {
         return null;
     }
 
     @Override
-    public User convert(UserDto modelDto) throws DaoException {
+    public User convert(UserDto modelDto)  {
         return null;
     }
 }

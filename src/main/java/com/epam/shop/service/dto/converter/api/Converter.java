@@ -7,8 +7,8 @@ import com.epam.shop.service.exception.ServiceException;
 
 
 public interface Converter<T extends AbstractDto<V>, K extends AbstractModel<V>, V> {
-    T convert(K model) throws ServiceException;
+    T convert(K model) throws DaoException;
 
 
-    K convert(T modelDto) throws DaoException;
+    K convert(T modelDto) ;
 }

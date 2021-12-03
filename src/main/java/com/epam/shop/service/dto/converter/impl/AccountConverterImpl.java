@@ -9,12 +9,12 @@ import com.epam.shop.service.exception.ServiceException;
 
 public class AccountConverterImpl implements Converter<AccountDto, Account,Integer> {
     @Override
-    public AccountDto convert(Account model) throws ServiceException {
+    public AccountDto convert(Account model) throws DaoException {
         return null;
     }
 
     @Override
-    public Account convert(AccountDto modelDto) throws DaoException {
+    public Account convert(AccountDto modelDto) {
         return null;
     }
 }
