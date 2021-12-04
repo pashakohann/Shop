@@ -30,17 +30,6 @@ public class UserServiceImpl implements UserService {
     private final UserConverterImpl converter = UserConverterImpl.getConverterInstance();
     private final Crypt crypt = CryptImpl.getInstance();
 
-    public static void main(String[] args) throws ServiceException, DaoException {
-        UserDto userDto = new UserDto();
-        userDto.setAccount("amarishka1512");
-        userDto.setPassword("123s456");
-
-        ConnectionPoolImpl.getInstance().init();
-        userDto = getInstance().create(userDto);
-        System.out.println(userDto);
-
-    }
-
     private UserServiceImpl() {
     }
 
