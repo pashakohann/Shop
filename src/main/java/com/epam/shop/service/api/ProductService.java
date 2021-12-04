@@ -2,6 +2,17 @@ package com.epam.shop.service.api;
 
 
 import com.epam.shop.service.dto.model.ProductDto;
+import com.epam.shop.service.exception.ServiceException;
 
-public interface ProductService extends Service<ProductDto,Integer> {
+import java.util.List;
+
+public interface ProductService extends Service<ProductDto, Integer> {
+
+    List<ProductDto> findProductsByBrand(Integer idBrand) throws ServiceException;
+
+    List<ProductDto> findProductsByCategory(Integer idCategory) throws ServiceException;
+
+    List<ProductDto> findProductsByCategoryAndBrand(Integer category, Integer brand) throws ServiceException;
+
+
 }

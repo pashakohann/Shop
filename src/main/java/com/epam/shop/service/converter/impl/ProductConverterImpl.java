@@ -8,7 +8,7 @@ import com.epam.shop.service.dto.model.ProductDto;
 
 
 public class ProductConverterImpl implements Converter<ProductDto, Product, Integer> {
-    private static Converter converterInstance;
+    private static ProductConverterImpl converterInstance;
 
 
     private ProductConverterImpl() {
@@ -18,7 +18,7 @@ public class ProductConverterImpl implements Converter<ProductDto, Product, Inte
         if (converterInstance == null) {
             converterInstance = new ProductConverterImpl();
         }
-        return (ProductConverterImpl)converterInstance;
+        return converterInstance;
     }
 
     @Override
