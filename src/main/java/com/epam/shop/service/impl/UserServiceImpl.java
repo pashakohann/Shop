@@ -1,7 +1,7 @@
 package com.epam.shop.service.impl;
 
 
-import com.epam.shop.dao.connection_pool.impl.ConnectionPoolImpl;
+
 import com.epam.shop.dao.exception.DaoException;
 import com.epam.shop.dao.factory.FactoryDao;
 import com.epam.shop.dao.model.Account;
@@ -29,14 +29,6 @@ public class UserServiceImpl implements UserService {
     private static final Logger logger = LogManager.getLogger(UserServiceImpl.class);
     private final UserConverterImpl converter = UserConverterImpl.getConverterInstance();
     private final Crypt crypt = CryptImpl.getInstance();
-
-//    public static void main(String[] args) throws ServiceException, DaoException {
-//        UserDto userDto = new UserDto();
-//        userDto.setAccount("marishka15");
-//        userDto.setPassword("python151");
-//        ConnectionPoolImpl.getInstance().init();
-//        getInstance().create(userDto);
-//    }
 
     private UserServiceImpl() {
     }
