@@ -13,6 +13,8 @@ public interface ServiceUserExceptionString {
     String CHECK_DUPLICATE_USER_NAME_EXCEPTION = "Name is taken ... Please come up with another";
     String USER_USER_IN_NOT_FOUND_EXCEPTION = "User isn't found";
     String CHECK_PASSWORD_EXCEPTION = "Incorrect password";
+    String USER_IS_NOT_FOUND = "user is not found";
+    String FIND_USER_EXCEPTION = "failed to find user";
 
 
 }

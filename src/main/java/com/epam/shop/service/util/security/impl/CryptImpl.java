@@ -24,8 +24,8 @@ public class CryptImpl implements Crypt {
     }
 
     @Override
-    public boolean verify(String user, String password) {
+    public boolean verify(String passwordFromUser, String passwordDB) {
 
-        return BCrypt.verifyer().verify(password.toCharArray(),password).verified;
+        return BCrypt.verifyer().verify(passwordFromUser.toCharArray(),passwordDB).verified;
     }
 }

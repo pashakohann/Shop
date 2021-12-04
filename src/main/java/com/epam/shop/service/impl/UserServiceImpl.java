@@ -1,6 +1,7 @@
 package com.epam.shop.service.impl;
 
 
+import com.epam.shop.dao.connection_pool.impl.ConnectionPoolImpl;
 import com.epam.shop.dao.exception.DaoException;
 import com.epam.shop.dao.factory.FactoryDao;
 import com.epam.shop.dao.model.Account;
@@ -31,8 +32,8 @@ public class UserServiceImpl implements UserService {
 
 //    public static void main(String[] args) throws ServiceException, DaoException {
 //        UserDto userDto = new UserDto();
-//        userDto.setAccount("marishka151");
-//        userDto.setPassword("python15");
+//        userDto.setAccount("marishka15");
+//        userDto.setPassword("python151");
 //        ConnectionPoolImpl.getInstance().init();
 //        getInstance().create(userDto);
 //    }
@@ -125,6 +126,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserDto signIn(UserDto user) throws ServiceException {
         validatorInstance.validate(user);
+        user = checkPasswordAndUserName(user);
 
         return user;
     }
@@ -139,12 +141,18 @@ public class UserServiceImpl implements UserService {
         return list.stream().filter(user -> user.getAccount().equals(userName)).findFirst().isEmpty();
     }
 
-    private UserDto checkPasswordAndUserName(UserDto user){
+    private UserDto checkPasswordAndUserName(UserDto user) throws ServiceException {
+        UserDto userDto = null;
         try {
-            UserDto userDto = converter.convert((FactoryDao.getUserImpl().findByUserName(converter.convert(user))));
+            userDto = converter.convert((FactoryDao.getUserImpl().findByUserName(converter.convert(user))));
+            if (userDto.getId() == null) {
+                throw new ServiceException(ServiceUserExceptionString.USER_IS_NOT_FOUND);
+            } else if (!crypt.verify(user.getPassword(), userDto.getPassword())) {
+                throw new ServiceException(ServiceUserExceptionString.CHECK_PASSWORD_EXCEPTION);
+            }
         } catch (DaoException e) {
-            throw new ServiceException(,e);
+            throw new ServiceException(ServiceUserExceptionString.FIND_USER_EXCEPTION, e);
         }
-        return false;
+        return userDto;
     }
 }
