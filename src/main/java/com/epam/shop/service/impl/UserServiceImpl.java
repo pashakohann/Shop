@@ -1,7 +1,7 @@
 package com.epam.shop.service.impl;
 
 
-import com.epam.shop.dao.connection_pool.impl.ConnectionPoolImpl;
+
 import com.epam.shop.dao.exception.DaoException;
 import com.epam.shop.dao.factory.FactoryDao;
 import com.epam.shop.dao.model.Account;
