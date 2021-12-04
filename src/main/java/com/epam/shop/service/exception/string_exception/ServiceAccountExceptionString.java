@@ -8,7 +8,13 @@ public interface ServiceAccountExceptionString {
     String CITY_NAME_EXCEPTION = "You entered an invalid city name...City name must start with a capital letter and select one language to enter. Example:Minsk or Минск";
     String STREET_NAME_EXCEPTION = "You entered an invalid street name...Street name must start with a capital letter and select one language to enter. Example:Lomonosova or Ломоносова";
     String FLAT_OR_HOUSE_NUMBER_EXCEPTION = "You entered an invalid number flat or house....Flat or House number must have 1-999";
-    String ACCOUNT_AMOUNT_EXCEPTION = "You entered an invalid amount....Your amount must be 1.00 to 999999.00. Example:99.00 or 13.75";
+    String ACCOUNT_AMOUNT_EXCEPTION = "You entered an invalid amount....Your amount must be 1.0 to 999999.0. Example:99.0 or 13.7";
     String DATE_OF_BIRTH_EXCEPTION = "You entered an invalid date of birth... You must enter the year first, then the month, and then the day, separating everything with a dash. Example:1990-01-14";
     String YEARS_OF_BIRTH_EXCEPTION = "You entered an invalid year. Your year of birth must be over 18 years old";
+    String CREATE_ACCOUNT_FOR_USER = "Failed to find account for user";
+    String FIND_ALL_ACCOUNTS = "Failed to find all account";
+    String FIND_BY_ID_ACCOUNT = "Failed to find account";
+    String DELETE_ACCOUNT = "Failed to delete account";
+    String UPDATE_ACCOUNT = "Failed to update information in account";
+    String FILL_FIELDS_EXCEPTION  = "You must fill in all fields";
 }

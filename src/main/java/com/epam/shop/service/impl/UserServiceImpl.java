@@ -1,16 +1,16 @@
 package com.epam.shop.service.impl;
 
 
-
 import com.epam.shop.dao.exception.DaoException;
 import com.epam.shop.dao.factory.FactoryDao;
-import com.epam.shop.dao.model.Account;
 import com.epam.shop.dao.model.User;
 import com.epam.shop.service.api.UserService;
 import com.epam.shop.service.converter.impl.UserConverterImpl;
+import com.epam.shop.service.dto.model.AccountDto;
 import com.epam.shop.service.dto.model.UserDto;
 import com.epam.shop.service.exception.ServiceException;
 import com.epam.shop.service.exception.string_exception.ServiceUserExceptionString;
+import com.epam.shop.service.factory.FactoryService;
 import com.epam.shop.service.util.security.api.Crypt;
 import com.epam.shop.service.util.security.impl.CryptImpl;
 import com.epam.shop.service.validation.api.Validator;
@@ -50,9 +50,9 @@ public class UserServiceImpl implements UserService {
                 model.setPassword(crypt.encrypt(model.getPassword()));
                 model.setRegistrationDate(LocalDateTime.now());
                 model = converter.convert(FactoryDao.getUserImpl().save(converter.convert(model)));
-                Account account = new Account();
+                AccountDto account = new AccountDto();
                 account.setUserId(model.getId());
-                FactoryDao.getAccountImpl().save(account);
+                FactoryService.getAccountServiceInstance().create(account);
             } else {
                 throw new ServiceException(ServiceUserExceptionString.CHECK_DUPLICATE_USER_NAME_EXCEPTION);
             }
@@ -90,7 +90,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserDto getById(Integer id) throws ServiceException {
-        UserDto userDao = null;
+        UserDto userDao;
         try {
             userDao = converter.convert(FactoryDao.getUserImpl().findById(id));
         } catch (DaoException e) {
@@ -124,17 +124,18 @@ public class UserServiceImpl implements UserService {
     }
 
     private boolean checkDuplicateUserName(String userName) throws ServiceException {
-        List<User> list = null;
+        List<User> list;
         try {
             list = FactoryDao.getUserImpl().findAll();
         } catch (DaoException e) {
+            logger.error(ServiceUserExceptionString.FIND_ALL_USERS_EXCEPTION, e);
             throw new ServiceException(ServiceUserExceptionString.FIND_ALL_USERS_EXCEPTION, e);
         }
         return list.stream().filter(user -> user.getAccount().equals(userName)).findFirst().isEmpty();
     }
 
     private UserDto checkPasswordAndUserName(UserDto user) throws ServiceException {
-        UserDto userDto = null;
+        UserDto userDto;
         try {
             userDto = converter.convert((FactoryDao.getUserImpl().findByUserName(converter.convert(user))));
             if (userDto.getId() == null) {
@@ -143,6 +144,7 @@ public class UserServiceImpl implements UserService {
                 throw new ServiceException(ServiceUserExceptionString.CHECK_PASSWORD_EXCEPTION);
             }
         } catch (DaoException e) {
+            logger.error(ServiceUserExceptionString.FIND_USER_EXCEPTION, e);
             throw new ServiceException(ServiceUserExceptionString.FIND_USER_EXCEPTION, e);
         }
         return userDto;

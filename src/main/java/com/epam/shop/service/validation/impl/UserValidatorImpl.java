@@ -6,7 +6,7 @@ import com.epam.shop.service.exception.string_exception.ServiceUserExceptionStri
 import com.epam.shop.service.validation.api.Validator;
 import com.epam.shop.service.validation.validation_string.UserValidationString;
 
-import java.rmi.ServerException;
+
 
 
 public class UserValidatorImpl implements Validator<UserDto, Integer> {
@@ -25,18 +25,19 @@ public class UserValidatorImpl implements Validator<UserDto, Integer> {
 
     @Override
     public void validate(UserDto dto) throws ServiceException {
-
+       checkPassword(dto.getPassword());
+       checkUserName(dto.getAccount());
     }
 
-    private void checkUserName(String userName) throws ServerException {
+    private void checkUserName(String userName) throws  ServiceException {
         if (!userName.matches(UserValidationString.USER_NAME_REGEX)) {
-            throw new ServerException(ServiceUserExceptionString.USER_PASSWORD_EXCEPTION);
+            throw new ServiceException(ServiceUserExceptionString.USER_PASSWORD_EXCEPTION);
         }
     }
 
-    private void checkPassword(String userPassword) throws ServerException {
+    private void checkPassword(String userPassword) throws ServiceException {
         if (!userPassword.matches(UserValidationString.USER_PASSWORD_REGEX)) {
-            throw new ServerException(ServiceUserExceptionString.USER_NAME_EXCEPTION);
+            throw new ServiceException(ServiceUserExceptionString.USER_NAME_EXCEPTION);
         }
     }
 

@@ -125,7 +125,10 @@ public class AccountDaoImpl implements AccountDao {
                             withAmount(resultSet.getDouble(10)).
                             withUserId(resultSet.getInt(11)).
                             build();
+                    return account;
                 }
+
+
             }
 
 
@@ -133,7 +136,7 @@ public class AccountDaoImpl implements AccountDao {
             logger.error(DaoAccountExceptionString.FIND_ACCOUNT_BY_USER_ID_EXCEPTION, e);
             throw new DaoException(DaoAccountExceptionString.FIND_ACCOUNT_BY_USER_ID_EXCEPTION, e);
         }
-        return account;
+        return new Account();
     }
 
     @Override
@@ -161,6 +164,7 @@ public class AccountDaoImpl implements AccountDao {
                     list.add(account);
 
                 }
+
             }
         } catch (SQLException e) {
             logger.error(DaoAccountExceptionString.SQL_FIND_ALL_ACCOUNTS_EXCEPTION, e);

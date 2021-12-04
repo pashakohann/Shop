@@ -13,7 +13,6 @@ public class AccountValidatorImpl implements Validator<AccountDto, Integer> {
     private static AccountValidatorImpl instance;
 
 
-
     private AccountValidatorImpl() {
     }
 
@@ -27,17 +26,36 @@ public class AccountValidatorImpl implements Validator<AccountDto, Integer> {
 
     @Override
     public void validate(AccountDto dto) throws ServiceException {
+        fillAllFiled(dto);
+        checkFirstName(dto.getFirstName());
+        checkLastName(dto.getLastName());
+        checkDateOfBirth(dto.getDateOfBirth().toString());
+        checkCity(dto.getCity());
+        checkStreet(dto.getStreet());
+        checkEmail(dto.getEmail());
+        checkFlatOrHouse(dto.getFlat().toString());
+        checkTelephoneNumber(dto.getTelephoneNumber());
+        checkAccountAmount(dto.getAmount().toString());
+
 
     }
 
+    private void fillAllFiled(AccountDto accountDto) throws ServiceException {
+        if (accountDto.getCity() == null || accountDto.getStreet() == null || accountDto.getFlat() == null
+                || accountDto.getDateOfBirth() == null || accountDto.getFirstName() == null || accountDto.getLastName() == null
+                || accountDto.getEmail() == null || accountDto.getTelephoneNumber() == null) {
+            throw new ServiceException(ServiceAccountExceptionString.FILL_FIELDS_EXCEPTION);
+        }
+    }
 
-    private void checkFirstName(String firstName)throws ServiceException {
+
+    private void checkFirstName(String firstName) throws ServiceException {
         if (!firstName.matches(AccountValidationString.FIRST_NAME_REGEX)) {
             throw new ServiceException(ServiceAccountExceptionString.FIRST_NAME_EXCEPTION);
         }
     }
 
-    private void checkLastName(String lastName) throws ServiceException  {
+    private void checkLastName(String lastName) throws ServiceException {
         if (!lastName.matches(AccountValidationString.LAST_NAME_REGEX)) {
             throw new ServiceException(ServiceAccountExceptionString.LAST_NAME_EXCEPTION);
         }
@@ -90,7 +108,7 @@ public class AccountValidatorImpl implements Validator<AccountDto, Integer> {
 
     }
 
-    private  void checkAge(Integer age) throws ServiceException {
+    private void checkAge(Integer age) throws ServiceException {
         if (age < AccountValidationString.AGE) {
             throw new ServiceException(ServiceAccountExceptionString.YEARS_OF_BIRTH_EXCEPTION);
         }

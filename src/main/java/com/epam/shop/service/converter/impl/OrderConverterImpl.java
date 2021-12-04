@@ -17,11 +17,11 @@ public class OrderConverterImpl implements Converter<OrderDto, Order, Integer> {
     private OrderConverterImpl() {
     }
 
-    public static Converter getConverterInstance() {
+    public static OrderConverterImpl getConverterInstance() {
         if (converterInstance == null) {
             converterInstance = new OrderConverterImpl();
         }
-        return converterInstance;
+        return (OrderConverterImpl) converterInstance;
     }
 
 

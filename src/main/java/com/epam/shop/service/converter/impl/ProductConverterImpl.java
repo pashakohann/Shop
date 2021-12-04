@@ -14,11 +14,11 @@ public class ProductConverterImpl implements Converter<ProductDto, Product, Inte
     private ProductConverterImpl() {
     }
 
-    public static Converter getConverterInstance() {
+    public static ProductConverterImpl getConverterInstance() {
         if (converterInstance == null) {
             converterInstance = new ProductConverterImpl();
         }
-        return converterInstance;
+        return (ProductConverterImpl)converterInstance;
     }
 
     @Override
