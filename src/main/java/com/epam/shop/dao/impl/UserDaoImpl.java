@@ -48,15 +48,14 @@ public class UserDaoImpl implements UserDao {
                      (UserSql.SQL_SAVE_USER, Statement.RETURN_GENERATED_KEYS)) {
             preparedStatement.setString(1, user.getAccount());
             preparedStatement.setString(2, user.getPassword());
-            preparedStatement.setInt(3, 2);
-            preparedStatement.setString(4,user.getRegistrationDate().toString());
+            preparedStatement.setInt(3, UserRole.USER.getId());
+            preparedStatement.setString(4, user.getRegistrationDate().toString());
             preparedStatement.executeUpdate();
 
             try (ResultSet resultSet = preparedStatement.getGeneratedKeys()) {
                 if (resultSet.next()) {
                     user.setId(resultSet.getInt(1));
-
-
+                    user.setRole(UserRole.USER);
                 }
             }
 

@@ -1,7 +1,7 @@
 package com.epam.shop.service.impl;
 
 
-
+import com.epam.shop.dao.connection_pool.impl.ConnectionPoolImpl;
 import com.epam.shop.dao.exception.DaoException;
 import com.epam.shop.dao.factory.FactoryDao;
 import com.epam.shop.dao.model.Account;
@@ -29,6 +29,17 @@ public class UserServiceImpl implements UserService {
     private static final Logger logger = LogManager.getLogger(UserServiceImpl.class);
     private final UserConverterImpl converter = UserConverterImpl.getConverterInstance();
     private final Crypt crypt = CryptImpl.getInstance();
+
+    public static void main(String[] args) throws ServiceException, DaoException {
+        UserDto userDto = new UserDto();
+        userDto.setAccount("amarishka1512");
+        userDto.setPassword("123s456");
+
+        ConnectionPoolImpl.getInstance().init();
+        userDto = getInstance().create(userDto);
+        System.out.println(userDto);
+
+    }
 
     private UserServiceImpl() {
     }
@@ -68,11 +79,11 @@ public class UserServiceImpl implements UserService {
     public UserDto update(UserDto model) throws ServiceException {
         validatorInstance.validate(model);
         try {
-
+            model.setPassword(crypt.encrypt(model.getPassword()));
             FactoryDao.getUserImpl().update(converter.convert(model));
         } catch (DaoException e) {
-            logger.error(ServiceUserExceptionString.SAVE_USER_EXCEPTION, e);
-            throw new ServiceException(ServiceUserExceptionString.SAVE_USER_EXCEPTION);
+            logger.error(ServiceUserExceptionString.UPDATE_USER_EXCEPTION, e);
+            throw new ServiceException(ServiceUserExceptionString.UPDATE_USER_EXCEPTION);
         }
         return model;
     }
