@@ -19,6 +19,11 @@ public class UserDto extends AbstractModelDto<Integer> {
         super(id);
     }
 
+    public UserDto(String account, String password) {
+        this.account = account;
+        this.password = password;
+    }
+
     public UserDto(UserRole role, String account, String password, LocalDateTime registrationDate) {
         this.role = role;
         this.account = account;

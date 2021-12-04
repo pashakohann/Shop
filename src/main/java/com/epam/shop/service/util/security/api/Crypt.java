@@ -1,4 +1,4 @@
-package com.epam.shop.dao.util.security.api;
+package com.epam.shop.service.util.security.api;
 
 public interface Crypt {
     String encrypt(String password);

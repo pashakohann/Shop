@@ -41,16 +41,7 @@ public class AccountDaoImpl implements AccountDao {
         try (Connection connection = connectionPool.takeConnection();
              PreparedStatement preparedStatement = connection.prepareStatement
                      (AccountSql.SQL_SAVE_ACCOUNT, Statement.RETURN_GENERATED_KEYS)) {
-            preparedStatement.setString(1, account.getFirstName());
-            preparedStatement.setString(2, account.getLastName());
-            preparedStatement.setString(3, account.getDateOfBirth().toString());
-            preparedStatement.setString(4, account.getTelephoneNumber());
-            preparedStatement.setString(5, account.getEmail());
-            preparedStatement.setString(6, account.getCity());
-            preparedStatement.setString(7, account.getStreet());
-            preparedStatement.setInt(8, account.getFlat());
-            preparedStatement.setDouble(9, account.getAmount());
-            preparedStatement.setInt(10, account.getUserId());
+            preparedStatement.setInt(1, account.getUserId());
             preparedStatement.executeUpdate();
 
             try (ResultSet resultSet = preparedStatement.getGeneratedKeys()) {

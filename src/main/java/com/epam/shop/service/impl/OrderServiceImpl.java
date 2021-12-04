@@ -10,6 +10,8 @@ import com.epam.shop.service.validation.impl.OrderValidatorImpl;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.util.List;
+
 public class OrderServiceImpl implements OrderService {
     private static OrderService instance;
     private Validator validatorInstance = OrderValidatorImpl.getInstance();
@@ -47,7 +49,7 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public OrderDto getAll() {
+    public List<OrderDto> getAll() {
         return null;
     }
 }

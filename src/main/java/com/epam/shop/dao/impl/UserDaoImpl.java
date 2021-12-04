@@ -10,8 +10,6 @@ import com.epam.shop.dao.exception.string_exception.DaoUserExceptionString;
 import com.epam.shop.dao.model.User;
 import com.epam.shop.dao.model.UserRole;
 import com.epam.shop.dao.sql_query.UserSql;
-import com.epam.shop.dao.util.security.api.Crypt;
-import com.epam.shop.dao.util.security.impl.CryptImpl;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -27,8 +25,6 @@ import java.util.List;
 
 
 public class UserDaoImpl implements UserDao {
-
-    private static final Crypt crypt = CryptImpl.getInstance();
     private static final Logger logger = LogManager.getLogger(UserDaoImpl.class);
     private static ConnectionPool connectionPool = ConnectionPoolImpl.getInstance();
     private static UserDao instance;
@@ -51,13 +47,15 @@ public class UserDaoImpl implements UserDao {
              PreparedStatement preparedStatement = connection.prepareStatement
                      (UserSql.SQL_SAVE_USER, Statement.RETURN_GENERATED_KEYS)) {
             preparedStatement.setString(1, user.getAccount());
-            preparedStatement.setString(2, crypt.encrypt(user.getPassword()));
-            preparedStatement.setInt(3, user.getRole().getId());
+            preparedStatement.setString(2, user.getPassword());
+            preparedStatement.setInt(3, 2);
+            preparedStatement.setString(4,user.getRegistrationDate().toString());
             preparedStatement.executeUpdate();
 
             try (ResultSet resultSet = preparedStatement.getGeneratedKeys()) {
                 if (resultSet.next()) {
                     user.setId(resultSet.getInt(1));
+
 
                 }
             }
@@ -75,7 +73,7 @@ public class UserDaoImpl implements UserDao {
         try (Connection connection = connectionPool.takeConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(UserSql.SQL_UPDATE_USER_PASSWORD)) {
 
-            preparedStatement.setString(1, crypt.encrypt(user.getPassword()));
+            preparedStatement.setString(1, user.getPassword());
             preparedStatement.setInt(2, user.getId());
             preparedStatement.executeUpdate();
 
@@ -152,8 +150,8 @@ public class UserDaoImpl implements UserDao {
             }
 
         } catch (SQLException e) {
-            logger.error(DaoUserExceptionString.SQL_FIND_USER_BY_ID_EXCEPTION, e);
-            throw new DaoException(DaoUserExceptionString.SQL_FIND_USER_BY_ID_EXCEPTION, e);
+            logger.error(DaoUserExceptionString.SQL_FIND_USER_BY_NAME_EXCEPTION, e);
+            throw new DaoException(DaoUserExceptionString.SQL_FIND_USER_BY_NAME_EXCEPTION, e);
         }
         return user;
     }

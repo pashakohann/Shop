@@ -10,6 +10,8 @@ import com.epam.shop.service.validation.impl.ProductValidatorImpl;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.util.List;
+
 public class ProductServiceImpl implements ProductService {
     private static ProductService instance;
     private Validator validatorInstance = ProductValidatorImpl.getInstance();
@@ -47,7 +49,7 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public ProductDto getAll() {
+    public List<ProductDto> getAll() {
         return null;
     }
 

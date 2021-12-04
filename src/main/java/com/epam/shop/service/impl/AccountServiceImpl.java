@@ -10,6 +10,8 @@ import com.epam.shop.service.validation.impl.AccountValidatorImpl;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.util.List;
+
 public class AccountServiceImpl implements AccountService {
     private static AccountService instance;
     private Validator validatorInstance = AccountValidatorImpl.getInstance();
@@ -48,7 +50,7 @@ public class AccountServiceImpl implements AccountService {
     }
 
     @Override
-    public AccountDto getAll() {
+    public List<AccountDto> getAll() {
         return null;
     }
 }
