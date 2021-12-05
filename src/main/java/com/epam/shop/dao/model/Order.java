@@ -1,5 +1,6 @@
 package com.epam.shop.dao.model;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Objects;
@@ -8,7 +9,7 @@ public class Order extends AbstractModel<Integer> {
 
     private List<Product> listProducts;
     private LocalDateTime orderDate;
-    private Double orderCost;
+    private BigDecimal orderCost;
     private Integer userId;
 
     public Order() {
@@ -18,7 +19,7 @@ public class Order extends AbstractModel<Integer> {
         super(id);
     }
 
-    public Order(List<Product> listProducts, LocalDateTime orderDate, Double orderCost, Integer userId) {
+    public Order(List<Product> listProducts, LocalDateTime orderDate, BigDecimal orderCost, Integer userId) {
         this.listProducts = listProducts;
         this.orderDate = orderDate;
         this.orderCost = orderCost;
@@ -41,11 +42,11 @@ public class Order extends AbstractModel<Integer> {
         this.orderDate = orderDate;
     }
 
-    public Double getOrderCost() {
+    public BigDecimal getOrderCost() {
         return orderCost;
     }
 
-    public void setOrderCost(Double orderCost) {
+    public void setOrderCost(BigDecimal orderCost) {
         this.orderCost = orderCost;
     }
 

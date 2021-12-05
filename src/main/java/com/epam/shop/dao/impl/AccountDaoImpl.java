@@ -72,8 +72,9 @@ public class AccountDaoImpl implements AccountDao {
             preparedStatement.setString(6, account.getCity());
             preparedStatement.setString(7, account.getStreet());
             preparedStatement.setInt(8, account.getFlat());
-            preparedStatement.setDouble(9, account.getAmount());
+            preparedStatement.setBigDecimal(9, account.getAmount());
             preparedStatement.setInt(10, account.getUserId());
+            preparedStatement.setInt(11, account.getId());
 
             preparedStatement.executeUpdate();
 
@@ -122,7 +123,7 @@ public class AccountDaoImpl implements AccountDao {
                             withCity(resultSet.getString(7)).
                             withStreet(resultSet.getString(8)).
                             withFlat(resultSet.getInt(9)).
-                            withAmount(resultSet.getDouble(10)).
+                            withAmount(resultSet.getBigDecimal(10)).
                             withUserId(resultSet.getInt(11)).
                             build();
                     return account;
@@ -158,7 +159,7 @@ public class AccountDaoImpl implements AccountDao {
                             .withCity(resultSet.getString(7))
                             .withStreet(resultSet.getString(8))
                             .withFlat(resultSet.getInt(9))
-                            .withAmount(resultSet.getDouble(10))
+                            .withAmount(resultSet.getBigDecimal(10))
                             .withUserId(resultSet.getInt(11))
                             .build();
                     list.add(account);

@@ -17,6 +17,7 @@ public interface ServiceOrderExceptionString {
     String FIND_BY_ID_EXCEPTION = "Failed to find order";
     String FIND_ALL_ORDERS_EXCEPTION = "Failed to find orders";
     String FIND_ALL_USER_ORDERS_EXCEPTION = "Failed to find orders";
+    String ACCOUNT_AMOUNT_EXCEPTION = "You don't have enough money in your account";
 
 
 }

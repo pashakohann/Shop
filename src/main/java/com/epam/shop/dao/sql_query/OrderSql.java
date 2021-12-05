@@ -1,7 +1,7 @@
 package com.epam.shop.dao.sql_query;
 
 public interface OrderSql {
-    String SQL_SAVE_ORDER = "INSERT INTO orders(order_cost,account_id) VALUES(?,?)";
+    String SQL_SAVE_ORDER = "INSERT INTO orders(order_cost,account_id,order_date) VALUES(?,?,?)";
     String SQL_FIND_ORDER_BY_ID= "SELECT id,order_date,order_cost,account_id FROM orders WHERE id=?";
     String SQL_FIND_ALL_ORDERS = "SELECT id,order_date,order_cost,account_id FROM orders";
     String SQL_FIND_ALL_PRODUCTS_FROM_ORDER="SELECT id,name,cost,category_id,brand_id FROM products WHERE id IN(SELECT product_id FROM orders_products WHERE order_id = ?)";

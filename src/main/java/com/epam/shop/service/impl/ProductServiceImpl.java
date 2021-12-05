@@ -6,9 +6,11 @@ import com.epam.shop.dao.factory.FactoryDao;
 import com.epam.shop.dao.model.Product;
 import com.epam.shop.service.api.ProductService;
 import com.epam.shop.service.converter.impl.ProductConverterImpl;
+import com.epam.shop.service.dto.model.OrderDto;
 import com.epam.shop.service.dto.model.ProductDto;
 import com.epam.shop.service.exception.ServiceException;
 import com.epam.shop.service.exception.string_exception.ServiceProductExceptionString;
+import com.epam.shop.service.factory.FactoryService;
 import com.epam.shop.service.validation.api.Validator;
 import com.epam.shop.service.validation.impl.ProductValidatorImpl;
 import org.apache.logging.log4j.LogManager;
@@ -61,7 +63,18 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public void delete(ProductDto model) throws ServiceException {
+        List<OrderDto> listOrderDto;
         try {
+            listOrderDto = FactoryService.getOrderServiceInstance().getAll();
+            for (OrderDto order : listOrderDto
+            ) {
+                for (ProductDto product : order.getListProducts()
+                ) {
+                    if (product.getId().equals(model.getId())) {
+                        throw new ServiceException(ServiceProductExceptionString.DELETE_PRODUCT_FROM_USER);
+                    }
+                }
+            }
             FactoryDao.getProductImpl().delete(model.getId());
         } catch (DaoException e) {
             logger.error(ServiceProductExceptionString.DELETE_PRODUCT_EXCEPTION, e);

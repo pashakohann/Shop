@@ -1,6 +1,7 @@
 package com.epam.shop.service.dto.model;
 
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Objects;
@@ -8,7 +9,7 @@ import java.util.Objects;
 public class OrderDto extends AbstractModelDto<Integer> {
     private List<ProductDto> listProducts;
     private LocalDateTime orderDate;
-    private Double orderCost;
+    private BigDecimal orderCost;
     private Integer userId;
 
     public OrderDto() {
@@ -18,7 +19,7 @@ public class OrderDto extends AbstractModelDto<Integer> {
         super(id);
     }
 
-    public OrderDto(List<ProductDto> listProducts, LocalDateTime orderDate, Double orderCost, Integer userId) {
+    public OrderDto(List<ProductDto> listProducts, LocalDateTime orderDate, BigDecimal orderCost, Integer userId) {
         this.listProducts = listProducts;
         this.orderDate = orderDate;
         this.orderCost = orderCost;
@@ -41,11 +42,11 @@ public class OrderDto extends AbstractModelDto<Integer> {
         this.orderDate = orderDate;
     }
 
-    public Double getOrderCost() {
+    public BigDecimal getOrderCost() {
         return orderCost;
     }
 
-    public void setOrderCost(Double orderCost) {
+    public void setOrderCost(BigDecimal orderCost) {
         this.orderCost = orderCost;
     }
 

@@ -12,6 +12,7 @@ public interface ServiceProductExceptionString {
     String UPDATE_PRODUCT_EXCEPTION = "Failed to update product";
     String PRODUCT_NAME_SYMBOLS_EXCEPTION = "product description must be more than 5 characters";
     String FILL_ALL_FIELDS_EXCEPTION = "You should fill all fields";
+    String DELETE_PRODUCT_FROM_USER = "You cannot delete ordered products, you should delete them from the user's orders";
 
 
 }

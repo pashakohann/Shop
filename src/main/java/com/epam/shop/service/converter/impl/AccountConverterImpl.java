@@ -1,7 +1,6 @@
 package com.epam.shop.service.converter.impl;
 
 
-
 import com.epam.shop.dao.model.Account;
 import com.epam.shop.service.converter.api.Converter;
 import com.epam.shop.service.dto.model.AccountDto;
@@ -27,7 +26,7 @@ public class AccountConverterImpl implements Converter<AccountDto, Account, Inte
                 withFirstName(model.getFirstName()).withLastName(model.getLastName()).
                 withDateOfBirth(model.getDateOfBirth()).withEmail(model.getEmail()).withCity(model.getCity()).
                 withFlat(model.getFlat()).withTelephoneNumber(model.getTelephoneNumber()).withAmount(model.getAmount()).
-                withAmount(model.getAmount()).withUserId(model.getUserId()).build();
+                withAmount(model.getAmount()).withUserId(model.getUserId()).withStreet(model.getStreet()).build();
     }
 
     @Override

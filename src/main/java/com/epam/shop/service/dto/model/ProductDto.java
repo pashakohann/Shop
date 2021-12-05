@@ -1,10 +1,11 @@
 package com.epam.shop.service.dto.model;
 
+import java.math.BigDecimal;
 import java.util.Objects;
 
 public class ProductDto extends AbstractModelDto<Integer> {
     private String name;
-    private Double cost;
+    private BigDecimal cost;
     private Integer categoryId;
     private Integer brandId;
 
@@ -15,7 +16,7 @@ public class ProductDto extends AbstractModelDto<Integer> {
         super(id);
     }
 
-    public ProductDto(String name, Double cost, Integer categoryId, Integer brandId) {
+    public ProductDto(String name, BigDecimal cost, Integer categoryId, Integer brandId) {
         this.name = name;
         this.cost = cost;
         this.categoryId = categoryId;
@@ -30,11 +31,11 @@ public class ProductDto extends AbstractModelDto<Integer> {
         this.name = name;
     }
 
-    public Double getCost() {
+    public BigDecimal getCost() {
         return cost;
     }
 
-    public void setCost(Double cost) {
+    public void setCost(BigDecimal cost) {
         this.cost = cost;
     }
 

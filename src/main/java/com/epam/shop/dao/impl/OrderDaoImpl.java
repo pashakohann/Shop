@@ -18,6 +18,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,7 +27,6 @@ public class OrderDaoImpl implements OrderDao {
     private static OrderDao instance;
     private static Logger logger = LogManager.getLogger(OrderDaoImpl.class);
     private static ConnectionPool connectionPool = ConnectionPoolImpl.getInstance();
-
 
 
     private OrderDaoImpl() {
@@ -44,8 +45,9 @@ public class OrderDaoImpl implements OrderDao {
         try (Connection connection = connectionPool.takeConnection();
              PreparedStatement preparedStatement =
                      connection.prepareStatement(OrderSql.SQL_SAVE_ORDER, Statement.RETURN_GENERATED_KEYS)) {
-            preparedStatement.setDouble(1, order.getOrderCost());
+            preparedStatement.setBigDecimal(1, order.getOrderCost());
             preparedStatement.setInt(2, order.getUserId());
+            preparedStatement.setTimestamp(3, Timestamp.valueOf(order.getOrderDate()));
             preparedStatement.executeUpdate();
             try (ResultSet resultSet = preparedStatement.getGeneratedKeys()) {
                 if (resultSet.next()) {
@@ -120,7 +122,7 @@ public class OrderDaoImpl implements OrderDao {
                     order = new Order();
                     order.setId(resultSet.getInt(1));
                     order.setOrderDate(resultSet.getTimestamp(2).toLocalDateTime());
-                    order.setOrderCost(resultSet.getDouble(3));
+                    order.setOrderCost(resultSet.getBigDecimal(3));
                     order.setUserId(resultSet.getInt(4));
                     order.setListProducts(findAllProductsFromOrder(order.getId()));
 
@@ -144,7 +146,7 @@ public class OrderDaoImpl implements OrderDao {
                     Order order = new Order();
                     order.setId(resultSet.getInt(1));
                     order.setOrderDate(resultSet.getTimestamp(2).toLocalDateTime());
-                    order.setOrderCost(resultSet.getDouble(3));
+                    order.setOrderCost(resultSet.getBigDecimal(3));
                     order.setUserId(resultSet.getInt(4));
                     order.setListProducts(findAllProductsFromOrder(order.getId()));
                     listOrders.add(order);
@@ -169,7 +171,7 @@ public class OrderDaoImpl implements OrderDao {
                     Product product = new Product();
                     product.setId(resultSet.getInt(1));
                     product.setName(resultSet.getString(2));
-                    product.setCost(resultSet.getDouble(3));
+                    product.setCost(resultSet.getBigDecimal(3));
                     product.setCategoryId(resultSet.getInt(4));
                     product.setBrandId(resultSet.getInt(5));
 

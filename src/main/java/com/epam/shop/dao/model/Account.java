@@ -1,5 +1,6 @@
 package com.epam.shop.dao.model;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.Objects;
 
@@ -12,7 +13,7 @@ public class Account extends AbstractModel<Integer> {
     private String city;
     private String street;
     private Integer flat;
-    private Double amount;
+    private BigDecimal amount;
     private Integer userId;
 
     public Account() {
@@ -82,11 +83,11 @@ public class Account extends AbstractModel<Integer> {
         this.flat = flat;
     }
 
-    public Double getAmount() {
+    public BigDecimal getAmount() {
         return amount;
     }
 
-    public void setAmount(Double amount) {
+    public void setAmount(BigDecimal amount) {
         this.amount = amount;
     }
 
@@ -138,7 +139,7 @@ public class Account extends AbstractModel<Integer> {
         private String city;
         private String street;
         private Integer flat;
-        private Double amount;
+        private BigDecimal amount;
         private Integer userId;
 
         public Builder() {
@@ -190,7 +191,7 @@ public class Account extends AbstractModel<Integer> {
             return this;
         }
 
-        public Builder withAmount(Double amount) {
+        public Builder withAmount(BigDecimal amount) {
             this.amount = amount;
             return this;
         }

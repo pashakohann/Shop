@@ -28,7 +28,7 @@ public class OrderValidatorImpl implements Validator<OrderDto, Integer> {
     }
 
     private void checkOrder(OrderDto orderDto) throws ServiceException {
-        if (orderDto.getListProducts().size() < OrderValidationString.CHECK_ORDER) {
+        if (orderDto.getListProducts()==null ||orderDto.getListProducts().size() < OrderValidationString.CHECK_ORDER) {
             throw new ServiceException(ServiceOrderExceptionString.NUMBER_OF_PRODUCTS_IN_ORDER_EXCEPTION);
         }
     }

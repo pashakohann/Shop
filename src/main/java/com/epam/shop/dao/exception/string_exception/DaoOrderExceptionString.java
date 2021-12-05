@@ -10,4 +10,5 @@ public interface DaoOrderExceptionString {
     String SQL_FIND_ALL_PRODUCTS_FROM_ORDER_EXCEPTION = "Failed to find products from order";
     String SQL_ADD_PRODUCTS_IN_ORDER_EXCEPTION = "Failed to add product in order";
 
+
 }

@@ -1,5 +1,6 @@
 package com.epam.shop.service.dto.model;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.Objects;
 
@@ -12,7 +13,7 @@ public class AccountDto extends AbstractModelDto<Integer> {
     private String city;
     private String street;
     private Integer flat;
-    private Double amount;
+    private BigDecimal amount;
     private Integer userId;
 
     public AccountDto() {
@@ -86,11 +87,11 @@ public class AccountDto extends AbstractModelDto<Integer> {
         this.flat = flat;
     }
 
-    public Double getAmount() {
+    public BigDecimal getAmount() {
         return amount;
     }
 
-    public void setAmount(Double amount) {
+    public void setAmount(BigDecimal amount) {
         this.amount = amount;
     }
 
@@ -142,7 +143,7 @@ public class AccountDto extends AbstractModelDto<Integer> {
         private String city;
         private String street;
         private Integer flat;
-        private Double amount;
+        private BigDecimal amount;
         private Integer userId;
 
         public Builder() {
@@ -194,7 +195,7 @@ public class AccountDto extends AbstractModelDto<Integer> {
             return this;
         }
 
-        public Builder withAmount(Double amount) {
+        public Builder withAmount(BigDecimal amount) {
             this.amount = amount;
             return this;
         }
