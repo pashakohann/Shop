@@ -1,28 +1,28 @@
 package com.epam.shop.service.converter.impl;
 
 
-import com.epam.shop.dao.exception.DaoException;
+
 import com.epam.shop.dao.model.User;
 import com.epam.shop.service.converter.api.Converter;
 import com.epam.shop.service.dto.model.UserDto;
 
 public class UserConverterImpl implements Converter<UserDto, User, Integer> {
-    private static Converter converterInstance;
+    private static Converter<UserDto, User, Integer> converterInstance;
 
 
     private UserConverterImpl() {
     }
 
-    public static UserConverterImpl getConverterInstance() {
+    public static Converter<UserDto, User, Integer> getConverterInstance() {
         if (converterInstance == null) {
             converterInstance = new UserConverterImpl();
         }
-        return (UserConverterImpl) converterInstance;
+        return  converterInstance;
     }
 
 
     @Override
-    public UserDto convert(User model) throws DaoException {
+    public UserDto convert(User model)  {
         UserDto userDto = new UserDto();
         userDto.setId(model.getId());
         userDto.setRegistrationDate(model.getRegistrationDate());

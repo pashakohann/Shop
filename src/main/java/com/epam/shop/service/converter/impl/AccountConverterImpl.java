@@ -7,13 +7,13 @@ import com.epam.shop.service.dto.model.AccountDto;
 
 
 public class AccountConverterImpl implements Converter<AccountDto, Account, Integer> {
-    private static AccountConverterImpl converterInstance;
+    private static Converter<AccountDto, Account, Integer> converterInstance;
 
 
     private AccountConverterImpl() {
     }
 
-    public static AccountConverterImpl getConverterInstance() {
+    public static Converter<AccountDto, Account, Integer> getConverterInstance() {
         if (converterInstance == null) {
             converterInstance = new AccountConverterImpl();
         }

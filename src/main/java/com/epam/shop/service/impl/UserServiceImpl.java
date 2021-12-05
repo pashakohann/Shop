@@ -5,6 +5,7 @@ import com.epam.shop.dao.exception.DaoException;
 import com.epam.shop.dao.factory.FactoryDao;
 import com.epam.shop.dao.model.User;
 import com.epam.shop.service.api.UserService;
+import com.epam.shop.service.converter.api.Converter;
 import com.epam.shop.service.converter.impl.UserConverterImpl;
 import com.epam.shop.service.dto.model.AccountDto;
 import com.epam.shop.service.dto.model.UserDto;
@@ -25,9 +26,9 @@ import java.util.List;
 
 public class UserServiceImpl implements UserService {
     private static UserService instance;
-    private final Validator validatorInstance = UserValidatorImpl.getInstance();
+    private final Validator<UserDto, Integer> validatorInstance = UserValidatorImpl.getInstance();
     private static final Logger logger = LogManager.getLogger(UserServiceImpl.class);
-    private final UserConverterImpl converter = UserConverterImpl.getConverterInstance();
+    private final Converter<UserDto, User, Integer> converter = UserConverterImpl.getConverterInstance();
     private final Crypt crypt = CryptImpl.getInstance();
 
     private UserServiceImpl() {

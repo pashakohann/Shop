@@ -12,10 +12,10 @@ import com.epam.shop.service.impl.UserServiceImpl;
 
 public class FactoryService {
     private static FactoryService instance;
-    private static AccountService accountServiceInstance = AccountServiceImpl.getInstance();
-    private static UserService userServiceInstance = UserServiceImpl.getInstance();
-    private static ProductService productServiceInstance = ProductServiceImpl.getInstance();
-    private static OrderService orderServiceInstance = OrderServiceImpl.getInstance();
+    private static final AccountService accountServiceInstance = AccountServiceImpl.getInstance();
+    private static final UserService userServiceInstance = UserServiceImpl.getInstance();
+    private static final ProductService productServiceInstance = ProductServiceImpl.getInstance();
+    private static final OrderService orderServiceInstance = OrderServiceImpl.getInstance();
 
     private FactoryService() {
 

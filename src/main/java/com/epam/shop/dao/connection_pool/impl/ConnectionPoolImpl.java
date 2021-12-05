@@ -24,7 +24,7 @@ public final class ConnectionPoolImpl implements ConnectionPool {
 
     private static final int INITIAN_POOL_SIZE = 7;
 
-    private Logger logger = LogManager.getLogger(ConnectionPoolImpl.class);
+    private final Logger logger = LogManager.getLogger(ConnectionPoolImpl.class);
 
     private ConnectionPoolImpl() {
         availableConnections = new ArrayBlockingQueue<>(INITIAN_POOL_SIZE);

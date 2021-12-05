@@ -4,6 +4,7 @@ import com.epam.shop.dao.exception.DaoException;
 import com.epam.shop.dao.factory.FactoryDao;
 import com.epam.shop.dao.model.Account;
 import com.epam.shop.service.api.AccountService;
+import com.epam.shop.service.converter.api.Converter;
 import com.epam.shop.service.converter.impl.AccountConverterImpl;
 import com.epam.shop.service.dto.model.AccountDto;
 import com.epam.shop.service.exception.ServiceException;
@@ -19,9 +20,9 @@ import java.util.List;
 
 public class AccountServiceImpl implements AccountService {
     private static AccountService instance;
-    private Validator validatorInstance = AccountValidatorImpl.getInstance();
-    private static Logger logger = LogManager.getLogger(AccountServiceImpl.class);
-    private AccountConverterImpl converter = AccountConverterImpl.getConverterInstance();
+    private final Validator<AccountDto, Integer> validatorInstance = AccountValidatorImpl.getInstance();
+    private static final Logger logger = LogManager.getLogger(AccountServiceImpl.class);
+    private final Converter<AccountDto,Account,Integer> converter = AccountConverterImpl.getConverterInstance();
 
     private AccountServiceImpl() {
     }

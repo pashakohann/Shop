@@ -12,16 +12,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class OrderConverterImpl implements Converter<OrderDto, Order, Integer> {
-    private static Converter converterInstance;
+    private static Converter<OrderDto, Order, Integer> converterInstance;
 
     private OrderConverterImpl() {
     }
 
-    public static OrderConverterImpl getConverterInstance() {
+    public static Converter<OrderDto, Order, Integer> getConverterInstance() {
         if (converterInstance == null) {
             converterInstance = new OrderConverterImpl();
         }
-        return (OrderConverterImpl) converterInstance;
+        return converterInstance;
     }
 
 

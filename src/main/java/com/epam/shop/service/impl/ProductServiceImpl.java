@@ -5,6 +5,7 @@ import com.epam.shop.dao.exception.DaoException;
 import com.epam.shop.dao.factory.FactoryDao;
 import com.epam.shop.dao.model.Product;
 import com.epam.shop.service.api.ProductService;
+import com.epam.shop.service.converter.api.Converter;
 import com.epam.shop.service.converter.impl.ProductConverterImpl;
 import com.epam.shop.service.dto.model.OrderDto;
 import com.epam.shop.service.dto.model.ProductDto;
@@ -16,14 +17,16 @@ import com.epam.shop.service.validation.impl.ProductValidatorImpl;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class ProductServiceImpl implements ProductService {
     private static ProductService instance;
-    private final Validator validatorInstance = ProductValidatorImpl.getInstance();
+    private final Validator<ProductDto, Integer> validatorInstance = ProductValidatorImpl.getInstance();
     private static final Logger logger = LogManager.getLogger(ProductServiceImpl.class);
-    private final ProductConverterImpl converter = ProductConverterImpl.getConverterInstance();
+    private final Converter<ProductDto, Product, Integer> converter = ProductConverterImpl.getConverterInstance();
 
 
     private ProductServiceImpl() {

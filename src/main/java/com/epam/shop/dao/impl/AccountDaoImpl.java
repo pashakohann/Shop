@@ -21,9 +21,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class AccountDaoImpl implements AccountDao {
-    private static AccountDaoImpl instance;
-    private static Logger logger = LogManager.getLogger(AccountDaoImpl.class);
-    private static ConnectionPool connectionPool = ConnectionPoolImpl.getInstance();
+    private static AccountDao instance;
+    private static final Logger logger = LogManager.getLogger(AccountDaoImpl.class);
+    private static final ConnectionPool connectionPool = ConnectionPoolImpl.getInstance();
 
     private AccountDaoImpl() {
 

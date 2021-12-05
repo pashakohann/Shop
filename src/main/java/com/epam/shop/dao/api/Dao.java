@@ -3,7 +3,6 @@ package com.epam.shop.dao.api;
 import com.epam.shop.dao.exception.DaoException;
 import com.epam.shop.dao.model.AbstractModel;
 
-import java.sql.SQLException;
 import java.util.List;
 
 public interface Dao<T extends AbstractModel<K>, K> {

@@ -4,6 +4,7 @@ import com.epam.shop.dao.exception.DaoException;
 import com.epam.shop.dao.factory.FactoryDao;
 import com.epam.shop.dao.model.Order;
 import com.epam.shop.service.api.OrderService;
+import com.epam.shop.service.converter.api.Converter;
 import com.epam.shop.service.converter.impl.OrderConverterImpl;
 import com.epam.shop.service.dto.model.AccountDto;
 import com.epam.shop.service.dto.model.OrderDto;
@@ -23,9 +24,9 @@ import java.util.List;
 
 public class OrderServiceImpl implements OrderService {
     private static OrderService instance;
-    private Validator validatorInstance = OrderValidatorImpl.getInstance();
-    private static Logger logger = LogManager.getLogger(OrderServiceImpl.class);
-    private OrderConverterImpl converter = OrderConverterImpl.getConverterInstance();
+    private final Validator<OrderDto, Integer> validatorInstance = OrderValidatorImpl.getInstance();
+    private static final Logger logger = LogManager.getLogger(OrderServiceImpl.class);
+    private final Converter<OrderDto, Order, Integer> converter = OrderConverterImpl.getConverterInstance();
 
 
     private OrderServiceImpl() {

@@ -10,14 +10,14 @@ import com.epam.shop.service.validation.validation_string.AccountValidationStrin
 import java.time.LocalDate;
 
 public class AccountValidatorImpl implements Validator<AccountDto, Integer> {
-    private static AccountValidatorImpl instance;
+    private static Validator<AccountDto, Integer> instance;
 
 
     private AccountValidatorImpl() {
     }
 
 
-    public static AccountValidatorImpl getInstance() {
+    public static Validator<AccountDto, Integer> getInstance() {
         if (instance == null) {
             instance = new AccountValidatorImpl();
         }

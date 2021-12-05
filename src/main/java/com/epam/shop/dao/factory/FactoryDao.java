@@ -12,10 +12,10 @@ import com.epam.shop.dao.impl.UserDaoImpl;
 public class FactoryDao {
 
     private static FactoryDao factoryDao;
-    private static AccountDao accountImpl = AccountDaoImpl.getInstance();
-    private static ProductDao productImpl = ProductDaoImpl.getInstance();
-    private static UserDao userImpl = UserDaoImpl.getInstance();
-    private static OrderDao orderImpl = OrderDaoImpl.getInstance();
+    private static final AccountDao accountImpl = AccountDaoImpl.getInstance();
+    private static final ProductDao productImpl = ProductDaoImpl.getInstance();
+    private static final UserDao userImpl = UserDaoImpl.getInstance();
+    private static final OrderDao orderImpl = OrderDaoImpl.getInstance();
 
 
     private FactoryDao() {

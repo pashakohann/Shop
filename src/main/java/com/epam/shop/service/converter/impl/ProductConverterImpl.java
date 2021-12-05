@@ -1,20 +1,20 @@
 package com.epam.shop.service.converter.impl;
 
 
-import com.epam.shop.dao.exception.DaoException;
+
 import com.epam.shop.dao.model.Product;
 import com.epam.shop.service.converter.api.Converter;
 import com.epam.shop.service.dto.model.ProductDto;
 
 
 public class ProductConverterImpl implements Converter<ProductDto, Product, Integer> {
-    private static ProductConverterImpl converterInstance;
+    private static Converter<ProductDto, Product, Integer> converterInstance;
 
 
     private ProductConverterImpl() {
     }
 
-    public static ProductConverterImpl getConverterInstance() {
+    public static Converter<ProductDto, Product, Integer> getConverterInstance() {
         if (converterInstance == null) {
             converterInstance = new ProductConverterImpl();
         }
@@ -22,7 +22,7 @@ public class ProductConverterImpl implements Converter<ProductDto, Product, Inte
     }
 
     @Override
-    public ProductDto convert(Product model) throws DaoException {
+    public ProductDto convert(Product model) {
         ProductDto productDto = new ProductDto();
         productDto.setId(model.getId());
         productDto.setCost(model.getCost());

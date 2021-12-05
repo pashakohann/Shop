@@ -10,13 +10,13 @@ import com.epam.shop.service.validation.validation_string.UserValidationString;
 
 
 public class UserValidatorImpl implements Validator<UserDto, Integer> {
-    private static UserValidatorImpl instance;
+    private static Validator<UserDto, Integer> instance;
 
     private UserValidatorImpl() {
     }
 
 
-    public static UserValidatorImpl getInstance() {
+    public static Validator<UserDto, Integer> getInstance() {
         if (instance == null) {
             instance = new UserValidatorImpl();
         }

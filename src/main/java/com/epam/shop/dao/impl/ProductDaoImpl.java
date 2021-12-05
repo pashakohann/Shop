@@ -21,8 +21,8 @@ import java.util.List;
 
 public class ProductDaoImpl implements ProductDao {
     private static ProductDao instance;
-    private static Logger logger = LogManager.getLogger(ProductDaoImpl.class);
-    private static ConnectionPool connectionPool = ConnectionPoolImpl.getInstance();
+    private static final Logger logger = LogManager.getLogger(ProductDaoImpl.class);
+    private static final ConnectionPool connectionPool = ConnectionPoolImpl.getInstance();
 
 
     private ProductDaoImpl() {

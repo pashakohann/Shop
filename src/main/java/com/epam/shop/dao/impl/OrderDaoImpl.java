@@ -19,14 +19,13 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Timestamp;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
 public class OrderDaoImpl implements OrderDao {
     private static OrderDao instance;
-    private static Logger logger = LogManager.getLogger(OrderDaoImpl.class);
-    private static ConnectionPool connectionPool = ConnectionPoolImpl.getInstance();
+    private static final Logger logger = LogManager.getLogger(OrderDaoImpl.class);
+    private static final ConnectionPool connectionPool = ConnectionPoolImpl.getInstance();
 
 
     private OrderDaoImpl() {

@@ -9,13 +9,13 @@ import com.epam.shop.service.validation.validation_string.OrderValidationString;
 
 
 public class OrderValidatorImpl implements Validator<OrderDto, Integer> {
-    private static OrderValidatorImpl instance;
+    private static Validator<OrderDto, Integer> instance;
 
     private OrderValidatorImpl() {
     }
 
 
-    public static OrderValidatorImpl getInstance() {
+    public static Validator<OrderDto, Integer> getInstance() {
         if (instance == null) {
             instance = new OrderValidatorImpl();
         }

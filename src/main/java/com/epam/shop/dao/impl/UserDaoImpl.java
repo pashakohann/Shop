@@ -26,7 +26,7 @@ import java.util.List;
 
 public class UserDaoImpl implements UserDao {
     private static final Logger logger = LogManager.getLogger(UserDaoImpl.class);
-    private static ConnectionPool connectionPool = ConnectionPoolImpl.getInstance();
+    private static final ConnectionPool connectionPool = ConnectionPoolImpl.getInstance();
     private static UserDao instance;
 
 
