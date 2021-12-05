@@ -1,7 +1,14 @@
 <html>
+<head>
+<title>Insert tittle here</title>
+</head>
 <body>
-<h4>Hello World!</h2>
-<a href=/shop> click me </a>
+<h1>
+   Go to
+   <a href="jsp/main.jsp">
+     main.jsp
+     </a>
+     </h1>
 </body>
 
 </html>
