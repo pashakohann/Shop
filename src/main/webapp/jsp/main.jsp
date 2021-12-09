@@ -14,6 +14,9 @@
      <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital@1&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital@1&display=swap" rel="stylesheet">
     <title>Computer Shop</title>
   </head>
   <body>
@@ -137,12 +140,13 @@
 
                       <div class="col-sm">
                         <div class="card" style="width: 18rem;">
-                          <img class="card-img-top" src="https://content2.onliner.by/catalog/device/header/3d1c4efd62cc942333cf80b06fd7d49b.jpeg" alt="Card image cap">
+                          <img class="card-img-top" src=${element.getPhotoLink()} alt="Card image cap">
                           <div class="card-body">
-                            <h5 class="card-title">Название карточки</h5>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                            <span class="price">₽ 1999</span>
+                            <h5 class="card-title">${element.getId()}</h5>
+                            <p class="card-text">${element.getName()}</p>
+
                             <a href="sign_in.jsp" class="btn btn-primary">add to basket</a>
+                            <span class="price">${element.getCost()} BLR</span>
                           </div>
                         </div>
                       </div>
@@ -154,12 +158,13 @@
                 <c:when test="${stat.count % 1 == 0  && stat.count < myListSize}">
                     <div class="col-sm">
                           <div class="card" style="width: 18rem;">
-                            <img class="card-img-top" src="https://content2.onliner.by/catalog/device/header/0d3fff79f5574f69408bdd0ea84f84da.jpeg" alt="Card image cap">
+                            <img class="card-img-top" src=${element.getPhotoLink()} alt="Card image cap">
                             <div class="card-body">
-                              <h5 class="card-title">Название карточки</h5>
-                              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                              <span class="price">₽ 1999</span>
+                              <h5 class="card-title">${element.getId()}</h5>
+                              <p class="card-text">${element.getName()}</p>
+
                               <a href="#" class="btn btn-primary">add to basket</a>
+                              <span class="price">${element.getCost()} BLR</span>
                             </div>
                           </div>
                         </div>
@@ -168,12 +173,12 @@
                 <c:otherwise>
                       <div class="col-sm">
                             <div class="card" style="width: 18rem;">
-                              <img class="card-img-top" src="https://content2.onliner.by/catalog/device/header/5b4d031565755192170ac9ba5b6c56bb.jpeg" alt="Card image cap">
+                              <img class="card-img-top" src="${element.getPhotoLink()}" alt="Card image cap">
                               <div class="card-body">
-                                <h5 class="card-title">Название карточки</h5>
-                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                <span class="price">₽ 1999</span>
-                                <a href="registration.jsp" class="btn btn-primary">add to basket</a>
+                                <h5 class="card-title">${element.getId()}</h5>
+                                  <p class="card-text">${element.getName()}</p>
+                                 <a href="#" class="btn btn-primary">add to basket</a>
+                                 <span class="price">${element.getCost()} BLR</span>
                               </div>
                             </div>
                           </div>

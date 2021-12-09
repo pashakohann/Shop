@@ -4,10 +4,11 @@ import java.math.BigDecimal;
 import java.util.Objects;
 
 public class Product extends AbstractModel<Integer> {
-   private String name;
-   private BigDecimal cost;
-   private Integer categoryId;
-   private Integer brandId;
+    private String name;
+    private BigDecimal cost;
+    private Integer categoryId;
+    private Integer brandId;
+    private String photoLink;
 
     public Product() {
     }
@@ -16,11 +17,13 @@ public class Product extends AbstractModel<Integer> {
         super(id);
     }
 
-    public Product(String name, BigDecimal cost, Integer categoryId, Integer brandId) {
+    public Product(Integer id, String name, BigDecimal cost, Integer categoryId, Integer brandId, String photoLink) {
+        super(id);
         this.name = name;
         this.cost = cost;
         this.categoryId = categoryId;
         this.brandId = brandId;
+        this.photoLink = photoLink;
     }
 
     public String getName() {
@@ -55,17 +58,25 @@ public class Product extends AbstractModel<Integer> {
         this.brandId = brandId;
     }
 
+    public String getPhotoLink() {
+        return photoLink;
+    }
+
+    public void setPhotoLink(String photoLink) {
+        this.photoLink = photoLink;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Product product = (Product) o;
-        return Objects.equals(name, product.name) && Objects.equals(cost, product.cost) && Objects.equals(categoryId, product.categoryId) && Objects.equals(brandId, product.brandId);
+        return Objects.equals(name, product.name) && Objects.equals(cost, product.cost) && Objects.equals(categoryId, product.categoryId) && Objects.equals(brandId, product.brandId) && Objects.equals(photoLink, product.photoLink);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, cost, categoryId, brandId);
+        return Objects.hash(name, cost, categoryId, brandId, photoLink);
     }
 
     @Override
@@ -75,7 +86,8 @@ public class Product extends AbstractModel<Integer> {
                 ", name='" + name + '\'' +
                 ", cost=" + cost +
                 ", categoryId=" + categoryId +
-                ", brendId=" + brandId +
+                ", brandId=" + brandId +
+                ", photoLink='" + photoLink + '\'' +
                 '}';
     }
 }

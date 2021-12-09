@@ -8,6 +8,7 @@ public class ProductDto extends AbstractModelDto<Integer> {
     private BigDecimal cost;
     private Integer categoryId;
     private Integer brandId;
+    private String photoLink;
 
     public ProductDto() {
     }
@@ -16,11 +17,13 @@ public class ProductDto extends AbstractModelDto<Integer> {
         super(id);
     }
 
-    public ProductDto(String name, BigDecimal cost, Integer categoryId, Integer brandId) {
+    public ProductDto(Integer id, String name, BigDecimal cost, Integer categoryId, Integer brandId, String photoLink) {
+        super(id);
         this.name = name;
         this.cost = cost;
         this.categoryId = categoryId;
         this.brandId = brandId;
+        this.photoLink = photoLink;
     }
 
     public String getName() {
@@ -55,17 +58,25 @@ public class ProductDto extends AbstractModelDto<Integer> {
         this.brandId = brandId;
     }
 
+    public String getPhotoLink() {
+        return photoLink;
+    }
+
+    public void setPhotoLink(String photoLink) {
+        this.photoLink = photoLink;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         ProductDto that = (ProductDto) o;
-        return Objects.equals(name, that.name) && Objects.equals(cost, that.cost) && Objects.equals(categoryId, that.categoryId) && Objects.equals(brandId, that.brandId);
+        return Objects.equals(name, that.name) && Objects.equals(cost, that.cost) && Objects.equals(categoryId, that.categoryId) && Objects.equals(brandId, that.brandId) && Objects.equals(photoLink, that.photoLink);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, cost, categoryId, brandId);
+        return Objects.hash(name, cost, categoryId, brandId, photoLink);
     }
 
     @Override
@@ -76,6 +87,7 @@ public class ProductDto extends AbstractModelDto<Integer> {
                 ", cost=" + cost +
                 ", categoryId=" + categoryId +
                 ", brandId=" + brandId +
+                ", photoLink='" + photoLink + '\'' +
                 '}';
     }
 }

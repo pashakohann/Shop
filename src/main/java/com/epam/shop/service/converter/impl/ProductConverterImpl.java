@@ -29,6 +29,7 @@ public class ProductConverterImpl implements Converter<ProductDto, Product, Inte
         productDto.setName(model.getName());
         productDto.setCategoryId(model.getCategoryId());
         productDto.setBrandId(model.getBrandId());
+        productDto.setPhotoLink(model.getPhotoLink());
         return productDto;
     }
 
@@ -40,6 +41,7 @@ public class ProductConverterImpl implements Converter<ProductDto, Product, Inte
         product.setName(modelDto.getName());
         product.setCategoryId(modelDto.getCategoryId());
         product.setBrandId(modelDto.getBrandId());
+        product.setPhotoLink(modelDto.getPhotoLink());
         return product;
     }
 }
