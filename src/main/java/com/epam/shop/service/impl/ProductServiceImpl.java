@@ -1,6 +1,7 @@
 package com.epam.shop.service.impl;
 
 
+
 import com.epam.shop.dao.exception.DaoException;
 import com.epam.shop.dao.factory.FactoryDao;
 import com.epam.shop.dao.model.Product;
@@ -27,6 +28,8 @@ public class ProductServiceImpl implements ProductService {
     private final Validator<ProductDto, Integer> validatorInstance = ProductValidatorImpl.getInstance();
     private static final Logger logger = LogManager.getLogger(ProductServiceImpl.class);
     private final Converter<ProductDto, Product, Integer> converter = ProductConverterImpl.getConverterInstance();
+
+
 
 
     private ProductServiceImpl() {

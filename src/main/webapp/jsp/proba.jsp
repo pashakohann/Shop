@@ -5,6 +5,7 @@
          <div class="card-body">
            <h5 class="card-title">Название карточки</h5>
            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+           <span class="price">₽ 1999</span>
            <a href="sign_in.jsp" class="btn btn-primary">add to basket</a>
          </div>
        </div>
@@ -15,7 +16,8 @@
          <div class="card-body">
            <h5 class="card-title">Название карточки</h5>
            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-           <a href="registration.jsp" class="btn btn-primary">add to basket</a>
+           <span class="price">₽ 1999</span>
+           <a href="#" class="btn btn-primary">add to basket</a>
          </div>
        </div>
      </div>
@@ -25,6 +27,7 @@
          <div class="card-body">
            <h5 class="card-title">Название карточки</h5>
            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+           <span class="price">₽ 1999</span>
            <a href="registration.jsp" class="btn btn-primary">add to basket</a>
          </div>
        </div>

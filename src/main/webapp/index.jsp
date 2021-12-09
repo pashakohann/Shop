@@ -10,7 +10,8 @@
 <body>
 
 
- <jsp:forward page="/shop"/>
+<jsp:forward page="/shop" />
+
 
 </body>
 

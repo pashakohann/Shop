@@ -9,7 +9,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public enum Commands {
-    DEFAULT(DefaultCommand.getInstance(),UserRole.UNAUTHORIZED);
+    DEFAULT(DefaultCommand.getInstance(), UserRole.UNAUTHORIZED);
 //    SHOW_USERS(),
 //    SHOW_ACCOUNTS(),
 //    SHOW_PRODUCTS(),
@@ -30,22 +30,21 @@ public enum Commands {
         return command;
     }
 
-    public static Commands getCommands(String commandName) {
-        for (Commands command : values()) {
-            if (command.name().equalsIgnoreCase(commandName)) {
-                return command;
-            }
-        }
-        return DEFAULT;
-
-    }
-
-
     public List<UserRole> getAllowedRoles() {
         return allowedRoles;
     }
 
+    public static Commands of(String name) {
+        for (Commands command : values()) {
+            if (command.name().equalsIgnoreCase(name)) {
+                return command;
+            }
+        }
+        return DEFAULT;
+    }
 
 }
+
+
 
 

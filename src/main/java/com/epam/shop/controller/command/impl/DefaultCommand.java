@@ -4,6 +4,12 @@ package com.epam.shop.controller.command.impl;
 import com.epam.shop.controller.command.api.Command;
 import com.epam.shop.controller.context.api.RequestContext;
 import com.epam.shop.controller.context.api.ResponseContext;
+import com.epam.shop.service.dto.model.ProductDto;
+import com.epam.shop.service.exception.ServiceException;
+import com.epam.shop.service.factory.FactoryService;
+
+import javax.servlet.http.HttpSession;
+import java.util.List;
 
 public class DefaultCommand implements Command {
     public static Command command;
@@ -32,9 +38,16 @@ public class DefaultCommand implements Command {
         }
     };
 
-    @Override
-    public ResponseContext execute(RequestContext requestContext) {
 
+    @Override
+    public ResponseContext execute(RequestContext requestContext) throws ServiceException {
+        System.out.println("sdadadaa");
+        System.out.println("sdadadaasddadada");
+       List<ProductDto> productDtoList = FactoryService.getProductServiceInstance().getAll();
+
+        HttpSession session = requestContext.getCurrentSession().get();
+        session.setAttribute("products",productDtoList);
+        System.out.println(productDtoList);
         return SHOW_MAIN_PAGE;
     }
 }
