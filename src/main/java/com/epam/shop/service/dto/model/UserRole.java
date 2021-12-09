@@ -1,4 +1,4 @@
-package com.epam.shop.dao.model;
+package com.epam.shop.service.dto.model;
 
 
 import java.util.Arrays;
@@ -13,9 +13,9 @@ public enum UserRole {
         this.id = id;
     }
 
-    public static final List<UserRole> ALL_AVAILABLE_ROLES = Arrays.asList(values());
+    public static final List<com.epam.shop.service.dto.model.UserRole> ALL_AVAILABLE_ROLES = Arrays.asList(values());
 
-    public static List<UserRole> valuesAsList() {
+    public static List<com.epam.shop.service.dto.model.UserRole> valuesAsList() {
         return ALL_AVAILABLE_ROLES;
     }
 
@@ -28,9 +28,10 @@ public enum UserRole {
         this.id = id;
     }
 
-    public static UserRole getById(Integer id) {
-        return Arrays.stream(UserRole.values())
+    public static com.epam.shop.dao.model.UserRole getById(Integer id) {
+        return Arrays.stream(com.epam.shop.dao.model.UserRole.values())
                 .filter(role -> role.getId() == id)
                 .findFirst().orElse(null);
     }
 }
+

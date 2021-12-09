@@ -1,4 +1,4 @@
-package com.epam.shop.service.util.security.api;
+package com.epam.shop.service.security.api;
 
 public interface Crypt {
     String encrypt(String password);

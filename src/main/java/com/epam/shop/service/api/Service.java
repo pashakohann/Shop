@@ -1,5 +1,8 @@
 package com.epam.shop.service.api;
 
+import com.epam.shop.dao.connection_pool.api.ConnectionPool;
+import com.epam.shop.dao.connection_pool.impl.ConnectionPoolImpl;
+import com.epam.shop.dao.exception.DaoException;
 import com.epam.shop.service.dto.model.AbstractModelDto;
 import com.epam.shop.service.exception.ServiceException;
 
@@ -16,6 +19,5 @@ public interface Service<T extends AbstractModelDto<K>, K> {
     T getById(K id) throws ServiceException;
 
     List<T> getAll() throws ServiceException;
-
 
 }
