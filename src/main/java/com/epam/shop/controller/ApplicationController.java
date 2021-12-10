@@ -4,6 +4,7 @@ package com.epam.shop.controller;
 import com.epam.shop.controller.command.api.Command;
 import com.epam.shop.controller.context.api.RequestContext;
 import com.epam.shop.controller.context.api.ResponseContext;
+import com.epam.shop.controller.context.impl.RequestContextImpl;
 import com.epam.shop.dao.connection_pool.impl.ConnectionPoolImpl;
 import com.epam.shop.service.dto.model.ProductDto;
 import com.epam.shop.service.exception.ServiceException;
@@ -24,7 +25,6 @@ import javax.servlet.http.HttpSession;
 
 
 import java.io.IOException;
-import java.util.List;
 import java.util.Optional;
 
 @WebServlet(urlPatterns = "/shop")
@@ -54,38 +54,14 @@ public class ApplicationController extends HttpServlet {
     }
 
     private void process(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException, ServiceException {
-        System.out.println("dadadada");
+
         final String commandName = req.getParameter(COMMAND_PARAMETER_NAME);
+
+        System.out.println(commandName);
         final Command command = Command.withName(commandName);
-        final ResponseContext response = command.execute(new RequestContext() {
-            @Override
-            public HttpSession createSession() {
-                return req.getSession(true);
-            }
 
-            @Override
-            public Optional<HttpSession> getCurrentSession() {
-                return Optional.ofNullable(req.getSession(false));
-            }
+        final ResponseContext response = command.execute(new RequestContextImpl(req));
 
-            @Override
-            public void invalidateCurrentSession() {
-                final HttpSession session = req.getSession(false);
-                if (session != null) {
-                    session.invalidate();
-                }
-            }
-
-            @Override
-            public String getParameter(String name) {
-                return req.getParameter(name);
-            }
-
-            @Override
-            public void setAttribute(String name, Object value) {
-                req.setAttribute(name, value);
-            }
-        });
         if (response.isRedirect()) {
             resp.sendRedirect(response.getPath());
         } else {
@@ -96,12 +72,11 @@ public class ApplicationController extends HttpServlet {
     }
 
 
-
     @Override
     public void destroy() {
 
         ConnectionServiceImpl.getInstance().destroy();
-         super.destroy();
+        super.destroy();
     }
 
     @Override

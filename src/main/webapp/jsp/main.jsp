@@ -40,11 +40,12 @@
                       motherboard
                      </a>
                      <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                       <li><a class="dropdown-item" href="#">ASRock</a></li>
-                       <li><a class="dropdown-item" href="#">Gigabyte</a></li>
-                       <li><a class="dropdown-item" href="#">ASUS</a></li>
-                       <li><a class="dropdown-item" href="#">BIOSTAR</a></li>
-                       <li><a class="dropdown-item" href="#">MSI</a></li>
+                       <li><a class="dropdown-item" href="${pageContext.request.contextPath}/shop?command=find_products_category&category=1">All motherboard</a></li>
+                       <li><a class="dropdown-item" href="${pageContext.request.contextPath}/shop?command=find_products_category_brand&category=1&brand=1">ASRock</a></li>
+                       <li><a class="dropdown-item" href="${pageContext.request.contextPath}/shop?command=find_products_category_brand&category=1&brand=2">Gigabyte</a></li>
+                       <li><a class="dropdown-item" href="${pageContext.request.contextPath}/shop?command=find_products_category_brand&category=1&brand=3">ASUS</a></li>
+                       <li><a class="dropdown-item" href="${pageContext.request.contextPath}/shop?command=find_products_category_brand&category=1&brand=4">BIOSTAR</a></li>
+                       <li><a class="dropdown-item" href="${pageContext.request.contextPath}/shop?command=find_products_category_brand&category=1&brand=5">MSI</a></li>
                      </ul>
                    </li>
                   <li class="nav-item dropdown">
@@ -52,8 +53,9 @@
                      ram
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                      <li><a class="dropdown-item" href="#">Crucial</a></li>
-                      <li><a class="dropdown-item" href="#">Kingston</a></li>
+                      <li><a class="dropdown-item" href="${pageContext.request.contextPath}/shop?command=find_products_category&category=2">All ram</a></li>
+                      <li><a class="dropdown-item" href="${pageContext.request.contextPath}/shop?command=find_products_category_brand&category=2&brand=6">Crucial</a></li>
+                      <li><a class="dropdown-item" href="${pageContext.request.contextPath}/shop?command=find_products_category_brand&category=2&brand=7">Kingston</a></li>
 
 
                     </ul>
@@ -63,8 +65,9 @@
                        power-unit
                      </a>
                      <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                       <li><a class="dropdown-item" href="#">Chieftec</a></li>
-                       <li><a class="dropdown-item" href="#">AeroCool</a></li>
+                       <li><a class="dropdown-item" href="${pageContext.request.contextPath}/shop?command=find_products_category&category=3">Power-unit</a></li>
+                       <li><a class="dropdown-item" href="${pageContext.request.contextPath}/shop?command=find_products_category_brand&category=3&brand=8">Chieftec</a></li>
+                       <li><a class="dropdown-item" href="${pageContext.request.contextPath}/shop?command=find_products_category_brand&category=3&brand=9">AeroCool</a></li>
 
                      </ul>
                    </li>
@@ -73,8 +76,9 @@
                       hdd
                      </a>
                      <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                       <li><a class="dropdown-item" href="#">WD</a></li>
-                       <li><a class="dropdown-item" href="#">Seagate</a></li>
+                       <li><a class="dropdown-item" href="${pageContext.request.contextPath}/shop?command=find_products_category&category=4">All hdd</a></li>
+                       <li><a class="dropdown-item" href="${pageContext.request.contextPath}/shop?command=find_products_category_brand&category=4&brand=10">WD</a></li>
+                       <li><a class="dropdown-item" href="${pageContext.request.contextPath}/shop?command=find_products_category_brand&category=4&brand=11">Seagate</a></li>
 
                      </ul>
                    </li>
@@ -83,8 +87,9 @@
                        cpu
                      </a>
                      <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                       <li><a class="dropdown-item" href="#">AMD</a></li>
-                       <li><a class="dropdown-item" href="#">Intel</a></li>
+                       <li><a class="dropdown-item" href="${pageContext.request.contextPath}/shop?command=find_products_category&category=5">All cpu</a></li>
+                       <li><a class="dropdown-item" href="${pageContext.request.contextPath}/shop?command=find_products_category_brand&category=5&brand=12">AMD</a></li>
+                       <li><a class="dropdown-item" href="${pageContext.request.contextPath}/shop?command=find_products_category_brand&category=5&brand=13">Intel</a></li>
 
                      </ul>
                    </li>
@@ -93,8 +98,10 @@
                        cooler
                      </a>
                      <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                     <li><a class="dropdown-item" href="${pageContext.request.contextPath}/shop?command=find_products_category&category=7">All cooler</a></li>
 
-                       <li><a class="dropdown-item" href="#">DeepCool</a></li>
+                       <li><a class="dropdown-item" href="${pageContext.request.contextPath}/shop?command=find_products_category_brand&category=7&brand=15">DeepCool</a></li>
+
 
                      </ul>
                    </li>
@@ -103,8 +110,9 @@
                        gpu
                      </a>
                      <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" href="#">Gigabyte</a></li>
-                       <li><a class="dropdown-item" href="#">ASUS</a></li>
+                        <li><a class="dropdown-item" href="${pageContext.request.contextPath}/shop?command=find_products_category&category=8">All gpu</a></li>
+                        <li><a class="dropdown-item" href="${pageContext.request.contextPath}/shop?command=find_products_category_brand&category=8&brand=2">Gigabyte</a></li>
+                       <li><a class="dropdown-item" href="${pageContext.request.contextPath}/shop?command=find_products_category_brand&category=8&brand=3">ASUS</a></li>
                      </ul>
                    </li>
                    <li class="nav-item dropdown">
@@ -112,8 +120,9 @@
                        case
                      </a>
                      <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" href="#">Zalman</a></li>
-                        <li><a class="dropdown-item" href="#">DeepCool</a></li>
+                        <li><a class="dropdown-item" href="${pageContext.request.contextPath}/shop?command=find_products_category&category=6">All case</a></li>
+                        <li><a class="dropdown-item" href="${pageContext.request.contextPath}/shop?command=find_products_category_brand&category=6&brand=14">Zalman</a></li>
+                        <li><a class="dropdown-item" href="${pageContext.request.contextPath}/shop?command=find_products_category_brand&category=6&brand=15">DeepCool</a></li>
                      </ul>
                    </li>
                 </ul>
@@ -145,7 +154,7 @@
                             <h5 class="card-title">${element.getId()}</h5>
                             <p class="card-text">${element.getName()}</p>
 
-                            <a href="sign_in.jsp" class="btn btn-primary">add to basket</a>
+                            <a href="${pageContext.request.contextPath}/shop?command=show_authorization_page" class="btn btn-primary">add to basket</a>
                             <span class="price">${element.getCost()} BLR</span>
                           </div>
                         </div>
@@ -163,7 +172,7 @@
                               <h5 class="card-title">${element.getId()}</h5>
                               <p class="card-text">${element.getName()}</p>
 
-                              <a href="#" class="btn btn-primary">add to basket</a>
+                              <a href="${pageContext.request.contextPath}/shop?command=show_authorization_page" class="btn btn-primary">add to basket</a>
                               <span class="price">${element.getCost()} BLR</span>
                             </div>
                           </div>
@@ -177,7 +186,7 @@
                               <div class="card-body">
                                 <h5 class="card-title">${element.getId()}</h5>
                                   <p class="card-text">${element.getName()}</p>
-                                 <a href="#" class="btn btn-primary">add to basket</a>
+                                 <a href="${pageContext.request.contextPath}/shop?command=show_authorization_page" class="btn btn-primary">add to basket</a>
                                  <span class="price">${element.getCost()} BLR</span>
                               </div>
                             </div>
