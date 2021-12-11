@@ -12,7 +12,7 @@ import java.util.List;
 
 public class SignUpCommand implements Command {
     public static Command command;
-    private static final String MAIN_PAGE_PATH = "/jsp/main.jsp";
+    private static final String SHOW_SIGN_IN_PATH = "/jsp/sign_up.jsp";
 
 
     private SignUpCommand() {
@@ -25,11 +25,11 @@ public class SignUpCommand implements Command {
         return command;
     }
 
-    private static final ResponseContext SHOW_MAIN_PAGE = new ResponseContext() {
+    private static final ResponseContext SHOW_SIGN_IN_PAGE = new ResponseContext() {
 
         @Override
         public String getPath() {
-            return MAIN_PAGE_PATH;
+            return SHOW_SIGN_IN_PATH;
         }
 
         @Override
@@ -43,8 +43,7 @@ public class SignUpCommand implements Command {
         HttpSession session = requestContext.getCurrentSession().get();
 
 
-
-        session.setAttribute("products","sdad");
-        return SHOW_MAIN_PAGE;
+        //  session.setAttribute("products","sdad");
+        return SHOW_SIGN_IN_PAGE;
     }
 }

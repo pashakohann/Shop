@@ -33,7 +33,7 @@
               <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                   <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">All products</a>
+                    <a class="nav-link active" aria-current="page" href="${pageContext.request.contextPath}/shop?command=default">All products</a>
                   </li>
                   <li class="nav-item dropdown">
                      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -127,8 +127,8 @@
                    </li>
                 </ul>
                 <form class="d-flex">
-                  <button class="btn btn-outline-success" type="submit">Registration</button>
-                  <button class="btn btn-outline-success" type="submit">Sign in</button>
+                  <a href="${pageContext.request.contextPath}/shop?command=show_sign_up_page" class="btn btn-outline-success" type="submit">Sign up</a>
+                  <a href="${pageContext.request.contextPath}/shop?command=show_sign_in_page" class="btn btn-outline-success" type="submit">Sign in</a>
                 </form>
               </div>
             </div>
@@ -154,7 +154,7 @@
                             <h5 class="card-title">${element.getId()}</h5>
                             <p class="card-text">${element.getName()}</p>
 
-                            <a href="${pageContext.request.contextPath}/shop?command=show_authorization_page" class="btn btn-primary">add to basket</a>
+                            <a href="${pageContext.request.contextPath}/shop?command=show_sign_in_page" class="btn btn-primary">add to basket</a>
                             <span class="price">${element.getCost()} BLR</span>
                           </div>
                         </div>
@@ -172,7 +172,7 @@
                               <h5 class="card-title">${element.getId()}</h5>
                               <p class="card-text">${element.getName()}</p>
 
-                              <a href="${pageContext.request.contextPath}/shop?command=show_authorization_page" class="btn btn-primary">add to basket</a>
+                              <a href="${pageContext.request.contextPath}/shop?command=show_sign_in_page" class="btn btn-primary">add to basket</a>
                               <span class="price">${element.getCost()} BLR</span>
                             </div>
                           </div>
@@ -186,7 +186,7 @@
                               <div class="card-body">
                                 <h5 class="card-title">${element.getId()}</h5>
                                   <p class="card-text">${element.getName()}</p>
-                                 <a href="${pageContext.request.contextPath}/shop?command=show_authorization_page" class="btn btn-primary">add to basket</a>
+                                 <a href="${pageContext.request.contextPath}/shop?command=show_sign_in_page" class="btn btn-primary">add to basket</a>
                                  <span class="price">${element.getCost()} BLR</span>
                               </div>
                             </div>

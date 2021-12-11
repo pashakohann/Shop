@@ -7,26 +7,26 @@ import com.epam.shop.service.exception.ServiceException;
 
 import javax.servlet.http.HttpSession;
 
-public class AuthorizationPageCommand implements Command {
+public class SignInCommand implements Command {
     public static Command command;
-    private static final String AUTHORIZATION_PAGE_PATH = "/jsp/registration/registration.jsp";
+    private static final String SIGN_IN_PAGE_PATH = "/jsp/sign_in.jsp";
 
 
-    private AuthorizationPageCommand() {
+    private SignInCommand() {
     }
 
     public static Command getInstance() {
         if (command == null) {
-            command = new AuthorizationPageCommand();
+            command = new SignInCommand();
         }
         return command;
     }
 
-    private static final ResponseContext SHOW_AUTHORIZATION_PAGE = new ResponseContext() {
+    private static final ResponseContext SHOW_SIGN_IN_PAGE = new ResponseContext() {
 
         @Override
         public String getPath() {
-            return AUTHORIZATION_PAGE_PATH;
+            return SIGN_IN_PAGE_PATH;
         }
 
         @Override
@@ -38,7 +38,10 @@ public class AuthorizationPageCommand implements Command {
     @Override
     public ResponseContext execute(RequestContext requestContext) throws ServiceException {
         HttpSession session = requestContext.getCurrentSession().get();
-        System.out.println("privet iz authorization!");
-        return SHOW_AUTHORIZATION_PAGE;
+
+
+
+        //session.setAttribute("products","sdad");
+        return SHOW_SIGN_IN_PAGE;
     }
 }

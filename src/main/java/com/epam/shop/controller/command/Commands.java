@@ -2,10 +2,11 @@ package com.epam.shop.controller.command;
 
 
 import com.epam.shop.controller.command.api.Command;
-import com.epam.shop.controller.command.impl.AuthorizationPageCommand;
 import com.epam.shop.controller.command.impl.DefaultCommand;
 import com.epam.shop.controller.command.impl.FindProductsByCategoryBrandCommand;
 import com.epam.shop.controller.command.impl.FindProductsByCategoryCommand;
+import com.epam.shop.controller.command.impl.SignInCommand;
+import com.epam.shop.controller.command.impl.SignUpCommand;
 import com.epam.shop.service.dto.model.UserRole;
 
 import java.util.Arrays;
@@ -15,7 +16,8 @@ public enum Commands {
     DEFAULT(DefaultCommand.getInstance(), UserRole.UNAUTHORIZED),
     FIND_PRODUCTS_CATEGORY_BRAND(FindProductsByCategoryBrandCommand.getInstance()),
     FIND_PRODUCTS_CATEGORY(FindProductsByCategoryCommand.getInstance()),
-    SHOW_AUTHORIZATION_PAGE(AuthorizationPageCommand.getInstance());
+    SHOW_SIGN_UP_PAGE(SignUpCommand.getInstance()),
+    SHOW_SIGN_IN_PAGE(SignInCommand.getInstance());
 
 //    SHOW_USERS(),
 //    SHOW_ACCOUNTS(),
