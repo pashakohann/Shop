@@ -109,7 +109,7 @@ margin-top: 20px;
  <input class="form-control" type="password" placeholder="password">
  </div>
  <button type="button" class="btn btn-default">Login</button>
- <a href="${pageContext.request.contextPath}/shop?command=show_sign_up_page" class="btn btn-defaultt">SignUp</a>
+ <a href="${pageContext.request.contextPath}/shop?command=show_sign_up_page" class="btn btn-defaultt"> go to Sign Up</a>
  <a href="${pageContext.request.contextPath}/shop?command=default" class="btn btn-defaultt">main menu</a>
 
  </form>

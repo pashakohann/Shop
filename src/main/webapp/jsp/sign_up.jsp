@@ -108,8 +108,8 @@ margin-top: 20px;
  <label>password</label>
  <input class="form-control" type="password" placeholder="password">
  </div>
- <button type="button" class="btn btn-defaultt">Sign Up</button>
- <a href="${pageContext.request.contextPath}/shop?command=show_sign_in_page" type="button" class="btn btn-defaultt">back to Sign in</a>
+ <button type="button" class="btn btn-defaultt">register</button>
+ <a href="${pageContext.request.contextPath}/shop?command=show_sign_in_page" type="button" class="btn btn-defaultt">go to Sign in</a>
  <a href="${pageContext.request.contextPath}/shop?command=default" class="btn btn-defaultt">main menu</a>
 
  </form>
