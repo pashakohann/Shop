@@ -4,6 +4,19 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
+<fmt:setLocale value = "${not empty sessionScope.language ? sessionScope.language : 'en'}"/>
+<fmt:setBundle basename = "locale" var="loc"/>
+
+<fmt:message bundle="${loc}" key = "signIn" var="signIn" />
+<fmt:message bundle="${loc}" key = "user" var="user" />
+<fmt:message bundle="${loc}" key = "password" var="password" />
+<fmt:message bundle="${loc}" key = "login" var="login" />
+<fmt:message bundle="${loc}" key = "goToSignUp" var="goToSignUp" />
+<fmt:message bundle="${loc}" key = "mainMenu" var="mainMenu" />
+<fmt:message bundle="${loc}" key = "validationUser" var="validationUser" />
+<fmt:message bundle="${loc}" key = "validationPassword" var="validationPassword" />
+
+
 <style>
 .form-container{
  background: #ecf0f3;
@@ -98,21 +111,21 @@ margin-top: 20px;
  <div class="col-md-4 offset-md-4">
  <div class="form-container">
  <div class="form-icon"><i class="fa fa-user"></i></div>
- <h3 class="title">Sign in</h3>
+ <h3 class="title">${signIn}</h3>
  <form  class="form-horizontal" action="${pageContext.request.contextPath}/shop?command=personal_acc" method="post">
  <div class="form-group">
- <label>user</label>
- <input class="form-control" type="user" placeholder="user" required="net" pattern="^[\w]{5,12}$" title="pppp">
-  <p class="help-block"> NEt</p>
+ <label>${user}</label>
+ <input class="form-control" type="user" placeholder="${user}" required pattern="^[\w]{5,12}$" title="${validationUser}">
+  <p class="help-block"> ${validationUser}</p>
  </div>
  <div class="form-group">
- <label>password</label>
- <input class="form-control" type="password" placeholder="password" required="net" pattern="^[\w]{5,12}$"  title="pppp">
- <p class="help-block"> NEt</p>
+ <label>${password}</label>
+ <input class="form-control" type="password" placeholder="${password}" required pattern="^[\w]{5,12}$"  title="${validationPassword}">
+ <p class="help-block"> ${validationPassword}</p>
  </div>
- <button submit="button" class="btn btn-default">Login</button>
- <a href="${pageContext.request.contextPath}/shop?command=show_sign_up_page" class="btn btn-defaultt"> go to Sign Up</a>
- <a href="${pageContext.request.contextPath}/shop?command=default" class="btn btn-defaultt">main menu</a>
+ <button submit="button" class="btn btn-default">${login}</button>
+ <a href="${pageContext.request.contextPath}/shop?command=show_sign_up_page" class="btn btn-defaultt"> ${goToSignUp}</a>
+ <a href="${pageContext.request.contextPath}/shop?command=defaultt" class="btn btn-defaultt">${mainMenu}</a>
 
  </form>
  </div>

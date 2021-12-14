@@ -12,7 +12,7 @@
 <fmt:message bundle="${loc}" key = "hdd" var="hdd" />
 <fmt:message bundle="${loc}" key = "cooler" var="cooler" />
 <fmt:message bundle="${loc}" key = "gpu" var="gpu" />
-<fmt:message bundle="${loc}" key = "case" var="case" />
+<fmt:message bundle="${loc}" key = "casee" var="casee" />
 <fmt:message bundle="${loc}" key = "addToBasket" var="addToBasket" />
 <fmt:message bundle="${loc}" key = "signUp" var="signUp" />
 <fmt:message bundle="${loc}" key = "signIn" var="signIn" />
@@ -50,7 +50,7 @@
   <body>
     <div class="wrapper">
        <header>
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-expand-lg navbar-light bg-light " style"padding-right:125px;">
        <div class="container">
 
 
@@ -145,7 +145,7 @@
                    </li>
                    <li class="nav-item dropdown">
                      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                   ${case}
+                   ${casee}
                      </a>
                      <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <li><a class="dropdown-item" href="${pageContext.request.contextPath}/shop?command=find_products_category&category=6">${allCase}</a></li>
