@@ -14,4 +14,12 @@ public interface RequestContext {
     String getParameter(String name);
 
     void setAttribute(String name, Object value);
+
+
+    public String getHeader();
+
+
+    public String getContextPath();
+
+
 }

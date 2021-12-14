@@ -8,6 +8,7 @@ import java.util.Optional;
 
 public class RequestContextImpl implements RequestContext {
     private final HttpServletRequest httpServletRequest;
+    private static final String REFERER = "referer";
 
     public RequestContextImpl(HttpServletRequest httpServletRequest) {
         this.httpServletRequest = httpServletRequest;
@@ -29,6 +30,17 @@ public class RequestContextImpl implements RequestContext {
         if (session != null) {
             session.invalidate();
         }
+    }
+
+    @Override
+    public String getHeader() {
+        return httpServletRequest.getHeader(REFERER);
+    }
+
+
+    @Override
+    public String getContextPath() {
+        return httpServletRequest.getContextPath();
     }
 
     @Override

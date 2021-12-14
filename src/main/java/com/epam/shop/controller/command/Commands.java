@@ -3,6 +3,7 @@ package com.epam.shop.controller.command;
 
 import com.epam.shop.controller.command.api.Command;
 import com.epam.shop.controller.command.impl.AuthorizationCommand;
+import com.epam.shop.controller.command.impl.LanguageCommand;
 import com.epam.shop.controller.command.impl.show_page.ShowDefaultPageCommand;
 import com.epam.shop.controller.command.impl.FindProductsByCategoryBrandCommand;
 import com.epam.shop.controller.command.impl.FindProductsByCategoryCommand;
@@ -20,7 +21,8 @@ public enum Commands {
     FIND_PRODUCTS_CATEGORY(FindProductsByCategoryCommand.getInstance()),
     SHOW_SIGN_UP_PAGE(ShowSignUpPageCommand.getInstance()),
     SHOW_SIGN_IN_PAGE(ShowSignInPageCommand.getInstance()),
-    REGISTRATION(AuthorizationCommand.getInstance());
+    REGISTRATION(AuthorizationCommand.getInstance()),
+    LANGUAGE_COMMAND (LanguageCommand.getInstance());
 //    SHOW_USERS(),
 //    SHOW_ACCOUNTS(),
 //    SHOW_PRODUCTS(),
