@@ -74,7 +74,7 @@ public class ProductServiceImpl implements ProductService {
             listOrderDto = FactoryService.getOrderServiceInstance().getAll();
             for (OrderDto order : listOrderDto
             ) {
-                for (ProductDto product : order.getListProducts()
+                for (ProductDto product : order.getMapProducts().keySet()
                 ) {
                     if (product.getId().equals(model.getId())) {
                         throw new ServiceException(ServiceProductExceptionString.DELETE_PRODUCT_FROM_USER);

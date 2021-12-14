@@ -54,6 +54,7 @@ public class ApplicationController extends HttpServlet {
     }
 
     private void process(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException, ServiceException {
+        System.out.println(req.getSession());
 
         final String commandName = req.getParameter(COMMAND_PARAMETER_NAME);
 

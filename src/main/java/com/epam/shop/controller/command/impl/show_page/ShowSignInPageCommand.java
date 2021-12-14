@@ -1,42 +1,40 @@
-package com.epam.shop.controller.command.impl;
+package com.epam.shop.controller.command.impl.show_page;
 
 import com.epam.shop.controller.command.api.Command;
-
 import com.epam.shop.controller.context.api.RequestContext;
 import com.epam.shop.controller.context.api.ResponseContext;
 import com.epam.shop.service.exception.ServiceException;
 
-public class SignOutCommand implements Command {
+public class ShowSignInPageCommand implements Command {
     public static Command command;
-    private static final String SHOW_DEFAULT_PAGE = "/jsp/main.jsp";
+    private static final String SIGN_IN_PATH = "/jsp/sign_in.jsp";
 
-
-    private SignOutCommand() {
+    private ShowSignInPageCommand() {
     }
 
     public static Command getInstance() {
         if (command == null) {
-            command = new SignOutCommand();
+            command = new ShowSignInPageCommand();
         }
         return command;
     }
 
-    private static final ResponseContext REDIRECT_MAIN_PAGE = new ResponseContext() {
+    private static final ResponseContext SHOW_SIGN_IN_PAGE = new ResponseContext() {
         @Override
         public String getPath() {
-            return SHOW_DEFAULT_PAGE;
+            return SIGN_IN_PATH;
         }
 
         @Override
         public boolean isRedirect() {
-            return true;
+            return false;
         }
-    };
 
+    };
 
     @Override
     public ResponseContext execute(RequestContext requestContext) throws ServiceException {
-        requestContext.invalidateCurrentSession();
-        return REDIRECT_MAIN_PAGE;
+
+        return SHOW_SIGN_IN_PAGE;
     }
 }

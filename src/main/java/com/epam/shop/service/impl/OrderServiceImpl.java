@@ -2,6 +2,7 @@ package com.epam.shop.service.impl;
 
 import com.epam.shop.dao.exception.DaoException;
 import com.epam.shop.dao.factory.FactoryDao;
+import com.epam.shop.dao.model.Account;
 import com.epam.shop.dao.model.Order;
 import com.epam.shop.service.api.OrderService;
 import com.epam.shop.service.converter.api.Converter;
@@ -19,8 +20,11 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class OrderServiceImpl implements OrderService {
     private static OrderService instance;
@@ -28,6 +32,18 @@ public class OrderServiceImpl implements OrderService {
     private static final Logger logger = LogManager.getLogger(OrderServiceImpl.class);
     private final Converter<OrderDto, Order, Integer> converter = OrderConverterImpl.getConverterInstance();
 
+//    public static void main(String[] args) throws DaoException, ServiceException {
+//        ConnectionServiceImpl.getInstance().init();
+//        OrderDto order = new OrderDto();
+//        order.setUserId(7);
+//        order.setId(24);
+//        order.setOrderDate(LocalDateTime.now());
+//        Map<ProductDto, Integer> map = new HashMap<>();
+//        map.put(FactoryService.getProductServiceInstance().getById(3), 6);
+//
+//        order.setMapProducts(map);
+//        getInstance().update(order);
+//    }
 
     private OrderServiceImpl() {
     }
@@ -40,49 +56,65 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public OrderDto create(OrderDto model) throws ServiceException {
+    public OrderDto create(OrderDto orderDto) throws ServiceException {
         AccountDto accountDto;
-        validatorInstance.validate(model);
-        for (ProductDto product : model.getListProducts()) {
-            model.setOrderCost(model.getOrderCost().add(product.getCost()));
+        orderDto.setOrderCost(BigDecimal.ZERO);
+        validatorInstance.validate(orderDto);
+        for (Map.Entry<ProductDto, Integer> entry : orderDto.getMapProducts().entrySet()) {
+            int iteration = 0;
 
+            while (entry.getValue() > iteration) {
+                orderDto.setOrderCost(orderDto.getOrderCost().add(entry.getKey().getCost()));
+                iteration++;
+            }
         }
         try {
-            accountDto = FactoryService.getAccountServiceInstance().getById(model.getUserId());
-            System.out.println(model.getOrderCost());
-            System.out.println(accountDto);
-            accountDto.setAmount(accountDto.getAmount().subtract(model.getOrderCost()));
+            accountDto = FactoryService.getAccountServiceInstance().getById(orderDto.getUserId());
+            accountDto.setAmount(accountDto.getAmount().subtract(orderDto.getOrderCost()));
             if (accountDto.getAmount().compareTo(BigDecimal.valueOf(0)) < 0) {
                 throw new ServiceException(ServiceOrderExceptionString.ACCOUNT_AMOUNT_EXCEPTION);
             } else {
-                System.out.println(accountDto);
                 FactoryService.getAccountServiceInstance().update(accountDto);
             }
-            model = converter.convert(FactoryDao.getOrderImpl().save(converter.convert(model)));
+            orderDto = converter.convert(FactoryDao.getOrderImpl().save(converter.convert(orderDto)));
         } catch (DaoException e) {
             logger.error(ServiceOrderExceptionString.SAVE_ORDER_EXCEPTION, e);
             throw new ServiceException(ServiceOrderExceptionString.SAVE_ORDER_EXCEPTION, e);
         }
 
-
-        return model;
+        return orderDto;
     }
 
     @Override
-    public OrderDto update(OrderDto model) throws ServiceException {
-        validatorInstance.validate(model);
+    public OrderDto update(OrderDto orderDto) throws ServiceException {
+        Account account;
+        Order order;
+        validatorInstance.validate(orderDto);
         try {
-            for (ProductDto product : model.getListProducts()) {
-                model.setOrderCost(BigDecimal.valueOf(0.0));
-                model.setOrderCost(product.getCost().add(model.getOrderCost()));
+            orderDto.setOrderCost(BigDecimal.ZERO);
+            for (Map.Entry<ProductDto, Integer> entry : orderDto.getMapProducts().entrySet()) {
+                int iteration = 0;
+
+                while (entry.getValue() > iteration) {
+                    orderDto.setOrderCost(orderDto.getOrderCost().add(entry.getKey().getCost()));
+                    iteration++;
+                }
             }
-            model = converter.convert(FactoryDao.getOrderImpl().update(converter.convert(model)));
+            System.out.println(orderDto.getOrderCost());
+            account = FactoryDao.getAccountImpl().findById(orderDto.getUserId());
+            order = FactoryDao.getOrderImpl().findById(orderDto.getId());
+            account.setAmount(account.getAmount().add(order.getOrderCost()));
+            if (account.getAmount().subtract(orderDto.getOrderCost()).compareTo(BigDecimal.ZERO) < 0) {
+                throw new ServiceException(ServiceOrderExceptionString.ACCOUNT_AMOUNT_EXCEPTION);
+            }
+            FactoryDao.getAccountImpl().update(account);
+            orderDto = converter.convert(FactoryDao.getOrderImpl().update(converter.convert(orderDto)));
         } catch (DaoException e) {
             logger.error(ServiceOrderExceptionString.UPDATE_ORDER_EXCEPTION, e);
             throw new ServiceException(ServiceOrderExceptionString.UPDATE_ORDER_EXCEPTION, e);
         }
 
-        return model;
+        return orderDto;
     }
 
     @Override
@@ -125,10 +157,19 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public OrderDto addProductInOrder(ProductDto productDto, OrderDto orderDto) throws ServiceException {
-        List<ProductDto> list = orderDto.getListProducts();
-        list.add(productDto);
-        orderDto.setOrderCost(orderDto.getOrderCost().add(productDto.getCost()));
-        orderDto.setListProducts(list);
+        Map<ProductDto, Integer> map = orderDto.getMapProducts();
+        boolean duplicate = false;
+        for (Map.Entry<ProductDto, Integer> entry : map.entrySet()) {
+            if (entry.getKey().getId().equals(productDto.getId())) {
+
+                duplicate = true;
+
+            }
+        }
+
+//        list.add(productDto);
+//        orderDto.setOrderCost(orderDto.getOrderCost().add(productDto.getCost()));
+//        orderDto.setListProducts(list);
         try {
             FactoryDao.getOrderImpl().addProductsInOrder(converter.convert(orderDto));
         } catch (DaoException e) {
@@ -146,7 +187,7 @@ public class OrderServiceImpl implements OrderService {
         OrderDto order;
         try {
             order = converter.convert(FactoryDao.getOrderImpl().findById(orderDto.getId()));
-            for (ProductDto product : order.getListProducts()) {
+            for (ProductDto product : order.getMapProducts().keySet()) {
                 if (!productDto.getId().equals(product.getId())) {
                     listProduct.add(product);
                 } else {
@@ -178,4 +219,6 @@ public class OrderServiceImpl implements OrderService {
 
         return list;
     }
+
+
 }

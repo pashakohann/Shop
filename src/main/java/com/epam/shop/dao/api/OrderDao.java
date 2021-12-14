@@ -5,10 +5,10 @@ import com.epam.shop.dao.exception.DaoException;
 import com.epam.shop.dao.model.Order;
 import com.epam.shop.dao.model.Product;
 
-import java.util.List;
+import java.util.Map;
 
 public interface OrderDao extends Dao<Order,Integer> {
-    List<Product> findAllProductsFromOrder(Integer idOrder) throws DaoException;
+    Map<Product,Integer> findAllProductsFromOrder(Integer idOrder) throws DaoException;
     void addProductsInOrder(Order order)throws DaoException;
     void deleteAllProductInOrder(Integer orderId) throws DaoException;
 

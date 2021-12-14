@@ -99,16 +99,16 @@ margin-top: 20px;
  <div class="form-container">
  <div class="form-icon"><i class="fa fa-user"></i></div>
  <h3 class="title">Sign up</h3>
- <form class="form-horizontal">
+ <form class="form-horizontal" action="${pageContext.request.contextPath}/shop?command=registration" method="post">
  <div class="form-group">
  <label>user</label>
- <input class="form-control" type="email" placeholder="user name">
+ <input class="form-control" type="user" placeholder="user" required="net" pattern="^[\w]{5,12}$"  title="pppp">
  </div>
  <div class="form-group">
  <label>password</label>
- <input class="form-control" type="password" placeholder="password">
+ <input class="form-control" type="password" placeholder="password" required="net" pattern="^[\\w]{5,12}$"  title="ppp">
  </div>
- <button type="button" class="btn btn-defaultt">register</button>
+ <button submit="button" class="btn btn-defaultt">register</button>
  <a href="${pageContext.request.contextPath}/shop?command=show_sign_in_page" type="button" class="btn btn-defaultt">go to Sign in</a>
  <a href="${pageContext.request.contextPath}/shop?command=default" class="btn btn-defaultt">main menu</a>
 

@@ -9,10 +9,13 @@ import com.epam.shop.service.dto.model.OrderDto;
 import com.epam.shop.service.dto.model.ProductDto;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class OrderConverterImpl implements Converter<OrderDto, Order, Integer> {
     private static Converter<OrderDto, Order, Integer> converterInstance;
+    private static Converter<ProductDto, Product, Integer> converterProduct = ProductConverterImpl.getConverterInstance();
 
     private OrderConverterImpl() {
     }
@@ -28,12 +31,12 @@ public class OrderConverterImpl implements Converter<OrderDto, Order, Integer> {
     @Override
     public OrderDto convert(Order model) throws DaoException {
         OrderDto orderDto = new OrderDto();
-        List<ProductDto> listProducts = new ArrayList<>();
-        for (Product product : model.getListProducts()) {
-            listProducts.add((ProductDto) ProductConverterImpl.getConverterInstance().convert(product));
+        Map<ProductDto, Integer> map = new HashMap<>();
+        for (Map.Entry<Product, Integer> entry : model.getMapProducts().entrySet()) {
+            map.put(converterProduct.convert(entry.getKey()), entry.getValue());
         }
         orderDto.setId(model.getId());
-        orderDto.setListProducts(listProducts);
+        orderDto.setMapProducts(map);
         orderDto.setOrderCost(model.getOrderCost());
         orderDto.setOrderDate(model.getOrderDate());
         orderDto.setUserId(model.getUserId());
@@ -44,12 +47,12 @@ public class OrderConverterImpl implements Converter<OrderDto, Order, Integer> {
     @Override
     public Order convert(OrderDto modelDto) {
         Order order = new Order();
-        List<Product> listProducts = new ArrayList<>();
-        for (ProductDto product : modelDto.getListProducts()) {
-            listProducts.add((Product) ProductConverterImpl.getConverterInstance().convert(product));
+        Map<Product, Integer> map = new HashMap<>();
+        for (Map.Entry<ProductDto, Integer> entry : modelDto.getMapProducts().entrySet()) {
+            map.put(converterProduct.convert(entry.getKey()), entry.getValue());
         }
         order.setId(modelDto.getId());
-        order.setListProducts(listProducts);
+        order.setMapProducts(map);
         order.setOrderCost(modelDto.getOrderCost());
         order.setOrderDate(modelDto.getOrderDate());
         order.setUserId(modelDto.getUserId());

@@ -1,4 +1,5 @@
-package com.epam.shop.controller.command.impl;
+package com.epam.shop.controller.command.impl.show_page;
+
 
 import com.epam.shop.controller.command.api.Command;
 import com.epam.shop.controller.context.api.RequestContext;
@@ -10,26 +11,25 @@ import com.epam.shop.service.factory.FactoryService;
 import javax.servlet.http.HttpSession;
 import java.util.List;
 
-public class SignUpCommand implements Command {
+public class ShowDefaultPageCommand implements Command {
     public static Command command;
-    private static final String SHOW_SIGN_IN_PATH = "/jsp/sign_up.jsp";
+    private static final String MAIN_PAGE_PATH = "/jsp/main.jsp";
 
 
-    private SignUpCommand() {
+    private ShowDefaultPageCommand() {
     }
 
     public static Command getInstance() {
         if (command == null) {
-            command = new SignUpCommand();
+            command = new ShowDefaultPageCommand();
         }
         return command;
     }
 
-    private static final ResponseContext SHOW_SIGN_IN_PAGE = new ResponseContext() {
-
+    private static final ResponseContext SHOW_MAIN_PAGE = new ResponseContext() {
         @Override
         public String getPath() {
-            return SHOW_SIGN_IN_PATH;
+            return MAIN_PAGE_PATH;
         }
 
         @Override
@@ -38,12 +38,15 @@ public class SignUpCommand implements Command {
         }
     };
 
+
     @Override
     public ResponseContext execute(RequestContext requestContext) throws ServiceException {
+
+       List<ProductDto> productDtoList = FactoryService.getProductServiceInstance().getAll();
+
         HttpSession session = requestContext.getCurrentSession().get();
+        session.setAttribute("products",productDtoList);
 
-
-        //  session.setAttribute("products","sdad");
-        return SHOW_SIGN_IN_PAGE;
+        return SHOW_MAIN_PAGE;
     }
 }

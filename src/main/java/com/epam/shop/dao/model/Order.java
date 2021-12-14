@@ -3,11 +3,12 @@ package com.epam.shop.dao.model;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 
 public class Order extends AbstractModel<Integer> {
 
-    private List<Product> listProducts;
+    private Map<Product,Integer> mapProducts;
     private LocalDateTime orderDate;
     private BigDecimal orderCost;
     private Integer userId;
@@ -19,19 +20,19 @@ public class Order extends AbstractModel<Integer> {
         super(id);
     }
 
-    public Order(List<Product> listProducts, LocalDateTime orderDate, BigDecimal orderCost, Integer userId) {
-        this.listProducts = listProducts;
+    public Order(Map<Product,Integer> mapProducts, LocalDateTime orderDate, BigDecimal orderCost, Integer userId) {
+        this.mapProducts = mapProducts;
         this.orderDate = orderDate;
         this.orderCost = orderCost;
         this.userId = userId;
     }
 
-    public List<Product> getListProducts() {
-        return listProducts;
+    public Map<Product,Integer>  getMapProducts() {
+        return mapProducts;
     }
 
-    public void setListProducts(List<Product> listProducts) {
-        this.listProducts = listProducts;
+    public void setMapProducts(Map<Product,Integer> mapProducts) {
+        this.mapProducts = mapProducts;
     }
 
     public LocalDateTime getOrderDate() {
@@ -63,18 +64,19 @@ public class Order extends AbstractModel<Integer> {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Order order = (Order) o;
-        return Objects.equals(listProducts, order.listProducts) && Objects.equals(orderDate, order.orderDate) && Objects.equals(orderCost, order.orderCost) && Objects.equals(userId, order.userId);
+        return Objects.equals(mapProducts, order.mapProducts) && Objects.equals(orderDate, order.orderDate) && Objects.equals(orderCost, order.orderCost) && Objects.equals(userId, order.userId);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(listProducts, orderDate, orderCost, userId);
+        return Objects.hash(mapProducts, orderDate, orderCost, userId);
     }
 
     @Override
     public String toString() {
         return "Order{" +
-                "listProducts=" + listProducts +
+                "id=" + id +
+                ", mapProducts=" + mapProducts +
                 ", orderDate=" + orderDate +
                 ", orderCost=" + orderCost +
                 ", userId=" + userId +

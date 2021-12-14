@@ -2,23 +2,25 @@ package com.epam.shop.controller.command;
 
 
 import com.epam.shop.controller.command.api.Command;
-import com.epam.shop.controller.command.impl.DefaultCommand;
+import com.epam.shop.controller.command.impl.AuthorizationCommand;
+import com.epam.shop.controller.command.impl.show_page.ShowDefaultPageCommand;
 import com.epam.shop.controller.command.impl.FindProductsByCategoryBrandCommand;
 import com.epam.shop.controller.command.impl.FindProductsByCategoryCommand;
-import com.epam.shop.controller.command.impl.SignInCommand;
-import com.epam.shop.controller.command.impl.SignUpCommand;
+import com.epam.shop.controller.command.impl.RegistrationCommand;
+import com.epam.shop.controller.command.impl.show_page.ShowSignInPageCommand;
+import com.epam.shop.controller.command.impl.show_page.ShowSignUpPageCommand;
 import com.epam.shop.service.dto.model.UserRole;
 
 import java.util.Arrays;
 import java.util.List;
 
 public enum Commands {
-    DEFAULT(DefaultCommand.getInstance(), UserRole.UNAUTHORIZED),
+    DEFAULT(ShowDefaultPageCommand.getInstance(), UserRole.UNAUTHORIZED),
     FIND_PRODUCTS_CATEGORY_BRAND(FindProductsByCategoryBrandCommand.getInstance()),
     FIND_PRODUCTS_CATEGORY(FindProductsByCategoryCommand.getInstance()),
-    SHOW_SIGN_UP_PAGE(SignUpCommand.getInstance()),
-    SHOW_SIGN_IN_PAGE(SignInCommand.getInstance());
-
+    SHOW_SIGN_UP_PAGE(ShowSignUpPageCommand.getInstance()),
+    SHOW_SIGN_IN_PAGE(ShowSignInPageCommand.getInstance()),
+    REGISTRATION(AuthorizationCommand.getInstance());
 //    SHOW_USERS(),
 //    SHOW_ACCOUNTS(),
 //    SHOW_PRODUCTS(),
