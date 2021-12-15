@@ -112,17 +112,26 @@ margin-top: 20px;
  <div class="form-container">
  <div class="form-icon"><i class="fa fa-user"></i></div>
  <h3 class="title">${signIn}</h3>
- <form  class="form-horizontal" action="${pageContext.request.contextPath}/shop?command=personal_acc" method="post">
+ <form  class="form-horizontal" action="${pageContext.request.contextPath}/shop?command=authorization_command" method="post">
  <div class="form-group">
  <label>${user}</label>
- <input class="form-control" type="user" placeholder="${user}" required pattern="^[\w]{5,12}$" title="${validationUser}">
+ <input class="form-control" type="login" name="login" id="login" placeholder="${user}" required pattern="^[\w]{5,12}$" title="${validationUser}">
   <p class="help-block"> ${validationUser}</p>
  </div>
  <div class="form-group">
  <label>${password}</label>
- <input class="form-control" type="password" placeholder="${password}" required pattern="^[\w]{5,12}$"  title="${validationPassword}">
+ <input class="form-control" type="password" name="password" id="password" placeholder="${password}" required pattern="^[\w]{5,12}$"  title="${validationPassword}">
  <p class="help-block"> ${validationPassword}</p>
  </div>
+  <c:choose>
+  <c:when test="${not empty error}">
+  <p style="color: red;">${error}</p>
+  </c:when>
+
+   <c:when test="${not empty message}">
+          <p style="color: red;">${message}</p>
+   </c:when>
+    </c:choose>
  <button submit="button" class="btn btn-default">${login}</button>
  <a href="${pageContext.request.contextPath}/shop?command=show_sign_up_page" class="btn btn-defaultt"> ${goToSignUp}</a>
  <a href="${pageContext.request.contextPath}/shop?command=defaultt" class="btn btn-defaultt">${mainMenu}</a>

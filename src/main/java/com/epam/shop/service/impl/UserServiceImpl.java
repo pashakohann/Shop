@@ -117,7 +117,7 @@ public class UserServiceImpl implements UserService {
 
 
     @Override
-    public UserDto signIn(UserDto user) throws ServiceException {
+    public UserDto findUser(UserDto user) throws ServiceException {
         validatorInstance.validate(user);
         user = checkPasswordAndUserName(user);
 

@@ -2,7 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!doctype html>
-<html lang="ru">
+
   <head>
     <!-- Обязательные метатеги -->
     <meta charset="utf-8">
@@ -135,7 +135,7 @@
                 </span>
               </button>
               <button class="btn btn-outline-success" type="submit">Admin Panel</button>
-                  <a href="${pageContext.request.contextPath}/shop?command=show_sign_in_page" class="btn btn-outline-success" type="submit">Sign out</a>
+                  <a href="${pageContext.request.contextPath}/shop?command=show_sign_out_command" class="btn btn-outline-success" type="submit">Sign out</a>
                 </form>
               </div>
             </div>
@@ -218,5 +218,40 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
     -->
+   <footer class="page-footer font-small blue pt-4" style="position: fixed;left: 0; bottom: 0;padding: 15px;background: #c4c2c7; color: #fff;  width: 100%; height: 5%;">
+
+      <div class="container-fluid text-center text-md-left">
+
+        <div class="row">
+
+          <div class="col-md-6 mt-md-0 mt-3">
+
+
+            <h5 class="text-uppercase" style="padding-bottom: 12px;">${computerShop}</h5>
+
+          </div>
+
+          <hr class="clearfix w-100 d-md-none pb-3">
+
+          <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false" style="margin-left: 1300px; margin-top:-68px; height: 45px; width: 65px;">
+             <img src="/img/img_language.jpg" style="width: 45px; height: 45px; padding-top: 1px; padding-bottom: 17px; padding-right: 6px; " alt="">
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+            <li><a class="dropdown-item" href="${pageContext.request.contextPath}/shop?command=language_command&language=en">${english}</a></li>
+              <li><a class="dropdown-item" href="${pageContext.request.contextPath}/shop?command=language_command&language=ru">${russian}</a></li>
+
+
+            </ul>
+          </div>
+
+        </div>
+
+      </div>
+
+      <div class="footer-copyright text-center py-3 " style="margin-top:-80px;">© 2021 ${copyRight}:
+        <a href="https://github.com/pashakohann/Shop"><img src="/img/png-github-logo.png" alt=""  style="height: 40px; width: 70px; "></a>
+      </div>
+    </footer>
   </body>
 </html>
