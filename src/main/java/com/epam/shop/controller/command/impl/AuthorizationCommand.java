@@ -17,13 +17,14 @@ public class AuthorizationCommand implements Command {
     private static final String ADMINISTRATION_PAGE_PATH = "/jsp/admin_panel.jsp";
     private static final String ERROR_PAGE = "/jsp/sign_in.jsp";
     private static final String ERROR_404 = "/jsp/404.jsp";
-    private static final String USER_ROLE_ATTRIBUTE_NAME = "userId";
+    private static final String USER_ROLE_ATTRIBUTE_NAME = "currentUser";
     private static final String LOGIN_PARAM = "login";
     private static final String PASSWORD_PARAM = "password";
     private static final String ERROR_ATTRIBUTE = "error";
     private static final String ERROR_MESSAGE = "Your fields are empty. ";
     private static final String MESSAGE_ERROR_ATTRIBUTE = "message";
-    private static final String ACCOUNT_ID = "userId";
+    private static final String USER_ID = "userId";
+    private static final String ACCOUNT_ID = "accountId";
 
 
     private AuthorizationCommand() {
@@ -121,8 +122,10 @@ public class AuthorizationCommand implements Command {
             return ADMINISTRATION_PAGE;
         } else if (userDto.getRole().equals(UserRoleDto.USER)) {
             HttpSession httpSession = requestContext.getCurrentSession().get();
+            httpSession.setAttribute(ACCOUNT_ID,FactoryService.getAccountServiceInstance()
+                    .getById(userDto.getId()));
             httpSession.setAttribute(ACCOUNT_ID, userDto.getId());
-            httpSession.setAttribute(USER_ROLE_ATTRIBUTE_NAME, userDto.getRole());
+            httpSession.setAttribute(USER_ROLE_ATTRIBUTE_NAME, userDto);
             return LOGIN_SUCCESS_PAGE;
         }
 

@@ -18,7 +18,10 @@
 
    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
 
+      <button class="btn btn-primary me-md-2" type="button" ><a href="${pageContext.request.contextPath}/shop?command=back_action_command" style="color:white;">Order</a> </button>
+      <button class="btn btn-primary me-md-2" type="button" ><a href="${pageContext.request.contextPath}/shop?command=clear_basket_command" style="color:white;">Clean Basket</a> </button>
       <button class="btn btn-primary me-md-2" type="button" ><a href="${pageContext.request.contextPath}/shop?command=back_action_command" style="color:white;">Back Menu</a> </button>
+
 
     </div>
     <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
@@ -38,6 +41,15 @@
              <th scope="col">price</th>
 
              <th scope="col">Execute</th>
+              <c:choose>
+               <c:when test="${not empty error}">
+               <p style="color: red;">${error}</p>
+               </c:when>
+
+                <c:when test="${not empty message}">
+                       <p style="color: red;">${message}</p>
+                </c:when>
+                 </c:choose>
            </tr>
          </thead>
          <tbody>
@@ -47,7 +59,7 @@
              <th scope="row">Order</th>
              <td>${element.getName()}</td>
              <td >${element.getCost()}</td>
-               <td><button class="button" type="button">Cancel</td>
+               <td><button class="button" type="button"><a href="${pageContext.request.contextPath}/shop?command=delete_product_command&productId=${element.getId()}"  style="color:white;background-color: rebeccapurple;">Cancel</a></td>
            </tr>
           </c:forEach>
          </tbody>

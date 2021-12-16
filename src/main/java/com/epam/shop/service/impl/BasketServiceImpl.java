@@ -10,7 +10,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class BasketServiceImpl implements BasketService<ProductDto, Integer> {
+public class BasketServiceImpl implements BasketService<ProductDto, BasketServiceImpl> {
     private Map<ProductDto, Integer> basket;
 
     public BasketServiceImpl(Map<ProductDto, Integer> basket) {
@@ -37,12 +37,12 @@ public class BasketServiceImpl implements BasketService<ProductDto, Integer> {
     }
 
     @Override
-    public Map<ProductDto, Integer> deleteProduct(ProductDto product) throws ServerException {
+    public BasketServiceImpl deleteProduct(int productId) throws ServerException {
 
         boolean isProduct = false;
         ProductDto productDto = null;
         for (Map.Entry<ProductDto, Integer> entry : basket.entrySet()) {
-            if (entry.getKey().getId().equals(product.getId())) {
+            if (entry.getKey().getId().equals(productId)) {
                 if (entry.getValue() > 1) {
                     isProduct = true;
                     entry.setValue(entry.getValue() - 1);
@@ -52,13 +52,13 @@ public class BasketServiceImpl implements BasketService<ProductDto, Integer> {
         }
         if (!isProduct) {
             for (Map.Entry<ProductDto, Integer> entry : basket.entrySet()) {
-                if (entry.getKey().getId().equals(product.getId())) {
+                if (entry.getKey().getId().equals(productId)) {
                     productDto = entry.getKey();
                 }
             }
             basket.remove(productDto);
         }
-        return basket;
+        return this;
     }
 
     @Override
@@ -67,9 +67,9 @@ public class BasketServiceImpl implements BasketService<ProductDto, Integer> {
     }
 
     @Override
-    public Map<ProductDto, Integer> clearBasket() throws ServerException {
+    public BasketServiceImpl clearBasket() throws ServerException {
         this.basket = new HashMap<>();
-        return basket;
+        return this;
     }
 
     @Override

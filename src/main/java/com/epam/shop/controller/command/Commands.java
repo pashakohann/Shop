@@ -4,8 +4,11 @@ package com.epam.shop.controller.command;
 import com.epam.shop.controller.command.api.Command;
 import com.epam.shop.controller.command.impl.AddProductInBasketCommand;
 import com.epam.shop.controller.command.impl.AuthorizationCommand;
+import com.epam.shop.controller.command.impl.ClearBasketCommand;
+import com.epam.shop.controller.command.impl.DeleteProductFromBasketCommand;
 import com.epam.shop.controller.command.impl.LanguageCommand;
 import com.epam.shop.controller.command.impl.LookBasketCommand;
+import com.epam.shop.controller.command.impl.OrderProductCommand;
 import com.epam.shop.controller.command.impl.ReturnBackActionCommand;
 import com.epam.shop.controller.command.impl.SignOutCommand;
 import com.epam.shop.controller.command.impl.show_page.ShowDefaultPageCommand;
@@ -21,7 +24,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public enum Commands {
-    DEFAULT(ShowDefaultPageCommand.getInstance(), UserRoleDto.UNAUTHORIZED),
+    DEFAULT(ShowDefaultPageCommand.getInstance(), UserRoleDto.UNAUTHORIZED,UserRoleDto.USER, UserRoleDto.ADMIN),
     FIND_PRODUCTS_CATEGORY_BRAND(FindProductsByCategoryBrandCommand.getInstance(), UserRoleDto.USER, UserRoleDto.ADMIN, UserRoleDto.UNAUTHORIZED),
     FIND_PRODUCTS_CATEGORY(FindProductsByCategoryCommand.getInstance(), UserRoleDto.USER, UserRoleDto.ADMIN, UserRoleDto.UNAUTHORIZED),
     SHOW_SIGN_UP_PAGE(ShowSignUpPageCommand.getInstance(), UserRoleDto.USER, UserRoleDto.ADMIN, UserRoleDto.UNAUTHORIZED),
@@ -31,10 +34,12 @@ public enum Commands {
     AUTHORIZATION_COMMAND(AuthorizationCommand.getInstance(), UserRoleDto.USER, UserRoleDto.ADMIN, UserRoleDto.UNAUTHORIZED),
     SIGN_OUT_COMMAND(SignOutCommand.getInstance(), UserRoleDto.USER, UserRoleDto.ADMIN),
     ADD_PRODUCT_COMMAND(AddProductInBasketCommand.getInstance(), UserRoleDto.USER, UserRoleDto.ADMIN),
+    DELETE_PRODUCT_COMMAND(DeleteProductFromBasketCommand.getInstance(),UserRoleDto.USER, UserRoleDto.ADMIN),
     SHOW_BASKET_COMMAND(LookBasketCommand.getInstance(), UserRoleDto.USER, UserRoleDto.ADMIN),
     BACK_ACTION_COMMAND(ReturnBackActionCommand.getInstance(), UserRoleDto.USER, UserRoleDto.ADMIN),
-    SHOW_ERROR_COMMAND(ShowErrorPageCommand.getInstance());
-
+    SHOW_ERROR_COMMAND(ShowErrorPageCommand.getInstance()),
+    CLEAR_BASKET_COMMAND(ClearBasketCommand.getInstance(), UserRoleDto.USER, UserRoleDto.ADMIN),
+    ORDER_PRODUCTS_COMMAND(OrderProductCommand.getInstance(),UserRoleDto.USER, UserRoleDto.ADMIN);
 
 //    DELETE_PRODUCT_COMMAND(),
 

@@ -134,7 +134,7 @@ margin-top: 20px;
     </c:choose>
  <button submit="button" class="btn btn-default">${login}</button>
  <a href="${pageContext.request.contextPath}/shop?command=show_sign_up_page" class="btn btn-defaultt"> ${goToSignUp}</a>
- <a href="${pageContext.request.contextPath}/shop?command=defaultt" class="btn btn-defaultt">${mainMenu}</a>
+ <a href="${pageContext.request.contextPath}/shop?command=default" class="btn btn-defaultt">${mainMenu}</a>
 
  </form>
  </div>

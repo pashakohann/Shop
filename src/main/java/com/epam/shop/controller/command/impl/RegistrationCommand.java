@@ -16,7 +16,7 @@ public class RegistrationCommand implements Command {
     private static Command command;
     private static final String LOGIN_NAME_PARAM = "login";
     private static final String PASSWORD_PARAM = "password";
-    private static final String ROLE_ACCOUNT_PARAM = "role";
+    private static final String ROLE_ACCOUNT_PARAM = "currentUser";
     private static final String ERROR = "error";
     private static final String MESSAGE_ERROR = "message";
 
@@ -84,7 +84,7 @@ public class RegistrationCommand implements Command {
         } else {
             HttpSession session = requestContext.createSession();
             session.setAttribute("account_id", userDto.getId());
-            session.setAttribute("role", userDto.getRole());
+            session.setAttribute(ROLE_ACCOUNT_PARAM, userDto);
         }
 
 

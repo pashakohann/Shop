@@ -16,13 +16,14 @@ import java.util.Map;
 
 public class AddProductInBasketCommand implements Command {
     private static Command command;
-    private static final BasketService basket = new BasketServiceImpl(new HashMap<ProductDto, Integer>());
+    private static  BasketService<ProductDto,BasketServiceImpl> basket = new BasketServiceImpl(new HashMap<ProductDto, Integer>());
     private static String RETURN_PAGE = "/jsp/personal_acc.jsp";
     private static String PRODUCT_ID_PARAM = "productId";
     private static final String ERROR_PARAM = "error";
     private static final String MESSAGE_PARAM = "message";
     private static final String BASKET_PARAM = "basketSize";
     private static final String BASKET_MAP_PARAM = "userBasket";
+    private static final String BASKET_USER_OBJECT ="basketObject";
 
 
     private AddProductInBasketCommand() {
@@ -35,9 +36,7 @@ public class AddProductInBasketCommand implements Command {
         return command;
     }
 
-    public BasketService<ProductDto, Integer> getBasket() {
-        return basket;
-    }
+
 
     private static final ResponseContext SHOW_PERSONAL_ACC = new ResponseContext() {
         public String getPath() {
@@ -59,6 +58,7 @@ public class AddProductInBasketCommand implements Command {
                       HttpSession httpSession = requestContext.getCurrentSession().get();
                       httpSession.setAttribute(BASKET_MAP_PARAM, basket.lookBasket());
                       httpSession.setAttribute(BASKET_PARAM, basket.basketSize());
+                      httpSession.setAttribute(BASKET_USER_OBJECT,basket);
                   }
         } catch (ServerException e) {
             //log

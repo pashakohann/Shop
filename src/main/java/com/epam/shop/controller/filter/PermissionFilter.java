@@ -1,6 +1,7 @@
 package com.epam.shop.controller.filter;
 
 import com.epam.shop.controller.command.Commands;
+import com.epam.shop.service.dto.model.UserDto;
 import com.epam.shop.service.dto.model.UserRoleDto;
 
 import javax.servlet.Filter;
@@ -18,6 +19,8 @@ import java.util.EnumMap;
 import java.util.EnumSet;
 import java.util.Map;
 import java.util.Set;
+
+import static com.epam.shop.service.dto.model.UserRoleDto.UNAUTHORIZED;
 
 
 @WebFilter(urlPatterns = "/*")
@@ -54,13 +57,19 @@ public class PermissionFilter implements Filter {
         if (allowedCommands.contains(command)) {
             chain.doFilter(request, response);
         } else {
+            System.out.println(commandsByRoles.keySet());
+            System.out.println(commandsByRoles.values());
+            System.out.println(currentRole);
+            System.out.println("sdadadaPO4emy");
+            System.out.println(allowedCommands);
+            System.out.println(command);
             ((HttpServletResponse) response).sendRedirect(ERROR_PAGE_LOCATION);
         }
     }
 
     private UserRoleDto extractRoleFromSession(HttpSession session) {
         return session != null && session.getAttribute(USER_ROLE_SESSION_ATTRIB_NAME) != null
-                ? (UserRoleDto) session.getAttribute(USER_ROLE_SESSION_ATTRIB_NAME)
-                : UserRoleDto.UNAUTHORIZED;
+                ? ((UserDto) session.getAttribute(USER_ROLE_SESSION_ATTRIB_NAME)).getRole()
+                : UNAUTHORIZED;
     }
 }

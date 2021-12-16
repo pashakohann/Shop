@@ -20,6 +20,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -53,6 +54,8 @@ public class UserServiceImpl implements UserService {
                 model = converter.convert(FactoryDao.getUserImpl().save(converter.convert(model)));
                 AccountDto account = new AccountDto();
                 account.setUserId(model.getId());
+                account.setAmount(BigDecimal.ZERO);
+
                 FactoryService.getAccountServiceInstance().create(account);
             } else {
                 throw new ServiceException(ServiceUserExceptionString.CHECK_DUPLICATE_USER_NAME_EXCEPTION);
