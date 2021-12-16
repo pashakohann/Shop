@@ -1,6 +1,6 @@
 INSERT INTO users(account,password,role_id)VALUES ('admin','1111',1);
 
-INSERT INTO roles(id,name)VALUES (1,'ADMIN'),(2,'USER');
+INSERT INTO roles(id,name)VALUES (1,'ADMIN'),(2,'USER'),(3,'UNAUTHORIZED');
 
 INSERT INTO brands(id,name) VALUES(1, 'ASRock'),(2, 'Gigabyte'),(3, 'ASUS'),(4,'BIOSTAR'),(5, 'MSI'),(6, 'Crucial'),(7, 'Kingston'),(8, 'Chieftec'),(9, 'AeroCool'),
 (10, 'WD'),( 11, 'Seagate'),(12, 'AMD'),(13, 'Intel'),(14, 'Zalman'),(15, 'DeepCool');
