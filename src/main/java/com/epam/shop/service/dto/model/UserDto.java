@@ -7,7 +7,7 @@ import java.util.Objects;
 
 
 public class UserDto extends AbstractModelDto<Integer> {
-    private UserRole role;
+    private UserRoleDto role;
     private String account;
     private String password;
     private LocalDateTime registrationDate;
@@ -24,18 +24,18 @@ public class UserDto extends AbstractModelDto<Integer> {
         this.password = password;
     }
 
-    public UserDto(UserRole role, String account, String password, LocalDateTime registrationDate) {
+    public UserDto(UserRoleDto role, String account, String password, LocalDateTime registrationDate) {
         this.role = role;
         this.account = account;
         this.password = password;
         this.registrationDate = registrationDate;
     }
 
-    public UserRole getRole() {
+    public UserRoleDto getRole() {
         return role;
     }
 
-    public void setRole(UserRole role) {
+    public void setRole(UserRoleDto role) {
         this.role = role;
     }
 

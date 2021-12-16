@@ -30,13 +30,13 @@ public class UserValidatorImpl implements Validator<UserDto, Integer> {
 
     private void checkUserName(String userName) throws ServiceException {
         if (!userName.matches(UserValidationString.USER_NAME_REGEX)) {
-            throw new ServiceException(ServiceUserExceptionString.USER_PASSWORD_EXCEPTION);
+            throw new ServiceException(ServiceUserExceptionString.USER_NAME_EXCEPTION);
         }
     }
 
     private void checkPassword(String userPassword) throws ServiceException {
         if (!userPassword.matches(UserValidationString.USER_PASSWORD_REGEX)) {
-            throw new ServiceException(ServiceUserExceptionString.USER_NAME_EXCEPTION);
+            throw new ServiceException(ServiceUserExceptionString.USER_PASSWORD_EXCEPTION);
         }
     }
 

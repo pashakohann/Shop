@@ -3,28 +3,32 @@ package com.epam.shop.controller.command.impl;
 import com.epam.shop.controller.command.api.Command;
 import com.epam.shop.controller.context.api.RequestContext;
 import com.epam.shop.controller.context.api.ResponseContext;
+
 import com.epam.shop.service.exception.ServiceException;
 
 import javax.servlet.http.HttpSession;
 
-public class LanguageCommand implements Command {
-    private static Command command;
-    private static final String LANGUAGE_PARAM = "language";
-    private static String RETURN_PAGE_WITH_NEW_LANGUAGE;
 
-    private LanguageCommand() {
+public class ReturnBackActionCommand implements Command {
+    private static Command command;
+    private static String BASKET_PAGE = "/jsp/personal_acc.jsp";
+    private static final String ERROR_PARAM = "error";
+    private static final String MESSAGE_PARAM = "message";
+
+
+    private ReturnBackActionCommand() {
     }
 
     public static Command getInstance() {
         if (command == null) {
-            command = new LanguageCommand();
+            command = new ReturnBackActionCommand();
         }
         return command;
     }
 
-    private static final ResponseContext CHANGE_LANGUAGE_PAGE = new ResponseContext() {
+    private static final ResponseContext SHOW_PAGE = new ResponseContext() {
         public String getPath() {
-            return RETURN_PAGE_WITH_NEW_LANGUAGE;
+            return BASKET_PAGE;
         }
 
         public boolean isRedirect() {
@@ -35,15 +39,14 @@ public class LanguageCommand implements Command {
 
     @Override
     public ResponseContext execute(RequestContext requestContext) throws ServiceException {
-
-        String language = requestContext.getParameter(LANGUAGE_PARAM);
         HttpSession httpSession = requestContext.getCurrentSession().get();
-        ;
+        httpSession.getAttribute("basketSize");
 
 
-        httpSession.setAttribute(LANGUAGE_PARAM, language);
-        System.out.println(requestContext.getContextPath() + requestContext.getHeader());
-        RETURN_PAGE_WITH_NEW_LANGUAGE = requestContext.getContextPath() + requestContext.getHeader();
-        return CHANGE_LANGUAGE_PAGE;
+
+        System.out.println(BASKET_PAGE);
+        return SHOW_PAGE;
     }
+
+
 }

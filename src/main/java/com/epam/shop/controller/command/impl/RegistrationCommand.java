@@ -4,6 +4,7 @@ import com.epam.shop.controller.command.api.Command;
 import com.epam.shop.controller.context.api.RequestContext;
 import com.epam.shop.controller.context.api.ResponseContext;
 import com.epam.shop.service.dto.model.UserDto;
+import com.epam.shop.service.dto.model.UserRoleDto;
 import com.epam.shop.service.exception.ServiceException;
 import com.epam.shop.service.factory.FactoryService;
 
@@ -62,15 +63,17 @@ public class RegistrationCommand implements Command {
     public ResponseContext execute(RequestContext requestContext) throws ServiceException {
         String loginName = requestContext.getParameter(LOGIN_NAME_PARAM);
         String password = requestContext.getParameter(PASSWORD_PARAM);
-        System.out.println(loginName + " " + password);
         boolean flagException = false;
         UserDto userDto = new UserDto();
         userDto.setRegistrationDate(LocalDateTime.now());
         userDto.setAccount(loginName);
         userDto.setPassword(password);
+        userDto.setRole(UserRoleDto.UNAUTHORIZED);
         try {
             userDto = FactoryService.getUserServiceInstance().create(userDto);
         } catch (ServiceException e) {
+            //log
+            //don't forget!
             requestContext.setAttribute(ERROR, MESSAGE_ERROR + ":" + e.getMessage());
             flagException = true;
 
@@ -81,7 +84,7 @@ public class RegistrationCommand implements Command {
         } else {
             HttpSession session = requestContext.createSession();
             session.setAttribute("account_id", userDto.getId());
-            session.setAttribute("role", userDto.getRole().getId());
+            session.setAttribute("role", userDto.getRole());
         }
 
 

@@ -8,10 +8,11 @@ import com.epam.shop.service.exception.ServiceException;
 import java.rmi.ServerException;
 import java.util.List;
 
-public interface OrderService extends Service<OrderDto, Integer> {
-    OrderDto addProductInOrder(ProductDto productDto, OrderDto orderDto) throws ServerException, ServiceException;
 
-    OrderDto deleteProductFromOrder(ProductDto productDto, OrderDto orderDto) throws ServerException, ServiceException;
+public interface OrderService extends Service<OrderDto, Integer> {
+    OrderDto addProductInOrder(ProductDto productDto, OrderDto orderDto) throws ServiceException;
+
+    OrderDto deleteProductFromOrder(ProductDto productDto, OrderDto orderDto) throws ServiceException;
 
     List<OrderDto> findUserOrders(UserDto userDto) throws ServerException, ServiceException;
 

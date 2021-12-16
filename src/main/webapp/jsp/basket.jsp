@@ -3,7 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 
 <!DOCTYPE html>
-<html lang="en">
+
 <head>
    <meta charset="UTF-8">
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -18,7 +18,7 @@
 
    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
 
-      <button class="btn btn-primary me-md-2" type="button">Main menu</button>
+      <button class="btn btn-primary me-md-2" type="button" ><a href="${pageContext.request.contextPath}/shop?command=back_action_command" style="color:white;">Back Menu</a> </button>
 
     </div>
     <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
@@ -41,24 +41,20 @@
            </tr>
          </thead>
          <tbody>
+             <c:forEach var="element" items="${basketList}">
+
            <tr>
              <th scope="row">Order</th>
-
-             <td>name</td>
-             <td >cost</td>
-
+             <td>${element.getName()}</td>
+             <td >${element.getCost()}</td>
                <td><button class="button" type="button">Cancel</td>
            </tr>
-
-
+          </c:forEach>
          </tbody>
        </table>
     </table>
  </div>
    </header>
-
-
-
 
 </body>
 </html>

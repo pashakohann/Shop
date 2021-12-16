@@ -2,30 +2,43 @@ package com.epam.shop.controller.command;
 
 
 import com.epam.shop.controller.command.api.Command;
+import com.epam.shop.controller.command.impl.AddProductInBasketCommand;
 import com.epam.shop.controller.command.impl.AuthorizationCommand;
 import com.epam.shop.controller.command.impl.LanguageCommand;
+import com.epam.shop.controller.command.impl.LookBasketCommand;
+import com.epam.shop.controller.command.impl.ReturnBackActionCommand;
 import com.epam.shop.controller.command.impl.SignOutCommand;
 import com.epam.shop.controller.command.impl.show_page.ShowDefaultPageCommand;
 import com.epam.shop.controller.command.impl.FindProductsByCategoryBrandCommand;
 import com.epam.shop.controller.command.impl.FindProductsByCategoryCommand;
 import com.epam.shop.controller.command.impl.RegistrationCommand;
+import com.epam.shop.controller.command.impl.show_page.ShowErrorPageCommand;
 import com.epam.shop.controller.command.impl.show_page.ShowSignInPageCommand;
 import com.epam.shop.controller.command.impl.show_page.ShowSignUpPageCommand;
-import com.epam.shop.service.dto.model.UserRole;
+import com.epam.shop.service.dto.model.UserRoleDto;
 
 import java.util.Arrays;
 import java.util.List;
 
 public enum Commands {
-    DEFAULT(ShowDefaultPageCommand.getInstance(), UserRole.UNAUTHORIZED),
-    FIND_PRODUCTS_CATEGORY_BRAND(FindProductsByCategoryBrandCommand.getInstance()),
-    FIND_PRODUCTS_CATEGORY(FindProductsByCategoryCommand.getInstance()),
-    SHOW_SIGN_UP_PAGE(ShowSignUpPageCommand.getInstance()),
-    SHOW_SIGN_IN_PAGE(ShowSignInPageCommand.getInstance()),
-    REGISTRATION(RegistrationCommand.getInstance()),
-    LANGUAGE_COMMAND(LanguageCommand.getInstance()),
-    AUTHORIZATION_COMMAND(AuthorizationCommand.getInstance()),
-    SIGN_OUT_COMMAND(SignOutCommand.getInstance());
+    DEFAULT(ShowDefaultPageCommand.getInstance(), UserRoleDto.UNAUTHORIZED),
+    FIND_PRODUCTS_CATEGORY_BRAND(FindProductsByCategoryBrandCommand.getInstance(), UserRoleDto.USER, UserRoleDto.ADMIN, UserRoleDto.UNAUTHORIZED),
+    FIND_PRODUCTS_CATEGORY(FindProductsByCategoryCommand.getInstance(), UserRoleDto.USER, UserRoleDto.ADMIN, UserRoleDto.UNAUTHORIZED),
+    SHOW_SIGN_UP_PAGE(ShowSignUpPageCommand.getInstance(), UserRoleDto.USER, UserRoleDto.ADMIN, UserRoleDto.UNAUTHORIZED),
+    SHOW_SIGN_IN_PAGE(ShowSignInPageCommand.getInstance(), UserRoleDto.USER, UserRoleDto.ADMIN, UserRoleDto.UNAUTHORIZED),
+    REGISTRATION(RegistrationCommand.getInstance(), UserRoleDto.USER, UserRoleDto.ADMIN, UserRoleDto.UNAUTHORIZED),
+    LANGUAGE_COMMAND(LanguageCommand.getInstance(), UserRoleDto.USER, UserRoleDto.ADMIN, UserRoleDto.UNAUTHORIZED),
+    AUTHORIZATION_COMMAND(AuthorizationCommand.getInstance(), UserRoleDto.USER, UserRoleDto.ADMIN, UserRoleDto.UNAUTHORIZED),
+    SIGN_OUT_COMMAND(SignOutCommand.getInstance(), UserRoleDto.USER, UserRoleDto.ADMIN),
+    ADD_PRODUCT_COMMAND(AddProductInBasketCommand.getInstance(), UserRoleDto.USER, UserRoleDto.ADMIN),
+    SHOW_BASKET_COMMAND(LookBasketCommand.getInstance(), UserRoleDto.USER, UserRoleDto.ADMIN),
+    BACK_ACTION_COMMAND(ReturnBackActionCommand.getInstance(), UserRoleDto.USER, UserRoleDto.ADMIN),
+    SHOW_ERROR_COMMAND(ShowErrorPageCommand.getInstance());
+
+
+//    DELETE_PRODUCT_COMMAND(),
+
+//    CLEAR_BASKET_COMMAND();
 //    SHOW_USERS(),
 //    SHOW_ACCOUNTS(),
 //    SHOW_PRODUCTS(),
@@ -35,18 +48,18 @@ public enum Commands {
 //    ORDER_PRDUCTS();
 
     private final Command command;
-    private final List<UserRole> allowedRoles;
+    private final List<UserRoleDto> allowedRoles;
 
-    Commands(Command command, UserRole... roles) {
+    Commands(Command command, UserRoleDto... roles) {
         this.command = command;
-        this.allowedRoles = roles != null && roles.length > 0 ? Arrays.asList(roles) : UserRole.valuesAsList();
+        this.allowedRoles = roles != null && roles.length > 0 ? Arrays.asList(roles) : UserRoleDto.valuesAsList();
     }
 
     public Command getCommand() {
         return command;
     }
 
-    public List<UserRole> getAllowedRoles() {
+    public List<UserRoleDto> getAllowedRoles() {
         return allowedRoles;
     }
 

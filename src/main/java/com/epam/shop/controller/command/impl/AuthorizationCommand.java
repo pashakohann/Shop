@@ -4,6 +4,7 @@ import com.epam.shop.controller.command.api.Command;
 import com.epam.shop.controller.context.api.RequestContext;
 import com.epam.shop.controller.context.api.ResponseContext;
 import com.epam.shop.service.dto.model.UserDto;
+import com.epam.shop.service.dto.model.UserRoleDto;
 import com.epam.shop.service.exception.ServiceException;
 import com.epam.shop.service.factory.FactoryService;
 
@@ -15,10 +16,12 @@ public class AuthorizationCommand implements Command {
     private static final String PANEL_USER_PAGE_PATH = "/jsp/personal_acc.jsp";
     private static final String ADMINISTRATION_PAGE_PATH = "/jsp/admin_panel.jsp";
     private static final String ERROR_PAGE = "/jsp/sign_in.jsp";
+    private static final String ERROR_404 = "/jsp/404.jsp";
     private static final String USER_ROLE_ATTRIBUTE_NAME = "userId";
     private static final String LOGIN_PARAM = "login";
     private static final String PASSWORD_PARAM = "password";
     private static final String ERROR_ATTRIBUTE = "error";
+    private static final String ERROR_MESSAGE = "Your fields are empty. ";
     private static final String MESSAGE_ERROR_ATTRIBUTE = "message";
     private static final String ACCOUNT_ID = "userId";
 
@@ -38,6 +41,18 @@ public class AuthorizationCommand implements Command {
         @Override
         public String getPath() {
             return ERROR_PAGE;
+        }
+
+        @Override
+        public boolean isRedirect() {
+            return false;
+        }
+    };
+
+    private static final ResponseContext SHOW_404 = new ResponseContext() {
+        @Override
+        public String getPath() {
+            return ERROR_404;
         }
 
         @Override
@@ -75,34 +90,39 @@ public class AuthorizationCommand implements Command {
 
     @Override
     public ResponseContext execute(RequestContext requestContext) throws ServiceException {
+
         final String userName = requestContext.getParameter(LOGIN_PARAM);
         final String userPassword = requestContext.getParameter(PASSWORD_PARAM);
+
         UserDto userDto = new UserDto();
         userDto.setAccount(userName);
         userDto.setPassword(userPassword);
-        UserDto userDtoResponse = null;
+        userDto.setRole(UserRoleDto.UNAUTHORIZED);
         boolean isError = false;
+
         try {
 
-            userDtoResponse = FactoryService.getUserServiceInstance().findUser(userDto);
+            userDto = FactoryService.getUserServiceInstance().findUser(userDto);
 
 
         } catch (ServiceException e) {
             requestContext.setAttribute(ERROR_ATTRIBUTE, MESSAGE_ERROR_ATTRIBUTE + ":" + e.getMessage());
             isError = true;
         }
-
+        System.out.println(userDto);
         if (isError) {
             return SHOW_ERROR_PAGE;
-        } else if (userDtoResponse.getRole().getId() == 1) {
+
+
+        } else if (userDto.getRole().equals(UserRoleDto.ADMIN)) {
             HttpSession httpSession = requestContext.getCurrentSession().get();
-            httpSession.setAttribute(ACCOUNT_ID, userDtoResponse.getId());
-            httpSession.setAttribute(USER_ROLE_ATTRIBUTE_NAME, userDtoResponse.getRole().getId());
+            httpSession.setAttribute(ACCOUNT_ID, userDto.getId());
+            httpSession.setAttribute(USER_ROLE_ATTRIBUTE_NAME, userDto.getRole());
             return ADMINISTRATION_PAGE;
-        } else if (userDtoResponse.getRole().getId() == 2) {
+        } else if (userDto.getRole().equals(UserRoleDto.USER)) {
             HttpSession httpSession = requestContext.getCurrentSession().get();
-            httpSession.setAttribute(ACCOUNT_ID, userDtoResponse.getId());
-            httpSession.setAttribute(USER_ROLE_ATTRIBUTE_NAME, userDtoResponse.getRole().getId());
+            httpSession.setAttribute(ACCOUNT_ID, userDto.getId());
+            httpSession.setAttribute(USER_ROLE_ATTRIBUTE_NAME, userDto.getRole());
             return LOGIN_SUCCESS_PAGE;
         }
 

@@ -5,19 +5,17 @@ import com.epam.shop.controller.context.api.RequestContext;
 import com.epam.shop.controller.context.api.ResponseContext;
 import com.epam.shop.service.exception.ServiceException;
 
-import javax.servlet.http.HttpSession;
-
-public class LanguageCommand implements Command {
+public class DeleteProductFromBasketCommand implements Command {
     private static Command command;
     private static final String LANGUAGE_PARAM = "language";
     private static String RETURN_PAGE_WITH_NEW_LANGUAGE;
 
-    private LanguageCommand() {
+    private DeleteProductFromBasketCommand() {
     }
 
     public static Command getInstance() {
         if (command == null) {
-            command = new LanguageCommand();
+            command = new DeleteProductFromBasketCommand();
         }
         return command;
     }
@@ -35,15 +33,6 @@ public class LanguageCommand implements Command {
 
     @Override
     public ResponseContext execute(RequestContext requestContext) throws ServiceException {
-
-        String language = requestContext.getParameter(LANGUAGE_PARAM);
-        HttpSession httpSession = requestContext.getCurrentSession().get();
-        ;
-
-
-        httpSession.setAttribute(LANGUAGE_PARAM, language);
-        System.out.println(requestContext.getContextPath() + requestContext.getHeader());
-        RETURN_PAGE_WITH_NEW_LANGUAGE = requestContext.getContextPath() + requestContext.getHeader();
-        return CHANGE_LANGUAGE_PAGE;
+        return null;
     }
 }
