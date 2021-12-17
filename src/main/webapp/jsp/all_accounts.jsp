@@ -1,5 +1,7 @@
+<%@ page contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!DOCTYPE html>
-<html lang="en">
 <head>
    <meta charset="UTF-8">
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -14,15 +16,15 @@
 
    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
 
-      <button class="btn btn-primary me-md-2" type="button">Main menu</button>
+      <button class="btn btn-primary me-md-2" type="button"><a href="${pageContext.request.contextPath}/shop?command=back_action_command" style="color:white;">Back Menu</a></button>
 
     </div>
     <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
       <ol class="breadcrumb">
-         <li class="breadcrumb-item"><a href="#">All users</a></li>
-        <li class="breadcrumb-item active" aria-current="page">All user profiles</li>
+         <li class="breadcrumb-item"><a href="${pageContext.request.contextPath}/shop?command=show_panel_command">All users</a></li>
+        <li class="breadcrumb-item active" aria-current="page">All user profiles</a></li>
 
-        <li class="breadcrumb-item"><a href="#">All orders</a></li>
+        <li class="breadcrumb-item"><a href="${pageContext.request.contextPath}/shop?command=show_orders_command">All orders</a></li>
         <li class="breadcrumb-item"><a href="#">All products</a></li>
 
       </ol>
@@ -37,6 +39,7 @@
              <th scope="col">Last Name</th>
              <th scope="col">Date of Birth</th>
              <th scope="col">Telephone Number</th>
+             <th scope="col">Email</th>
              <th scope="col">City</th>
              <th scope="col">Street</th>
              <th scope="col">Flat</th>
@@ -46,21 +49,23 @@
            </tr>
          </thead>
          <tbody>
-           <tr>
-             <th scope="row">Order</th>
 
-             <td>f.name</td>
-             <td >l.name</td>
-             <td>d of b</td>
-             <td >telephone</td>
-             <td>city</td>
-             <td >street</td>
-             <td>flat</td>
-             <td >amount</td>
+          <c:forEach var="element" items="${accountsList}">
+           <tr>
+             <th scope="row">${element.getId()}</th>
+             <td>${element.getFirstName()}</td>
+             <td>${element.getLastName()}</td>
+             <td>${element.getDateOfBirth()}</td>
+             <td>${element.getTelephoneNumber()}</td>
+             <td>${element.getEmail()}</td>
+             <td>${element.getCity()}</td>
+             <td>${element.getStreet()}</td>
+             <td>${element.getFlat()}</td>
+             <td>${element.getAmount()}</td>
                <td><button class="button" type="button">Delete</td>
            </tr>
 
-
+    </c:forEach>
          </tbody>
        </table>
     </table>

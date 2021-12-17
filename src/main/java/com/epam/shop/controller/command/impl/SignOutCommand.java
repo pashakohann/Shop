@@ -38,7 +38,7 @@ public class SignOutCommand implements Command {
 
         @Override
         public boolean isRedirect() {
-            return false;
+            return true;
         }
     };
 
@@ -53,7 +53,8 @@ public class SignOutCommand implements Command {
             httpSession.setAttribute(BASKET_MAP_PARAM, basketService.lookBasket());
             httpSession.setAttribute(BASKET_PARAM, basketService.basketSize());
             httpSession.setAttribute(BASKET_USER_OBJECT,basketService);
-            requestContext.invalidateCurrentSession();
+
+           requestContext.invalidateCurrentSession();
         }catch (ServiceException e){
             //logg
             httpSession.setAttribute(ERROR_PARAM,MESSAGE_PARAM + ":" + e.getMessage());

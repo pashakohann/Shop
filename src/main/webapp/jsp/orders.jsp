@@ -3,7 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 
 <!DOCTYPE html>
-<html lang="en">
+
 <head>
    <meta charset="UTF-8">
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -41,15 +41,16 @@
          </thead>
          <tbody>
            <tr>
-             <th scope="row">Order</th>
+           <c:forEach var="elements" item="${ordersList}">
+             <th scope="row">${elements.getId()}</th>
 
-             <td>something date</td>
-             <td >cost</td>
-             <td><button class="button" type="button">Look</td>
+             <td>${elements.getOrderDate()}</td>
+             <td >${elements.getOrderCost()}</td>
+             <td><button class="button" type="button">LookOrder</td>
                <td><button class="button" type="button">Cancel</td>
            </tr>
 
-
+  </c:ForEach>
          </tbody>
        </table>
     </table>

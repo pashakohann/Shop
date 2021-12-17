@@ -14,8 +14,9 @@ import java.util.Map;
 public class BasketServiceImpl implements BasketService<ProductDto, BasketServiceImpl> {
     private Map<ProductDto, Integer> basket;
 
-    public BasketServiceImpl(Map<ProductDto, Integer> basket) {
-        this.basket = basket;
+    public BasketServiceImpl() {
+        basket = new HashMap<>();
+
     }
 
 

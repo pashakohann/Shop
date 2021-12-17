@@ -1,5 +1,6 @@
 package com.epam.shop.controller.context.api;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpSession;
 import java.util.Optional;
 
@@ -22,6 +23,6 @@ public interface RequestContext {
     public String getContextPath();
 
 
-
+    public Cookie[] getCookies();
 
 }

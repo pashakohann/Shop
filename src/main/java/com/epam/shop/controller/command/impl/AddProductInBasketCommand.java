@@ -16,7 +16,7 @@ import java.util.Map;
 
 public class AddProductInBasketCommand implements Command {
     private static Command command;
-    private static  BasketService<ProductDto,BasketServiceImpl> basket = new BasketServiceImpl(new HashMap<ProductDto, Integer>());
+    private BasketService<ProductDto,BasketServiceImpl> basket = new BasketServiceImpl();
     private static String RETURN_PAGE = "/jsp/personal_acc.jsp";
     private static String PRODUCT_ID_PARAM = "productId";
     private static final String ERROR_PARAM = "error";

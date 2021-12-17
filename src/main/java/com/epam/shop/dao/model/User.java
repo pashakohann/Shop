@@ -24,6 +24,8 @@ public class User extends AbstractModel<Integer> {
         this.registrationDate = registrationDate;
     }
 
+
+
     public UserRole getRole() {
         return role;
     }

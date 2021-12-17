@@ -1,5 +1,7 @@
+<%@ page contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!DOCTYPE html>
-<html lang="en">
 <head>
    <meta charset="UTF-8">
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -35,6 +37,7 @@
              <th scope="col">ORDER DATE</th>
              <th scope="col">COST</th>
              <th scope="col">ORDERED</th>
+             <th scope="col">Look Order</th>
 
              <th scope="col">Action</th>
            </tr>
@@ -45,6 +48,7 @@
 
              <td>name</td>
              <td>cost</td>
+             <td><button class="button" type="button">Look</td>
              <td><button class="button" type="button">Look</td>
                <td><button class="button" type="button">Delete</td>
            </tr>

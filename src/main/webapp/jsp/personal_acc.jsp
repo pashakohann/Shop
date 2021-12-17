@@ -175,7 +175,7 @@
 
                     </c:when>
                         <c:when test="${sessionScope.currentUser.getRole() eq 'ADMIN'}">
-                     <button class="btn btn-outline-success" type="submit" >${adminPanel}</button>
+                     <button class="btn btn-outline-success" type="submit" ><a href="${pageContext.request.contextPath}/shop?command=show_panel_command">${adminPanel}</a></button>
 
                         </c:when>
                         <c:when test="${sessionScope.currentUser.getRole() eq 'USER'}">

@@ -16,6 +16,9 @@ import com.epam.shop.controller.command.impl.FindProductsByCategoryBrandCommand;
 import com.epam.shop.controller.command.impl.FindProductsByCategoryCommand;
 import com.epam.shop.controller.command.impl.RegistrationCommand;
 import com.epam.shop.controller.command.impl.show_page.ShowErrorPageCommand;
+import com.epam.shop.controller.command.impl.show_page.ShowPageAccountCommand;
+import com.epam.shop.controller.command.impl.show_page.ShowPageOrderCommand;
+import com.epam.shop.controller.command.impl.show_page.ShowPanelCommand;
 import com.epam.shop.controller.command.impl.show_page.ShowSignInPageCommand;
 import com.epam.shop.controller.command.impl.show_page.ShowSignUpPageCommand;
 import com.epam.shop.service.dto.model.UserRoleDto;
@@ -39,7 +42,10 @@ public enum Commands {
     BACK_ACTION_COMMAND(ReturnBackActionCommand.getInstance(), UserRoleDto.USER, UserRoleDto.ADMIN),
     SHOW_ERROR_COMMAND(ShowErrorPageCommand.getInstance(),UserRoleDto.USER, UserRoleDto.ADMIN),
     CLEAR_BASKET_COMMAND(ClearBasketCommand.getInstance(), UserRoleDto.USER, UserRoleDto.ADMIN),
-    ORDER_PRODUCTS_COMMAND(OrderProductCommand.getInstance(),UserRoleDto.USER, UserRoleDto.ADMIN);
+    ORDER_PRODUCTS_COMMAND(OrderProductCommand.getInstance(),UserRoleDto.USER, UserRoleDto.ADMIN),
+    SHOW_PANEL_COMMAND(ShowPanelCommand.getInstance(),UserRoleDto.USER, UserRoleDto.ADMIN),
+    SHOW_ACCOUNTS_COMMAND(ShowPageAccountCommand.getInstance(),UserRoleDto.ADMIN),
+    SHOW_ORDERS_COMMAND(ShowPageOrderCommand.getInstance(),UserRoleDto.ADMIN);
 
 //    DELETE_PRODUCT_COMMAND(),
 

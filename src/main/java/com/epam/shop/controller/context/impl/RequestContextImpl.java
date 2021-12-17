@@ -2,6 +2,7 @@ package com.epam.shop.controller.context.impl;
 
 import com.epam.shop.controller.context.api.RequestContext;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.Optional;
@@ -54,4 +55,7 @@ public class RequestContextImpl implements RequestContext {
     }
 
 
+    public Cookie[] getCookies() {
+        return httpServletRequest.getCookies();
+    }
 }
