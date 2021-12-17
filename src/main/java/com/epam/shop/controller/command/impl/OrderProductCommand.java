@@ -27,7 +27,7 @@ public class OrderProductCommand implements Command {
     private static final String BASKET_SIZE_PARAM = "basketSize";
     private static final String ACCOUNT_OBJECT_PARAM = "account";
     private static final String ERROR_PAGE = "/jsp/basket.jsp";
-
+    private static final String SUCCESS_ORDER = "success_order";
     private OrderProductCommand() {
     }
 
@@ -86,9 +86,9 @@ public class OrderProductCommand implements Command {
             httpSession.setAttribute(BASKET_MAP_PARAM, basketService.lookBasket());
             httpSession.setAttribute(BASKET_LIST_PARAM, basketService.backToListProducts());
             httpSession.setAttribute(BASKET_SIZE_PARAM, basketService.basketSize());
-
+            requestContext.setAttribute(SUCCESS_ORDER,"Поздравляем с заказом!!!!");
         } catch (ServiceException e) {
-            httpSession.setAttribute(ERROR_PARAM, MESSAGE_PARAM + ":" + e.getMessage());
+            requestContext.setAttribute(ERROR_PARAM, MESSAGE_PARAM + ":" + e.getMessage());
             isError = true;
         }
 

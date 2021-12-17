@@ -16,7 +16,7 @@ import java.util.Map;
 
 public class AddProductInBasketCommand implements Command {
     private static Command command;
-    private BasketService<ProductDto,BasketServiceImpl> basket = new BasketServiceImpl();
+    // private BasketService<ProductDto,BasketServiceImpl> basket = new BasketServiceImpl();
     private static String RETURN_PAGE = "/jsp/personal_acc.jsp";
     private static String PRODUCT_ID_PARAM = "productId";
     private static final String ERROR_PARAM = "error";
@@ -24,7 +24,7 @@ public class AddProductInBasketCommand implements Command {
     private static final String BASKET_PARAM = "basketSize";
     private static final String BASKET_MAP_PARAM = "userBasket";
     private static final String BASKET_USER_OBJECT ="basketObject";
-
+    private BasketService<ProductDto,BasketServiceImpl>basket;
 
     private AddProductInBasketCommand() {
     }
@@ -53,9 +53,12 @@ public class AddProductInBasketCommand implements Command {
     public ResponseContext execute(RequestContext requestContext) throws ServiceException {
         String productId = requestContext.getParameter(PRODUCT_ID_PARAM);
         try {
-            basket.addProduct(FactoryService.getProductServiceInstance().getById(Integer.parseInt(productId)));
+        //    .addProduct(FactoryService.getProductServiceInstance().getById(Integer.parseInt(productId)));
+
                   if (requestContext.getCurrentSession().isPresent()){
                       HttpSession httpSession = requestContext.getCurrentSession().get();
+                      basket = (BasketServiceImpl) httpSession.getAttribute(BASKET_USER_OBJECT);
+                      basket.addProduct(FactoryService.getProductServiceInstance().getById(Integer.parseInt(productId)));
                       httpSession.setAttribute(BASKET_MAP_PARAM, basket.lookBasket());
                       httpSession.setAttribute(BASKET_PARAM, basket.basketSize());
                       httpSession.setAttribute(BASKET_USER_OBJECT,basket);

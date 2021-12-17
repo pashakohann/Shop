@@ -61,14 +61,15 @@ public class LookBasketCommand implements Command {
     private List<ProductDto> backToListProducts(Map<ProductDto, Integer> basket) {
         List<ProductDto> list = new ArrayList<>();
         int sizeBasket = 0;
-
-        for (Map.Entry<ProductDto, Integer> entry : basket.entrySet()) {
-            int iter = 0;
-            while (entry.getValue() != iter) {
-                list.add(entry.getKey());
-                iter++;
-            }
-        }
+                    if(basket!=null) {
+                        for (Map.Entry<ProductDto, Integer> entry : basket.entrySet()) {
+                            int iter = 0;
+                            while (entry.getValue() != iter) {
+                                list.add(entry.getKey());
+                                iter++;
+                            }
+                        }
+                    }
         return list;
     }
 }

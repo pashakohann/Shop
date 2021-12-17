@@ -48,12 +48,13 @@ public class AccountServiceImpl implements AccountService {
             account.setTelephoneNumber("default");
             account.setCity("default");
             account.setAmount(BigDecimal.ZERO);
-            FactoryDao.getAccountImpl().save(converter.convert(account));
+            account = converter.convert(FactoryDao.getAccountImpl().save(converter.convert(account)));
         } catch (DaoException e) {
             logger.error(ServiceAccountExceptionString.CREATE_ACCOUNT_FOR_USER, e);
             throw new ServiceException(ServiceAccountExceptionString.CREATE_ACCOUNT_FOR_USER, e);
 
         }
+
         return account;
     }
 
@@ -85,6 +86,7 @@ public class AccountServiceImpl implements AccountService {
     @Override
     public AccountDto getById(Integer id) throws ServiceException {
         AccountDto accountDto;
+        System.out.println("Prowli SERVICE" + id);
         try {
             accountDto = converter.convert(FactoryDao.getAccountImpl().findById(id));
         } catch (DaoException e) {
@@ -94,13 +96,13 @@ public class AccountServiceImpl implements AccountService {
         return accountDto;
     }
 
-    public AccountDto findByUserId(int userId) throws ServiceException{
+    public AccountDto findByUserId(int userId) throws ServiceException {
         AccountDto accountDto;
         try {
             accountDto = converter.convert(FactoryDao.getAccountImpl().findByUserId(userId));
         } catch (DaoException e) {
-            logger.error(ServiceAccountExceptionString.FIND_BY_USER_ID_ACCOUNT , e);
-            throw new ServiceException(ServiceAccountExceptionString.FIND_BY_USER_ID_ACCOUNT , e);
+            logger.error(ServiceAccountExceptionString.FIND_BY_USER_ID_ACCOUNT, e);
+            throw new ServiceException(ServiceAccountExceptionString.FIND_BY_USER_ID_ACCOUNT, e);
         }
         return accountDto;
     }

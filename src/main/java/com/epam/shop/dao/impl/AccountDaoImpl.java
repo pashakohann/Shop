@@ -70,6 +70,7 @@ public class AccountDaoImpl implements AccountDao {
             logger.error(DaoAccountExceptionString.SQL_SAVE_ACCOUNT_EXCEPTION, e);
             throw new DaoException(DaoAccountExceptionString.SQL_SAVE_ACCOUNT_EXCEPTION, e);
         }
+
         return account;
     }
 
@@ -121,6 +122,7 @@ public class AccountDaoImpl implements AccountDao {
     @Override
     public Account findById(Integer id) throws DaoException {
         System.out.println(id);
+        System.out.println("Prowli DAO" + id);
         Account account = null;
         try (Connection connection = connectionPool.takeConnection();
              PreparedStatement preparedStatement = connection.prepareStatement

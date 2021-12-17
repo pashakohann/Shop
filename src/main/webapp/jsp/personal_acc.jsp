@@ -157,6 +157,16 @@
                      </ul>
                    </li>
                 </ul>
+                <c:choose>
+                <c:when test="${not empty success_order}">
+                <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                  <strong>Congratulations!!!</strong>Your order is completed!
+                  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                </c:when>
+                </c:choose>
                 <form class="d-flex">
                   <button type="submit" class="btn btn-primary position-relative"><a href="${pageContext.request.contextPath}/shop?command=show_basket_command" style="color: white;">
                     ${basket}</a>

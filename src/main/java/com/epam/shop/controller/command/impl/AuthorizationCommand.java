@@ -3,18 +3,23 @@ package com.epam.shop.controller.command.impl;
 import com.epam.shop.controller.command.api.Command;
 import com.epam.shop.controller.context.api.RequestContext;
 import com.epam.shop.controller.context.api.ResponseContext;
+import com.epam.shop.service.api.BasketService;
+import com.epam.shop.service.dto.model.ProductDto;
 import com.epam.shop.service.dto.model.UserDto;
 import com.epam.shop.service.dto.model.UserRoleDto;
 import com.epam.shop.service.exception.ServiceException;
 import com.epam.shop.service.factory.FactoryService;
+import com.epam.shop.service.impl.BasketServiceImpl;
 
 import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class AuthorizationCommand implements Command {
     private static Command command;
+    private BasketService<ProductDto, BasketServiceImpl> basket;
     private static final String PANEL_USER_PAGE_PATH = "/jsp/personal_acc.jsp";
-
     private static final String ERROR_PAGE = "/jsp/sign_in.jsp";
     private static final String ERROR_404 = "/jsp/404.jsp";
     private static final String USER_ROLE_ATTRIBUTE_NAME = "currentUser";
@@ -24,7 +29,8 @@ public class AuthorizationCommand implements Command {
     private static final String ERROR_MESSAGE = "Your fields are empty. ";
     private static final String MESSAGE_ERROR_ATTRIBUTE = "message";
     private static final String  ACCOUNT_OBJECT_PARAM = "account";;
-
+    private static final String BASKET_USER_OBJECT ="basketObject";
+    private static final String BASKET_PARAM = "basketSize";
 
     private AuthorizationCommand() {
     }
@@ -77,7 +83,8 @@ public class AuthorizationCommand implements Command {
 
     @Override
     public ResponseContext execute(RequestContext requestContext) throws ServiceException {
-
+        basket = new BasketServiceImpl();
+        List<ProductDto> productslist = new ArrayList<>();
         final String userName = requestContext.getParameter(LOGIN_PARAM);
         final String userPassword = requestContext.getParameter(PASSWORD_PARAM);
         HttpSession httpSession = requestContext.getCurrentSession().get();
@@ -102,7 +109,8 @@ public class AuthorizationCommand implements Command {
 
         httpSession.setAttribute(ACCOUNT_OBJECT_PARAM, FactoryService.getAccountServiceInstance().findByUserId(userDto.getId()));
         httpSession.setAttribute(USER_ROLE_ATTRIBUTE_NAME, userDto);
-
+        httpSession.setAttribute(BASKET_USER_OBJECT,basket);
+        httpSession.setAttribute(BASKET_PARAM,basket.basketSize());
 
         return LOGIN_SUCCESS_PAGE;
 
