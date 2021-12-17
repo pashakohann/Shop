@@ -14,6 +14,7 @@ public interface ServiceAccountExceptionString {
     String CREATE_ACCOUNT_FOR_USER = "Failed to create account";
     String FIND_ALL_ACCOUNTS = "Failed to find all account";
     String FIND_BY_ID_ACCOUNT = "Failed to find account";
+    String FIND_BY_USER_ID_ACCOUNT = "Failed to find account";
     String DELETE_ACCOUNT = "Failed to delete account";
     String UPDATE_ACCOUNT = "Failed to update information in account";
     String FILL_FIELDS_EXCEPTION  = "You must fill in all fields";

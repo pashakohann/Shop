@@ -119,7 +119,45 @@ public class AccountDaoImpl implements AccountDao {
     }
 
     @Override
-    public Account findById(Integer userId) throws DaoException {
+    public Account findById(Integer id) throws DaoException {
+        System.out.println(id);
+        Account account = null;
+        try (Connection connection = connectionPool.takeConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement
+                     (AccountSql.FIND_ACCOUNT_BY_ID)) {
+            preparedStatement.setInt(1, id);
+
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                if (resultSet.next()) {
+                    account = new Account.Builder().
+                            withId(resultSet.getInt(1)).
+                            withFirstName(resultSet.getString(2)).
+                            withLastName(resultSet.getString(3)).
+                            withDateOfBirth(resultSet.getDate(4).toLocalDate()).
+                            withTelephoneNumber(resultSet.getString(5)).
+                            withEmail(resultSet.getString(6)).
+                            withCity(resultSet.getString(7)).
+                            withStreet(resultSet.getString(8)).
+                            withFlat(resultSet.getInt(9)).
+                            withAmount(resultSet.getBigDecimal(10)).
+                            withUserId(resultSet.getInt(11)).
+                            build();
+                    return account;
+                }
+
+
+            }
+
+
+        } catch (SQLException e) {
+            logger.error(DaoAccountExceptionString.FIND_ACCOUNT_BY_ID_EXCEPTION, e);
+            throw new DaoException(DaoAccountExceptionString.FIND_ACCOUNT_BY_ID_EXCEPTION, e);
+        }
+        return new Account();
+    }
+
+    @Override
+    public Account findByUserId(Integer userId) throws DaoException {
         System.out.println(userId);
         Account account = null;
         try (Connection connection = connectionPool.takeConnection();
@@ -155,6 +193,8 @@ public class AccountDaoImpl implements AccountDao {
         }
         return new Account();
     }
+
+
 
     @Override
     public List<Account> findAll() throws DaoException {

@@ -4,6 +4,7 @@ import com.epam.shop.controller.command.api.Command;
 import com.epam.shop.controller.context.api.RequestContext;
 import com.epam.shop.controller.context.api.ResponseContext;
 import com.epam.shop.service.api.BasketService;
+import com.epam.shop.service.dto.model.AccountDto;
 import com.epam.shop.service.dto.model.OrderDto;
 import com.epam.shop.service.dto.model.ProductDto;
 import com.epam.shop.service.exception.ServiceException;
@@ -24,7 +25,7 @@ public class OrderProductCommand implements Command {
     private static final String BASKET_MAP_PARAM = "userBasket";
     private static final String BASKET_LIST_PARAM = "basketList";
     private static final String BASKET_SIZE_PARAM = "basketSize";
-    private static final String ACCOUNT_ID_PARAM = "accountId";
+    private static final String ACCOUNT_OBJECT_PARAM = "account";
     private static final String ERROR_PAGE = "/jsp/basket.jsp";
 
     private OrderProductCommand() {
@@ -64,7 +65,6 @@ public class OrderProductCommand implements Command {
 
     @Override
     public ResponseContext execute(RequestContext requestContext) throws ServiceException {
-        String productId = requestContext.getParameter(ACCOUNT_ID_PARAM);
         HttpSession httpSession = requestContext.getCurrentSession().get();
         BasketService<ProductDto, BasketServiceImpl> basketService;
         boolean isError = false;
@@ -75,9 +75,12 @@ public class OrderProductCommand implements Command {
         try {
             basketService = ((BasketServiceImpl) (httpSession.getAttribute(BASKET_USER_OBJECT)));
             OrderDto orderDto = new OrderDto();
+            AccountDto accountDto = ((AccountDto)httpSession.getAttribute(ACCOUNT_OBJECT_PARAM));
             orderDto.setOrderDate(LocalDateTime.now());
 
-            orderDto.setUserId((int) httpSession.getAttribute(ACCOUNT_ID_PARAM));
+            orderDto.setUserId(accountDto.getId());
+
+            System.out.println( orderDto.getUserId()+ "    COca - cola");
             orderDto.setMapProducts(((BasketServiceImpl) (httpSession.getAttribute(BASKET_USER_OBJECT))).lookBasket());
             System.out.println(orderDto);
             FactoryService.getOrderServiceInstance().create(orderDto);

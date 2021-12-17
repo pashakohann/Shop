@@ -44,11 +44,11 @@ public class OrderDaoImpl implements OrderDao {
 
     @Override
     public Order save(Order order) throws DaoException {
-
-        System.out.println("AAAAAAAAAAAAAAAAAAAA");
+        System.out.println(order.getUserId() + "Hello from DAO");
         try (Connection connection = connectionPool.takeConnection();
              PreparedStatement preparedStatement =
                      connection.prepareStatement(OrderSql.SQL_SAVE_ORDER, Statement.RETURN_GENERATED_KEYS)) {
+
             preparedStatement.setBigDecimal(1, order.getOrderCost());
             preparedStatement.setInt(2, order.getUserId());
             preparedStatement.setTimestamp(3, Timestamp.valueOf(order.getOrderDate()));

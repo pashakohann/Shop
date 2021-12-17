@@ -23,7 +23,7 @@ public class AuthorizationCommand implements Command {
     private static final String ERROR_ATTRIBUTE = "error";
     private static final String ERROR_MESSAGE = "Your fields are empty. ";
     private static final String MESSAGE_ERROR_ATTRIBUTE = "message";
-    private static final String ACCOUNT_ID_PARAM = "accountId";
+    private static final String  ACCOUNT_OBJECT_PARAM = "account";;
 
 
     private AuthorizationCommand() {
@@ -100,7 +100,7 @@ public class AuthorizationCommand implements Command {
 
         }
         System.out.println(FactoryService.getAccountServiceInstance().getById(userDto.getId()).getId() + " csssssss");
-        httpSession.setAttribute(ACCOUNT_ID_PARAM, FactoryService.getAccountServiceInstance().getById(userDto.getId()).getId());
+        httpSession.setAttribute(ACCOUNT_OBJECT_PARAM, FactoryService.getAccountServiceInstance().findByUserId(userDto.getId()));
         httpSession.setAttribute(USER_ROLE_ATTRIBUTE_NAME, userDto);
 
 

@@ -20,7 +20,7 @@ public class RegistrationCommand implements Command {
     private static final String ROLE_ACCOUNT_PARAM = "currentUser";
     private static final String ERROR = "error";
     private static final String MESSAGE_ERROR = "message";
-    private static final String ACCOUNT_ID_PARAM = "accountId";
+    private static final String ACCOUNT_OBJECT_PARAM = "account";
     private static final String ERROR_PAGE = "/jsp/sign_up.jsp";
     private static final String PERSONAL_ACC_PAGE_PATH = "/jsp/personal_acc.jsp";
 
@@ -88,7 +88,7 @@ public class RegistrationCommand implements Command {
         } else {
             HttpSession session = requestContext.createSession();
             session.setAttribute(ROLE_ACCOUNT_PARAM, userDto);
-            session.setAttribute(ACCOUNT_ID_PARAM,accountDto.getUserId());
+            session.setAttribute(ACCOUNT_OBJECT_PARAM,accountDto);
         }
 
 

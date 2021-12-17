@@ -94,6 +94,17 @@ public class AccountServiceImpl implements AccountService {
         return accountDto;
     }
 
+    public AccountDto findByUserId(int userId) throws ServiceException{
+        AccountDto accountDto;
+        try {
+            accountDto = converter.convert(FactoryDao.getAccountImpl().findByUserId(userId));
+        } catch (DaoException e) {
+            logger.error(ServiceAccountExceptionString.FIND_BY_USER_ID_ACCOUNT , e);
+            throw new ServiceException(ServiceAccountExceptionString.FIND_BY_USER_ID_ACCOUNT , e);
+        }
+        return accountDto;
+    }
+
     @Override
     public List<AccountDto> getAll() throws ServiceException {
         List<AccountDto> listAccountDto;
