@@ -9,6 +9,7 @@ import com.epam.shop.service.converter.api.Converter;
 import com.epam.shop.service.converter.impl.UserConverterImpl;
 import com.epam.shop.service.dto.model.AccountDto;
 import com.epam.shop.service.dto.model.UserDto;
+import com.epam.shop.service.dto.model.UserRoleDto;
 import com.epam.shop.service.exception.ServiceException;
 import com.epam.shop.service.exception.string_exception.ServiceUserExceptionString;
 import com.epam.shop.service.factory.FactoryService;
@@ -32,7 +33,10 @@ public class UserServiceImpl implements UserService {
     private final Converter<UserDto, User, Integer> converter = UserConverterImpl.getConverterInstance();
     private final Crypt crypt = CryptImpl.getInstance();
 
+
+
     private UserServiceImpl() {
+
     }
 
     public static UserService getInstance() {
@@ -52,11 +56,7 @@ public class UserServiceImpl implements UserService {
                 model.setPassword(crypt.encrypt(model.getPassword()));
                 model.setRegistrationDate(LocalDateTime.now());
                 model = converter.convert(FactoryDao.getUserImpl().save(converter.convert(model)));
-                AccountDto account = new AccountDto();
-                account.setUserId(model.getId());
-                account.setAmount(BigDecimal.ZERO);
 
-                FactoryService.getAccountServiceInstance().create(account);
             } else {
                 throw new ServiceException(ServiceUserExceptionString.CHECK_DUPLICATE_USER_NAME_EXCEPTION);
             }

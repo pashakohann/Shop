@@ -1,6 +1,6 @@
 package com.epam.shop.service.dto.model;
 
-import com.epam.shop.dao.model.UserRole;
+
 
 import java.time.LocalDateTime;
 import java.util.Objects;

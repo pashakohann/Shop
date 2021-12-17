@@ -46,6 +46,7 @@ public class ApplicationController extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
         try {
             process(req, resp);
         } catch (ServiceException e) {

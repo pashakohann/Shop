@@ -66,7 +66,7 @@ public class DeleteProductFromBasketCommand implements Command {
 
 
             }
-        } catch (ServerException e) {
+        } catch (ServiceException e) {
             //log
             requestContext.setAttribute(ERROR_PARAM, MESSAGE_PARAM + ":" + e.getMessage());
         }

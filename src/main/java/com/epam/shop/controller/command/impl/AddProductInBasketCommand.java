@@ -60,7 +60,7 @@ public class AddProductInBasketCommand implements Command {
                       httpSession.setAttribute(BASKET_PARAM, basket.basketSize());
                       httpSession.setAttribute(BASKET_USER_OBJECT,basket);
                   }
-        } catch (ServerException e) {
+        } catch (ServiceException e) {
             //log
             requestContext.setAttribute(ERROR_PARAM, MESSAGE_PARAM + ":" + e.getMessage());
         }

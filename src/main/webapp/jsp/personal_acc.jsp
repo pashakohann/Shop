@@ -32,7 +32,7 @@
 <fmt:message bundle="${loc}" key = "basket" var="basket" />
 <fmt:message bundle="${loc}" key = "account" var="account" />
 <fmt:message bundle="${loc}" key = "signOut" var="signOut" />
-
+<fmt:message bundle="${loc}" key = "adminPanel" var="adminPanel" />
 
   <head>
     <!-- Обязательные метатеги -->
@@ -167,7 +167,25 @@
                     <span class="visually-hidden"></span>
                   </span>
                 </button>
-                <button class="btn btn-outline-success" type="submit">${account}</button>
+
+
+                <c:choose>
+                    <c:when test="${empty sessionScope.currentUser}">
+                        <a href="${pageContext.request.contextPath}/shop?command=show_error_command"></a>
+
+                    </c:when>
+                        <c:when test="${sessionScope.currentUser.getRole() eq 'ADMIN'}">
+                     <button class="btn btn-outline-success" type="submit" >${adminPanel}</button>
+
+                        </c:when>
+                        <c:when test="${sessionScope.currentUser.getRole() eq 'USER'}">
+                      <button class="btn btn-outline-success" type="submit" >${account}</button>
+                        </c:when>
+                 <c:otherwise>
+
+                 </c:otherwise>
+                </c:choose>
+
                     <a href="${pageContext.request.contextPath}/shop?command=show_sign_out_command" class="btn btn-outline-success" type="submit">${signOut}</a>
                   </form>
               </div>

@@ -37,7 +37,7 @@ public enum Commands {
     DELETE_PRODUCT_COMMAND(DeleteProductFromBasketCommand.getInstance(),UserRoleDto.USER, UserRoleDto.ADMIN),
     SHOW_BASKET_COMMAND(LookBasketCommand.getInstance(), UserRoleDto.USER, UserRoleDto.ADMIN),
     BACK_ACTION_COMMAND(ReturnBackActionCommand.getInstance(), UserRoleDto.USER, UserRoleDto.ADMIN),
-    SHOW_ERROR_COMMAND(ShowErrorPageCommand.getInstance()),
+    SHOW_ERROR_COMMAND(ShowErrorPageCommand.getInstance(),UserRoleDto.USER, UserRoleDto.ADMIN),
     CLEAR_BASKET_COMMAND(ClearBasketCommand.getInstance(), UserRoleDto.USER, UserRoleDto.ADMIN),
     ORDER_PRODUCTS_COMMAND(OrderProductCommand.getInstance(),UserRoleDto.USER, UserRoleDto.ADMIN);
 

@@ -18,7 +18,7 @@
 
    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
 
-      <button class="btn btn-primary me-md-2" type="button" ><a href="${pageContext.request.contextPath}/shop?command=back_action_command" style="color:white;">Order</a> </button>
+      <button class="btn btn-primary me-md-2" type="button" ><a href="${pageContext.request.contextPath}/shop?command=order_products_command" style="color:white;">Order</a> </button>
       <button class="btn btn-primary me-md-2" type="button" ><a href="${pageContext.request.contextPath}/shop?command=clear_basket_command" style="color:white;">Clean Basket</a> </button>
       <button class="btn btn-primary me-md-2" type="button" ><a href="${pageContext.request.contextPath}/shop?command=back_action_command" style="color:white;">Back Menu</a> </button>
 

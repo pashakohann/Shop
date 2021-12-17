@@ -9,7 +9,13 @@ import com.epam.shop.service.exception.ServiceException;
 public class SignOutCommand implements Command {
     public static Command command;
     private static final String SHOW_DEFAULT_PAGE = "/jsp/main.jsp";
-
+    private static String RETURN_PAGE = "/jsp/personal_acc.jsp";
+    private static String PRODUCT_ID_PARAM = "productId";
+    private static final String ERROR_PARAM = "error";
+    private static final String MESSAGE_PARAM = "message";
+    private static final String BASKET_PARAM = "basketSize";
+    private static final String BASKET_MAP_PARAM = "userBasket";
+    private static final String BASKET_USER_OBJECT ="basketObject";
 
     private SignOutCommand() {
     }

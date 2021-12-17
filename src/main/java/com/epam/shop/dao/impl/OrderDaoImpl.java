@@ -13,14 +13,13 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 
-import java.math.BigDecimal;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Timestamp;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -45,6 +44,8 @@ public class OrderDaoImpl implements OrderDao {
 
     @Override
     public Order save(Order order) throws DaoException {
+
+        System.out.println("AAAAAAAAAAAAAAAAAAAA");
         try (Connection connection = connectionPool.takeConnection();
              PreparedStatement preparedStatement =
                      connection.prepareStatement(OrderSql.SQL_SAVE_ORDER, Statement.RETURN_GENERATED_KEYS)) {

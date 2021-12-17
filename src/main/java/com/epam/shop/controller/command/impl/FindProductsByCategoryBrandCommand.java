@@ -4,6 +4,7 @@ import com.epam.shop.controller.command.api.Command;
 import com.epam.shop.controller.context.api.RequestContext;
 import com.epam.shop.controller.context.api.ResponseContext;
 import com.epam.shop.service.dto.model.ProductDto;
+import com.epam.shop.service.dto.model.UserDto;
 import com.epam.shop.service.exception.ServiceException;
 import com.epam.shop.service.factory.FactoryService;
 
@@ -13,6 +14,8 @@ import java.util.List;
 public class FindProductsByCategoryBrandCommand implements Command {
     public static Command command;
     private static final String MAIN_PAGE_PATH = "/jsp/main.jsp";
+    private static final String ACCOUNT_PANEL_PATH = "/jsp/personal_acc.jsp";
+    private static final String USER_ROLE_ATTRIBUTE_NAME = "currentUser";
 
 
     private FindProductsByCategoryBrandCommand() {
@@ -38,15 +41,31 @@ public class FindProductsByCategoryBrandCommand implements Command {
         }
     };
 
+    private static final ResponseContext SHOW_USER_PAGE = new ResponseContext() {
+
+        @Override
+        public String getPath() {
+            return ACCOUNT_PANEL_PATH;
+        }
+
+        @Override
+        public boolean isRedirect() {
+            return false;
+        }
+    };
+
     @Override
     public ResponseContext execute(RequestContext requestContext) throws ServiceException {
         final Integer categoryId = Integer.parseInt(requestContext.getParameter("category"));
         final Integer brandId = Integer.parseInt(requestContext.getParameter("brand"));
         HttpSession session = requestContext.getCurrentSession().get();
         List<ProductDto> productDtoList = FactoryService.getProductServiceInstance().findProductsByCategoryAndBrand(categoryId, brandId);
-
-
         session.setAttribute("products", productDtoList);
+        if(((UserDto)(session.getAttribute(USER_ROLE_ATTRIBUTE_NAME))).getRole().name().equals("ADMIN") ||
+                ((UserDto)(session.getAttribute(USER_ROLE_ATTRIBUTE_NAME))).getRole().name().equals("USER")){
+            return SHOW_USER_PAGE;
+        }
+
         return SHOW_MAIN_PAGE;
     }
 }

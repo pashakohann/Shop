@@ -3,6 +3,7 @@ package com.epam.shop.service.impl;
 
 import com.epam.shop.service.api.BasketService;
 import com.epam.shop.service.dto.model.ProductDto;
+import com.epam.shop.service.exception.ServiceException;
 
 import java.rmi.ServerException;
 import java.util.ArrayList;
@@ -19,7 +20,7 @@ public class BasketServiceImpl implements BasketService<ProductDto, BasketServic
 
 
     @Override
-    public Map<ProductDto, Integer> addProduct(ProductDto product) throws ServerException {
+    public Map<ProductDto, Integer> addProduct(ProductDto product) throws ServiceException {
         boolean isProduct = false;
 
         for (Map.Entry<ProductDto, Integer> entry : basket.entrySet()) {
@@ -37,7 +38,7 @@ public class BasketServiceImpl implements BasketService<ProductDto, BasketServic
     }
 
     @Override
-    public BasketServiceImpl deleteProduct(int productId) throws ServerException {
+    public BasketServiceImpl deleteProduct(int productId) throws ServiceException {
 
         boolean isProduct = false;
         ProductDto productDto = null;
@@ -62,12 +63,12 @@ public class BasketServiceImpl implements BasketService<ProductDto, BasketServic
     }
 
     @Override
-    public Map<ProductDto, Integer> lookBasket() throws ServerException {
+    public Map<ProductDto, Integer> lookBasket() throws ServiceException {
         return basket;
     }
 
     @Override
-    public BasketServiceImpl clearBasket() throws ServerException {
+    public BasketServiceImpl clearBasket() throws ServiceException {
         this.basket = new HashMap<>();
         return this;
     }

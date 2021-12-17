@@ -15,6 +15,8 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 
+import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,7 +24,7 @@ public class AccountServiceImpl implements AccountService {
     private static AccountService instance;
     private final Validator<AccountDto, Integer> validatorInstance = AccountValidatorImpl.getInstance();
     private static final Logger logger = LogManager.getLogger(AccountServiceImpl.class);
-    private final Converter<AccountDto,Account,Integer> converter = AccountConverterImpl.getConverterInstance();
+    private final Converter<AccountDto, Account, Integer> converter = AccountConverterImpl.getConverterInstance();
 
     private AccountServiceImpl() {
     }
@@ -35,15 +37,24 @@ public class AccountServiceImpl implements AccountService {
     }
 
     @Override
-    public AccountDto create(AccountDto model) throws ServiceException {
+    public AccountDto create(AccountDto account) throws ServiceException {
         try {
-            FactoryDao.getAccountImpl().save(converter.convert(model));
+            account.setDateOfBirth(LocalDate.now());
+            account.setStreet("default");
+            account.setFirstName("default");
+            account.setLastName("default");
+            account.setFlat(0);
+            account.setEmail("default");
+            account.setTelephoneNumber("default");
+            account.setCity("default");
+            account.setAmount(BigDecimal.ZERO);
+            FactoryDao.getAccountImpl().save(converter.convert(account));
         } catch (DaoException e) {
             logger.error(ServiceAccountExceptionString.CREATE_ACCOUNT_FOR_USER, e);
             throw new ServiceException(ServiceAccountExceptionString.CREATE_ACCOUNT_FOR_USER, e);
 
         }
-        return model;
+        return account;
     }
 
     @Override

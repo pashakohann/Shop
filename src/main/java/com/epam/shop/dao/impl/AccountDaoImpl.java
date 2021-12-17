@@ -12,11 +12,14 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 
+import java.math.BigDecimal;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,6 +27,8 @@ public class AccountDaoImpl implements AccountDao {
     private static AccountDao instance;
     private static final Logger logger = LogManager.getLogger(AccountDaoImpl.class);
     private static final ConnectionPool connectionPool = ConnectionPoolImpl.getInstance();
+
+
 
     private AccountDaoImpl() {
 
@@ -36,12 +41,22 @@ public class AccountDaoImpl implements AccountDao {
         return instance;
     }
 
+
     @Override
     public Account save(Account account) throws DaoException {
         try (Connection connection = connectionPool.takeConnection();
              PreparedStatement preparedStatement = connection.prepareStatement
                      (AccountSql.SQL_SAVE_ACCOUNT, Statement.RETURN_GENERATED_KEYS)) {
-            preparedStatement.setInt(1, account.getUserId());
+            preparedStatement.setString(1,account.getFirstName());
+            preparedStatement.setString(2,account.getLastName());
+            preparedStatement.setDate(3, Date.valueOf(account.getDateOfBirth()));
+            preparedStatement.setString(4,account.getTelephoneNumber());
+            preparedStatement.setString(5,account.getEmail());
+            preparedStatement.setString(6,account.getCity());
+            preparedStatement.setString(7,account.getStreet());
+            preparedStatement.setInt(8,account.getFlat());
+            preparedStatement.setBigDecimal(9,account.getAmount());
+            preparedStatement.setInt(10, account.getUserId());
             preparedStatement.executeUpdate();
 
             try (ResultSet resultSet = preparedStatement.getGeneratedKeys()) {
@@ -105,6 +120,7 @@ public class AccountDaoImpl implements AccountDao {
 
     @Override
     public Account findById(Integer userId) throws DaoException {
+        System.out.println(userId);
         Account account = null;
         try (Connection connection = connectionPool.takeConnection();
              PreparedStatement preparedStatement = connection.prepareStatement

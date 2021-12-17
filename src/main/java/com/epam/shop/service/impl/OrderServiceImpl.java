@@ -20,9 +20,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.math.BigDecimal;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -32,18 +30,7 @@ public class OrderServiceImpl implements OrderService {
     private static final Logger logger = LogManager.getLogger(OrderServiceImpl.class);
     private final Converter<OrderDto, Order, Integer> converter = OrderConverterImpl.getConverterInstance();
 
-//    public static void main(String[] args) throws DaoException, ServiceException {
-//        ConnectionServiceImpl.getInstance().init();
-//        OrderDto order = new OrderDto();
-//        order.setUserId(7);
-//        order.setId(24);
-//        order.setOrderDate(LocalDateTime.now());
-//        Map<ProductDto, Integer> map = new HashMap<>();
-//        map.put(FactoryService.getProductServiceInstance().getById(3), 6);
-//
-//        order.setMapProducts(map);
-//        getInstance().update(order);
-//    }
+
 
     private OrderServiceImpl() {
     }

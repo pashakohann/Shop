@@ -11,7 +11,7 @@ public interface ServiceAccountExceptionString {
     String ACCOUNT_AMOUNT_EXCEPTION = "You entered an invalid amount....Your amount must be 1.0 to 999999.0. Example:99.0 or 13.7";
     String DATE_OF_BIRTH_EXCEPTION = "You entered an invalid date of birth... You must enter the year first, then the month, and then the day, separating everything with a dash. Example:1990-01-14";
     String YEARS_OF_BIRTH_EXCEPTION = "You entered an invalid year. Your year of birth must be over 18 years old";
-    String CREATE_ACCOUNT_FOR_USER = "Failed to find account for user";
+    String CREATE_ACCOUNT_FOR_USER = "Failed to create account";
     String FIND_ALL_ACCOUNTS = "Failed to find all account";
     String FIND_BY_ID_ACCOUNT = "Failed to find account";
     String DELETE_ACCOUNT = "Failed to delete account";

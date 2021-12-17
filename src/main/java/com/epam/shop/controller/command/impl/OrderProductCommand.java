@@ -25,6 +25,7 @@ public class OrderProductCommand implements Command {
     private static final String BASKET_LIST_PARAM = "basketList";
     private static final String BASKET_SIZE_PARAM = "basketSize";
     private static final String ACCOUNT_ID_PARAM = "accountId";
+    private static final String ERROR_PAGE = "/jsp/basket.jsp";
 
     private OrderProductCommand() {
     }
@@ -36,6 +37,19 @@ public class OrderProductCommand implements Command {
         return command;
     }
 
+
+    private static final ResponseContext SHOW_ERROR_PAGE = new ResponseContext() {
+
+        @Override
+        public String getPath() {
+            return ERROR_PAGE;
+        }
+
+        @Override
+        public boolean isRedirect() {
+            return false;
+        }
+    };
 
     private static final ResponseContext SHOW_PERSONAL_ACC = new ResponseContext() {
         public String getPath() {
@@ -50,27 +64,37 @@ public class OrderProductCommand implements Command {
 
     @Override
     public ResponseContext execute(RequestContext requestContext) throws ServiceException {
-        String productId = (requestContext.getParameter(ACCOUNT_ID_PARAM));
+        String productId = requestContext.getParameter(ACCOUNT_ID_PARAM);
+        HttpSession httpSession = requestContext.getCurrentSession().get();
         BasketService<ProductDto, BasketServiceImpl> basketService;
-        HttpSession httpSession = null;
+        boolean isError = false;
 
         if (requestContext.getCurrentSession().isPresent()) {
             httpSession = requestContext.getCurrentSession().get();
         }
-                try {
-                    basketService = ((BasketServiceImpl) (httpSession.getAttribute(BASKET_USER_OBJECT)));
-                    OrderDto orderDto = new OrderDto();
-                    orderDto.setOrderDate(LocalDateTime.now());
-                    orderDto.setUserId(Integer.parseInt(ACCOUNT_ID_PARAM));
-                    orderDto.setMapProducts(((BasketServiceImpl) (httpSession.getAttribute(BASKET_USER_OBJECT))).lookBasket());
-                    basketService = ((BasketServiceImpl) (httpSession.getAttribute(BASKET_USER_OBJECT))).clearBasket();
-                    httpSession.setAttribute(BASKET_USER_OBJECT, basketService);
-                    httpSession.setAttribute(BASKET_MAP_PARAM, basketService.lookBasket());
-                    httpSession.setAttribute(BASKET_LIST_PARAM, basketService.backToListProducts());
-                    httpSession.setAttribute(BASKET_SIZE_PARAM, basketService.basketSize());
-                } catch (ServerException e) {
-                    httpSession.setAttribute(ERROR_PARAM, MESSAGE_PARAM + ":" + e);
-                }
+        try {
+            basketService = ((BasketServiceImpl) (httpSession.getAttribute(BASKET_USER_OBJECT)));
+            OrderDto orderDto = new OrderDto();
+            orderDto.setOrderDate(LocalDateTime.now());
+
+            orderDto.setUserId((int) httpSession.getAttribute(ACCOUNT_ID_PARAM));
+            orderDto.setMapProducts(((BasketServiceImpl) (httpSession.getAttribute(BASKET_USER_OBJECT))).lookBasket());
+            System.out.println(orderDto);
+            FactoryService.getOrderServiceInstance().create(orderDto);
+            basketService = ((BasketServiceImpl) (httpSession.getAttribute(BASKET_USER_OBJECT))).clearBasket();
+            httpSession.setAttribute(BASKET_USER_OBJECT, basketService);
+            httpSession.setAttribute(BASKET_MAP_PARAM, basketService.lookBasket());
+            httpSession.setAttribute(BASKET_LIST_PARAM, basketService.backToListProducts());
+            httpSession.setAttribute(BASKET_SIZE_PARAM, basketService.basketSize());
+
+        } catch (ServiceException e) {
+            httpSession.setAttribute(ERROR_PARAM, MESSAGE_PARAM + ":" + e.getMessage());
+            isError = true;
+        }
+
+        if (isError) {
+            return SHOW_ERROR_PAGE;
+        }
 
 
         return SHOW_PERSONAL_ACC;
