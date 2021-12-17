@@ -16,6 +16,8 @@ public class FindProductsByCategoryCommand implements Command {
     private static final String MAIN_PAGE_PATH = "/jsp/main.jsp";
     private static final String ACCOUNT_PANEL_PATH = "/jsp/personal_acc.jsp";
     private static final String USER_ROLE_ATTRIBUTE_NAME = "currentUser";
+    private static final String ALL_PRODUCTS_LIST = "productsList";
+    private static final String CATEGORY_ATTRIBUTE = "category";
 
     private FindProductsByCategoryCommand() {
     }
@@ -55,10 +57,10 @@ public class FindProductsByCategoryCommand implements Command {
 
     @Override
     public ResponseContext execute(RequestContext requestContext) throws ServiceException {
-        final Integer categoryId = Integer.parseInt(requestContext.getParameter("category"));
+        final Integer categoryId = Integer.parseInt(requestContext.getParameter(CATEGORY_ATTRIBUTE));
         HttpSession session = requestContext.getCurrentSession().get();
         List<ProductDto> productDtoList = FactoryService.getProductServiceInstance().findProductsByCategory(categoryId);
-        session.setAttribute("products", productDtoList);
+        session.setAttribute( ALL_PRODUCTS_LIST, productDtoList);
 
             if(((UserDto)(session.getAttribute(USER_ROLE_ATTRIBUTE_NAME))).getRole().name().equals("ADMIN") ||
                     ((UserDto)(session.getAttribute(USER_ROLE_ATTRIBUTE_NAME))).getRole().name().equals("USER")){

@@ -197,9 +197,9 @@
     </div>
     <div class="container">
 
-<c:set var="myListSize" value="${products.size()}"/>
+<c:set var="myListSize" value="${productsList.size()}"/>
        <div class="row">
-        <c:forEach var="element" items="${products}" varStatus="stat">
+        <c:forEach var="element" items="${productsList}" varStatus="stat">
 
             <c:choose>
 

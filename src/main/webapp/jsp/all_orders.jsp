@@ -16,15 +16,15 @@
 
    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
 
-      <button class="btn btn-primary me-md-2" type="button">Main menu</button>
+      <button class="btn btn-primary me-md-2" type="button"><a href="${pageContext.request.contextPath}/shop?command=back_action_command" style="color:white;">Main menu</a></button>
 
     </div>
     <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
       <ol class="breadcrumb">
-         <li class="breadcrumb-item"><a href="#">All users</a></li>
-         <li class="breadcrumb-item"><a href="#">All user profiles</a></li>
+         <li class="breadcrumb-item"><a href="${pageContext.request.contextPath}/shop?command=show_panel_command">All users</a></li>
+         <li class="breadcrumb-item"><a href="${pageContext.request.contextPath}/shop?command=show_accounts_command">All user profiles</a></li>
         <li class="breadcrumb-item active" aria-current="page">All orders</li>
-        <li class="breadcrumb-item"><a href="#">All products</a></li>
+        <li class="breadcrumb-item"><a href="${pageContext.request.contextPath}/shop?command=show_products_command">All products</a></li>
 
       </ol>
     </nav>
@@ -43,16 +43,17 @@
            </tr>
          </thead>
          <tbody>
-           <tr>
-             <th scope="row">id</th>
 
-             <td>name</td>
-             <td>cost</td>
+  <c:forEach var="elements" items="${ordersList}">
+             <th scope="row">${elements.getId()}</th>
+             <td>${elements.getOrderDate()}</td>
+             <td >${elements.getOrderCost()}</td>
+             <td><button class="button" type="button">Who</td>
              <td><button class="button" type="button">Look</td>
-             <td><button class="button" type="button">Look</td>
-               <td><button class="button" type="button">Delete</td>
+               <td><button class="button" type="button">Cancel</td>
            </tr>
 
+  </c:forEach>
 
          </tbody>
        </table>
