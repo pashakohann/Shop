@@ -3,22 +3,20 @@ package com.epam.shop.controller.command.impl;
 import com.epam.shop.controller.command.api.Command;
 import com.epam.shop.controller.context.api.RequestContext;
 import com.epam.shop.controller.context.api.ResponseContext;
-import com.epam.shop.service.api.BasketService;
+
 import com.epam.shop.service.dto.model.ProductDto;
 import com.epam.shop.service.exception.ServiceException;
-import com.epam.shop.service.factory.FactoryService;
-import com.epam.shop.service.impl.BasketServiceImpl;
+
 
 import javax.servlet.http.HttpSession;
 import java.rmi.ServerException;
 import java.util.ArrayList;
-import java.util.HashMap;
+
 import java.util.List;
 import java.util.Map;
 
 public class LookBasketCommand implements Command {
     private static Command command;
-    //private  AddProductInBasketCommand basket = AddProductInBasketCommand.getInstance().
     private static String BASKET_PAGE = "/jsp/basket.jsp";
     private static String PRODUCT_ID_PARAM = "productId";
     private static final String ERROR_PARAM = "error";

@@ -99,7 +99,7 @@ public class AuthorizationCommand implements Command {
             return SHOW_ERROR_PAGE;
 
         }
-        System.out.println(FactoryService.getAccountServiceInstance().getById(userDto.getId()).getId() + " csssssss");
+
         httpSession.setAttribute(ACCOUNT_OBJECT_PARAM, FactoryService.getAccountServiceInstance().findByUserId(userDto.getId()));
         httpSession.setAttribute(USER_ROLE_ATTRIBUTE_NAME, userDto);
 

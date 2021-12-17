@@ -79,10 +79,7 @@ public class OrderProductCommand implements Command {
             orderDto.setOrderDate(LocalDateTime.now());
 
             orderDto.setUserId(accountDto.getId());
-
-            System.out.println( orderDto.getUserId()+ "    COca - cola");
             orderDto.setMapProducts(((BasketServiceImpl) (httpSession.getAttribute(BASKET_USER_OBJECT))).lookBasket());
-            System.out.println(orderDto);
             FactoryService.getOrderServiceInstance().create(orderDto);
             basketService = ((BasketServiceImpl) (httpSession.getAttribute(BASKET_USER_OBJECT))).clearBasket();
             httpSession.setAttribute(BASKET_USER_OBJECT, basketService);

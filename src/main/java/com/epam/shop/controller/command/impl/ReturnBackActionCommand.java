@@ -43,8 +43,6 @@ public class ReturnBackActionCommand implements Command {
         httpSession.getAttribute("basketSize");
 
 
-
-        System.out.println(BASKET_PAGE);
         return SHOW_PAGE;
     }
 

@@ -57,7 +57,7 @@ public class ClearBasketCommand implements Command {
                 basketService = ((BasketServiceImpl)(httpSession.getAttribute(BASKET_USER_OBJECT))).clearBasket();
 
 
-                //  basketService = ((BasketServiceImpl<ProductDto,Integer>)(httpSession.getAttribute(BASKET_USER_OBJECT))).deleteProduct(Integer.parseInt(productId));
+
                 httpSession.setAttribute(BASKET_USER_OBJECT, basketService);
                 httpSession.setAttribute(BASKET_MAP_PARAM,basketService.lookBasket());
                 httpSession.setAttribute(BASKET_LIST_PARAM,basketService.backToListProducts());

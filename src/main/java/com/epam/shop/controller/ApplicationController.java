@@ -55,12 +55,9 @@ public class ApplicationController extends HttpServlet {
     }
 
     private void process(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException, ServiceException {
-        System.out.println("sdaad");
-        System.out.println(req.getSession());
-
         final String commandName = req.getParameter(COMMAND_PARAMETER_NAME);
 
-        System.out.println(commandName);
+
         final Command command = Command.withName(commandName);
 
         final ResponseContext response = command.execute(new RequestContextImpl(req));

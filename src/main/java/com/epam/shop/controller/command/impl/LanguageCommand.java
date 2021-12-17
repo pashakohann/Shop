@@ -42,7 +42,6 @@ public class LanguageCommand implements Command {
 
 
         httpSession.setAttribute(LANGUAGE_PARAM, language);
-        System.out.println(requestContext.getContextPath() + requestContext.getHeader());
         RETURN_PAGE_WITH_NEW_LANGUAGE = requestContext.getContextPath() + requestContext.getHeader();
         return CHANGE_LANGUAGE_PAGE;
     }
