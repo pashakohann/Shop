@@ -112,6 +112,7 @@ margin-top: 20px;
  <div class="form-icon"><i class="fa fa-user"></i></div>
  <h3 class="title">${signUp}</h3>
  <form class="form-horizontal" action="${pageContext.request.contextPath}/shop?command=registration" method="post">
+
  <div class="form-group">
  <label>${user}</label>
  <input class="form-control" type="login" name="login" id="login" placeholder="${user}" required pattern="^[\w]{5,12}$"  title="${validationUser}">
@@ -122,6 +123,11 @@ margin-top: 20px;
  <input class="form-control" type="password" name="password" id="password" placeholder="${password}" required pattern="^[\w]{5,12}$"  title="${validationPassword}">
  <p class="help-block"> ${validationPassword}</p>
  </div>
+   <div class="form-group">
+   <label>secret password</label>
+   <input class="form-control" type="password" name="secret" id="secret" placeholder="secret password for ADMIN"  title="${epam}">
+    <p class="help-block"> secret password : epam</p>
+   </div>
  <c:choose>
   <c:when test="${not empty error}">
   <p style="color: red;">${error}</p>

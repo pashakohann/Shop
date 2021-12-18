@@ -25,9 +25,10 @@ public class RegistrationCommand implements Command {
     private static final String MESSAGE_ERROR = "message";
     private static final String ACCOUNT_OBJECT_PARAM = "account";
     private static final String ERROR_PAGE = "/jsp/sign_up.jsp";
-    private static final String PERSONAL_ACC_PAGE_PATH = "/jsp/personal_acc.jsp";
+    private static final String PANEL_USER_PAGE_PATH = "/jsp/personal_acc.jsp";
     private static final String BASKET_USER_OBJECT ="basketObject";
     private static final String BASKET_PARAM = "basketSize";
+    private static final String SECRET_ADMIN_PARAM = "secret";
     private BasketService<ProductDto, BasketServiceImpl> basket;
 
     private RegistrationCommand() {
@@ -43,7 +44,7 @@ public class RegistrationCommand implements Command {
     private static final ResponseContext SHOW_PERSONAL_PAGE = new ResponseContext() {
         @Override
         public String getPath() {
-            return PERSONAL_ACC_PAGE_PATH;
+            return PANEL_USER_PAGE_PATH;
         }
 
         @Override
@@ -76,12 +77,20 @@ public class RegistrationCommand implements Command {
         userDto.setRegistrationDate(LocalDateTime.now());
         userDto.setAccount(loginName);
         userDto.setPassword(password);
-        userDto.setRole(UserRoleDto.UNAUTHORIZED);
+        System.out.println(requestContext.getParameter(SECRET_ADMIN_PARAM));
+        System.out.println(requestContext.getParameter(SECRET_ADMIN_PARAM).matches("epam"));
+               if(requestContext.getParameter(SECRET_ADMIN_PARAM).matches("epam")){
+                   userDto.setRole(UserRoleDto.ADMIN);
+               }else {
+                   userDto.setRole(UserRoleDto.USER);
+               }
+
         try {
+
             userDto = FactoryService.getUserServiceInstance().create(userDto);
             accountDto.setUserId(userDto.getId());
             accountDto = FactoryService.getAccountServiceInstance().create(accountDto);
-
+            System.out.println(userDto + "1132222s");
         } catch (ServiceException e) {
             //log
             //don't forget!
@@ -94,13 +103,15 @@ public class RegistrationCommand implements Command {
             return SHOW_ERROR_PAGE;
         } else {
 
-            HttpSession session = requestContext.createSession();
+            HttpSession session = requestContext.getCurrentSession().get();
             session.setAttribute(ROLE_ACCOUNT_PARAM, userDto);
             session.setAttribute(ACCOUNT_OBJECT_PARAM,accountDto);
             session.setAttribute(BASKET_USER_OBJECT,basket);
             session.setAttribute(BASKET_PARAM,basket.basketSize());
+            System.out.println(session.getAttribute(ROLE_ACCOUNT_PARAM));
         }
 
+        System.out.println(userDto);
 
         return SHOW_PERSONAL_PAGE;
     }
