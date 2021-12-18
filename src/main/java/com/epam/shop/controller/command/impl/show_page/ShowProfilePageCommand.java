@@ -42,9 +42,6 @@ public class ShowProfilePageCommand implements Command {
 
     @Override
     public ResponseContext execute(RequestContext requestContext) throws ServiceException {
- HttpSession httpSession = requestContext.getCurrentSession().get();
-        System.out.println(httpSession.getAttribute("account"));
-        System.out.println("vse stalo iasno");
 
         return SHOW_PROFILE_PAGE;
     }

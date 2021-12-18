@@ -23,13 +23,22 @@
     </div>
     <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
       <ol class="breadcrumb">
+      <c:choose>
+      <c:when test="${empty sessionScope.currentUser}">
+      <a href="${pageContext.request.contextPath}/shop?command=show_error_command"></a>
+           </c:when>
+     <c:when test="${sessionScope.currentUser.getRole() eq 'ADMIN'}">
         <li class="breadcrumb-item"><a href="${pageContext.request.contextPath}/shop?command=show_panel_command">All users</a></li>
         <li class="breadcrumb-item"><a href="${pageContext.request.contextPath}/shop?command=show_accounts_command">All user profiles</a></li>
        <li class="breadcrumb-item"><a href="${pageContext.request.contextPath}/shop?command=show_orders_command">All orders</a></li>
        <li class="breadcrumb-item"><a href="${pageContext.request.contextPath}/shop?command=show_products_command">All products</a></li>
        <li class="breadcrumb-item"><a href="${pageContext.request.contextPath}/shop?command=show_add_product_command">Add product</a></li>
         <li class="breadcrumb-item active" aria-current="page">Your Profile</li>
-
+      </c:when>
+      <c:when test="${sessionScope.currentUser.getRole() eq 'USER'}">
+      <li class="breadcrumb-item active" aria-current="page">Your Profile</li>
+       </c:when>
+       </c:choose>
       </ol>
     </nav>
     <table class="table table-dark table-striped">

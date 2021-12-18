@@ -7,6 +7,8 @@ import com.epam.shop.service.dto.model.AccountDto;
 import com.epam.shop.service.dto.model.ProductDto;
 import com.epam.shop.service.exception.ServiceException;
 import com.epam.shop.service.factory.FactoryService;
+import com.epam.shop.service.validation.api.Validator;
+import com.epam.shop.service.validation.impl.AccountValidatorImpl;
 
 import javax.servlet.http.HttpSession;
 import java.math.BigDecimal;
@@ -56,6 +58,13 @@ public class ChangeAccountCommand implements Command {
     @Override
     public ResponseContext execute(RequestContext requestContext) throws ServiceException {
         HttpSession httpSession = requestContext.getCurrentSession().get();
+        Validator validator = AccountValidatorImpl.getInstance();
+//             try {
+//
+//
+//             }catch (ServiceException e){
+//                 requestContext.setAttribute(ERROR_ATTRIBUTE,MESSAGE_ERROR_ATTRIBUTE+" : " + e.getMessage());
+//             }
         BigDecimal bigDecimal = new BigDecimal(requestContext.getParameter(ACCOUNT_AMOUNT_ATTRIBUTE));
         AccountDto accountDto = (AccountDto) httpSession.getAttribute(ACCOUNT_OBJECT_ATTRIBUTE);
         accountDto.setFirstName(requestContext.getParameter(ACCOUNT_F_NAME_ATTRIBUTE));

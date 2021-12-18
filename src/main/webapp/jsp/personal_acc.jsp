@@ -189,7 +189,7 @@
 
                         </c:when>
                         <c:when test="${sessionScope.currentUser.getRole() eq 'USER'}">
-                      <button class="btn btn-outline-success" type="submit" >${account}</button>
+                      <button class="btn btn-outline-success" type="submit" ><a href="${pageContext.request.contextPath}/shop?command=show_profile_command">${account}</a></button>
                         </c:when>
                  <c:otherwise>
 
