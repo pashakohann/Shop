@@ -1,4 +1,3 @@
-INSERT INTO users(account,password,role_id)VALUES ('admin','1111',1);
 
 INSERT INTO roles(id,name)VALUES (1,'ADMIN'),(2,'USER'),(3,'UNAUTHORIZED');
 
