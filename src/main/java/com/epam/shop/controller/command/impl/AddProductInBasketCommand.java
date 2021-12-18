@@ -23,8 +23,8 @@ public class AddProductInBasketCommand implements Command {
     private static final String MESSAGE_PARAM = "message";
     private static final String BASKET_PARAM = "basketSize";
     private static final String BASKET_MAP_PARAM = "userBasket";
-    private static final String BASKET_USER_OBJECT ="basketObject";
-    private BasketService<ProductDto,BasketServiceImpl>basket;
+    private static final String BASKET_USER_OBJECT = "basketObject";
+    private BasketService<ProductDto, BasketServiceImpl> basket;
 
     private AddProductInBasketCommand() {
     }
@@ -35,7 +35,6 @@ public class AddProductInBasketCommand implements Command {
         }
         return command;
     }
-
 
 
     private static final ResponseContext SHOW_PERSONAL_ACC = new ResponseContext() {
@@ -49,20 +48,20 @@ public class AddProductInBasketCommand implements Command {
 
     };
 
+
     @Override
     public ResponseContext execute(RequestContext requestContext) throws ServiceException {
         String productId = requestContext.getParameter(PRODUCT_ID_PARAM);
         try {
-        //    .addProduct(FactoryService.getProductServiceInstance().getById(Integer.parseInt(productId)));
 
-                  if (requestContext.getCurrentSession().isPresent()){
-                      HttpSession httpSession = requestContext.getCurrentSession().get();
-                      basket = (BasketServiceImpl) httpSession.getAttribute(BASKET_USER_OBJECT);
-                      basket.addProduct(FactoryService.getProductServiceInstance().getById(Integer.parseInt(productId)));
-                      httpSession.setAttribute(BASKET_MAP_PARAM, basket.lookBasket());
-                      httpSession.setAttribute(BASKET_PARAM, basket.basketSize());
-                      httpSession.setAttribute(BASKET_USER_OBJECT,basket);
-                  }
+            if (requestContext.getCurrentSession().isPresent()) {
+                HttpSession httpSession = requestContext.getCurrentSession().get();
+                basket = (BasketServiceImpl) httpSession.getAttribute(BASKET_USER_OBJECT);
+                basket.addProduct(FactoryService.getProductServiceInstance().getById(Integer.parseInt(productId)));
+                httpSession.setAttribute(BASKET_MAP_PARAM, basket.lookBasket());
+                httpSession.setAttribute(BASKET_PARAM, basket.basketSize());
+                httpSession.setAttribute(BASKET_USER_OBJECT, basket);
+            }
         } catch (ServiceException e) {
             //log
             requestContext.setAttribute(ERROR_PARAM, MESSAGE_PARAM + ":" + e.getMessage());

@@ -26,6 +26,9 @@ import javax.servlet.http.HttpSession;
 
 import java.io.IOException;
 import java.util.Optional;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.Executor;
+import java.util.concurrent.ExecutorService;
 
 @WebServlet(urlPatterns = "/shop")
 public class ApplicationController extends HttpServlet {
@@ -84,4 +87,7 @@ public class ApplicationController extends HttpServlet {
         ConnectionServiceImpl.getInstance().init();
 
     }
+
+
+
 }

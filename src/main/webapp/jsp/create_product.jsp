@@ -23,9 +23,10 @@
       <ol class="breadcrumb">
          <li class="breadcrumb-item"><a href="${pageContext.request.contextPath}/shop?command=show_panel_command">All users</a></li>
          <li class="breadcrumb-item"><a href="${pageContext.request.contextPath}/shop?command=show_accounts_command">All user profiles</a></li>
-        <li class="breadcrumb-item active" aria-current="page">All orders</li>
-        <li class="breadcrumb-item"><a href="${pageContext.request.contextPath}/shop?command=show_products_command">All products</a></li>
-         <li class="breadcrumb-item"><a href="${pageContext.request.contextPath}/shop?command=show_add_product_command">Add product</a></li>
+        <li class="breadcrumb-item"><a href="${pageContext.request.contextPath}/shop?command=show_orders_command">All orders</a></li>
+        <li class="breadcrumb-item"><a href="${pageContext.request.contextPath}/shop?command=show_orders_command">All products</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Create Product</li>
+
 
       </ol>
     </nav>
@@ -34,27 +35,62 @@
       <table class="table">
          <thead>
            <tr>
-             <th scope="col">ID</th>
-             <th scope="col">ORDER DATE</th>
-             <th scope="col">COST</th>
-             <th scope="col">ORDERED</th>
-             <th scope="col">Look Order</th>
 
+             <th scope="col">Name</th>
+             <th scope="col">Cost</th>
+             <th scope="col">Category</th>
+             <th scope="col">Brand</th>
+             <th scope="col">PhotoLink</th>
              <th scope="col">Action</th>
            </tr>
          </thead>
          <tbody>
 
-  <c:forEach var="elements" items="${ordersList}">
-             <th scope="row">${elements.getId()}</th>
-             <td>${elements.getOrderDate()}</td>
-             <td >${elements.getOrderCost()}</td>
-             <td><button class="button" type="button">Who</td>
-             <td><button class="button" type="button">Look</td>
-               <td><button class="button" type="button">Cancel</td>
-           </tr>
 
-  </c:forEach>
+    <form class="form-horizontal" action="${pageContext.request.contextPath}/shop?command=add_product_command" method="post">
+             <td><input class="form-control" type="name" name="name" id="name" placeholder="${password}"   title="${validationPassword}">
+              <p class="help-block"> </p></td>
+             <td ><input class="form-control" type="cost" name="cost" id="cost" placeholder="${password}"   title="${validationPassword}">
+              <p class="help-block"> </p></td>
+             <td >
+              <select class="form-select"  name="category"aria-label="Default select example">
+
+                <option value="1">motherboard</option>
+                <option value="2">ram</option>
+                <option value="3">power unit</option>
+                <option value="4">hdd</option>
+                <option value="5">cpu</option>
+                <option value="6">case</option>
+                <option value="7">cooler</option>
+                <option value="8">gpu</option>
+
+              </select>
+             </td>
+             <td >
+              <select class="form-select"  name="brand" aria-label="Default select example">
+
+                <option value="1">ASRock</option>
+                <option value="2">Gigabyte</option>
+                <option value="3">ASUS</option>
+                <option value="4">BIOSTAR</option>
+                <option value="5">MSI</option>
+                <option value="6">Crucial</option>
+                <option value="7">Kingston</option>
+                <option value="8">Chieftec</option>
+                <option value="9">AeroCool</option>
+                <option value="10">WD</option>
+                <option value="11">Seagate</option>
+                <option value="12">AMD</option>
+                <option value="13">Intel</option>
+                <option value="14">Zalman</option>
+                <option value="15">DeepCool</option>
+
+              </select>
+             </td>
+             <td ><input class="form-control" type="name" name="photoLink" id="photoLink" placeholder="your link"   title="${validationPassword}">
+              <p class="help-block"> </p></td>
+               <td> <button submit="button" class="button">Add</button></td>
+           </tr>
 
          </tbody>
        </table>

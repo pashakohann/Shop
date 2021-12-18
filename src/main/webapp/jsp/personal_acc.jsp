@@ -222,7 +222,7 @@
                             <h5 class="card-title">${element.getId()}</h5>
                             <p class="card-text">${element.getName()}</p>
 
-                            <a href="${pageContext.request.contextPath}/shop?command=add_product_command&productId=${element.getId()}" class="btn btn-primary">${addToBasket}</a>
+                            <a href="${pageContext.request.contextPath}/shop?command=add_product_basket_command&productId=${element.getId()}" class="btn btn-primary">${addToBasket}</a>
                             <span class="price">${element.getCost()} BLR</span>
                           </div>
                         </div>
@@ -240,7 +240,7 @@
                               <h5 class="card-title">${element.getId()}</h5>
                               <p class="card-text">${element.getName()}</p>
 
-                              <a href="${pageContext.request.contextPath}/shop?command=add_product_command&productId=${element.getId()}" class="btn btn-primary">${addToBasket}</a>
+                              <a href="${pageContext.request.contextPath}/shop?command=add_product_basket_command&productId=${element.getId()}" class="btn btn-primary">${addToBasket}</a>
                               <span class="price">${element.getCost()} BLR</span>
                             </div>
                           </div>
@@ -254,7 +254,7 @@
                               <div class="card-body">
                                 <h5 class="card-title">${element.getId()}</h5>
                                   <p class="card-text">${element.getName()}</p>
-                                 <a href="${pageContext.request.contextPath}/shop?command=add_product_command&productId=${element.getId()}" class="btn btn-primary">${addToBasket}</a>
+                                 <a href="${pageContext.request.contextPath}/shop?command=add_product_basket_command&productId=${element.getId()}" class="btn btn-primary">${addToBasket}</a>
                                  <span class="price">${element.getCost()} BLR</span>
                               </div>
                             </div>
