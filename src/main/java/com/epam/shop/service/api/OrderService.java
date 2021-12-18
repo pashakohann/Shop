@@ -1,5 +1,6 @@
 package com.epam.shop.service.api;
 
+import com.epam.shop.service.dto.model.AccountDto;
 import com.epam.shop.service.dto.model.OrderDto;
 import com.epam.shop.service.dto.model.ProductDto;
 import com.epam.shop.service.dto.model.UserDto;
@@ -14,7 +15,7 @@ public interface OrderService extends Service<OrderDto, Integer> {
 
     OrderDto deleteProductFromOrder(ProductDto productDto, OrderDto orderDto) throws ServiceException;
 
-    List<OrderDto> findUserOrders(UserDto userDto) throws ServerException, ServiceException;
+    List<OrderDto> findAccountOrders(AccountDto accountDto) throws ServiceException;
 
 
 }

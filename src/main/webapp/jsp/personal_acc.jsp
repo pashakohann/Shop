@@ -192,7 +192,7 @@
                       <button class="btn btn-outline-success" type="submit" ><a href="${pageContext.request.contextPath}/shop?command=show_profile_command">${account}</a></button>
                         </c:when>
                  <c:otherwise>
-
+                   <a href="${pageContext.request.contextPath}/shop?command=show_error_command"></a>
                  </c:otherwise>
                 </c:choose>
 

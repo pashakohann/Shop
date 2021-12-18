@@ -16,17 +16,26 @@
 
    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
 
-      <button class="btn btn-primary me-md-2" type="button"><a href="${pageContext.request.contextPath}/shop?command=back_action_command" style="color:white;">Main menu</a></button>
+      <button class="btn btn-primary me-md-2" type="button"><a href="${pageContext.request.contextPath}/shop?command=back_action_command" style="color:white;">Back Menu</a></button>
 
     </div>
     <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
       <ol class="breadcrumb">
+      <c:choose>
+      <c:when test = "${currentUser.getRole() eq 'ADMIN'}">
          <li class="breadcrumb-item"><a href="${pageContext.request.contextPath}/shop?command=show_panel_command">All users</a></li>
          <li class="breadcrumb-item"><a href="${pageContext.request.contextPath}/shop?command=show_accounts_command">All user profiles</a></li>
         <li class="breadcrumb-item active" aria-current="page">All orders</li>
         <li class="breadcrumb-item"><a href="${pageContext.request.contextPath}/shop?command=show_products_command">All products</a></li>
          <li class="breadcrumb-item"><a href="${pageContext.request.contextPath}/shop?command=show_add_product_command">Add product</a></li>
-         <li class="breadcrumb-item"><a href="${pageContext.request.contextPath}/shop?command=show_profile_command"> Your Profile</a></li>
+
+        <li class="breadcrumb-item"><a href="${pageContext.request.contextPath}/shop?command=show_profile_command"> Your Profile</a></li>
+     </c:when>
+     <c:when test="${currentUser.getRole() eq 'USER'}">
+     <li class="breadcrumb-item"><a href="${pageContext.request.contextPath}/shop?command=show_profile_command"> Your Profile</a></li>
+     <li class="breadcrumb-item active" aria-current="page">All orders</li>
+     </c:when >
+     </c:choose>
       </ol>
     </nav>
    </header>
@@ -34,24 +43,47 @@
       <table class="table">
          <thead>
            <tr>
-             <th scope="col">ID</th>
-             <th scope="col">ORDER DATE</th>
-             <th scope="col">COST</th>
-             <th scope="col">ORDERED</th>
-             <th scope="col">Look Order</th>
+
+          <c:choose>
+          <c:when test="${currentUser.getRole() eq 'ADMIN'}">
+                       <th scope="col">ID</th>
+                       <th scope="col">ORDER DATE</th>
+                       <th scope="col">COST</th>
+                     <th scope="col">ORDERED</th>
+                   <th scope="col">Look Order</th>
 
              <th scope="col">Action</th>
+             </c:when>
+              <c:when test="${currentUser.getRole() eq 'USER'}">
+                                      <th scope="col">ID</th>
+                                     <th scope="col">ORDER DATE</th>
+                                     <th scope="col">COST</th>
+                                     <th scope="col">Look Order</th>
+                    </c:when>
+                         </c:choose>
            </tr>
          </thead>
          <tbody>
 
   <c:forEach var="elements" items="${ordersList}">
+  <c:choose>
+  <c:when test="${currentUser.getRole() eq 'ADMIN'}">
              <th scope="row">${elements.getId()}</th>
              <td>${elements.getOrderDate()}</td>
              <td >${elements.getOrderCost()}</td>
              <td><button class="button" type="button">Who</td>
-             <td><button class="button" type="button">Look</td>
+             <td><button class="button" type="button"><a href="${pageContext.request.contextPath}/shop?command=products_in_order_command&orderId=${elements.getId()}"> Look</a></td>
                <td><button class="button" type="button">Cancel</td>
+        </c:when>
+         <c:when test="${currentUser.getRole() eq 'USER'}">
+         <th scope="row">${elements.getId()}</th>
+                      <td>${elements.getOrderDate()}</td>
+                      <td >${elements.getOrderCost()}</td>
+                      <td><button class="button" type="button"><a href="${pageContext.request.contextPath}/shop?command=products_in_order_command&orderId=${elements.getId()}"> Look</a></td>
+                                     <td><button class="button" type="button">Cancel</td>
+          </c:when>
+
+          </c:choose>
            </tr>
 
   </c:forEach>

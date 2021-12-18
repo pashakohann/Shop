@@ -3,18 +3,26 @@ package com.epam.shop.controller.command.impl.show_page;
 import com.epam.shop.controller.command.api.Command;
 import com.epam.shop.controller.context.api.RequestContext;
 import com.epam.shop.controller.context.api.ResponseContext;
+import com.epam.shop.service.dto.model.AccountDto;
 import com.epam.shop.service.dto.model.OrderDto;
 import com.epam.shop.service.dto.model.UserDto;
+import com.epam.shop.service.dto.model.UserRoleDto;
 import com.epam.shop.service.exception.ServiceException;
 import com.epam.shop.service.factory.FactoryService;
 
 import javax.servlet.http.HttpSession;
+import java.rmi.ServerException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class ShowPageOrderCommand implements Command {
     public static Command command;
     private static final String ALL_ORDERS_PATH = "/jsp/all_orders.jsp";
     private static final String LIST_ORDERS_ATTRIBUTE = "ordersList";
+    private static final String CURRENT_USER_ATTRIBUTE = "currentUser";
+    private static final String ACCOUNT_OBJECT_ATTRIBUTE = "account";
+    private static final String MESSAGE_ERROR_ATTRIBUTE = "message";
+    private static final String ERROR_ATTRIBUTE = "error";
 
     private ShowPageOrderCommand () {
     }
@@ -41,11 +49,22 @@ public class ShowPageOrderCommand implements Command {
 
     @Override
     public ResponseContext execute(RequestContext requestContext) throws ServiceException {
-        List<OrderDto> userList = FactoryService.getOrderServiceInstance().getAll();
-        System.out.println("SHOW PANEL COMMAND!!!!");
-        HttpSession httpSession = requestContext.getCurrentSession().get();
-        httpSession.setAttribute(LIST_ORDERS_ATTRIBUTE, userList);
-        System.out.println(userList);
+        HttpSession httpSession =  requestContext.getCurrentSession().get();
+        List<OrderDto> orderList = new ArrayList<>();
+
+            try {
+                if(((UserDto)httpSession.getAttribute(CURRENT_USER_ATTRIBUTE)).getRole().equals(UserRoleDto.ADMIN)){
+                    orderList = FactoryService.getOrderServiceInstance().getAll();
+                }else {
+                    orderList = FactoryService.getOrderServiceInstance().findAccountOrders(((AccountDto) httpSession.getAttribute(ACCOUNT_OBJECT_ATTRIBUTE)));
+                }
+            }catch (ServiceException e){
+                requestContext.setAttribute(ERROR_ATTRIBUTE,MESSAGE_ERROR_ATTRIBUTE + ": " + e.getMessage());
+
+            }
+
+        httpSession.setAttribute(LIST_ORDERS_ATTRIBUTE, orderList);
+        System.out.println(orderList);
 
         return SHOW_ALL_ORDERS_PAGE;
     }

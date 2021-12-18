@@ -13,6 +13,7 @@ import com.epam.shop.controller.command.impl.LookBasketCommand;
 import com.epam.shop.controller.command.impl.OrderProductCommand;
 import com.epam.shop.controller.command.impl.ReturnBackActionCommand;
 import com.epam.shop.controller.command.impl.SignOutCommand;
+import com.epam.shop.controller.command.impl.show_page.LookOrderPageCommand;
 import com.epam.shop.controller.command.impl.show_page.ShowDefaultPageCommand;
 import com.epam.shop.controller.command.impl.FindProductsByCategoryBrandCommand;
 import com.epam.shop.controller.command.impl.FindProductsByCategoryCommand;
@@ -45,17 +46,18 @@ public enum Commands {
     DELETE_PRODUCT_COMMAND(DeleteProductFromBasketCommand.getInstance(), UserRoleDto.USER, UserRoleDto.ADMIN),
     SHOW_BASKET_COMMAND(LookBasketCommand.getInstance(), UserRoleDto.USER, UserRoleDto.ADMIN),
     BACK_ACTION_COMMAND(ReturnBackActionCommand.getInstance(), UserRoleDto.USER, UserRoleDto.ADMIN),
-    SHOW_ERROR_COMMAND(ShowErrorPageCommand.getInstance(), UserRoleDto.USER, UserRoleDto.ADMIN),
+    SHOW_ERROR_COMMAND(ShowErrorPageCommand.getInstance(), UserRoleDto.USER, UserRoleDto.ADMIN, UserRoleDto.UNAUTHORIZED),
     CLEAR_BASKET_COMMAND(ClearBasketCommand.getInstance(), UserRoleDto.USER, UserRoleDto.ADMIN),
     ORDER_PRODUCTS_COMMAND(OrderProductCommand.getInstance(), UserRoleDto.USER, UserRoleDto.ADMIN),
     SHOW_PANEL_COMMAND(ShowPanelCommand.getInstance(), UserRoleDto.USER, UserRoleDto.ADMIN),
     SHOW_ACCOUNTS_COMMAND(ShowPageAccountCommand.getInstance(), UserRoleDto.ADMIN),
-    SHOW_ORDERS_COMMAND(ShowPageOrderCommand.getInstance(), UserRoleDto.ADMIN),
+    SHOW_ORDERS_COMMAND(ShowPageOrderCommand.getInstance(), UserRoleDto.ADMIN, UserRoleDto.USER),
     SHOW_PRODUCTS_COMMAND(ShowProductPageCommand.getInstance(), UserRoleDto.ADMIN),
     SHOW_ADD_PRODUCT_COMMAND(ShowPageAddProductCommand.getInstance(),UserRoleDto.ADMIN),
     ADD_PRODUCT_COMMAND(AddProductCommand.getInstance(),UserRoleDto.ADMIN),
     SHOW_PROFILE_COMMAND(ShowProfilePageCommand.getInstance(),UserRoleDto.ADMIN,UserRoleDto.USER),
-    CHANGE_ACCOUNT_COMMAND(ChangeAccountCommand.getInstance(),UserRoleDto.ADMIN,UserRoleDto.USER);
+    CHANGE_ACCOUNT_COMMAND(ChangeAccountCommand.getInstance(),UserRoleDto.ADMIN,UserRoleDto.USER),
+    PRODUCTS_IN_ORDER_COMMAND(LookOrderPageCommand.getInstance(),UserRoleDto.ADMIN,UserRoleDto.USER);
 //    DELETE_PRODUCT_COMMAND(),
 //    SHOW_USERS(),
 //    ORDER_PRDUCTS();

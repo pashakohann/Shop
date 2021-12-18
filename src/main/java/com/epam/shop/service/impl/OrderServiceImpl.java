@@ -190,11 +190,11 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public List<OrderDto> findUserOrders(UserDto userDto) throws ServiceException {
+    public List<OrderDto> findAccountOrders(AccountDto accountDto) throws ServiceException {
         List<OrderDto> list = new ArrayList<>();
         try {
             for (Order order : FactoryDao.getOrderImpl().findAll()) {
-                if (order.getUserId().equals(userDto.getId())) {
+                if (order.getUserId().equals(accountDto.getId())) {
                     list.add(converter.convert(order));
                 }
             }

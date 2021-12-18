@@ -37,6 +37,7 @@
       </c:when>
       <c:when test="${sessionScope.currentUser.getRole() eq 'USER'}">
       <li class="breadcrumb-item active" aria-current="page">Your Profile</li>
+      <li class="breadcrumb-item"><a href="${pageContext.request.contextPath}/shop?command=show_orders_command">All orders</a></li>
        </c:when>
        </c:choose>
       </ol>

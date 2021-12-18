@@ -3,13 +3,9 @@ package com.epam.shop.controller.command.impl.show_page;
 import com.epam.shop.controller.command.api.Command;
 import com.epam.shop.controller.context.api.RequestContext;
 import com.epam.shop.controller.context.api.ResponseContext;
-import com.epam.shop.service.dto.model.AccountDto;
-import com.epam.shop.service.dto.model.ProductDto;
-import com.epam.shop.service.exception.ServiceException;
-import com.epam.shop.service.factory.FactoryService;
 
-import javax.servlet.http.HttpSession;
-import java.util.List;
+import com.epam.shop.service.exception.ServiceException;
+
 
 public class ShowProfilePageCommand implements Command {
     public static Command command;

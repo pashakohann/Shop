@@ -21,12 +21,10 @@
     </div>
     <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
       <ol class="breadcrumb">
-         <li class="breadcrumb-item"><a href="${pageContext.request.contextPath}/shop?command=show_panel_command">All users</a></li>
-         <li class="breadcrumb-item"><a href="${pageContext.request.contextPath}/shop?command=show_accounts_command">All user profiles</a></li>
-        <li class="breadcrumb-item"><a href="${pageContext.request.contextPath}/shop?command=show_orders_command">All orders</a></li>
-        <li class="breadcrumb-item active" aria-current="page">All products</li>
-         <li class="breadcrumb-item"><a href="${pageContext.request.contextPath}/shop?command=show_add_product_command">Add product</a></li>
-         <li class="breadcrumb-item"><a href="${pageContext.request.contextPath}/shop?command=show_profile_command"> Your Profile</a></li>
+
+        <li class="breadcrumb-item active" aria-current="page">Order</li>
+         <li class="breadcrumb-item"><a href="${pageContext.request.contextPath}/shop?command=show_orders_command">back to orders</a></li>
+
       </ol>
     </nav>
    </header>
@@ -34,24 +32,20 @@
       <table class="table">
          <thead>
            <tr>
-             <th scope="col">ID</th>
+
              <th scope="col">Name</th>
              <th scope="col">Cost</th>
-             <th scope="col">Category</th>
-             <th scope="col">Brand</th>
-             <th scope="col">PhotoLink</th>
+
              <th scope="col">Action</th>
            </tr>
          </thead>
          <tbody>
 
-  <c:forEach var="elements" items="${productsList}">
-             <th scope="row">${elements.getId()}</th>
+  <c:forEach var="elements" items="${productsFromOrderList}">
+
              <td>${elements.getName()}</td>
              <td >${elements.getCost()}</td>
-             <td >${elements.getCategoryId()}</td>
-             <td >${elements.getBrandId()}</td>
-             <td >${elements.getPhotoLink()}</td>
+
                <td><button class="button" type="button">Delete</td>
            </tr>
 
