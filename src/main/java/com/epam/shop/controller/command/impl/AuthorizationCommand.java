@@ -25,9 +25,9 @@ public class AuthorizationCommand implements Command {
     private static final String USER_ROLE_ATTRIBUTE_NAME = "currentUser";
     private static final String LOGIN_PARAM = "login";
     private static final String PASSWORD_PARAM = "password";
-    private static final String ERROR_ATTRIBUTE = "error";
     private static final String ERROR_MESSAGE = "Your fields are empty. ";
     private static final String MESSAGE_ERROR_ATTRIBUTE = "message";
+    private static final String ERROR_ATTRIBUTE = "error";
     private static final String  ACCOUNT_OBJECT_PARAM = "account";;
     private static final String BASKET_USER_OBJECT ="basketObject";
     private static final String BASKET_PARAM = "basketSize";
@@ -106,7 +106,7 @@ public class AuthorizationCommand implements Command {
             return SHOW_ERROR_PAGE;
 
         }
-
+        System.out.println(FactoryService.getAccountServiceInstance().findByUserId(userDto.getId())+" sdadaqeqeq");
         httpSession.setAttribute(ACCOUNT_OBJECT_PARAM, FactoryService.getAccountServiceInstance().findByUserId(userDto.getId()));
         httpSession.setAttribute(USER_ROLE_ATTRIBUTE_NAME, userDto);
         httpSession.setAttribute(BASKET_USER_OBJECT,basket);
