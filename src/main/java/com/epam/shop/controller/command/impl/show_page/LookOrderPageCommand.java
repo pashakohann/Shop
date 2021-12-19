@@ -53,7 +53,8 @@ public class LookOrderPageCommand implements Command {
         OrderDto order = FactoryService.getOrderServiceInstance().getById(Integer.parseInt(requestContext.getParameter(ORDER_ID_ATTRIBUTE)));
         List<ProductDto>listProducts = backToListProducts(order.getMapProducts());
         httpSession.setAttribute(PRODUCTS_FROM_ORDER ,listProducts);
-
+        httpSession.setAttribute(ORDER_ID_ATTRIBUTE,requestContext.getParameter(ORDER_ID_ATTRIBUTE));
+        System.out.println(requestContext.getParameter(ORDER_ID_ATTRIBUTE) + "Hello from look order page");
         return SHOW_ORDER_PAGE;
     }
 

@@ -46,7 +46,7 @@
              <td>${elements.getName()}</td>
              <td >${elements.getCost()}</td>
 
-               <td><button class="button" type="button">Delete</td>
+               <td><button class="button" type="button"><a href="${pageContext.request.contextPath}/shop?command=delete_product_from_order_command&productId=${elements.getId()}&costProduct=${elements.getCost()}"  style="color:white;background-color: rebeccapurple;">Delete</a></td>
            </tr>
 
   </c:forEach>

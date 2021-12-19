@@ -9,7 +9,7 @@ import com.epam.shop.service.exception.ServiceException;
 
 
 import javax.servlet.http.HttpSession;
-import java.rmi.ServerException;
+
 import java.util.ArrayList;
 
 import java.util.List;

@@ -44,7 +44,7 @@ public class OrderDaoImpl implements OrderDao {
 
     @Override
     public Order save(Order order) throws DaoException {
-        System.out.println(order.getUserId() + "Hello from DAO");
+
         try (Connection connection = connectionPool.takeConnection();
              PreparedStatement preparedStatement =
                      connection.prepareStatement(OrderSql.SQL_SAVE_ORDER, Statement.RETURN_GENERATED_KEYS)) {
@@ -69,7 +69,7 @@ public class OrderDaoImpl implements OrderDao {
 
     @Override
     public Order update(Order order) throws DaoException {
-
+        System.out.println(order.getMapProducts() + "Hello from dao");
         deleteAllProductInOrder(order.getId());
         addProductsInOrder(order);
 
@@ -102,7 +102,7 @@ public class OrderDaoImpl implements OrderDao {
         }
     }
 
-    public void deleteAllProductInOrder(Integer orderId) throws DaoException {
+    private void deleteAllProductInOrder(Integer orderId) throws DaoException {
         try (Connection connection = connectionPool.takeConnection();
              PreparedStatement preparedStatement =
                      connection.prepareStatement(OrderSql.SQL_DELETE_ALL_PRODUCTS_FROM_ORDER)) {
@@ -192,8 +192,8 @@ public class OrderDaoImpl implements OrderDao {
         return map;
     }
 
-    @Override
-    public void addProductsInOrder(Order order) throws DaoException {
+
+    private void addProductsInOrder(Order order) throws DaoException {
         try (Connection connection = connectionPool.takeConnection();
              PreparedStatement preparedStatement =
                      connection.prepareStatement(OrderSql.SQL_ADD_PRODUCTS_IN_ORDER)) {

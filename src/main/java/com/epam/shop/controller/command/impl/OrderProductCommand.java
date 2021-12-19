@@ -82,10 +82,12 @@ public class OrderProductCommand implements Command {
             orderDto.setMapProducts(((BasketServiceImpl) (httpSession.getAttribute(BASKET_USER_OBJECT))).lookBasket());
             FactoryService.getOrderServiceInstance().create(orderDto);
             basketService = ((BasketServiceImpl) (httpSession.getAttribute(BASKET_USER_OBJECT))).clearBasket();
+            accountDto = FactoryService.getAccountServiceInstance().getById(accountDto.getId());
             httpSession.setAttribute(BASKET_USER_OBJECT, basketService);
             httpSession.setAttribute(BASKET_MAP_PARAM, basketService.lookBasket());
             httpSession.setAttribute(BASKET_LIST_PARAM, basketService.backToListProducts());
             httpSession.setAttribute(BASKET_SIZE_PARAM, basketService.basketSize());
+            httpSession.setAttribute(ACCOUNT_OBJECT_PARAM, accountDto);
             requestContext.setAttribute(SUCCESS_ORDER,"Поздравляем с заказом!!!!");
         } catch (ServiceException e) {
             requestContext.setAttribute(ERROR_PARAM, MESSAGE_PARAM + ":" + e.getMessage());

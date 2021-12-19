@@ -57,12 +57,7 @@ public class PermissionFilter implements Filter {
         if (allowedCommands.contains(command)) {
             chain.doFilter(request, response);
         } else {
-            System.out.println(commandsByRoles.keySet());
-            System.out.println(commandsByRoles.values());
-            System.out.println(currentRole);
-            System.out.println("sdadadaPO4emy");
-            System.out.println(allowedCommands);
-            System.out.println(command);
+
             ((HttpServletResponse) response).sendRedirect(ERROR_PAGE_LOCATION);
         }
     }

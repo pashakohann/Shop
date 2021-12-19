@@ -7,7 +7,9 @@ import com.epam.shop.controller.command.impl.AddProductInBasketCommand;
 import com.epam.shop.controller.command.impl.AuthorizationCommand;
 import com.epam.shop.controller.command.impl.ChangeAccountCommand;
 import com.epam.shop.controller.command.impl.ClearBasketCommand;
+import com.epam.shop.controller.command.impl.DeleteOrderCommand;
 import com.epam.shop.controller.command.impl.DeleteProductFromBasketCommand;
+import com.epam.shop.controller.command.impl.DeleteProductOrderCommand;
 import com.epam.shop.controller.command.impl.LanguageCommand;
 import com.epam.shop.controller.command.impl.LookBasketCommand;
 import com.epam.shop.controller.command.impl.OrderProductCommand;
@@ -43,7 +45,7 @@ public enum Commands {
     AUTHORIZATION_COMMAND(AuthorizationCommand.getInstance(), UserRoleDto.USER, UserRoleDto.ADMIN, UserRoleDto.UNAUTHORIZED),
     SIGN_OUT_COMMAND(SignOutCommand.getInstance(), UserRoleDto.USER, UserRoleDto.ADMIN),
     ADD_PRODUCT_BASKET_COMMAND(AddProductInBasketCommand.getInstance(), UserRoleDto.USER, UserRoleDto.ADMIN),
-    DELETE_PRODUCT_COMMAND(DeleteProductFromBasketCommand.getInstance(), UserRoleDto.USER, UserRoleDto.ADMIN),
+    DELETE_PRODUCT_BASKET_COMMAND(DeleteProductFromBasketCommand.getInstance(), UserRoleDto.USER, UserRoleDto.ADMIN),
     SHOW_BASKET_COMMAND(LookBasketCommand.getInstance(), UserRoleDto.USER, UserRoleDto.ADMIN),
     BACK_ACTION_COMMAND(ReturnBackActionCommand.getInstance(), UserRoleDto.USER, UserRoleDto.ADMIN),
     SHOW_ERROR_COMMAND(ShowErrorPageCommand.getInstance(), UserRoleDto.USER, UserRoleDto.ADMIN, UserRoleDto.UNAUTHORIZED),
@@ -57,10 +59,10 @@ public enum Commands {
     ADD_PRODUCT_COMMAND(AddProductCommand.getInstance(),UserRoleDto.ADMIN),
     SHOW_PROFILE_COMMAND(ShowProfilePageCommand.getInstance(),UserRoleDto.ADMIN,UserRoleDto.USER),
     CHANGE_ACCOUNT_COMMAND(ChangeAccountCommand.getInstance(),UserRoleDto.ADMIN,UserRoleDto.USER),
-    PRODUCTS_IN_ORDER_COMMAND(LookOrderPageCommand.getInstance(),UserRoleDto.ADMIN,UserRoleDto.USER);
-//    DELETE_PRODUCT_COMMAND(),
-//    SHOW_USERS(),
-//    ORDER_PRDUCTS();
+    PRODUCTS_IN_ORDER_COMMAND(LookOrderPageCommand.getInstance(),UserRoleDto.ADMIN,UserRoleDto.USER),
+    DELETE_PRODUCT_FROM_ORDER_COMMAND(DeleteProductOrderCommand.getInstance(),UserRoleDto.ADMIN,UserRoleDto.USER),
+    DELETE_ORDER_COMMAND(DeleteOrderCommand.getInstance(),UserRoleDto.ADMIN,UserRoleDto.USER);
+
 
     private final Command command;
     private final List<UserRoleDto> allowedRoles;

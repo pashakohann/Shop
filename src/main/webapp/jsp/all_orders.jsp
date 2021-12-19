@@ -73,14 +73,14 @@
              <td >${elements.getOrderCost()}</td>
              <td><button class="button" type="button">Who</td>
              <td><button class="button" type="button"><a href="${pageContext.request.contextPath}/shop?command=products_in_order_command&orderId=${elements.getId()}"> Look</a></td>
-               <td><button class="button" type="button">Cancel</td>
+               <td><button class="button" type="button"><a href="${pageContext.request.contextPath}/shop?command=delete_order_command&orderId=${elements.getId()}&orderCost=${elements.getOrderCost()}">Cancel</a></td>
         </c:when>
          <c:when test="${currentUser.getRole() eq 'USER'}">
          <th scope="row">${elements.getId()}</th>
                       <td>${elements.getOrderDate()}</td>
                       <td >${elements.getOrderCost()}</td>
                       <td><button class="button" type="button"><a href="${pageContext.request.contextPath}/shop?command=products_in_order_command&orderId=${elements.getId()}"> Look</a></td>
-                                     <td><button class="button" type="button">Cancel</td>
+                      <td><button class="button" type="button"><a href="${pageContext.request.contextPath}/shop?command=delete_order_command&orderId=${elements.getId()}&orderCost=${elements.getOrderCost()}">Cancel</a></td>
           </c:when>
 
           </c:choose>

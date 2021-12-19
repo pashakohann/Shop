@@ -59,7 +59,7 @@
              <th scope="row">Order</th>
              <td>${element.getName()}</td>
              <td >${element.getCost()}</td>
-               <td><button class="button" type="button"><a href="${pageContext.request.contextPath}/shop?command=delete_product_command&productId=${element.getId()}"  style="color:white;background-color: rebeccapurple;">Cancel</a></td>
+               <td><button class="button" type="button"><a href="${pageContext.request.contextPath}/shop?command=delete_product_basket_command&productId=${element.getId()}"  style="color:white;background-color: rebeccapurple;">Cancel</a></td>
            </tr>
           </c:forEach>
          </tbody>

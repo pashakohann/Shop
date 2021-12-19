@@ -81,7 +81,7 @@ public class ChangeAccountCommand implements Command {
             FactoryService.getAccountServiceInstance().update(accountDto);
         } catch (ServiceException e) {
             //log
-            requestContext.setAttribute(ERROR_ATTRIBUTE, MESSAGE_ERROR_ATTRIBUTE + ": " + e);
+            requestContext.setAttribute(ERROR_ATTRIBUTE, MESSAGE_ERROR_ATTRIBUTE + ": " + e.getMessage());
         }
 
         return SHOW_PROFILE_PAGE;

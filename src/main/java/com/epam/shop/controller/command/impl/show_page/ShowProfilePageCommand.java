@@ -11,7 +11,7 @@ public class ShowProfilePageCommand implements Command {
     public static Command command;
     private static final String PROFILE_PATH = "/jsp/profile.jsp";
     private static final String ACCOUNT_OBJECT_PARAM = "account";
-    ;
+
 
     private ShowProfilePageCommand() {
     }

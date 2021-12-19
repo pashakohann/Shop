@@ -9,7 +9,6 @@ import java.util.Map;
 
 public interface OrderDao extends Dao<Order,Integer> {
     Map<Product,Integer> findAllProductsFromOrder(Integer idOrder) throws DaoException;
-    void addProductsInOrder(Order order)throws DaoException;
-    void deleteAllProductInOrder(Integer orderId) throws DaoException;
+
 
 }
