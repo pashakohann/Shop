@@ -30,9 +30,11 @@
          <li class="breadcrumb-item"><a href="${pageContext.request.contextPath}/shop?command=show_add_product_command">Add product</a></li>
 
         <li class="breadcrumb-item"><a href="${pageContext.request.contextPath}/shop?command=show_profile_command"> Your Profile</a></li>
+        <li class="breadcrumb-item"><a href="${pageContext.request.contextPath}/shop?command=show_wallet_command">Your wallet</a></li>
      </c:when>
      <c:when test="${currentUser.getRole() eq 'USER'}">
      <li class="breadcrumb-item"><a href="${pageContext.request.contextPath}/shop?command=show_profile_command"> Your Profile</a></li>
+     <li class="breadcrumb-item"><a href="${pageContext.request.contextPath}/shop?command=show_wallet_command">Your wallet</a></li>
      <li class="breadcrumb-item active" aria-current="page">All orders</li>
      </c:when >
      </c:choose>

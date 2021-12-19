@@ -15,6 +15,7 @@ import com.epam.shop.controller.command.impl.LookBasketCommand;
 import com.epam.shop.controller.command.impl.OrderProductCommand;
 import com.epam.shop.controller.command.impl.ReturnBackActionCommand;
 import com.epam.shop.controller.command.impl.SignOutCommand;
+import com.epam.shop.controller.command.impl.TopUpMoneyCommand;
 import com.epam.shop.controller.command.impl.show_page.LookOrderPageCommand;
 import com.epam.shop.controller.command.impl.show_page.ShowDefaultPageCommand;
 import com.epam.shop.controller.command.impl.FindProductsByCategoryBrandCommand;
@@ -29,6 +30,7 @@ import com.epam.shop.controller.command.impl.show_page.ShowProductPageCommand;
 import com.epam.shop.controller.command.impl.show_page.ShowProfilePageCommand;
 import com.epam.shop.controller.command.impl.show_page.ShowSignInPageCommand;
 import com.epam.shop.controller.command.impl.show_page.ShowSignUpPageCommand;
+import com.epam.shop.controller.command.impl.show_page.ShowWalletCommand;
 import com.epam.shop.service.dto.model.UserRoleDto;
 
 import java.util.Arrays;
@@ -61,7 +63,10 @@ public enum Commands {
     CHANGE_ACCOUNT_COMMAND(ChangeAccountCommand.getInstance(),UserRoleDto.ADMIN,UserRoleDto.USER),
     PRODUCTS_IN_ORDER_COMMAND(LookOrderPageCommand.getInstance(),UserRoleDto.ADMIN,UserRoleDto.USER),
     DELETE_PRODUCT_FROM_ORDER_COMMAND(DeleteProductOrderCommand.getInstance(),UserRoleDto.ADMIN,UserRoleDto.USER),
-    DELETE_ORDER_COMMAND(DeleteOrderCommand.getInstance(),UserRoleDto.ADMIN,UserRoleDto.USER);
+    DELETE_ORDER_COMMAND(DeleteOrderCommand.getInstance(),UserRoleDto.ADMIN,UserRoleDto.USER),
+    SHOW_WALLET_COMMAND(ShowWalletCommand.getInstance(),UserRoleDto.ADMIN,UserRoleDto.USER),
+    TOP_UP_COMMAND(TopUpMoneyCommand.getInstance(),UserRoleDto.ADMIN,UserRoleDto.USER);
+
 
 
     private final Command command;

@@ -115,12 +115,12 @@ margin-top: 20px;
  <form  class="form-horizontal" action="${pageContext.request.contextPath}/shop?command=authorization_command" method="post">
  <div class="form-group">
  <label>${user}</label>
- <input class="form-control" type="login" name="login" id="login" placeholder="${user}" required pattern="^[\w]{5,12}$" title="${validationUser}">
+ <input class="form-control" type="login" name="login" id="login" placeholder="${user}"  title="${validationUser}">
   <p class="help-block"> ${validationUser}</p>
  </div>
  <div class="form-group">
  <label>${password}</label>
- <input class="form-control" type="password" name="password" id="password" placeholder="${password}" required pattern="^[\w]{5,12}$"  title="${validationPassword}">
+ <input class="form-control" type="password" name="password" id="password" placeholder="${password}"   title="${validationPassword}">
  <p class="help-block"> ${validationPassword}</p>
  </div>
   <c:choose>

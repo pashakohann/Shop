@@ -90,7 +90,7 @@ public class RegistrationCommand implements Command {
             userDto = FactoryService.getUserServiceInstance().create(userDto);
             accountDto.setUserId(userDto.getId());
             accountDto = FactoryService.getAccountServiceInstance().create(accountDto);
-            System.out.println(userDto + "1132222s");
+
         } catch (ServiceException e) {
             //log
             //don't forget!

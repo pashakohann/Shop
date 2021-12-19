@@ -33,13 +33,14 @@
        <li class="breadcrumb-item"><a href="${pageContext.request.contextPath}/shop?command=show_orders_command">All orders</a></li>
        <li class="breadcrumb-item"><a href="${pageContext.request.contextPath}/shop?command=show_products_command">All products</a></li>
        <li class="breadcrumb-item"><a href="${pageContext.request.contextPath}/shop?command=show_add_product_command">Add product</a></li>
-        <li class="breadcrumb-item active" aria-current="page">Your Profile</li>
-        <li class="breadcrumb-item"><a href="${pageContext.request.contextPath}/shop?command=show_wallet_command">Your wallet</a></li>
+       <li class="breadcrumb-item"><a href="${pageContext.request.contextPath}/shop?command=show_profile_command">Your Profile</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Your Wallet</li>
       </c:when>
       <c:when test="${sessionScope.currentUser.getRole() eq 'USER'}">
-      <li class="breadcrumb-item active" aria-current="page">Your Profile</li>
-      <li class="breadcrumb-item"><a href="${pageContext.request.contextPath}/shop?command=show_wallet_command">Your wallet</a></li>
+        <li class="breadcrumb-item"><a href="${pageContext.request.contextPath}/shop?command=show_profile_command">Your Profile</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Your Wallet</li>
       <li class="breadcrumb-item"><a href="${pageContext.request.contextPath}/shop?command=show_orders_command">All orders</a></li>
+
        </c:when>
        </c:choose>
       </ol>
@@ -50,66 +51,23 @@
            <tr>
              <th scope="col">#</th>
              <th scope="col">Current</th>
-             <th scope="col">Change</th>
+             <th scope="col">Top up</th>
 
            </tr>
          </thead>
          <tbody>
-          <form class="form-horizontal" action="${pageContext.request.contextPath}/shop?command=change_account_command" method="post">
+          <form class="form-horizontal" action="${pageContext.request.contextPath}/shop?command=top_up_command" method="post">
 
-           <tr>
-             <th scope="row">First Name</th>
-
-             <td>${account.getFirstName()}</td>
-             <td ><input type="information" id="firstName" name="firstName"></td>
-
-           </tr>
-           <tr>
-             <th scope="row">LastName</th>
-             <td>${account.getLastName()}</td>
-             <td ><input type="information" id="lastName" name="lastName"></td>
-
-           </tr>
-           <tr>
-             <th scope="row">Date of Birth</th>
-             <td>${account.getDateOfBirth()}</td>
-             <td ><input type="information" id="dateOfBirth" name="dateOfBirth"></td>
-
-           </tr>
-           <tr>
-            <th scope="row">Mobile Phone</th>
-            <td>${account.getTelephoneNumber()}</td>
-             <td ><input type="information" id="phone" name="phone"></td>
-
-          </tr>
           <tr>
-            <th scope="row">Email</th>
-            <td>${account.getEmail()}</td>
-             <td ><input type="informationid=" id="email" name="email"></td>
-
-          </tr>
-          <tr>
-            <th scope="row">City</th>
-            <td>${account.getCity()}</td>
-             <td ><input type="information" id="city" name="city"></td>
-
-          </tr>
-          <tr>
-            <th scope="row">Street</th>
-            <td>${account.getStreet()}</td>
-             <td ><input type="information" id="street" name="street"></td>
-
-          </tr>
-          <tr>
-            <th scope="row">Flat</th>
-            <td>${account.getFlat()}</td>
-             <td ><input type="information" id="flat" name="flat"></td>
+            <th scope="row">Amount</th>
+            <td>${account.getAmount()}</td>
+            <td ><input type="information" id="amount" name="amount"></td>
 
           </tr>
 
           <tr>
          <td>
-          <button submit="button" class="button">Save changes</button>
+          <button submit="button" class="button">Top up</button>
 
         </td>
       </tr>

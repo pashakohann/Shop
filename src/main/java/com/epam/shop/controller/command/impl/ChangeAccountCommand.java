@@ -58,14 +58,14 @@ public class ChangeAccountCommand implements Command {
     @Override
     public ResponseContext execute(RequestContext requestContext) throws ServiceException {
         HttpSession httpSession = requestContext.getCurrentSession().get();
-        Validator validator = AccountValidatorImpl.getInstance();
-//             try {
-//
-//
-//             }catch (ServiceException e){
-//                 requestContext.setAttribute(ERROR_ATTRIBUTE,MESSAGE_ERROR_ATTRIBUTE+" : " + e.getMessage());
-//             }
-        BigDecimal bigDecimal = new BigDecimal(requestContext.getParameter(ACCOUNT_AMOUNT_ATTRIBUTE));
+      //  Validator validator = AccountValidatorImpl.getInstance();
+//        StringBuilder checkingProfileData = new StringBuilder().append(requestContext.getParameter(ACCOUNT_F_NAME_ATTRIBUTE)).
+//                append("%").append(requestContext.getParameter(ACCOUNT_L_NAME_ATTRIBUTE)).append("%").
+//                ;
+            try {
+
+
+
         AccountDto accountDto = (AccountDto) httpSession.getAttribute(ACCOUNT_OBJECT_ATTRIBUTE);
         accountDto.setFirstName(requestContext.getParameter(ACCOUNT_F_NAME_ATTRIBUTE));
         accountDto.setLastName(requestContext.getParameter(ACCOUNT_L_NAME_ATTRIBUTE));
@@ -75,10 +75,8 @@ public class ChangeAccountCommand implements Command {
         accountDto.setCity(requestContext.getParameter(ACCOUNT_CITY_ATTRIBUTE));
         accountDto.setStreet(requestContext.getParameter(ACCOUNT_STREET_ATTRIBUTE));
         accountDto.setFlat(Integer.valueOf(requestContext.getParameter(ACCOUNT_FLAT_ATTRIBUTE)));
-
-        accountDto.setAmount(bigDecimal);
-        try {
-            FactoryService.getAccountServiceInstance().update(accountDto);
+        accountDto =   FactoryService.getAccountServiceInstance().update(accountDto);
+        httpSession.setAttribute(ACCOUNT_OBJECT_ATTRIBUTE,accountDto);
         } catch (ServiceException e) {
             //log
             requestContext.setAttribute(ERROR_ATTRIBUTE, MESSAGE_ERROR_ATTRIBUTE + ": " + e.getMessage());
