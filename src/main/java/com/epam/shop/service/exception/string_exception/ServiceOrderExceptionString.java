@@ -1,11 +1,6 @@
 package com.epam.shop.service.exception.string_exception;
 
-import com.epam.shop.service.dto.model.OrderDto;
-import com.epam.shop.service.dto.model.ProductDto;
-import com.epam.shop.service.exception.ServiceException;
 
-import java.rmi.ServerException;
-import java.util.List;
 
 public interface ServiceOrderExceptionString {
     String NUMBER_OF_PRODUCTS_IN_ORDER_EXCEPTION = "The order must contain products";
@@ -18,6 +13,7 @@ public interface ServiceOrderExceptionString {
     String FIND_ALL_ORDERS_EXCEPTION = "Failed to find orders";
     String FIND_ALL_USER_ORDERS_EXCEPTION = "Failed to find orders";
     String ACCOUNT_AMOUNT_EXCEPTION = "You don't have enough money in your account";
+    String FILL_PROFILE_EXCEPTION = "You need to fill profile before order";
 
 
 }

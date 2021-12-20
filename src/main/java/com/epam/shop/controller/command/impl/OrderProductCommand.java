@@ -8,8 +8,13 @@ import com.epam.shop.service.dto.model.AccountDto;
 import com.epam.shop.service.dto.model.OrderDto;
 import com.epam.shop.service.dto.model.ProductDto;
 import com.epam.shop.service.exception.ServiceException;
+import com.epam.shop.service.exception.string_exception.ServiceAccountExceptionString;
+import com.epam.shop.service.exception.string_exception.ServiceOrderExceptionString;
 import com.epam.shop.service.factory.FactoryService;
 import com.epam.shop.service.impl.BasketServiceImpl;
+import com.epam.shop.service.validation.api.ValidatorController;
+import com.epam.shop.service.validation.impl.OrderValidatorController;
+import com.epam.shop.service.validation.validation_string.AccountValidationString;
 
 import javax.servlet.http.HttpSession;
 import java.rmi.ServerException;
@@ -66,6 +71,7 @@ public class OrderProductCommand implements Command {
     @Override
     public ResponseContext execute(RequestContext requestContext) throws ServiceException {
         HttpSession httpSession = requestContext.getCurrentSession().get();
+        ValidatorController validatorForDefault = OrderValidatorController.getInstance();
         BasketService<ProductDto, BasketServiceImpl> basketService;
         boolean isError = false;
 
@@ -73,9 +79,11 @@ public class OrderProductCommand implements Command {
             httpSession = requestContext.getCurrentSession().get();
         }
         try {
+            AccountDto accountDto = ((AccountDto)httpSession.getAttribute(ACCOUNT_OBJECT_PARAM));
+            validatorForDefault.validate(accountDto.getFirstName());
             basketService = ((BasketServiceImpl) (httpSession.getAttribute(BASKET_USER_OBJECT)));
             OrderDto orderDto = new OrderDto();
-            AccountDto accountDto = ((AccountDto)httpSession.getAttribute(ACCOUNT_OBJECT_PARAM));
+
             orderDto.setOrderDate(LocalDateTime.now());
 
             orderDto.setUserId(accountDto.getId());
@@ -101,4 +109,5 @@ public class OrderProductCommand implements Command {
 
         return SHOW_PERSONAL_ACC;
     }
+
 }

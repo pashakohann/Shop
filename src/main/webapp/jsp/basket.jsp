@@ -17,7 +17,12 @@
  <div class="container">
 
    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+    <c:choose>
 
+       <c:when test="${not empty error}">
+             <button class="btn btn-primary me-md-2" type="button" ><a href="${pageContext.request.contextPath}/shop?command=show_profile_command" style="color:white;">Go to profile</a> </button>
+       </c:when>
+        </c:choose>
       <button class="btn btn-primary me-md-2" type="button" ><a href="${pageContext.request.contextPath}/shop?command=order_products_command" style="color:white;">Order</a> </button>
       <button class="btn btn-primary me-md-2" type="button" ><a href="${pageContext.request.contextPath}/shop?command=clear_basket_command" style="color:white;">Clean Basket</a> </button>
       <button class="btn btn-primary me-md-2" type="button" ><a href="${pageContext.request.contextPath}/shop?command=back_action_command" style="color:white;">Back Menu</a> </button>
@@ -28,7 +33,6 @@
       <ol class="breadcrumb">
 
         <li class="breadcrumb-item active" aria-current="page">Your basket</li>
-
 
       </ol>
     </nav>

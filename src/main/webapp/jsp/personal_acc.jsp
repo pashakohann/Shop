@@ -33,7 +33,7 @@
 <fmt:message bundle="${loc}" key = "account" var="account" />
 <fmt:message bundle="${loc}" key = "signOut" var="signOut" />
 <fmt:message bundle="${loc}" key = "adminPanel" var="adminPanel" />
-
+<fmt:message bundle="${loc}" key = "allCpu" var="allCpu" />
   <head>
     <!-- Обязательные метатеги -->
     <meta charset="utf-8">

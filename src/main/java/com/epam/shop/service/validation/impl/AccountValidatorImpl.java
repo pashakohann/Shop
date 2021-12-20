@@ -12,7 +12,6 @@ import java.time.LocalDate;
 public class AccountValidatorImpl implements Validator<AccountDto, Integer> {
     private static Validator<AccountDto, Integer> instance;
 
-
     private AccountValidatorImpl() {
     }
 
@@ -119,6 +118,10 @@ public class AccountValidatorImpl implements Validator<AccountDto, Integer> {
         if (!amount.matches(AccountValidationString.ACCOUNT_AMOUNT_REGEX)) {
             throw new ServiceException(ServiceAccountExceptionString.ACCOUNT_AMOUNT_EXCEPTION);
         }
+
+    }
+
+    private void checkDefaultProfile(AccountDto accountDto){
 
     }
 
