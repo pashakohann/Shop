@@ -58,7 +58,8 @@ public class ProductValidatorImpl implements Validator<ProductDto, Integer> {
     }
 
     private void checkFormatPhoto(String photoLink) throws ServiceException {
-        System.out.println(photoLink);
+        System.out.println(photoLink.matches(ProductValidationString.LINK_REGEX) + " kak tak");
+
         if(!photoLink.matches(ProductValidationString.LINK_REGEX)){
             throw new ServiceException(ServiceProductExceptionString.FORMAT_PHOTO_EXCEPTION);
         }

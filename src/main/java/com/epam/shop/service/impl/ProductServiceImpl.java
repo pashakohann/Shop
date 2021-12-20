@@ -2,7 +2,6 @@ package com.epam.shop.service.impl;
 
 
 import com.epam.shop.dao.exception.DaoException;
-import com.epam.shop.dao.exception.string_exception.DaoProductExceptionString;
 import com.epam.shop.dao.factory.FactoryDao;
 import com.epam.shop.dao.model.Product;
 import com.epam.shop.service.api.ProductService;
@@ -42,8 +41,9 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public ProductDto create(ProductDto model) throws ServiceException {
         ProductDto productDto;
-        validatorInstance.validate(model);
+
         try {
+            validatorInstance.validate(model);
             productDto = converter.convert(FactoryDao.getProductImpl().save(converter.convert(model)));
         } catch (DaoException e) {
             logger.error(ServiceProductExceptionString.SAVE_PRODUCT_EXCEPTION, e);
