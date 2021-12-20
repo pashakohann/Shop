@@ -13,6 +13,7 @@ public interface ServiceProductExceptionString {
     String PRODUCT_NAME_SYMBOLS_EXCEPTION = "product description must be more than 5 characters";
     String FILL_ALL_FIELDS_EXCEPTION = "You should fill all fields";
     String DELETE_PRODUCT_FROM_USER = "You cannot delete ordered products, you should delete them from the user's orders";
-
+    String SYMBOLS_IN_LINK_EXCEPTION = "The number of characters in the link must not exceed 200.";
+    String FORMAT_PHOTO_EXCEPTION = "For displaying the photo look for the link with .jpeg";
 
 }

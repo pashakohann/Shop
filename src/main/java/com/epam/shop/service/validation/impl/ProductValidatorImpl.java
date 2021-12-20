@@ -27,6 +27,8 @@ public class ProductValidatorImpl implements Validator<ProductDto, Integer> {
         checkFillFields(dto);
         checkCostProduct(dto.getCost().toString());
         checkProductNameSymbols(dto.getName().length());
+        checkSymbolsInLink(dto.getPhotoLink());
+        checkFormatPhoto(dto.getPhotoLink());
 
     }
 
@@ -46,6 +48,19 @@ public class ProductValidatorImpl implements Validator<ProductDto, Integer> {
         if (productDto.getBrandId() == null || productDto.getCategoryId() == null
                 || productDto.getCost() == null || productDto.getName() == null) {
             throw new ServiceException(ServiceProductExceptionString.FILL_ALL_FIELDS_EXCEPTION);
+        }
+    }
+
+    private void checkSymbolsInLink(String photoLink) throws ServiceException {
+        if (photoLink.length() > ProductValidationString.SYMBOLS_IN_LINK){
+            throw new ServiceException(ServiceProductExceptionString.SYMBOLS_IN_LINK_EXCEPTION);
+        }
+    }
+
+    private void checkFormatPhoto(String photoLink) throws ServiceException {
+        System.out.println(photoLink);
+        if(!photoLink.matches(ProductValidationString.LINK_REGEX)){
+            throw new ServiceException(ServiceProductExceptionString.FORMAT_PHOTO_EXCEPTION);
         }
     }
 
