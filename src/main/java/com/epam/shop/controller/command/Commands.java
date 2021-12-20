@@ -8,8 +8,10 @@ import com.epam.shop.controller.command.impl.AuthorizationCommand;
 import com.epam.shop.controller.command.impl.ChangeAccountCommand;
 import com.epam.shop.controller.command.impl.ClearBasketCommand;
 import com.epam.shop.controller.command.impl.DeleteOrderCommand;
+import com.epam.shop.controller.command.impl.DeleteProductCommand;
 import com.epam.shop.controller.command.impl.DeleteProductFromBasketCommand;
 import com.epam.shop.controller.command.impl.DeleteProductOrderCommand;
+import com.epam.shop.controller.command.impl.DeleteUserCommand;
 import com.epam.shop.controller.command.impl.LanguageCommand;
 import com.epam.shop.controller.command.impl.LookBasketCommand;
 import com.epam.shop.controller.command.impl.OrderProductCommand;
@@ -57,16 +59,17 @@ public enum Commands {
     SHOW_ACCOUNTS_COMMAND(ShowPageAccountCommand.getInstance(), UserRoleDto.ADMIN),
     SHOW_ORDERS_COMMAND(ShowPageOrderCommand.getInstance(), UserRoleDto.ADMIN, UserRoleDto.USER),
     SHOW_PRODUCTS_COMMAND(ShowProductPageCommand.getInstance(), UserRoleDto.ADMIN),
-    SHOW_ADD_PRODUCT_COMMAND(ShowPageAddProductCommand.getInstance(),UserRoleDto.ADMIN),
-    ADD_PRODUCT_COMMAND(AddProductCommand.getInstance(),UserRoleDto.ADMIN),
-    SHOW_PROFILE_COMMAND(ShowProfilePageCommand.getInstance(),UserRoleDto.ADMIN,UserRoleDto.USER),
-    CHANGE_ACCOUNT_COMMAND(ChangeAccountCommand.getInstance(),UserRoleDto.ADMIN,UserRoleDto.USER),
-    PRODUCTS_IN_ORDER_COMMAND(LookOrderPageCommand.getInstance(),UserRoleDto.ADMIN,UserRoleDto.USER),
-    DELETE_PRODUCT_FROM_ORDER_COMMAND(DeleteProductOrderCommand.getInstance(),UserRoleDto.ADMIN,UserRoleDto.USER),
-    DELETE_ORDER_COMMAND(DeleteOrderCommand.getInstance(),UserRoleDto.ADMIN,UserRoleDto.USER),
-    SHOW_WALLET_COMMAND(ShowWalletCommand.getInstance(),UserRoleDto.ADMIN,UserRoleDto.USER),
-    TOP_UP_COMMAND(TopUpMoneyCommand.getInstance(),UserRoleDto.ADMIN,UserRoleDto.USER);
-
+    SHOW_ADD_PRODUCT_COMMAND(ShowPageAddProductCommand.getInstance(), UserRoleDto.ADMIN),
+    ADD_PRODUCT_COMMAND(AddProductCommand.getInstance(), UserRoleDto.ADMIN),
+    SHOW_PROFILE_COMMAND(ShowProfilePageCommand.getInstance(), UserRoleDto.ADMIN, UserRoleDto.USER),
+    CHANGE_ACCOUNT_COMMAND(ChangeAccountCommand.getInstance(), UserRoleDto.ADMIN, UserRoleDto.USER),
+    PRODUCTS_IN_ORDER_COMMAND(LookOrderPageCommand.getInstance(), UserRoleDto.ADMIN, UserRoleDto.USER),
+    DELETE_PRODUCT_FROM_ORDER_COMMAND(DeleteProductOrderCommand.getInstance(), UserRoleDto.ADMIN, UserRoleDto.USER),
+    DELETE_ORDER_COMMAND(DeleteOrderCommand.getInstance(), UserRoleDto.ADMIN, UserRoleDto.USER),
+    SHOW_WALLET_COMMAND(ShowWalletCommand.getInstance(), UserRoleDto.ADMIN, UserRoleDto.USER),
+    TOP_UP_COMMAND(TopUpMoneyCommand.getInstance(), UserRoleDto.ADMIN, UserRoleDto.USER),
+    DELETE_PRODUCT_COMMAND(DeleteProductCommand.getInstance(), UserRoleDto.ADMIN),
+    DELETE_USER_COMMAND(DeleteUserCommand.getInstance(),UserRoleDto.ADMIN);
 
 
     private final Command command;

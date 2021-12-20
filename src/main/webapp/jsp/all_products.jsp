@@ -32,6 +32,15 @@
     </nav>
    </header>
    <table class="table table-dark table-striped" >
+   <c:choose>
+              <c:when test="${not empty error}">
+              <p style="color: red;">${error}</p>
+              </c:when>
+
+               <c:when test="${not empty message}">
+                      <p style="color: red;">${message}</p>
+               </c:when>
+                </c:choose>
       <table class="table">
          <thead>
            <tr>
@@ -53,7 +62,7 @@
              <td >${elements.getCategoryId()}</td>
              <td >${elements.getBrandId()}</td>
              <td >${elements.getPhotoLink()}</td>
-               <td><button class="button" type="button" style="color:white;background-color: rebeccapurple;">Delete</td>
+               <td><button class="button" type="button" style="color:white;background-color: rebeccapurple;"><a href="${pageContext.request.contextPath}/shop?command=delete_product_command&productId=${elements.getId()}">Delete</a></td>
            </tr>
 
   </c:forEach>

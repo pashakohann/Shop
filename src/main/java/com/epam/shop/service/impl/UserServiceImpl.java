@@ -93,6 +93,17 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public void deleteUserById(int userId) throws ServiceException {
+
+        try {
+            FactoryDao.getUserImpl().delete(userId);
+        } catch (DaoException e) {
+            logger.error(ServiceUserExceptionString.DELETE_USER_EXCEPTION, e);
+            throw new ServiceException(ServiceUserExceptionString.DELETE_USER_EXCEPTION, e);
+        }
+    }
+
+    @Override
     public UserDto getById(Integer id) throws ServiceException {
         UserDto userDao;
         try {

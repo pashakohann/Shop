@@ -50,7 +50,7 @@
            <tr>
             <th scope="row">${element.getId()}</th>
           <td>${element.getAccount()}</td>
-                <td><button class="button" type="button" <a href="${pageContext.request.contextPath}/shop?command=delete_user_command&userId=${element.getId()}"  style="color:white;background-color: rebeccapurple;">Delete</a></td>
+                <td><button class="button" type="button" ><a href="${pageContext.request.contextPath}/shop?command=delete_user_command&userId=${element.getId()}"  style="color:white;background-color: rebeccapurple;">Delete</a></td>
                        </tr>
                      </c:forEach>
 

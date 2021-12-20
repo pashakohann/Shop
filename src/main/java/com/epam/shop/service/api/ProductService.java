@@ -14,5 +14,7 @@ public interface ProductService extends Service<ProductDto, Integer> {
 
     List<ProductDto> findProductsByCategoryAndBrand(Integer category, Integer brand) throws ServiceException;
 
+    void deleteById(int productId) throws ServiceException;
+
 
 }

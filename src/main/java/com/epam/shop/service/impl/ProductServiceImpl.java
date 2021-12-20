@@ -1,8 +1,8 @@
 package com.epam.shop.service.impl;
 
 
-
 import com.epam.shop.dao.exception.DaoException;
+import com.epam.shop.dao.exception.string_exception.DaoProductExceptionString;
 import com.epam.shop.dao.factory.FactoryDao;
 import com.epam.shop.dao.model.Product;
 import com.epam.shop.service.api.ProductService;
@@ -19,7 +19,6 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,8 +27,6 @@ public class ProductServiceImpl implements ProductService {
     private final Validator<ProductDto, Integer> validatorInstance = ProductValidatorImpl.getInstance();
     private static final Logger logger = LogManager.getLogger(ProductServiceImpl.class);
     private final Converter<ProductDto, Product, Integer> converter = ProductConverterImpl.getConverterInstance();
-
-
 
 
     private ProductServiceImpl() {
@@ -83,8 +80,19 @@ public class ProductServiceImpl implements ProductService {
             }
             FactoryDao.getProductImpl().delete(model.getId());
         } catch (DaoException e) {
-            logger.error(ServiceProductExceptionString.DELETE_PRODUCT_EXCEPTION, e);
-            throw new ServiceException(ServiceProductExceptionString.DELETE_PRODUCT_EXCEPTION, e);
+            logger.error(ServiceProductExceptionString.SQL_DELETE_PRODUCT_EXCEPTION, e);
+            throw new ServiceException(ServiceProductExceptionString.SQL_DELETE_PRODUCT_EXCEPTION, e);
+        }
+    }
+
+    @Override
+    public void deleteById(int productId) throws ServiceException {
+        try {
+
+            FactoryDao.getProductImpl().delete(productId);
+        } catch (DaoException e) {
+            logger.error(ServiceProductExceptionString.SQL_DELETE_PRODUCT_EXCEPTION, e);
+            throw new ServiceException(ServiceProductExceptionString.SQL_DELETE_PRODUCT_EXCEPTION, e);
         }
     }
 
