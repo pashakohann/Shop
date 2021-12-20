@@ -7,7 +7,9 @@ import com.epam.shop.service.dto.model.ProductDto;
 import com.epam.shop.service.exception.ServiceException;
 import com.epam.shop.service.factory.FactoryService;
 
+import javax.servlet.http.HttpSession;
 import java.math.BigDecimal;
+import java.util.List;
 
 public class AddProductCommand implements Command {
     public static Command command;
@@ -17,14 +19,17 @@ public class AddProductCommand implements Command {
     private static final String PRODUCT_CATEGORY_ATTRIBUTE = "category";
     private static final String PRODUCT_BRAND_ATTRIBUTE = "brand";
     private static final String PRODUCT_PHOTO_LINK_ATTRIBUTE = "photoLink";
+    private static final String ERROR_PARAM = "error";
+    private static final String MESSAGE_PARAM = "message: ";
+    private static final String PRODUCTS_LIST = "productsList";
 
 
-    private AddProductCommand () {
+    private AddProductCommand() {
     }
 
     public static Command getInstance() {
         if (command == null) {
-            command = new AddProductCommand ();
+            command = new AddProductCommand();
         }
         return command;
     }
@@ -44,18 +49,26 @@ public class AddProductCommand implements Command {
 
     @Override
     public ResponseContext execute(RequestContext requestContext) throws ServiceException {
+        HttpSession httpSession = requestContext.getCurrentSession().get();
         BigDecimal bigDecimal = new BigDecimal(requestContext.getParameter(PRODUCT_COST_ATTRIBUTE));
         ProductDto productDto = new ProductDto();
-        productDto.setName(requestContext.getParameter(PRODUCT_NAME_ATTRIBUTE));
-        productDto.setCost(bigDecimal);
-        productDto.setCategoryId(Integer.valueOf(requestContext.getParameter(PRODUCT_CATEGORY_ATTRIBUTE)));
-        productDto.setBrandId(Integer.valueOf(requestContext.getParameter(PRODUCT_BRAND_ATTRIBUTE)));
-        productDto.setPhotoLink(requestContext.getParameter(PRODUCT_PHOTO_LINK_ATTRIBUTE));
-        System.out.println(productDto);
-        System.out.println("Alalala");
-        FactoryService.getProductServiceInstance().create(productDto);
-        System.out.println(productDto);
-        System.out.println("Alalala");
+
+        try {
+            List<ProductDto> productsList;
+            productDto.setName(requestContext.getParameter(PRODUCT_NAME_ATTRIBUTE));
+            productDto.setCost(bigDecimal);
+            productDto.setCategoryId(Integer.valueOf(requestContext.getParameter(PRODUCT_CATEGORY_ATTRIBUTE)));
+            productDto.setBrandId(Integer.valueOf(requestContext.getParameter(PRODUCT_BRAND_ATTRIBUTE)));
+            productDto.setPhotoLink(requestContext.getParameter(PRODUCT_PHOTO_LINK_ATTRIBUTE));
+
+            FactoryService.getProductServiceInstance().create(productDto);
+            productsList = FactoryService.getProductServiceInstance().getAll();
+            httpSession.setAttribute(PRODUCTS_LIST, productsList);
+        } catch (ServiceException e) {
+            requestContext.setAttribute(ERROR_PARAM, MESSAGE_PARAM + e.getMessage());
+        }
+
+
         return SHOW_ADD_PRODUCT_PAGE;
     }
 }
