@@ -55,7 +55,7 @@
            </tr>
          </thead>
          <tbody>
-          <form class="form-horizontal" action="${pageContext.request.contextPath}/shop?command=change_account_command" method="post">
+          <form class="form-horizontal" action="${pageContext.request.contextPath}/shop?command=change_account_command" accept-charset="UTF-8" method="post">
 
            <tr>
              <th scope="row">First Name</th>

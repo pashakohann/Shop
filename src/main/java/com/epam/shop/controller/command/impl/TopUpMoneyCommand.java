@@ -5,11 +5,12 @@ import com.epam.shop.controller.context.api.RequestContext;
 import com.epam.shop.controller.context.api.ResponseContext;
 import com.epam.shop.service.dto.model.AccountDto;
 import com.epam.shop.service.exception.ServiceException;
+import com.epam.shop.service.exception.string_exception.ServiceAccountExceptionString;
 import com.epam.shop.service.factory.FactoryService;
-
+import com.epam.shop.service.validation.validation_string.AccountValidationString;
 import javax.servlet.http.HttpSession;
 import java.math.BigDecimal;
-import java.time.LocalDate;
+
 
 public class TopUpMoneyCommand implements Command {
     public static Command command;
@@ -50,7 +51,7 @@ public class TopUpMoneyCommand implements Command {
         HttpSession httpSession = requestContext.getCurrentSession().get();
 
         try {
-
+            validateAmount(requestContext.getParameter(ACCOUNT_AMOUNT_ATTRIBUTE));
             BigDecimal bigDecimal = new BigDecimal(requestContext.getParameter(ACCOUNT_AMOUNT_ATTRIBUTE));
             AccountDto accountDto = (AccountDto) httpSession.getAttribute(ACCOUNT_OBJECT_ATTRIBUTE);
             accountDto.setAmount(accountDto.getAmount().add(bigDecimal));
@@ -62,5 +63,11 @@ public class TopUpMoneyCommand implements Command {
         }
 
         return SHOW_WALLET_PAGE;
+    }
+
+    private void validateAmount(String amount) throws ServiceException {
+        if (!amount.matches(AccountValidationString.ACCOUNT_AMOUNT_REGEX)) {
+            throw new ServiceException(ServiceAccountExceptionString.ACCOUNT_AMOUNT_EXCEPTION);
+        }
     }
 }

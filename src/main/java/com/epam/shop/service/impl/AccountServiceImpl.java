@@ -59,18 +59,16 @@ public class AccountServiceImpl implements AccountService {
     }
 
     @Override
-    public AccountDto update(AccountDto model) throws ServiceException {
-        validatorInstance.validate(model);
+    public AccountDto update(AccountDto accountDto) throws ServiceException {
+
         try {
-            FactoryDao.getAccountImpl().update(converter.convert(model));
+            FactoryDao.getAccountImpl().update(converter.convert(accountDto));
         } catch (DaoException e) {
             logger.error(ServiceAccountExceptionString.UPDATE_ACCOUNT, e);
             throw new ServiceException(ServiceAccountExceptionString.UPDATE_ACCOUNT, e);
-        } catch (NullPointerException e) {
-            logger.error(ServiceAccountExceptionString.FILL_FIELDS_EXCEPTION, e);
-            throw new ServiceException(ServiceAccountExceptionString.FILL_FIELDS_EXCEPTION, e);
         }
-        return model;
+
+        return accountDto;
     }
 
     @Override
@@ -86,7 +84,6 @@ public class AccountServiceImpl implements AccountService {
     @Override
     public AccountDto getById(Integer id) throws ServiceException {
         AccountDto accountDto;
-        System.out.println("Prowli SERVICE" + id);
         try {
             accountDto = converter.convert(FactoryDao.getAccountImpl().findById(id));
         } catch (DaoException e) {

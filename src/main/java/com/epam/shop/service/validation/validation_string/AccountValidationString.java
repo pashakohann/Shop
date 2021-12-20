@@ -8,7 +8,7 @@ public interface AccountValidationString {
     String CITY_NAME_REGEX = "^(([A-Z][a-z]{1,30})|([А-Я][а-я]{3,30}))$";
     String STREET_NAME_REGEX = "^(([A-Z][a-z]{1,40})|([А-Я][а-я]{2,50}))$";
     String FLAT_OR_HOUSE_NUMBER_REGEX = "^[1-9]([0-9]{0,2})$";
-    String ACCOUNT_AMOUNT_REGEX = "^[1-9]([0-9]{0,5})[.][0-9]{1}$";
+    String ACCOUNT_AMOUNT_REGEX = "^(([1-9]([0-9]{0,5})[.][0-9]{1})|([1-9]([0-9]{0,5})))$";
     String DATE_OF_BIRTH_REGEX = "^(19|20)\\d\\d-((0[1-9]|1[012])-(0[1-9]|[12]\\d)|(0[13-9]|1[012])-30|(0[13578]|1[02])-31)$";
     Integer AGE = 18;
 
