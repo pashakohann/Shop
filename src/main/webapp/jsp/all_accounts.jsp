@@ -47,6 +47,7 @@
              <th scope="col">Flat</th>
              <th scope="col">Amount</th>
              <th scope="col">Action</th>
+             <th scope="col">Action</th>
 
            </tr>
          </thead>
@@ -64,6 +65,7 @@
              <td>${element.getStreet()}</td>
              <td>${element.getFlat()}</td>
              <td>${element.getAmount()}</td>
+             <td><button class="button" type="button" ><a href="${pageContext.request.contextPath}/shop?command=look_user_command&userIdView=${element.getUserId()}"  style="color:white;background-color: rebeccapurple;">Whose</a></td>
                <td><button class="button" type="button" style="color:white;background-color: red;" >Deletion prohibited</td>
            </tr>
 

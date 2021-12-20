@@ -18,6 +18,9 @@ import com.epam.shop.controller.command.impl.OrderProductCommand;
 import com.epam.shop.controller.command.impl.ReturnBackActionCommand;
 import com.epam.shop.controller.command.impl.SignOutCommand;
 import com.epam.shop.controller.command.impl.TopUpMoneyCommand;
+import com.epam.shop.controller.command.impl.show_page.LookUserCommand;
+import com.epam.shop.controller.command.impl.show_page.WhoseOrderCommand;
+import com.epam.shop.controller.command.impl.show_page.WhoseUserCommand;
 import com.epam.shop.controller.command.impl.show_page.LookOrderPageCommand;
 import com.epam.shop.controller.command.impl.show_page.ShowDefaultPageCommand;
 import com.epam.shop.controller.command.impl.FindProductsByCategoryBrandCommand;
@@ -69,8 +72,10 @@ public enum Commands {
     SHOW_WALLET_COMMAND(ShowWalletCommand.getInstance(), UserRoleDto.ADMIN, UserRoleDto.USER),
     TOP_UP_COMMAND(TopUpMoneyCommand.getInstance(), UserRoleDto.ADMIN, UserRoleDto.USER),
     DELETE_PRODUCT_COMMAND(DeleteProductCommand.getInstance(), UserRoleDto.ADMIN),
-    DELETE_USER_COMMAND(DeleteUserCommand.getInstance(),UserRoleDto.ADMIN);
-
+    DELETE_USER_COMMAND(DeleteUserCommand.getInstance(),UserRoleDto.ADMIN),
+    LOOK_ACCOUNT_ORDER_COMMAND(WhoseOrderCommand.getInstance(),UserRoleDto.ADMIN),
+    LOOK_ACCOUNT_USER_COMMAND(WhoseUserCommand.getInstance(),UserRoleDto.ADMIN),
+    LOOK_USER_COMMAND(LookUserCommand.getInstance(),UserRoleDto.ADMIN);
 
     private final Command command;
     private final List<UserRoleDto> allowedRoles;

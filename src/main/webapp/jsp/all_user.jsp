@@ -40,7 +40,7 @@
              <th scope="col">ID</th>
              <th scope="col">Login</th>
 
-
+            <th scope="col">Action</th>
              <th scope="col">Action</th>
            </tr>
          </thead>
@@ -50,7 +50,9 @@
            <tr>
             <th scope="row">${element.getId()}</th>
           <td>${element.getAccount()}</td>
-                <td><button class="button" type="button" ><a href="${pageContext.request.contextPath}/shop?command=delete_user_command&userId=${element.getId()}"  style="color:white;background-color: rebeccapurple;">Delete</a></td>
+
+                <td><button class="button" type="button" ><a href="${pageContext.request.contextPath}/shop?command=look_account_user_command&accountByUserId=${element.getId()}"  style="color:white;background-color: rebeccapurple;">Look Profile</a></td>
+               <td><button class="button" type="button" ><a href="${pageContext.request.contextPath}/shop?command=delete_user_command&userId=${element.getId()}"  style="color:white;background-color: rebeccapurple;">Delete</a></td>
                        </tr>
                      </c:forEach>
 

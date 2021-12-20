@@ -73,7 +73,7 @@
              <th scope="row">${elements.getId()}</th>
              <td>${elements.getOrderDate()}</td>
              <td >${elements.getOrderCost()}</td>
-             <td><button class="button" type="button" style="color:white;background-color: green;">Who</td>
+             <td><button class="button" type="button" style="color:white;background-color: orange;"><a href="${pageContext.request.contextPath}/shop?command=look_account_order_command&accountId=${elements.getUserId()}">Who</a></td>
              <td><button class="button" type="button" style="color:white;background-color: rebeccapurple;"><a href="${pageContext.request.contextPath}/shop?command=products_in_order_command&orderId=${elements.getId()}"> Look</a></td>
                <td><button class="button" type="button" style="color:white;background-color: red;"><a href="${pageContext.request.contextPath}/shop?command=delete_order_command&orderId=${elements.getId()}&orderCost=${elements.getOrderCost()}">Cancel</a></td>
         </c:when>
