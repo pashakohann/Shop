@@ -64,7 +64,7 @@
              <td>${element.getStreet()}</td>
              <td>${element.getFlat()}</td>
              <td>${element.getAmount()}</td>
-               <td><button class="button" type="button">Delete</td>
+               <td><button class="button" type="button" style="color:white;background-color: red;" >Deletion prohibited</td>
            </tr>
 
     </c:forEach>

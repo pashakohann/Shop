@@ -76,7 +76,7 @@
 
           <tr>
          <td>
-          <button submit="button" class="button">Top up</button>
+          <button submit="button" class="button" style="color:white;background-color: rebeccapurple;">Top up</button>
 
         </td>
       </tr>

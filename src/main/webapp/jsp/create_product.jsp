@@ -91,7 +91,7 @@
              </td>
              <td ><input class="form-control" type="name" name="photoLink" id="photoLink" placeholder="your link"   title="${validationPassword}">
               <p class="help-block"> </p></td>
-               <td> <button submit="button" class="button">Add</button></td>
+               <td> <button submit="button" class="button" style="color:white;background-color: rebeccapurple;">Add</button></td>
            </tr>
 
          </tbody>

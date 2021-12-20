@@ -53,7 +53,7 @@
              <td >${elements.getCategoryId()}</td>
              <td >${elements.getBrandId()}</td>
              <td >${elements.getPhotoLink()}</td>
-               <td><button class="button" type="button">Delete</td>
+               <td><button class="button" type="button" style="color:white;background-color: rebeccapurple;">Delete</td>
            </tr>
 
   </c:forEach>
