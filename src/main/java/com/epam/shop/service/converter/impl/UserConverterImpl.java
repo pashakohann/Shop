@@ -2,10 +2,8 @@ package com.epam.shop.service.converter.impl;
 
 
 import com.epam.shop.dao.model.User;
-import com.epam.shop.dao.model.UserRole;
 import com.epam.shop.service.converter.api.Converter;
 import com.epam.shop.service.dto.model.UserDto;
-import com.epam.shop.service.dto.model.UserRoleDto;
 
 public class UserConverterImpl implements Converter<UserDto, User, Integer> {
     private static Converter<UserDto, User, Integer> converterInstance;
@@ -27,7 +25,7 @@ public class UserConverterImpl implements Converter<UserDto, User, Integer> {
         UserDto userDto = new UserDto();
         userDto.setId(model.getId());
         userDto.setRegistrationDate(model.getRegistrationDate());
-        userDto.setRole(UserRoleDto.getById(model.getRole().getId()));
+        userDto.setRole(model.getRole());
         userDto.setAccount(model.getAccount());
         userDto.setPassword(model.getPassword());
         return userDto;
@@ -38,7 +36,7 @@ public class UserConverterImpl implements Converter<UserDto, User, Integer> {
         User user = new User();
         user.setId(modelDto.getId());
         user.setRegistrationDate(modelDto.getRegistrationDate());
-        user.setRole(UserRole.getById(modelDto.getRole().getId()));
+        user.setRole(modelDto.getRole());
         user.setAccount(modelDto.getAccount());
         user.setPassword(modelDto.getPassword());
         return user;

@@ -10,7 +10,7 @@
 <body>
 
 
-<jsp:forward page="/shop" />
+<c:redirect url ="/shop?command=default"/>
 
 
 </body>

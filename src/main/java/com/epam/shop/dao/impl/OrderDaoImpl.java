@@ -13,7 +13,6 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -69,9 +68,13 @@ public class OrderDaoImpl implements OrderDao {
 
     @Override
     public Order update(Order order) throws DaoException {
-        System.out.println(order.getMapProducts() + "Hello from dao");
-        deleteAllProductInOrder(order.getId());
-        addProductsInOrder(order);
+        try {
+            deleteAllProductInOrder(order.getId());
+            addProductsInOrder(order);
+        } catch (DaoException e) {
+            logger.error(DaoOrderExceptionString.SQL_UPDATE_PRODUCT_IN_ORDER_EXCEPTION);
+            throw new DaoException(DaoOrderExceptionString.SQL_UPDATE_PRODUCT_IN_ORDER_EXCEPTION);
+        }
 
         return order;
     }
@@ -87,18 +90,6 @@ public class OrderDaoImpl implements OrderDao {
         } catch (SQLException e) {
             logger.error(DaoOrderExceptionString.SQL_DELETE_ORDER_EXCEPTION, e);
             throw new DaoException(DaoOrderExceptionString.SQL_DELETE_ORDER_EXCEPTION);
-        }
-    }
-
-    public void deleteProductInOrder(Integer productId) throws DaoException {
-        try (Connection connection = connectionPool.takeConnection();
-             PreparedStatement preparedStatement =
-                     connection.prepareStatement(OrderSql.SQL_DELETE_PRODUCT_IN_ORDER)) {
-            preparedStatement.setInt(1, productId);
-
-        } catch (SQLException e) {
-            logger.error(DaoOrderExceptionString.SQL_DELETE_PRODUCT_IN_ORDER_EXCEPTION, e);
-            throw new DaoException(DaoOrderExceptionString.SQL_DELETE_PRODUCT_IN_ORDER_EXCEPTION, e);
         }
     }
 
@@ -130,9 +121,7 @@ public class OrderDaoImpl implements OrderDao {
                     order.setUserId(resultSet.getInt(4));
                     order.setMapProducts(findAllProductsFromOrder(order.getId()));
                 }
-
             }
-
 
         } catch (SQLException e) {
             logger.error(DaoOrderExceptionString.SQL_FIND_ORDER_BY_ID_EXCEPTION, e);
@@ -157,7 +146,6 @@ public class OrderDaoImpl implements OrderDao {
                     order.setMapProducts(findAllProductsFromOrder(order.getId()));
                     listOrders.add(order);
                 }
-
             }
         } catch (SQLException e) {
             logger.error(DaoOrderExceptionString.SQL_FIND_ALL_ORDERS_EXCEPTION, e);
@@ -165,8 +153,8 @@ public class OrderDaoImpl implements OrderDao {
         }
         return listOrders;
     }
-
-    public Map<Product, Integer> findAllProductsFromOrder(Integer idOrder) throws DaoException {
+  @Override
+    public Map<Product, Integer> findAllProductsFromOrder(int idOrder) throws DaoException {
         Map<Product, Integer> map = new HashMap<>();
         try (Connection connection = connectionPool.takeConnection();
              PreparedStatement preparedStatement =
@@ -191,7 +179,6 @@ public class OrderDaoImpl implements OrderDao {
 
         return map;
     }
-
 
     private void addProductsInOrder(Order order) throws DaoException {
         try (Connection connection = connectionPool.takeConnection();

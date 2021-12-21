@@ -131,7 +131,7 @@ public class ProductDaoImpl implements ProductDao {
     }
 
     @Override
-    public List<Product> findAllByBrand(Integer brandId) throws DaoException {
+    public List<Product> findAllByBrand(int brandId) throws DaoException {
         List<Product> list;
         try (Connection connection = connectionPool.takeConnection();
              PreparedStatement preparedStatement =
@@ -159,7 +159,7 @@ public class ProductDaoImpl implements ProductDao {
     }
 
     @Override
-    public List<Product> findAllByCategory(Integer categoryId) throws DaoException {
+    public List<Product> findAllByCategory(int categoryId) throws DaoException {
         List<Product> list;
         try (Connection connection = connectionPool.takeConnection();
              PreparedStatement preparedStatement =
@@ -187,7 +187,7 @@ public class ProductDaoImpl implements ProductDao {
     }
 
     @Override
-    public List<Product> findAllByCategoryAndBrand(Integer category, Integer brand) throws DaoException {
+    public List<Product> findAllByCategoryAndBrand(int category, int brand) throws DaoException {
         List<Product> list;
         try (Connection connection = connectionPool.takeConnection();
              PreparedStatement preparedStatement =

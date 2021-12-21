@@ -79,7 +79,7 @@ public class Account extends AbstractModel<Integer> {
         return flat;
     }
 
-    public void setFlat(Integer flat) {
+    public void setFlat(int flat) {
         this.flat = flat;
     }
 
@@ -95,7 +95,7 @@ public class Account extends AbstractModel<Integer> {
         return userId;
     }
 
-    public void setUserId(Integer userId) {
+    public void setUserId(int userId) {
         this.userId = userId;
     }
 
@@ -146,7 +146,7 @@ public class Account extends AbstractModel<Integer> {
 
         }
 
-        public Builder withId(Integer id) {
+        public Builder withId(int id) {
             this.id = id;
             return this;
         }
@@ -186,7 +186,7 @@ public class Account extends AbstractModel<Integer> {
             return this;
         }
 
-        public Builder withFlat(Integer flat) {
+        public Builder withFlat(int flat) {
             this.flat = flat;
             return this;
         }
@@ -196,7 +196,7 @@ public class Account extends AbstractModel<Integer> {
             return this;
         }
 
-        public Builder withUserId(Integer userId) {
+        public Builder withUserId(int userId) {
             this.userId = userId;
             return this;
         }

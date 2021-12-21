@@ -64,7 +64,6 @@ public class ShowPageOrderCommand implements Command {
             }
 
         httpSession.setAttribute(LIST_ORDERS_ATTRIBUTE, orderList);
-        System.out.println(orderList);
 
         return SHOW_ALL_ORDERS_PAGE;
     }

@@ -129,8 +129,7 @@ public class OrderServiceImpl implements OrderService {
         ProductDto productDto = null;
         try {
             order = converter.convert(FactoryDao.getOrderImpl().findById(orderId));
-            System.out.println(order.getMapProducts().size());
-            System.out.println(order.getMapProducts().values().size());
+
             for (Map.Entry<ProductDto, Integer> entry : order.getMapProducts().entrySet()) {
                 if (entry.getKey().getId().equals(productId) && entry.getValue() > 1) {
                     entry.setValue(entry.getValue() - 1);
@@ -143,7 +142,7 @@ public class OrderServiceImpl implements OrderService {
             if (!duplicate) {
                 order.getMapProducts().remove(productDto);
             }
-            System.out.println(order.getMapProducts());
+
             order = FactoryService.getOrderServiceInstance().update(order);
         } catch (DaoException e) {
             logger.error(ServiceOrderExceptionString.DELETE_PRODUCT_FROM_ORDER_EXCEPTION);

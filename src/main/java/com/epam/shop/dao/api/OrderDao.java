@@ -8,7 +8,7 @@ import com.epam.shop.dao.model.Product;
 import java.util.Map;
 
 public interface OrderDao extends Dao<Order,Integer> {
-    Map<Product,Integer> findAllProductsFromOrder(Integer idOrder) throws DaoException;
+    Map<Product,Integer> findAllProductsFromOrder(int idOrder) throws DaoException;
 
 
 }

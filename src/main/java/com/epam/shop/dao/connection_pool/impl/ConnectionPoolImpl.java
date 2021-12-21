@@ -22,13 +22,13 @@ public final class ConnectionPoolImpl implements ConnectionPool {
     private final BlockingQueue<ProxyConnection> availableConnections;
     private final BlockingQueue<ProxyConnection> givenAwayConnections;
 
-    private static final int INITIAN_POOL_SIZE = 7;
+    private static final int INITIAL_POOL_SIZE = 7;
 
     private final Logger logger = LogManager.getLogger(ConnectionPoolImpl.class);
 
     private ConnectionPoolImpl() {
-        availableConnections = new ArrayBlockingQueue<>(INITIAN_POOL_SIZE);
-        givenAwayConnections = new ArrayBlockingQueue<>(INITIAN_POOL_SIZE);
+        availableConnections = new ArrayBlockingQueue<>(INITIAL_POOL_SIZE);
+        givenAwayConnections = new ArrayBlockingQueue<>(INITIAL_POOL_SIZE);
     }
 
     public static ConnectionPool getInstance() {
@@ -43,7 +43,7 @@ public final class ConnectionPoolImpl implements ConnectionPool {
     @Override
     public boolean init() throws ConnectionException {
         if (!initialized) {
-            initializeConnections(INITIAN_POOL_SIZE);
+            initializeConnections(INITIAL_POOL_SIZE);
             initialized = true;
             return true;
         }

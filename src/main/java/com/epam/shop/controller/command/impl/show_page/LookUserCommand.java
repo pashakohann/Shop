@@ -7,12 +7,16 @@ import com.epam.shop.service.dto.model.AccountDto;
 import com.epam.shop.service.dto.model.UserDto;
 import com.epam.shop.service.exception.ServiceException;
 import com.epam.shop.service.factory.FactoryService;
+import com.epam.shop.service.validation.api.ValidatorController;
+import com.epam.shop.service.validation.impl.UserValidatorControllerImpl;
 
 import javax.servlet.http.HttpSession;
 
 public class LookUserCommand implements Command {
     public static Command command;
     private static final String ORDER_PATH = "/jsp/user.jsp";
+    private static final String ERROR_PATH = "/jsp/all_accounts.jsp";
+
     private static final String ACCOUNT_USER_ID_ATTRIBUTE = "userIdView";
     private static final String MESSAGE_ERROR_ATTRIBUTE = "message: ";
     private static final String USER_OBJECT_VIEW = "userObjectView";
@@ -41,15 +45,36 @@ public class LookUserCommand implements Command {
 
     };
 
+    private static final ResponseContext SHOW_ERROR = new ResponseContext() {
+        @Override
+        public String getPath() {
+            return ERROR_PATH;
+        }
+
+        @Override
+        public boolean isRedirect() {
+            return false;
+        }
+
+    };
+
     @Override
     public ResponseContext execute(RequestContext requestContext) throws ServiceException {
         HttpSession httpSession = requestContext.getCurrentSession().get();
-        int userId = Integer.parseInt(requestContext.getParameter(ACCOUNT_USER_ID_ATTRIBUTE));
+        ValidatorController validator = UserValidatorControllerImpl.getInstance();
+        boolean isException = false;
+
         try {
+            validator.validate(requestContext.getParameter(ACCOUNT_USER_ID_ATTRIBUTE));
+            int userId = Integer.parseInt(requestContext.getParameter(ACCOUNT_USER_ID_ATTRIBUTE));
             UserDto userDto = FactoryService.getUserServiceInstance().getById(userId);
-            httpSession.setAttribute(USER_OBJECT_VIEW , userDto);
+            httpSession.setAttribute(USER_OBJECT_VIEW, userDto);
         } catch (ServiceException e) {
             requestContext.setAttribute(ERROR_ATTRIBUTE, MESSAGE_ERROR_ATTRIBUTE + e.getMessage());
+            isException = true;
+        }
+        if (isException) {
+            return SHOW_ERROR;
         }
         return SHOW_USER_PAGE;
     }

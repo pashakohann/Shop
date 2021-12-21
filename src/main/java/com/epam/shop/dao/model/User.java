@@ -1,11 +1,13 @@
 package com.epam.shop.dao.model;
 
 
+import com.epam.shop.service.dto.model.UserRoleDto;
+
 import java.time.LocalDateTime;
 import java.util.Objects;
 
 public class User extends AbstractModel<Integer> {
-    private UserRole role;
+    private UserRoleDto role;
     private String account;
     private String password;
     private LocalDateTime registrationDate;
@@ -13,11 +15,11 @@ public class User extends AbstractModel<Integer> {
     public User() {
     }
 
-    public User(Integer id) {
+    public User(int id) {
         super(id);
     }
 
-    public User(UserRole role, String account, String password, LocalDateTime registrationDate) {
+    public User(UserRoleDto role, String account, String password, LocalDateTime registrationDate) {
         this.role = role;
         this.account = account;
         this.password = password;
@@ -26,11 +28,11 @@ public class User extends AbstractModel<Integer> {
 
 
 
-    public UserRole getRole() {
+    public UserRoleDto getRole() {
         return role;
     }
 
-    public void setRole(UserRole role) {
+    public void setRole(UserRoleDto role) {
         this.role = role;
     }
 

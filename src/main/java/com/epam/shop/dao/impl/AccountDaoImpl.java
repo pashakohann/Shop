@@ -12,14 +12,13 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 
-import java.math.BigDecimal;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.time.LocalDate;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -57,12 +56,12 @@ public class AccountDaoImpl implements AccountDao {
             preparedStatement.setInt(8,account.getFlat());
             preparedStatement.setBigDecimal(9,account.getAmount());
             preparedStatement.setInt(10, account.getUserId());
+
             preparedStatement.executeUpdate();
 
             try (ResultSet resultSet = preparedStatement.getGeneratedKeys()) {
                 if (resultSet.next()) {
                     account.setId(resultSet.getInt(1));
-
                 }
             }
 
@@ -80,6 +79,7 @@ public class AccountDaoImpl implements AccountDao {
         try (Connection connection = connectionPool.takeConnection();
              PreparedStatement preparedStatement = connection.prepareStatement
                      (AccountSql.SQL_UPDATE_ACCOUNT_INFORMATION)) {
+
             preparedStatement.setString(1, account.getFirstName());
             preparedStatement.setString(2, account.getLastName());
             preparedStatement.setString(3, account.getDateOfBirth().toString());
@@ -111,19 +111,15 @@ public class AccountDaoImpl implements AccountDao {
             preparedStatement.setInt(1, userId);
             preparedStatement.executeUpdate();
 
-
         } catch (SQLException e) {
             logger.error(DaoAccountExceptionString.SQL_DELETE_ACCOUNT_EXCEPTION, e);
             throw new DaoException(DaoAccountExceptionString.SQL_DELETE_ACCOUNT_EXCEPTION, e);
         }
-
     }
 
     @Override
     public Account findById(Integer id) throws DaoException {
-        System.out.println(id);
-        System.out.println("Prowli DAO" + id);
-        Account account = null;
+
         try (Connection connection = connectionPool.takeConnection();
              PreparedStatement preparedStatement = connection.prepareStatement
                      (AccountSql.FIND_ACCOUNT_BY_ID)) {
@@ -131,7 +127,7 @@ public class AccountDaoImpl implements AccountDao {
 
             try (ResultSet resultSet = preparedStatement.executeQuery()) {
                 if (resultSet.next()) {
-                    account = new Account.Builder().
+                    return new Account.Builder().
                             withId(resultSet.getInt(1)).
                             withFirstName(resultSet.getString(2)).
                             withLastName(resultSet.getString(3)).
@@ -144,12 +140,8 @@ public class AccountDaoImpl implements AccountDao {
                             withAmount(resultSet.getBigDecimal(10)).
                             withUserId(resultSet.getInt(11)).
                             build();
-                    return account;
                 }
-
-
             }
-
 
         } catch (SQLException e) {
             logger.error(DaoAccountExceptionString.FIND_ACCOUNT_BY_ID_EXCEPTION, e);
@@ -159,9 +151,8 @@ public class AccountDaoImpl implements AccountDao {
     }
 
     @Override
-    public Account findByUserId(Integer userId) throws DaoException {
-        System.out.println(userId);
-        Account account = null;
+    public Account findByUserId(int userId) throws DaoException {
+
         try (Connection connection = connectionPool.takeConnection();
              PreparedStatement preparedStatement = connection.prepareStatement
                      (AccountSql.FIND_ACCOUNT_BY_USER_ID)) {
@@ -169,25 +160,21 @@ public class AccountDaoImpl implements AccountDao {
 
             try (ResultSet resultSet = preparedStatement.executeQuery()) {
                 if (resultSet.next()) {
-                    account = new Account.Builder().
-                            withId(resultSet.getInt(1)).
-                            withFirstName(resultSet.getString(2)).
-                            withLastName(resultSet.getString(3)).
-                            withDateOfBirth(resultSet.getDate(4).toLocalDate()).
-                            withTelephoneNumber(resultSet.getString(5)).
-                            withEmail(resultSet.getString(6)).
-                            withCity(resultSet.getString(7)).
-                            withStreet(resultSet.getString(8)).
-                            withFlat(resultSet.getInt(9)).
-                            withAmount(resultSet.getBigDecimal(10)).
-                            withUserId(resultSet.getInt(11)).
-                            build();
-                    return account;
+                    return new Account.Builder().
+                              withId(resultSet.getInt(1)).
+                              withFirstName(resultSet.getString(2)).
+                              withLastName(resultSet.getString(3)).
+                              withDateOfBirth(resultSet.getDate(4).toLocalDate()).
+                              withTelephoneNumber(resultSet.getString(5)).
+                              withEmail(resultSet.getString(6)).
+                              withCity(resultSet.getString(7)).
+                              withStreet(resultSet.getString(8)).
+                              withFlat(resultSet.getInt(9)).
+                              withAmount(resultSet.getBigDecimal(10)).
+                              withUserId(resultSet.getInt(11)).
+                              build();
                 }
-
-
             }
-
 
         } catch (SQLException e) {
             logger.error(DaoAccountExceptionString.FIND_ACCOUNT_BY_USER_ID_EXCEPTION, e);
@@ -195,8 +182,6 @@ public class AccountDaoImpl implements AccountDao {
         }
         return new Account();
     }
-
-
 
     @Override
     public List<Account> findAll() throws DaoException {
@@ -221,9 +206,7 @@ public class AccountDaoImpl implements AccountDao {
                             .withUserId(resultSet.getInt(11))
                             .build();
                     list.add(account);
-
                 }
-
             }
         } catch (SQLException e) {
             logger.error(DaoAccountExceptionString.SQL_FIND_ALL_ACCOUNTS_EXCEPTION, e);

@@ -13,11 +13,11 @@ public class Product extends AbstractModel<Integer> {
     public Product() {
     }
 
-    public Product(Integer id) {
+    public Product(int id) {
         super(id);
     }
 
-    public Product(Integer id, String name, BigDecimal cost, Integer categoryId, Integer brandId, String photoLink) {
+    public Product(int id, String name, BigDecimal cost, int categoryId, int brandId, String photoLink) {
         super(id);
         this.name = name;
         this.cost = cost;
@@ -46,7 +46,7 @@ public class Product extends AbstractModel<Integer> {
         return categoryId;
     }
 
-    public void setCategoryId(Integer categoryId) {
+    public void setCategoryId(int categoryId) {
         this.categoryId = categoryId;
     }
 
@@ -54,7 +54,7 @@ public class Product extends AbstractModel<Integer> {
         return brandId;
     }
 
-    public void setBrandId(Integer brandId) {
+    public void setBrandId(int brandId) {
         this.brandId = brandId;
     }
 

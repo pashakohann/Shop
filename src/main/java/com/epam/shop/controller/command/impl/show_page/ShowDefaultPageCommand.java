@@ -45,13 +45,13 @@ public class ShowDefaultPageCommand implements Command {
 
     @Override
     public ResponseContext execute(RequestContext requestContext) throws ServiceException {
-        UserDto userDto = new UserDto();
-        userDto.setRole(UserRoleDto.UNAUTHORIZED);
+
        List<ProductDto> productDtoList = FactoryService.getProductServiceInstance().getAll();
 
         HttpSession session = requestContext.getCurrentSession().get();
-        session.setAttribute(ALL_PRODUCTS_LIST,productDtoList);
-        session.setAttribute(CURRENT_USER_ATTRIBUTE,userDto);
+        UserDto userDto =(UserDto) session.getAttribute(CURRENT_USER_ATTRIBUTE);
+        System.out.println(userDto);
+                session.setAttribute(ALL_PRODUCTS_LIST,productDtoList);
 
         return SHOW_MAIN_PAGE;
     }
