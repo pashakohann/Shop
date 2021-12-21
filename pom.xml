@@ -15,12 +15,20 @@
         <junit5.version>5.8.0</junit5.version>
         <mysql.connctor.version>8.0.25</mysql.connctor.version>
         <bcrypt.version>0.9.0</bcrypt.version>
-
-
+        <javaee.version>8.0.1</javaee.version>
+        <jsp.api.version>2.0</jsp.api.version>
+        <jsst.api.version>1.2</jsst.api.version>
 
     </properties>
 
     <dependencies>
+
+        <dependency>
+            <groupId>javax</groupId>
+            <artifactId>javaee-api</artifactId>
+            <version>8.0.1</version>
+            <scope>provided</scope>
+        </dependency>
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
@@ -65,21 +73,23 @@
             <artifactId>log4j-core</artifactId>
             <version>2.14.0</version>
         </dependency>
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>4.11</version>
-            <scope>test</scope>
-        </dependency>
+
         <dependency>
             <groupId>org.apache.tomcat</groupId>
             <artifactId>tomcat-jsp-api</artifactId>
-            <version>7.0.47</version>
+            <version>9.0.55</version>
         </dependency>
+
         <dependency>
             <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter</artifactId>
-            <version>RELEASE</version>
+            <artifactId>junit-jupiter-engine</artifactId>
+            <version>5.8.0-M1</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.vintage</groupId>
+            <artifactId>junit-vintage-engine</artifactId>
+            <version>5.7.2</version>
             <scope>test</scope>
         </dependency>
 
@@ -89,10 +99,14 @@
             <artifactId>bcrypt</artifactId>
             <version>0.9.0</version>
         </dependency>
-
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>jsp-api</artifactId>
+            <version>2.0</version>
+            <scope>provided</scope>
+        </dependency>
 
     </dependencies>
-
 
 
 
