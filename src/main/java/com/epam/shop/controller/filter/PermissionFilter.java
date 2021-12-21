@@ -64,6 +64,7 @@ public class PermissionFilter implements Filter {
         }
     }
 
+
     private UserRoleDto extractRoleFromSession(HttpSession session) {
         return session != null && session.getAttribute(USER_ROLE_SESSION_ATTRIB_NAME) != null
                 ? ((UserDto) session.getAttribute(USER_ROLE_SESSION_ATTRIB_NAME)).getRole()

@@ -63,7 +63,7 @@ public class OrderProductCommand implements Command {
         }
 
         public boolean isRedirect() {
-            return false;
+            return true;
         }
 
     };

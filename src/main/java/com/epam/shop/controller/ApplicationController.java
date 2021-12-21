@@ -2,13 +2,13 @@ package com.epam.shop.controller;
 
 
 import com.epam.shop.controller.command.api.Command;
-import com.epam.shop.controller.context.api.RequestContext;
+
 import com.epam.shop.controller.context.api.ResponseContext;
 import com.epam.shop.controller.context.impl.RequestContextImpl;
-import com.epam.shop.dao.connection_pool.impl.ConnectionPoolImpl;
-import com.epam.shop.service.dto.model.ProductDto;
+
+
 import com.epam.shop.service.exception.ServiceException;
-import com.epam.shop.service.factory.FactoryService;
+
 import com.epam.shop.service.impl.ConnectionServiceImpl;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -21,14 +21,11 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+
 
 
 import java.io.IOException;
-import java.util.Optional;
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.Executor;
-import java.util.concurrent.ExecutorService;
+
 
 @WebServlet(urlPatterns = "/shop")
 public class ApplicationController extends HttpServlet {

@@ -7,7 +7,7 @@
 <fmt:setBundle basename = "locale" var="loc"/>
 
 <fmt:message bundle="${loc}" key = "allProducts" var="allProducts" />
-<fmt:message bundle="${loc}" key = "motherboard" var="motherboard" />
+<fmt:message bundle="${loc}" key = "motherBoard" var="motherBoard" />
 <fmt:message bundle="${loc}" key = "powerUnit" var="powerUnit" />
 <fmt:message bundle="${loc}" key = "hdd" var="hdd" />
 <fmt:message bundle="${loc}" key = "cooler" var="cooler" />
@@ -65,7 +65,7 @@
                   </li>
                   <li class="nav-item dropdown">
                      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                     ${motherboard}
+                     ${motherBoard}
                      </a>
                      <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                        <li><a class="dropdown-item" href="${pageContext.request.contextPath}/shop?command=find_products_category&category=1">${allMotherboard}</a></li>

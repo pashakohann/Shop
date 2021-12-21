@@ -42,7 +42,7 @@ public class AddProductCommand implements Command {
 
         @Override
         public boolean isRedirect() {
-            return false;
+            return true;
         }
 
     };

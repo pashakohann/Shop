@@ -10,7 +10,7 @@ public class GreetingTag extends TagSupport {
 
     private static final String USER_WELCOME_MESSAGE = "Hello, %s";
     private static final String DEFAULT_WELCOME_MESSAGE = "Hello!";
-    private static final String USER_NAME_SESSION_ATTRIB = "userName";
+    private static final String USER_NAME_SESSION_ATTRIB = "userLogin";
 
     @Override
     public int doStartTag() throws JspException {
@@ -25,8 +25,8 @@ public class GreetingTag extends TagSupport {
     }
 
     private String buildWelcomeMessage() {
-        return Optional.ofNullable(pageContext.getSession())
-                .map(session -> session.getAttribute(USER_NAME_SESSION_ATTRIB))
+        return Optional.ofNullable(pageContext.getRequest())
+                .map(req -> req.getParameter(USER_NAME_SESSION_ATTRIB))
                 .map(name -> String.format(USER_WELCOME_MESSAGE, name))
                 .orElse(DEFAULT_WELCOME_MESSAGE);
     }

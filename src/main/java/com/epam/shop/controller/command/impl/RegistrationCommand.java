@@ -29,6 +29,7 @@ public class RegistrationCommand implements Command {
     private static final String BASKET_USER_OBJECT ="basketObject";
     private static final String BASKET_PARAM = "basketSize";
     private static final String SECRET_ADMIN_PARAM = "secret";
+    private static final String USER_NAME = "userLogin";
     private BasketService<ProductDto, BasketServiceImpl> basket;
 
     private RegistrationCommand() {
@@ -108,10 +109,11 @@ public class RegistrationCommand implements Command {
             session.setAttribute(ACCOUNT_OBJECT_PARAM,accountDto);
             session.setAttribute(BASKET_USER_OBJECT,basket);
             session.setAttribute(BASKET_PARAM,basket.basketSize());
-            System.out.println(session.getAttribute(ROLE_ACCOUNT_PARAM));
+            requestContext.setAttribute(USER_NAME,userDto.getAccount());
+
         }
 
-        System.out.println(userDto);
+
 
         return SHOW_PERSONAL_PAGE;
     }
