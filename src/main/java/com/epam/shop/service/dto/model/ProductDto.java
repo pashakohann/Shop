@@ -2,8 +2,6 @@ package com.epam.shop.service.dto.model;
 
 import java.math.BigDecimal;
 import java.util.Objects;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public class ProductDto extends AbstractModelDto<Integer> {
     private String name;

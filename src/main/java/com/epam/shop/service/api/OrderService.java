@@ -2,7 +2,6 @@ package com.epam.shop.service.api;
 
 import com.epam.shop.service.dto.model.AccountDto;
 import com.epam.shop.service.dto.model.OrderDto;
-import com.epam.shop.service.dto.model.ProductDto;
 import com.epam.shop.service.exception.ServiceException;
 
 

@@ -75,14 +75,22 @@ public class ApplicationController extends HttpServlet {
     @Override
     public void destroy() {
 
-        ConnectionServiceImpl.getInstance().destroy();
+        try {
+            ConnectionServiceImpl.getInstance().destroy();
+        } catch (ServiceException e) {
+            e.printStackTrace();
+        }
         super.destroy();
     }
 
     @Override
     public void init() throws ServletException {
         super.init();
-        ConnectionServiceImpl.getInstance().init();
+        try {
+            ConnectionServiceImpl.getInstance().init();
+        } catch (ServiceException e) {
+            e.printStackTrace();
+        }
 
     }
 

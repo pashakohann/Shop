@@ -21,24 +21,24 @@ public class UserConverterImpl implements Converter<UserDto, User, Integer> {
 
 
     @Override
-    public UserDto convert(User model) {
+    public UserDto convert(User user) {
         UserDto userDto = new UserDto();
-        userDto.setId(model.getId());
-        userDto.setRegistrationDate(model.getRegistrationDate());
-        userDto.setRole(model.getRole());
-        userDto.setAccount(model.getAccount());
-        userDto.setPassword(model.getPassword());
+        userDto.setId(user.getId());
+        userDto.setRegistrationDate(user.getRegistrationDate());
+        userDto.setRole(user.getRole());
+        userDto.setAccount(user.getAccount());
+        userDto.setPassword(user.getPassword());
         return userDto;
     }
 
     @Override
-    public User convert(UserDto modelDto) {
+    public User convert(UserDto userDto) {
         User user = new User();
-        user.setId(modelDto.getId());
-        user.setRegistrationDate(modelDto.getRegistrationDate());
-        user.setRole(modelDto.getRole());
-        user.setAccount(modelDto.getAccount());
-        user.setPassword(modelDto.getPassword());
+        user.setId(userDto.getId());
+        user.setRegistrationDate(userDto.getRegistrationDate());
+        user.setRole(userDto.getRole());
+        user.setAccount(userDto.getAccount());
+        user.setPassword(userDto.getPassword());
         return user;
     }
 }

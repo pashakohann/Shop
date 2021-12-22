@@ -16,6 +16,7 @@ public class OrderValidatorImpl implements Validator<OrderDto, Integer> {
 
 
     public static Validator<OrderDto, Integer> getInstance() {
+
         if (instance == null) {
             instance = new OrderValidatorImpl();
         }
@@ -24,6 +25,7 @@ public class OrderValidatorImpl implements Validator<OrderDto, Integer> {
 
     @Override
     public void validate(OrderDto dto) throws ServiceException {
+
         checkOrder(dto);
     }
 

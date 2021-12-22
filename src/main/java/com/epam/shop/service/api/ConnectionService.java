@@ -1,12 +1,13 @@
 package com.epam.shop.service.api;
 
 
+import com.epam.shop.service.exception.ServiceException;
 
 public interface ConnectionService {
-     void init() ;
+     void init() throws ServiceException;
 
 
-     void destroy() ;
+     void destroy() throws ServiceException; ;
 
 
 }

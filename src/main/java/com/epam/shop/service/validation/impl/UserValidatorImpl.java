@@ -8,6 +8,7 @@ import com.epam.shop.service.validation.validation_string.UserValidationString;
 
 
 public class UserValidatorImpl implements Validator<UserDto, Integer> {
+
     private static Validator<UserDto, Integer> instance;
 
     private UserValidatorImpl() {
@@ -23,22 +24,25 @@ public class UserValidatorImpl implements Validator<UserDto, Integer> {
 
     @Override
     public void validate(UserDto dto) throws ServiceException {
+
         checkUserName(dto.getAccount());
         checkPassword(dto.getPassword());
 
     }
 
     private void checkUserName(String userName) throws ServiceException {
+
         if (!userName.matches(UserValidationString.USER_NAME_REGEX)) {
             throw new ServiceException(ServiceUserExceptionString.USER_NAME_EXCEPTION);
+
         }
     }
 
     private void checkPassword(String userPassword) throws ServiceException {
+
         if (!userPassword.matches(UserValidationString.USER_PASSWORD_REGEX)) {
             throw new ServiceException(ServiceUserExceptionString.USER_PASSWORD_EXCEPTION);
+
         }
     }
-
-
 }

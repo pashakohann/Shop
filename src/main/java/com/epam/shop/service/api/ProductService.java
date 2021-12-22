@@ -8,7 +8,6 @@ import java.util.List;
 
 public interface ProductService extends Service<ProductDto, Integer> {
 
-    List<ProductDto> findProductsByBrand(Integer idBrand) throws ServiceException;
 
     List<ProductDto> findProductsByCategory(Integer idCategory) throws ServiceException;
 

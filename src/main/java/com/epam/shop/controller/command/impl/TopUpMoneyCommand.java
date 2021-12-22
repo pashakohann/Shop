@@ -45,11 +45,24 @@ public class TopUpMoneyCommand implements Command {
 
     };
 
+    private static final ResponseContext ERROR_PAGE = new ResponseContext() {
+        @Override
+        public String getPath() {
+            return BACK_TO_WALLET_PATH;
+        }
+
+        @Override
+        public boolean isRedirect() {
+            return false;
+        }
+
+    };
+
 
     @Override
     public ResponseContext execute(RequestContext requestContext) throws ServiceException {
         HttpSession httpSession = requestContext.getCurrentSession().get();
-
+        boolean isException = false;
         try {
             validateAmount(requestContext.getParameter(ACCOUNT_AMOUNT_ATTRIBUTE));
             BigDecimal bigDecimal = new BigDecimal(requestContext.getParameter(ACCOUNT_AMOUNT_ATTRIBUTE));
@@ -60,7 +73,11 @@ public class TopUpMoneyCommand implements Command {
         } catch (ServiceException e) {
             //log
             requestContext.setAttribute(ERROR_ATTRIBUTE, MESSAGE_ERROR_ATTRIBUTE + ": " + e.getMessage());
+            isException = true;
         }
+              if (isException){
+                  return ERROR_PAGE;
+              }
 
         return SHOW_WALLET_PAGE;
     }

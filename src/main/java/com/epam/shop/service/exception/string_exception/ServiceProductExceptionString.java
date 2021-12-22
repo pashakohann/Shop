@@ -5,7 +5,6 @@ public interface ServiceProductExceptionString {
     String SAVE_PRODUCT_EXCEPTION = "Failed to save product";
     String SQL_DELETE_PRODUCT_EXCEPTION = "Failed to delete product,maybe the product was ordered";
     String FIND_ALL_PRODUCTS_EXCEPTION = "Couldn't find any products";
-    String FIND_PRODUCTS_BY_BRAND_EXCEPTION = "Couldn't find any products for this brand";
     String FIND_PRODUCTS_BY_CATEGORY_EXCEPTION = "Couldn't find any products for this category";
     String FIND_PRODUCT_BY_ID_EXCEPTION = "Couldn't find product for this id";
     String FIND_PRODUCTS_BY_BRAND_AND_CATEGORY_EXCEPTION = "Couldn't find products for this brand and category";

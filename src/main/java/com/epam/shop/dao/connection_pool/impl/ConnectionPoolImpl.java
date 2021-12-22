@@ -2,7 +2,7 @@ package com.epam.shop.dao.connection_pool.impl;
 
 
 import com.epam.shop.dao.connection_pool.api.ConnectionPool;
-import com.epam.shop.dao.exception.ConnectionException;
+import com.epam.shop.dao.exception.DaoException;
 import com.epam.shop.dao.exception.string_exception.DaoConnectionExceptionString;
 import com.epam.shop.dao.sql_query.ConfigSql;
 import org.apache.logging.log4j.LogManager;
@@ -41,7 +41,7 @@ public final class ConnectionPoolImpl implements ConnectionPool {
 
 
     @Override
-    public boolean init() throws ConnectionException {
+    public boolean init() throws DaoException {
         if (!initialized) {
             initializeConnections(INITIAL_POOL_SIZE);
             initialized = true;
@@ -52,7 +52,7 @@ public final class ConnectionPoolImpl implements ConnectionPool {
 
 
     @Override
-    public Connection takeConnection() throws ConnectionException {
+    public Connection takeConnection() {
         final ProxyConnection connection;
         try {
             connection = availableConnections.take();
@@ -76,7 +76,7 @@ public final class ConnectionPoolImpl implements ConnectionPool {
 
     }
 
-    private boolean initializeConnections(int amountOfConnections) throws ConnectionException {
+    private boolean initializeConnections(int amountOfConnections) {
         try {
             for (int i = 0; i < amountOfConnections; i++) {
                 Class.forName(ConfigSql.DRIVER);
@@ -96,7 +96,7 @@ public final class ConnectionPoolImpl implements ConnectionPool {
     }
 
     @Override
-    public boolean shutDown() throws ConnectionException{
+    public boolean shutDown() throws DaoException {
         if (initialized) {
             closeConnections();
             initialized = false;
@@ -105,18 +105,18 @@ public final class ConnectionPoolImpl implements ConnectionPool {
         return false;
     }
 
-    private void closeConnections() throws ConnectionException {
+    private void closeConnections() throws DaoException {
         closeConnections(this.availableConnections);
         closeConnections(this.givenAwayConnections);
     }
 
-    private void closeConnections(Collection<ProxyConnection> connections) throws ConnectionException {
+    private void closeConnections(Collection<ProxyConnection> connections) throws DaoException {
         for (ProxyConnection connection : connections) {
             closeConnection(connection);
         }
     }
 
-    private void closeConnection(ProxyConnection connection) throws ConnectionException {
+    private void closeConnection(ProxyConnection connection) throws DaoException {
         try {
             connection.realClose();
         } catch (SQLException e) {

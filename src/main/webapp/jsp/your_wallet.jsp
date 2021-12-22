@@ -67,16 +67,17 @@
     </nav>
     <table class="table table-dark table-striped">
       <table class="table">
-         <thead>
-         <c:choose>
-           <c:when test="${not empty error}">
-           <p style="color: red;">${error}</p>
-           </c:when>
+       <c:choose>
+                 <c:when test="${not empty error}">
+                 <p style="color: red;">${error}</p>
+                 </c:when>
 
-            <c:when test="${not empty message}">
-                   <p style="color: red;">${message}</p>
-            </c:when>
-             </c:choose>
+                  <c:when test="${not empty message}">
+                         <p style="color: red;">${message}</p>
+                  </c:when>
+                   </c:choose>
+         <thead>
+
            <tr>
              <th scope="col">#</th>
              <th scope="col">${current}</th>

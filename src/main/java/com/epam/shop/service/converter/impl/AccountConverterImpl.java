@@ -21,20 +21,20 @@ public class AccountConverterImpl implements Converter<AccountDto, Account, Inte
     }
 
     @Override
-    public AccountDto convert(Account model) {
-        return new AccountDto.Builder().withId(model.getId()).
-                withFirstName(model.getFirstName()).withLastName(model.getLastName()).
-                withDateOfBirth(model.getDateOfBirth()).withEmail(model.getEmail()).withCity(model.getCity()).
-                withFlat(model.getFlat()).withTelephoneNumber(model.getTelephoneNumber()).withAmount(model.getAmount()).
-                withAmount(model.getAmount()).withUserId(model.getUserId()).withStreet(model.getStreet()).build();
+    public AccountDto convert(Account account) {
+        return new AccountDto.Builder().withId(account.getId()).
+                withFirstName(account.getFirstName()).withLastName(account.getLastName()).
+                withDateOfBirth(account.getDateOfBirth()).withEmail(account.getEmail()).withCity(account.getCity()).
+                withFlat(account.getFlat()).withTelephoneNumber(account.getTelephoneNumber()).withAmount(account.getAmount()).
+                withAmount(account.getAmount()).withUserId(account.getUserId()).withStreet(account.getStreet()).build();
     }
 
     @Override
-    public Account convert(AccountDto modelDto) {
-        return new Account.Builder().withId(modelDto.getId()).
-                withFirstName(modelDto.getFirstName()).withLastName(modelDto.getLastName()).
-                withDateOfBirth(modelDto.getDateOfBirth()).withEmail(modelDto.getEmail()).withCity(modelDto.getCity()).
-                withFlat(modelDto.getFlat()).withTelephoneNumber(modelDto.getTelephoneNumber()).withAmount(modelDto.getAmount()).
-                withAmount(modelDto.getAmount()).withUserId(modelDto.getUserId()).withStreet(modelDto.getStreet()).build();
+    public Account convert(AccountDto accountDto) {
+        return new Account.Builder().withId(accountDto.getId()).
+                withFirstName(accountDto.getFirstName()).withLastName(accountDto.getLastName()).
+                withDateOfBirth(accountDto.getDateOfBirth()).withEmail(accountDto.getEmail()).withCity(accountDto.getCity()).
+                withFlat(accountDto.getFlat()).withTelephoneNumber(accountDto.getTelephoneNumber()).withAmount(accountDto.getAmount()).
+                withAmount(accountDto.getAmount()).withUserId(accountDto.getUserId()).withStreet(accountDto.getStreet()).build();
     }
 }

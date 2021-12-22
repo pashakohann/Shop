@@ -1,10 +1,11 @@
 package com.epam.shop.service.validation.impl;
 
 import com.epam.shop.service.exception.ServiceException;
+import com.epam.shop.service.exception.string_exception.ServiceUserExceptionString;
 import com.epam.shop.service.validation.api.ValidatorController;
+import com.epam.shop.service.validation.validation_string.UserValidationString;
 
 public class UserValidatorControllerImpl implements ValidatorController {
-    private static final String USER_ID_EXCEPTION = "User doesn't exist";
     private static ValidatorController instance;
 
     private UserValidatorControllerImpl() {
@@ -23,11 +24,11 @@ public class UserValidatorControllerImpl implements ValidatorController {
         checkId(parameter);
     }
 
-
     private void checkId(String id) throws ServiceException {
 
-        if (id == null || id.matches("0")) {
-            throw new ServiceException(USER_ID_EXCEPTION);
+        if (id == null || id.matches(UserValidationString.ID_REGEX)) {
+            throw new ServiceException(ServiceUserExceptionString.USER_ID_EXCEPTION);
+
         }
     }
 }

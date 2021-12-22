@@ -1,6 +1,5 @@
 package com.epam.shop.service.validation.impl;
 
-import com.epam.shop.service.dto.model.AccountDto;
 import com.epam.shop.service.exception.ServiceException;
 import com.epam.shop.service.exception.string_exception.ServiceAccountExceptionString;
 import com.epam.shop.service.validation.api.ValidatorController;
@@ -10,9 +9,6 @@ import java.time.LocalDate;
 
 public class AccountValidatorControllerImpl implements ValidatorController {
     private static ValidatorController INSTANCE;
-    private static final int QUANTITY_FIELDS = 8;
-    private static final String SPLIT_STRING_REGEX = "&&&";
-    private static final String QUANTITY_FIELDS_EXCEPTION = "You need to fill in all the fields ";
 
 
     private AccountValidatorControllerImpl() {
@@ -28,10 +24,8 @@ public class AccountValidatorControllerImpl implements ValidatorController {
 
     @Override
     public void validate(String parameter) throws ServiceException {
-        String[] fields = parameter.split(SPLIT_STRING_REGEX);
-        for (String s: fields){
-            System.out.println(s);
-        }
+        String[] fields = parameter.split(AccountValidationString.SPLIT_STRING_REGEX);
+
         checkQuantityFields(fields.length);
         checkFirstName(fields[0]);
         checkLastName(fields[1]);
@@ -45,7 +39,7 @@ public class AccountValidatorControllerImpl implements ValidatorController {
     }
 
     private void checkQuantityFields(int quantity) throws ServiceException {
-        if (quantity < QUANTITY_FIELDS) {
+        if (quantity < AccountValidationString.QUANTITY_FIELDS) {
             throw new ServiceException(ServiceAccountExceptionString.FILL_FIELDS_EXCEPTION);
         }
     }
@@ -99,7 +93,7 @@ public class AccountValidatorControllerImpl implements ValidatorController {
     }
 
     private void checkDateOfBirth(String dateOfBirth) throws ServiceException {
-        Integer yearNow = LocalDate.now().getYear();
+        int yearNow = LocalDate.now().getYear();
         LocalDate yearsOfBirth;
         if (!dateOfBirth.matches(AccountValidationString.DATE_OF_BIRTH_REGEX)) {
             throw new ServiceException(ServiceAccountExceptionString.DATE_OF_BIRTH_EXCEPTION);
@@ -118,10 +112,4 @@ public class AccountValidatorControllerImpl implements ValidatorController {
 
     }
 
-    public void checkAccountAmount(String amount) throws ServiceException {
-        if (!amount.matches(AccountValidationString.ACCOUNT_AMOUNT_REGEX)) {
-            throw new ServiceException(ServiceAccountExceptionString.ACCOUNT_AMOUNT_EXCEPTION);
-        }
-
-    }
 }

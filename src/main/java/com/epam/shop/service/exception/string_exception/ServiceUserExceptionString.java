@@ -14,6 +14,7 @@ public interface ServiceUserExceptionString {
     String CHECK_PASSWORD_EXCEPTION = "Incorrect password";
     String USER_IS_NOT_FOUND = "user is not found";
     String FIND_USER_EXCEPTION = "failed to find user";
+    String USER_ID_EXCEPTION =  "User doesn't exist";
 
 
 }

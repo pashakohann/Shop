@@ -22,26 +22,26 @@ public class ProductConverterImpl implements Converter<ProductDto, Product, Inte
     }
 
     @Override
-    public ProductDto convert(Product model) {
+    public ProductDto convert(Product product) {
         ProductDto productDto = new ProductDto();
-        productDto.setId(model.getId());
-        productDto.setCost(model.getCost());
-        productDto.setName(model.getName());
-        productDto.setCategoryId(model.getCategoryId());
-        productDto.setBrandId(model.getBrandId());
-        productDto.setPhotoLink(model.getPhotoLink());
+        productDto.setId(product.getId());
+        productDto.setCost(product.getCost());
+        productDto.setName(product.getName());
+        productDto.setCategoryId(product.getCategoryId());
+        productDto.setBrandId(product.getBrandId());
+        productDto.setPhotoLink(product.getPhotoLink());
         return productDto;
     }
 
     @Override
-    public Product convert(ProductDto modelDto) {
+    public Product convert(ProductDto productDto) {
         Product product = new Product();
-        product.setId(modelDto.getId());
-        product.setCost(modelDto.getCost());
-        product.setName(modelDto.getName());
-        product.setCategoryId(modelDto.getCategoryId());
-        product.setBrandId(modelDto.getBrandId());
-        product.setPhotoLink(modelDto.getPhotoLink());
+        product.setId(productDto.getId());
+        product.setCost(productDto.getCost());
+        product.setName(productDto.getName());
+        product.setCategoryId(productDto.getCategoryId());
+        product.setBrandId(productDto.getBrandId());
+        product.setPhotoLink(productDto.getPhotoLink());
         return product;
     }
 }

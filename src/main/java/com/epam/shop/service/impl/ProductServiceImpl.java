@@ -7,11 +7,9 @@ import com.epam.shop.dao.model.Product;
 import com.epam.shop.service.api.ProductService;
 import com.epam.shop.service.converter.api.Converter;
 import com.epam.shop.service.converter.impl.ProductConverterImpl;
-import com.epam.shop.service.dto.model.OrderDto;
 import com.epam.shop.service.dto.model.ProductDto;
 import com.epam.shop.service.exception.ServiceException;
 import com.epam.shop.service.exception.string_exception.ServiceProductExceptionString;
-import com.epam.shop.service.factory.FactoryService;
 import com.epam.shop.service.validation.api.Validator;
 import com.epam.shop.service.validation.impl.ProductValidatorImpl;
 import org.apache.logging.log4j.LogManager;
@@ -39,50 +37,31 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public ProductDto create(ProductDto model) throws ServiceException {
-        ProductDto productDto;
+    public ProductDto create(ProductDto product) throws ServiceException {
 
         try {
-            validatorInstance.validate(model);
-            productDto = converter.convert(FactoryDao.getProductImpl().save(converter.convert(model)));
+            validatorInstance.validate(product);
+            return converter.convert(FactoryDao.getProductImpl().save(converter.convert(product)));
+
         } catch (DaoException e) {
             logger.error(ServiceProductExceptionString.SAVE_PRODUCT_EXCEPTION, e);
             throw new ServiceException(ServiceProductExceptionString.SAVE_PRODUCT_EXCEPTION, e);
         }
-        return productDto;
     }
 
     @Override
-    public ProductDto update(ProductDto model) throws ServiceException {
-        validatorInstance.validate(model);
+    public ProductDto update(ProductDto productDto) throws ServiceException {
+
         try {
-            FactoryDao.getProductImpl().update(converter.convert(model));
+            validatorInstance.validate(productDto);
+            FactoryDao.getProductImpl().update(converter.convert(productDto));
+            return productDto;
+
         } catch (DaoException e) {
             logger.error(ServiceProductExceptionString.UPDATE_PRODUCT_EXCEPTION, e);
             throw new ServiceException(ServiceProductExceptionString.UPDATE_PRODUCT_EXCEPTION, e);
         }
-        return model;
-    }
 
-    @Override
-    public void delete(ProductDto model) throws ServiceException {
-        List<OrderDto> listOrderDto;
-        try {
-            listOrderDto = FactoryService.getOrderServiceInstance().getAll();
-            for (OrderDto order : listOrderDto
-            ) {
-                for (ProductDto product : order.getMapProducts().keySet()
-                ) {
-                    if (product.getId().equals(model.getId())) {
-                        throw new ServiceException(ServiceProductExceptionString.DELETE_PRODUCT_FROM_USER);
-                    }
-                }
-            }
-            FactoryDao.getProductImpl().delete(model.getId());
-        } catch (DaoException e) {
-            logger.error(ServiceProductExceptionString.SQL_DELETE_PRODUCT_EXCEPTION, e);
-            throw new ServiceException(ServiceProductExceptionString.SQL_DELETE_PRODUCT_EXCEPTION, e);
-        }
     }
 
     @Override
@@ -90,6 +69,7 @@ public class ProductServiceImpl implements ProductService {
         try {
 
             FactoryDao.getProductImpl().delete(productId);
+
         } catch (DaoException e) {
             logger.error(ServiceProductExceptionString.SQL_DELETE_PRODUCT_EXCEPTION, e);
             throw new ServiceException(ServiceProductExceptionString.SQL_DELETE_PRODUCT_EXCEPTION, e);
@@ -98,75 +78,70 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public ProductDto getById(Integer id) throws ServiceException {
-        ProductDto productDto;
-        try {
-            productDto = converter.convert(FactoryDao.getProductImpl().findById(id));
 
+        try {
+            return converter.convert(FactoryDao.getProductImpl().findById(id));
         } catch (DaoException e) {
             logger.error(ServiceProductExceptionString.FIND_PRODUCT_BY_ID_EXCEPTION, e);
             throw new ServiceException(ServiceProductExceptionString.FIND_PRODUCT_BY_ID_EXCEPTION, e);
         }
-        return productDto;
+
     }
 
     @Override
     public List<ProductDto> getAll() throws ServiceException {
-        List<ProductDto> listProductDto = new ArrayList<>();
+
+
         try {
+            List<ProductDto> listProductDto = new ArrayList<>();
             for (Product product : FactoryDao.getProductImpl().findAll()) {
                 listProductDto.add(converter.convert(product));
             }
+
+            return listProductDto;
+
         } catch (DaoException e) {
             logger.error(ServiceProductExceptionString.FIND_ALL_PRODUCTS_EXCEPTION, e);
             throw new ServiceException(ServiceProductExceptionString.FIND_ALL_PRODUCTS_EXCEPTION, e);
         }
-        return listProductDto;
-    }
-
-
-    @Override
-    public List<ProductDto> findProductsByBrand(Integer idBrand) throws ServiceException {
-        List<ProductDto> listProductsDao = new ArrayList<>();
-        try {
-            for (Product product : FactoryDao.getProductImpl().findAllByBrand(idBrand)) {
-                listProductsDao.add(converter.convert(product));
-            }
-
-        } catch (DaoException e) {
-            logger.error(ServiceProductExceptionString.FIND_PRODUCTS_BY_BRAND_EXCEPTION, e);
-            throw new ServiceException(ServiceProductExceptionString.FIND_PRODUCTS_BY_BRAND_EXCEPTION, e);
-        }
-        return listProductsDao;
     }
 
     @Override
     public List<ProductDto> findProductsByCategory(Integer idCategory) throws ServiceException {
-        List<ProductDto> listProductsDao = new ArrayList<>();
+
         try {
+            List<ProductDto> listProducts = new ArrayList<>();
+
             for (Product product : FactoryDao.getProductImpl().findAllByCategory(idCategory)) {
-                listProductsDao.add(converter.convert(product));
+                listProducts.add(converter.convert(product));
             }
+
+            return listProducts;
 
         } catch (DaoException e) {
             logger.error(ServiceProductExceptionString.FIND_PRODUCTS_BY_CATEGORY_EXCEPTION, e);
             throw new ServiceException(ServiceProductExceptionString.FIND_PRODUCTS_BY_CATEGORY_EXCEPTION, e);
         }
-        return listProductsDao;
+
     }
 
     @Override
     public List<ProductDto> findProductsByCategoryAndBrand(Integer category, Integer brand) throws ServiceException {
-        List<ProductDto> listProductsDao = new ArrayList<>();
+
         try {
+
+            List<ProductDto> listProductsDao = new ArrayList<>();
+
             for (Product product : FactoryDao.getProductImpl().findAllByCategoryAndBrand(category, brand)) {
                 listProductsDao.add(converter.convert(product));
             }
+
+            return listProductsDao;
 
         } catch (DaoException e) {
             logger.error(ServiceProductExceptionString.FIND_PRODUCTS_BY_BRAND_AND_CATEGORY_EXCEPTION, e);
             throw new ServiceException(ServiceProductExceptionString.FIND_PRODUCTS_BY_BRAND_AND_CATEGORY_EXCEPTION, e);
         }
-        return listProductsDao;
     }
 }
 
