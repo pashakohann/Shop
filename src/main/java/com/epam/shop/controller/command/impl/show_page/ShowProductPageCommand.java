@@ -47,15 +47,15 @@ public class ShowProductPageCommand implements Command {
 
     @Override
     public ResponseContext execute(RequestContext requestContext)  {
-        List<ProductDto> listProducts = null;
+
         try {
-            listProducts = FactoryService.getProductServiceInstance().getAll();
+            List<ProductDto> listProducts = FactoryService.getProductServiceInstance().getAll();
+            HttpSession httpSession = requestContext.getCurrentSession().get();
+            httpSession.setAttribute(LIST_PRODUCTS_ATTRIBUTE, listProducts);
         } catch (ServiceException e) {
             log.error(ERROR_ATTRIBUTE,e);
             requestContext.setAttribute(ERROR_ATTRIBUTE,MESSAGE_ERROR_ATTRIBUTE+e.getMessage());
         }
-        HttpSession httpSession = requestContext.getCurrentSession().get();
-        httpSession.setAttribute(LIST_PRODUCTS_ATTRIBUTE, listProducts);
 
         return SHOW_ALL_PRODUCTS_PAGE;
     }

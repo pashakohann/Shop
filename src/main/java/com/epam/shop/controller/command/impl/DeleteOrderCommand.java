@@ -5,7 +5,6 @@ import com.epam.shop.controller.context.api.RequestContext;
 import com.epam.shop.controller.context.api.ResponseContext;
 import com.epam.shop.service.dto.model.AccountDto;
 import com.epam.shop.service.dto.model.OrderDto;
-import com.epam.shop.service.dto.model.ProductDto;
 import com.epam.shop.service.dto.model.UserDto;
 import com.epam.shop.service.dto.model.UserRoleDto;
 import com.epam.shop.service.exception.ServiceException;
@@ -15,9 +14,9 @@ import org.apache.logging.log4j.Logger;
 
 import javax.servlet.http.HttpSession;
 import java.math.BigDecimal;
-import java.util.ArrayList;
+
 import java.util.List;
-import java.util.Map;
+
 
 public class DeleteOrderCommand implements Command {
     private static Command command;
@@ -71,7 +70,9 @@ public class DeleteOrderCommand implements Command {
             if (userDto.getRole().equals(UserRoleDto.ADMIN)) {
                 listOrders = FactoryService.getOrderServiceInstance().getAll();
             } else {
+
                 listOrders = FactoryService.getOrderServiceInstance().findAccountOrders(accountDto);
+
             }
             httpSession.setAttribute(ORDERS_LIST_PARAM, listOrders);
             httpSession.setAttribute(ACCOUNT_OBJECT_PARAM,accountDto);
@@ -81,20 +82,6 @@ public class DeleteOrderCommand implements Command {
         }
 
         return SHOW_ORDER_PAGE;
-    }
-
-    private List<ProductDto> backToListProducts(Map<ProductDto, Integer> basket) {
-        List<ProductDto> list = new ArrayList<>();
-        if (basket != null) {
-            for (Map.Entry<ProductDto, Integer> entry : basket.entrySet()) {
-                int iter = 0;
-                while (entry.getValue() != iter) {
-                    list.add(entry.getKey());
-                    iter++;
-                }
-            }
-        }
-        return list;
     }
 
 }

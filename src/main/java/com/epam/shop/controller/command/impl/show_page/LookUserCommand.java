@@ -18,7 +18,6 @@ public class LookUserCommand implements Command {
     public static Command command;
     private static final String ORDER_PATH = "WEB-INF/jsp/user.jsp";
     private static final String ERROR_PATH = "WEB-INF/jsp/all_accounts.jsp";
-
     private static final String ACCOUNT_USER_ID_ATTRIBUTE = "userIdView";
     private static final String MESSAGE_ERROR_ATTRIBUTE = "message: ";
     private static final String ERROR_ATTRIBUTE = "error";
@@ -69,10 +68,12 @@ public class LookUserCommand implements Command {
         boolean isException = false;
 
         try {
+
             validator.validate(requestContext.getParameter(ACCOUNT_USER_ID_ATTRIBUTE));
             int userId = Integer.parseInt(requestContext.getParameter(ACCOUNT_USER_ID_ATTRIBUTE));
             UserDto userDto = FactoryService.getUserServiceInstance().getById(userId);
             httpSession.setAttribute(USER_OBJECT_VIEW, userDto);
+
         } catch (ServiceException e) {
             log.error(ERROR_ATTRIBUTE,e);
             requestContext.setAttribute(ERROR_ATTRIBUTE,MESSAGE_ERROR_ATTRIBUTE+e.getMessage());

@@ -5,12 +5,13 @@ import com.epam.shop.controller.context.api.RequestContext;
 import com.epam.shop.controller.context.api.ResponseContext;
 
 import com.epam.shop.service.dto.model.ProductDto;
+import com.epam.shop.service.factory.FactoryService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import javax.servlet.http.HttpSession;
 
-import java.util.ArrayList;
+
 
 import java.util.List;
 import java.util.Map;
@@ -51,27 +52,13 @@ public class LookBasketCommand implements Command {
     @Override
     public ResponseContext execute(RequestContext requestContext)  {
         HttpSession httpSession = requestContext.getCurrentSession().get();
-        List<ProductDto> basket = backToListProducts((Map<ProductDto, Integer>) httpSession.getAttribute(BASKET_MAP_PARAM));
+        List<ProductDto> basket = FactoryService.getOrderServiceInstance().
+                returnListProduct((Map<ProductDto, Integer>) httpSession.getAttribute(BASKET_MAP_PARAM));
 
 
         httpSession.setAttribute(BASKET_LIST_PARAM, basket);
 
-
         return SHOW_BASKET;
     }
 
-    private List<ProductDto> backToListProducts(Map<ProductDto, Integer> basket) {
-        List<ProductDto> list = new ArrayList<>();
-        int sizeBasket = 0;
-                    if(basket!=null) {
-                        for (Map.Entry<ProductDto, Integer> entry : basket.entrySet()) {
-                            int iter = 0;
-                            while (entry.getValue() != iter) {
-                                list.add(entry.getKey());
-                                iter++;
-                            }
-                        }
-                    }
-        return list;
-    }
 }

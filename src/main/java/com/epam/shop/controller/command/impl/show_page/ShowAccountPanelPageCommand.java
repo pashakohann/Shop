@@ -11,7 +11,6 @@ import org.apache.logging.log4j.Logger;
 public class ShowAccountPanelPageCommand implements Command {
     public static Command command;
     private static final String MAIN_PAGE_PATH = "WEB-INF/jsp/personal_acc.jsp";
-
     private static final String MESSAGE_ERROR_ATTRIBUTE = "message: ";
     private static final String ERROR_ATTRIBUTE = "error";
 

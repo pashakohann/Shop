@@ -12,9 +12,6 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import javax.servlet.http.HttpSession;
-import java.rmi.ServerException;
-import java.util.HashMap;
-import java.util.Map;
 
 public class AddProductInBasketCommand implements Command {
     private static Command command;
@@ -57,14 +54,15 @@ public class AddProductInBasketCommand implements Command {
         String productId = requestContext.getParameter(PRODUCT_ID_PARAM);
         try {
 
-            if (requestContext.getCurrentSession().isPresent()) {
+
                 HttpSession httpSession = requestContext.getCurrentSession().get();
                 basket = (BasketServiceImpl) httpSession.getAttribute(BASKET_USER_OBJECT);
                 basket.addProduct(FactoryService.getProductServiceInstance().getById(Integer.parseInt(productId)));
                 httpSession.setAttribute(BASKET_MAP_PARAM, basket.lookBasket());
                 httpSession.setAttribute(BASKET_PARAM, basket.basketSize());
                 httpSession.setAttribute(BASKET_USER_OBJECT, basket);
-            }
+
+
         } catch (ServiceException e) {
             log.error(ERROR_PARAM,e);
             requestContext.setAttribute(ERROR_PARAM, MESSAGE_PARAM + ":" + e.getMessage());

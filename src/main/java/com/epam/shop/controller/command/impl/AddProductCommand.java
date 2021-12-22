@@ -1,7 +1,6 @@
 package com.epam.shop.controller.command.impl;
 
 import com.epam.shop.controller.command.api.Command;
-import com.epam.shop.controller.command.impl.show_page.WhoseOrderCommand;
 import com.epam.shop.controller.context.api.RequestContext;
 import com.epam.shop.controller.context.api.ResponseContext;
 import com.epam.shop.service.dto.model.ProductDto;
@@ -75,18 +74,19 @@ public class AddProductCommand implements Command {
         HttpSession httpSession = requestContext.getCurrentSession().get();
         boolean isException = false;
         ValidatorController validatorController = ProductValidatorImplController.getInstance();
-        ProductDto productDto = new ProductDto();
+
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append(requestContext.getParameter(PRODUCT_NAME_ATTRIBUTE)).append(DELIMITER).
                 append(requestContext.getParameter(PRODUCT_COST_ATTRIBUTE)).append(DELIMITER).
                 append(requestContext.getParameter(PRODUCT_PHOTO_LINK_ATTRIBUTE));
 
         try {
+
             checkNullParameter(requestContext.getParameter(PRODUCT_NAME_ATTRIBUTE),
                     requestContext.getParameter(PRODUCT_COST_ATTRIBUTE),
                     requestContext.getParameter(PRODUCT_PHOTO_LINK_ATTRIBUTE));
             validatorController.validate(stringBuilder.toString());
-
+            ProductDto productDto = new ProductDto();
             List<ProductDto> productsList;
             productDto.setName(requestContext.getParameter(PRODUCT_NAME_ATTRIBUTE));
             productDto.setCost(new BigDecimal(requestContext.getParameter(PRODUCT_COST_ATTRIBUTE)));
@@ -97,6 +97,7 @@ public class AddProductCommand implements Command {
             FactoryService.getProductServiceInstance().create(productDto);
             productsList = FactoryService.getProductServiceInstance().getAll();
             httpSession.setAttribute(PRODUCTS_LIST, productsList);
+
         } catch (ServiceException e) {
             requestContext.setAttribute(ERROR_PARAM, MESSAGE_PARAM + e.getMessage());
             log.error(ERROR_PARAM, e);

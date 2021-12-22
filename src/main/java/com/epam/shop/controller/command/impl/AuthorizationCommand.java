@@ -14,8 +14,6 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import javax.servlet.http.HttpSession;
-import java.util.ArrayList;
-import java.util.List;
 
 
 public class AuthorizationCommand implements Command {
@@ -89,7 +87,7 @@ public class AuthorizationCommand implements Command {
     @Override
     public ResponseContext execute(RequestContext requestContext)  {
         basket = new BasketServiceImpl();
-        List<ProductDto> productslist = new ArrayList<>();
+
         final String userName = requestContext.getParameter(LOGIN_PARAM);
         final String userPassword = requestContext.getParameter(PASSWORD_PARAM);
         HttpSession httpSession = requestContext.getCurrentSession().get();
@@ -119,8 +117,6 @@ public class AuthorizationCommand implements Command {
 
         }
 
-
-        System.out.println(requestContext.getContextPath());
         return LOGIN_SUCCESS_PAGE;
 
     }

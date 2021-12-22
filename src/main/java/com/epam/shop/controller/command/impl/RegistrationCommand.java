@@ -24,7 +24,7 @@ public class RegistrationCommand implements Command {
     private static final String PASSWORD_PARAM = "password";
     private static final String ROLE_ACCOUNT_PARAM = "currentUser";
     private static final String ERROR = "error";
-    private static final String MESSAGE_ERROR = "message";
+    private static final String MESSAGE_ERROR = "message : ";
     private static final String ACCOUNT_OBJECT_PARAM = "account";
     private static final String ERROR_PAGE = "WEB-INF/jsp/sign_up.jsp";
     private static final String PANEL_USER_PAGE_PATH = "/shop?command=show_account_panel_command";
@@ -32,6 +32,7 @@ public class RegistrationCommand implements Command {
     private static final String BASKET_PARAM = "basketSize";
     private static final String SECRET_ADMIN_PARAM = "secret";
     private static final String USER_NAME = "userLogin";
+    private static final String SECRET_WORD_FOR_ADMIN = "epam";
     private BasketService<ProductDto, BasketServiceImpl> basket;
 
 
@@ -84,7 +85,7 @@ public class RegistrationCommand implements Command {
         userDto.setAccount(loginName);
         userDto.setPassword(password);
 
-               if(requestContext.getParameter(SECRET_ADMIN_PARAM).matches("epam")){
+               if(requestContext.getParameter(SECRET_ADMIN_PARAM).matches(SECRET_WORD_FOR_ADMIN)){
                    userDto.setRole(UserRoleDto.ADMIN);
                }else {
                    userDto.setRole(UserRoleDto.USER);
@@ -93,21 +94,18 @@ public class RegistrationCommand implements Command {
         try {
 
             userDto = FactoryService.getUserServiceInstance().create(userDto);
-            System.out.println(userDto);
-
             accountDto.setUserId(userDto.getId());
-            System.out.println(accountDto);
             accountDto = FactoryService.getAccountServiceInstance().create(accountDto);
             HttpSession session = requestContext.getCurrentSession().get();
-            System.out.println(accountDto);
             session.setAttribute(ROLE_ACCOUNT_PARAM, userDto);
             session.setAttribute(ACCOUNT_OBJECT_PARAM,accountDto);
             session.setAttribute(BASKET_USER_OBJECT,basket);
             session.setAttribute(BASKET_PARAM,basket.basketSize());
             requestContext.setAttribute(USER_NAME,userDto.getAccount());
+
         } catch (ServiceException e) {
             log.error(ERROR,e);
-            requestContext.setAttribute(ERROR, MESSAGE_ERROR + ":" + e.getMessage());
+            requestContext.setAttribute(ERROR, MESSAGE_ERROR +  e.getMessage());
             flagException = true;
 
         }
@@ -115,11 +113,6 @@ public class RegistrationCommand implements Command {
         if (flagException) {
             return SHOW_ERROR_PAGE;
         }
-
-
-
-
-
 
 
         return SHOW_PERSONAL_PAGE;

@@ -3,20 +3,20 @@ package com.epam.shop.controller.command.impl;
 import com.epam.shop.controller.command.api.Command;
 import com.epam.shop.controller.context.api.RequestContext;
 import com.epam.shop.controller.context.api.ResponseContext;
-import com.epam.shop.service.api.BasketService;
+
 import com.epam.shop.service.dto.model.AccountDto;
 import com.epam.shop.service.dto.model.ProductDto;
 import com.epam.shop.service.exception.ServiceException;
 import com.epam.shop.service.factory.FactoryService;
-import com.epam.shop.service.impl.BasketServiceImpl;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import javax.servlet.http.HttpSession;
 import java.math.BigDecimal;
-import java.util.ArrayList;
+
 import java.util.List;
-import java.util.Map;
+
 
 public class DeleteProductOrderCommand implements Command {
     private static Command command;
@@ -65,9 +65,10 @@ public class DeleteProductOrderCommand implements Command {
         AccountDto accountDto = (AccountDto) httpSession.getAttribute(ACCOUNT_OBJECT_PARAM);
 
         try {
+
             accountDto.setAmount(accountDto.getAmount().add(new BigDecimal(requestContext.getParameter(COST_PRODUCT_PARAM))));
-          accountDto =   FactoryService.getAccountServiceInstance().update(accountDto);
-            productDtoList = backToListProducts(FactoryService.getOrderServiceInstance().deleteProductFromOrder(orderId,productId).getMapProducts());
+          accountDto = FactoryService.getAccountServiceInstance().update(accountDto);
+            productDtoList = FactoryService.getOrderServiceInstance().returnListProduct(FactoryService.getOrderServiceInstance().deleteProductFromOrder(orderId,productId).getMapProducts());
             httpSession.setAttribute(PRODUCTS_FROM_ORDER_PARAM,productDtoList);
             httpSession.setAttribute(ACCOUNT_OBJECT_PARAM,accountDto);
         } catch (ServiceException e) {
@@ -78,18 +79,4 @@ public class DeleteProductOrderCommand implements Command {
         return SHOW_ORDER_PAGE ;
     }
 
-    private List<ProductDto> backToListProducts(Map<ProductDto, Integer> basket) {
-        List<ProductDto> list = new ArrayList<>();
-        int sizeBasket = 0;
-        if(basket!=null) {
-            for (Map.Entry<ProductDto, Integer> entry : basket.entrySet()) {
-                int iter = 0;
-                while (entry.getValue() != iter) {
-                    list.add(entry.getKey());
-                    iter++;
-                }
-            }
-        }
-        return list;
-    }
 }

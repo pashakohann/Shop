@@ -47,10 +47,12 @@ public class WhoseUserCommand  implements Command {
     @Override
     public ResponseContext execute(RequestContext requestContext)  {
         HttpSession httpSession = requestContext.getCurrentSession().get();
-        int userId = Integer.parseInt(requestContext.getParameter(USER_ID_ATTRIBUTE));
+
         try {
+            int userId = Integer.parseInt(requestContext.getParameter(USER_ID_ATTRIBUTE));
             AccountDto accountDto = FactoryService.getAccountServiceInstance().findByUserId(userId);
             httpSession.setAttribute(ACCOUNT_OBJECT_ATTRIBUTE, accountDto);
+
         } catch (ServiceException e) {
             log.error(ERROR_ATTRIBUTE,e);
             requestContext.setAttribute(ERROR_ATTRIBUTE, MESSAGE_ERROR_ATTRIBUTE + e.getMessage());

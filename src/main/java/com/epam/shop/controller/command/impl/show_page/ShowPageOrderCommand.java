@@ -13,7 +13,6 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import javax.servlet.http.HttpSession;
-import java.rmi.ServerException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -61,13 +60,14 @@ public class ShowPageOrderCommand implements Command {
                 }else {
                     orderList = FactoryService.getOrderServiceInstance().findAccountOrders(((AccountDto) httpSession.getAttribute(ACCOUNT_OBJECT_ATTRIBUTE)));
                 }
+                httpSession.setAttribute(LIST_ORDERS_ATTRIBUTE, orderList);
             }catch (ServiceException e){
                 log.error(ERROR_ATTRIBUTE,e);
                 requestContext.setAttribute(ERROR_ATTRIBUTE,MESSAGE_ERROR_ATTRIBUTE+e.getMessage());
 
             }
 
-        httpSession.setAttribute(LIST_ORDERS_ATTRIBUTE, orderList);
+
 
         return SHOW_ALL_ORDERS_PAGE;
     }

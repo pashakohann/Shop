@@ -26,7 +26,7 @@ public class OrderProductCommand implements Command {
     private static Command command;
     private static String RETURN_PAGE = "/shop?command=show_account_panel_command";
     private static final String ERROR_PARAM = "error";
-    private static final String MESSAGE_PARAM = "message";
+    private static final String MESSAGE_PARAM = "message : ";
     private static final String BASKET_USER_OBJECT = "basketObject";
     private static final String BASKET_MAP_PARAM = "userBasket";
     private static final String BASKET_LIST_PARAM = "basketList";
@@ -79,10 +79,11 @@ public class OrderProductCommand implements Command {
         BasketService<ProductDto, BasketServiceImpl> basketService;
         boolean isError = false;
 
-        if (requestContext.getCurrentSession().isPresent()) {
-            httpSession = requestContext.getCurrentSession().get();
-        }
+
+
+
         try {
+            httpSession = requestContext.getCurrentSession().get();
             AccountDto accountDto = ((AccountDto)httpSession.getAttribute(ACCOUNT_OBJECT_PARAM));
             validatorForDefault.validate(accountDto.getFirstName());
             basketService = ((BasketServiceImpl) (httpSession.getAttribute(BASKET_USER_OBJECT)));
@@ -102,12 +103,12 @@ public class OrderProductCommand implements Command {
             httpSession.setAttribute(ACCOUNT_OBJECT_PARAM, accountDto);
         } catch (ServiceException e) {
             log.error(ERROR_PARAM,e);
-            requestContext.setAttribute(ERROR_PARAM, MESSAGE_PARAM + ":" + e.getMessage());
+            requestContext.setAttribute(ERROR_PARAM, MESSAGE_PARAM + e.getMessage());
             isError = true;
         }
 
         if (isError) {
-            System.out.println("aaaaaaaaaeeeerr");
+
             return SHOW_ERROR_PAGE;
         }
 

@@ -51,11 +51,11 @@ public class DeleteProductFromBasketCommand implements Command {
 
     @Override
     public ResponseContext execute(RequestContext requestContext) {
-        String productId =  (requestContext.getParameter(PRODUCT_ID_PARAM));
         BasketService<ProductDto,BasketServiceImpl>basketService;
-        try {
 
-            if (requestContext.getCurrentSession().isPresent()){
+        try {
+            String productId =  (requestContext.getParameter(PRODUCT_ID_PARAM));
+
                 HttpSession httpSession = requestContext.getCurrentSession().get();
                 basketService = ((BasketServiceImpl)(httpSession.getAttribute(BASKET_USER_OBJECT))).deleteProduct(Integer.parseInt(productId));
 
@@ -67,7 +67,7 @@ public class DeleteProductFromBasketCommand implements Command {
                 httpSession.setAttribute(BASKET_SIZE_PARAM,basketService.basketSize());
 
 
-            }
+
         } catch (ServiceException e) {
             log.error(ERROR_PARAM,e);
             requestContext.setAttribute(ERROR_PARAM, MESSAGE_PARAM + ":" + e.getMessage());

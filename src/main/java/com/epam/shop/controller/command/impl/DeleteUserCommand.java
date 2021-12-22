@@ -19,7 +19,7 @@ public class DeleteUserCommand implements Command {
     private static String USER_ID_PARAM = "userId";
     private static final String LIST_USERS_ATTRIBUTE = "userList";
     private static final String ERROR_PARAM = "error";
-    private static final String MESSAGE_PARAM = "message";
+    private static final String MESSAGE_PARAM = "message : ";
 
     private static final Logger log = LogManager.getLogger( DeleteUserCommand.class);
 
@@ -48,16 +48,15 @@ public class DeleteUserCommand implements Command {
     @Override
     public ResponseContext execute(RequestContext requestContext)  {
         HttpSession httpSession = requestContext.getCurrentSession().get();
-        List<UserDto> usersDtoList;
         int userId = Integer.parseInt(requestContext.getParameter(USER_ID_PARAM));
 
         try {
             FactoryService.getUserServiceInstance().deleteUserById(userId);
-            usersDtoList = FactoryService.getUserServiceInstance().getAll();
+            List<UserDto>  usersDtoList = FactoryService.getUserServiceInstance().getAll();
             httpSession.setAttribute(LIST_USERS_ATTRIBUTE, usersDtoList);
         } catch (ServiceException e) {
             log.error(ERROR_PARAM,e);
-            requestContext.setAttribute(ERROR_PARAM, MESSAGE_PARAM + ":" + e.getMessage());
+            requestContext.setAttribute(ERROR_PARAM, MESSAGE_PARAM  + e.getMessage());
         }
 
         return SHOW_ALL_PRODUCTS_PAGE;

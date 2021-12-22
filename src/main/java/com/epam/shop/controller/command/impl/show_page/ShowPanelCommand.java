@@ -50,9 +50,11 @@ public class ShowPanelCommand implements Command {
 
 
              try {
+
                  List<UserDto> userList = FactoryService.getUserServiceInstance().getAll();
                  HttpSession httpSession = requestContext.getCurrentSession().get();
                  httpSession.setAttribute(LIST_USERS_ATTRIBUTE, userList);
+
              }catch (ServiceException e){
                  log.error(ERROR_ATTRIBUTE,e);
                  requestContext.setAttribute(ERROR_ATTRIBUTE,MESSAGE_ERROR_ATTRIBUTE+e.getMessage());

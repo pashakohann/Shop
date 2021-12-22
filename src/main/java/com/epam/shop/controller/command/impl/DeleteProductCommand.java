@@ -50,12 +50,13 @@ public class DeleteProductCommand implements Command {
     @Override
     public ResponseContext execute(RequestContext requestContext){
         HttpSession httpSession = requestContext.getCurrentSession().get();
-        List<ProductDto> productDtoList;
-        int productId = Integer.parseInt(requestContext.getParameter(PRODUCT_ID_PARAM));
+
+
 
         try {
+            int productId = Integer.parseInt(requestContext.getParameter(PRODUCT_ID_PARAM));
             FactoryService.getProductServiceInstance().deleteById(productId);
-            productDtoList = FactoryService.getProductServiceInstance().getAll();
+            List<ProductDto>productDtoList = FactoryService.getProductServiceInstance().getAll();
             httpSession.setAttribute(LIST_PRODUCTS_ATTRIBUTE, productDtoList);
         } catch (ServiceException e) {
             log.error(ERROR_PARAM,e);

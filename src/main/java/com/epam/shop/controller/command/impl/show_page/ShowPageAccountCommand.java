@@ -4,7 +4,6 @@ import com.epam.shop.controller.command.api.Command;
 import com.epam.shop.controller.context.api.RequestContext;
 import com.epam.shop.controller.context.api.ResponseContext;
 import com.epam.shop.service.dto.model.AccountDto;
-import com.epam.shop.service.dto.model.UserDto;
 import com.epam.shop.service.exception.ServiceException;
 import com.epam.shop.service.factory.FactoryService;
 import org.apache.logging.log4j.LogManager;
@@ -47,9 +46,11 @@ public class ShowPageAccountCommand implements Command {
     @Override
     public ResponseContext execute(RequestContext requestContext)  {
         try {
+
             List<AccountDto> accountList = FactoryService.getAccountServiceInstance().getAll();
             HttpSession httpSession = requestContext.getCurrentSession().get();
             httpSession.setAttribute(LIST_ACCOUNTS_ATTRIBUTE, accountList);
+
         }catch (ServiceException e){
             log.error(ERROR_ATTRIBUTE,e);
             requestContext.setAttribute(ERROR_ATTRIBUTE,MESSAGE_ERROR_ATTRIBUTE+e.getMessage());

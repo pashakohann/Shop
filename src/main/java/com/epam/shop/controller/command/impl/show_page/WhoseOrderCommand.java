@@ -51,8 +51,9 @@ public class WhoseOrderCommand implements Command {
     @Override
     public ResponseContext execute(RequestContext requestContext)  {
         HttpSession httpSession = requestContext.getCurrentSession().get();
-        int accountId = Integer.parseInt(requestContext.getParameter(ACCOUNT_ID_ATTRIBUTE));
+
         try {
+            int accountId = Integer.parseInt(requestContext.getParameter(ACCOUNT_ID_ATTRIBUTE));
             AccountDto accountDto = FactoryService.getAccountServiceInstance().getById(accountId);
             httpSession.setAttribute(ACCOUNT_OBJECT_ATTRIBUTE, accountDto);
         } catch (ServiceException e) {

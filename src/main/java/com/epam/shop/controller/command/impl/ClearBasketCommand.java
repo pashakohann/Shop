@@ -15,6 +15,7 @@ import javax.servlet.http.HttpSession;
 
 
 public class ClearBasketCommand implements Command {
+
     private static Command command;
     private static String RETURN_PAGE = "WEB-INF/jsp/basket.jsp";
     private static final String ERROR_PARAM = "error";
@@ -55,7 +56,7 @@ public class ClearBasketCommand implements Command {
         BasketService<ProductDto,BasketServiceImpl>basketService;
         try {
 
-            if (requestContext.getCurrentSession().isPresent()){
+
                 HttpSession httpSession = requestContext.getCurrentSession().get();
                 basketService = ((BasketServiceImpl)(httpSession.getAttribute(BASKET_USER_OBJECT))).clearBasket();
 
@@ -67,7 +68,7 @@ public class ClearBasketCommand implements Command {
                 httpSession.setAttribute(BASKET_SIZE_PARAM,basketService.basketSize());
 
 
-            }
+
         } catch (ServiceException e) {
             log.error(ERROR_PARAM,e);
             requestContext.setAttribute(ERROR_PARAM, MESSAGE_PARAM + ":" + e.getMessage());

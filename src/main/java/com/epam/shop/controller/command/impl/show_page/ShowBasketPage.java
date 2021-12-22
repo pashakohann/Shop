@@ -9,7 +9,6 @@ import org.apache.logging.log4j.Logger;
 public class ShowBasketPage implements Command {
     public static Command command;
     private static final String PERSONAL_ACC_PATH = "WEB-INF/jsp/personal_acc.jsp";
-
     private static final String MESSAGE_ERROR_ATTRIBUTE = "message: ";
     private static final String ERROR_ATTRIBUTE = "error";
 

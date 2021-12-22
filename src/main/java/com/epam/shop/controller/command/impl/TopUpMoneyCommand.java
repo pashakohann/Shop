@@ -26,7 +26,7 @@ public class TopUpMoneyCommand implements Command {
     private static final String MESSAGE_ERROR_ATTRIBUTE = "message :";
     private static final String ERROR_ATTRIBUTE = "error";
 
-    private static final Logger log = LogManager.getLogger( TopUpMoneyCommand.class);
+    private static final Logger log = LogManager.getLogger(TopUpMoneyCommand.class);
 
 
     private TopUpMoneyCommand() {
@@ -69,7 +69,7 @@ public class TopUpMoneyCommand implements Command {
 
 
     @Override
-    public ResponseContext execute(RequestContext requestContext)  {
+    public ResponseContext execute(RequestContext requestContext) {
         HttpSession httpSession = requestContext.getCurrentSession().get();
         boolean isException = false;
         try {
@@ -80,15 +80,15 @@ public class TopUpMoneyCommand implements Command {
             accountDto.setAmount(accountDto.getAmount().add(bigDecimal));
             accountDto = FactoryService.getAccountServiceInstance().update(accountDto);
             httpSession.setAttribute(ACCOUNT_OBJECT_ATTRIBUTE, accountDto);
+
         } catch (ServiceException e) {
-            log.error(ERROR_ATTRIBUTE,e);
+            log.error(ERROR_ATTRIBUTE, e);
             requestContext.setAttribute(ERROR_ATTRIBUTE, MESSAGE_ERROR_ATTRIBUTE + e.getMessage());
             isException = true;
         }
 
 
-        if (isException){
-            System.out.println("aaaaaaaaaeeeerr");
+        if (isException) {
             return ERROR_PAGE;
         }
 
@@ -96,7 +96,7 @@ public class TopUpMoneyCommand implements Command {
     }
 
     private void validateAmount(String amount) throws ServiceException {
-        if (amount==null||!amount.matches(AccountValidationString.ACCOUNT_AMOUNT_REGEX)) {
+        if (amount == null || !amount.matches(AccountValidationString.ACCOUNT_AMOUNT_REGEX)) {
             throw new ServiceException(ServiceAccountExceptionString.ACCOUNT_AMOUNT_EXCEPTION);
         }
     }
