@@ -65,7 +65,7 @@
               <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                   <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="${pageContext.request.contextPath}/shop?command=default">${allProducts}</a>
+                    <a class="nav-link active" aria-current="page" href="${pageContext.request.contextPath}/shop?command=find_products_category_brand&category=0&brand=0">${allProducts}</a>
                   </li>
                   <li class="nav-item dropdown">
                      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -225,7 +225,7 @@
                         <div class="card" style="width: 18rem;">
                           <img class="card-img-top" src=${element.getPhotoLink()} alt="Card image cap">
                           <div class="card-body">
-                            <h5 class="card-title">${element.getId()}</h5>
+
                             <p class="card-text">${element.getName()}</p>
 
                             <a href="${pageContext.request.contextPath}/shop?command=add_product_basket_command&productId=${element.getId()}" class="btn btn-primary">${addToBasket}</a>
@@ -243,7 +243,7 @@
                           <div class="card" style="width: 18rem;">
                             <img class="card-img-top" src=${element.getPhotoLink()} alt="Card image cap">
                             <div class="card-body">
-                              <h5 class="card-title">${element.getId()}</h5>
+
                               <p class="card-text">${element.getName()}</p>
 
                               <a href="${pageContext.request.contextPath}/shop?command=add_product_basket_command&productId=${element.getId()}" class="btn btn-primary">${addToBasket}</a>
@@ -258,7 +258,7 @@
                             <div class="card" style="width: 18rem;">
                               <img class="card-img-top" src="${element.getPhotoLink()}" alt="Card image cap">
                               <div class="card-body">
-                                <h5 class="card-title">${element.getId()}</h5>
+
                                   <p class="card-text">${element.getName()}</p>
                                  <a href="${pageContext.request.contextPath}/shop?command=add_product_basket_command&productId=${element.getId()}" class="btn btn-primary">${addToBasket}</a>
                                  <span class="price">${element.getCost()} BLR</span>

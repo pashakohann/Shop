@@ -58,6 +58,7 @@ public class AccountServiceImpl implements AccountService {
             account.setTelephoneNumber(DEFAULT_VALUE_FOR_TELEPHONE_NUMBER);
             account.setCity(DEFAULT_VALUE_FOR_CITY);
             account.setAmount(BigDecimal.ZERO);
+            account.setId(0);
             account = converter.convert(FactoryDao.getAccountImpl().save(converter.convert(account)));
         } catch (DaoException e) {
 

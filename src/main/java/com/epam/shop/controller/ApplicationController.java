@@ -23,23 +23,21 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 
-
 import java.io.IOException;
 
 
 @WebServlet(urlPatterns = "/shop")
 public class ApplicationController extends HttpServlet {
     private static final String COMMAND_PARAMETER_NAME = "command";
-    private static final String NAME = "name";
+    private static final String INIT_EXCEPTION = "there was a connection problem...Try later..";
+    private static final String DESTROY_EXCEPTION = "there was a problem with disconnection ...";
+
     private static final Logger log = LogManager.getLogger(ApplicationController.class);
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        try {
-            process(req, resp);
-        } catch (ServiceException e) {
-            log.error(" mistake of the servlet", e);
-        }
+
+        process(req, resp);
 
 
     }
@@ -47,14 +45,12 @@ public class ApplicationController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        try {
-            process(req, resp);
-        } catch (ServiceException e) {
-            log.error(" mistake of the servlet", e);
-        }
+
+        process(req, resp);
+
     }
 
-    private void process(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException, ServiceException {
+    private void process(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
 
         final String commandName = req.getParameter(COMMAND_PARAMETER_NAME);
 
@@ -78,7 +74,7 @@ public class ApplicationController extends HttpServlet {
         try {
             ConnectionServiceImpl.getInstance().destroy();
         } catch (ServiceException e) {
-            e.printStackTrace();
+            log.error(DESTROY_EXCEPTION, e);
         }
         super.destroy();
     }
@@ -89,11 +85,10 @@ public class ApplicationController extends HttpServlet {
         try {
             ConnectionServiceImpl.getInstance().init();
         } catch (ServiceException e) {
-            e.printStackTrace();
+            log.error(DESTROY_EXCEPTION, e);
         }
 
     }
-
 
 
 }

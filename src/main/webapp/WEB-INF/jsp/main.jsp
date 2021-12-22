@@ -179,7 +179,7 @@
                         <div class="card" style="width: 18rem;">
                           <img class="card-img-top" src=${element.getPhotoLink()} alt="Card image cap">
                           <div class="card-body">
-                            <h5 class="card-title">${element.getId()}</h5>
+
                             <p class="card-text">${element.getName()}</p>
 
                             <a href="${pageContext.request.contextPath}/shop?command=show_sign_in_page" class="btn btn-primary">${addToBasket}</a>
@@ -197,7 +197,7 @@
                           <div class="card" style="width: 18rem;">
                             <img class="card-img-top" src=${element.getPhotoLink()} alt="Card image cap">
                             <div class="card-body">
-                              <h5 class="card-title">${element.getId()}</h5>
+
                               <p class="card-text">${element.getName()}</p>
 
                               <a href="${pageContext.request.contextPath}/shop?command=show_sign_in_page" class="btn btn-primary">${addToBasket}</a>
@@ -212,7 +212,7 @@
                             <div class="card" style="width: 18rem;">
                               <img class="card-img-top" src="${element.getPhotoLink()}" alt="Card image cap">
                               <div class="card-body">
-                                <h5 class="card-title">${element.getId()}</h5>
+
                                   <p class="card-text">${element.getName()}</p>
                                  <a href="${pageContext.request.contextPath}/shop?command=show_sign_in_page" class="btn btn-primary">${addToBasket}</a>
                                  <span class="price">${element.getCost()} BLR</span>

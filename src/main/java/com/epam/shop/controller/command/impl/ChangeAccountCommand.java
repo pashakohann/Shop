@@ -11,6 +11,8 @@ import com.epam.shop.service.factory.FactoryService;
 
 import com.epam.shop.service.validation.api.ValidatorController;
 import com.epam.shop.service.validation.impl.AccountValidatorControllerImpl;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 
 import javax.servlet.http.HttpSession;
@@ -20,7 +22,8 @@ import java.time.LocalDate;
 
 public class ChangeAccountCommand implements Command {
     public static Command command;
-    private static final String BACK_PROFILE_PATH = "/jsp/profile.jsp";
+    private static final String BACK_PROFILE_PATH = "/shop?command=show_profile_command";
+    private static final String ERROR_PATH = "WEB-INF/jsp/profile.jsp";
     private static final String ACCOUNT_F_NAME_ATTRIBUTE = "firstName";
     private static final String ACCOUNT_L_NAME_ATTRIBUTE = "lastName";
     private static final String ACCOUNT_D_O_B_ATTRIBUTE = "dateOfBirth";
@@ -33,9 +36,9 @@ public class ChangeAccountCommand implements Command {
     private static final String MESSAGE_ERROR_ATTRIBUTE = "message: ";
     private static final String ERROR_ATTRIBUTE = "error";
     private static final String DELIMITER = "&&&";
-    private static final String EMPTY_FIELDS_EXCEPTION = "You need to fill in all the fields";
 
 
+    private static final Logger log = LogManager.getLogger( ChangeAccountCommand.class);
     private ChangeAccountCommand() {
     }
 
@@ -62,7 +65,7 @@ public class ChangeAccountCommand implements Command {
     private static final ResponseContext SHOW_ERROR_PAGE = new ResponseContext() {
         @Override
         public String getPath() {
-            return BACK_PROFILE_PATH;
+            return ERROR_PATH;
         }
 
         @Override
@@ -74,7 +77,8 @@ public class ChangeAccountCommand implements Command {
 
 
     @Override
-    public ResponseContext execute(RequestContext requestContext) throws ServiceException {
+    public ResponseContext execute(RequestContext requestContext)  {
+        boolean isException = false;
         HttpSession httpSession = requestContext.getCurrentSession().get();
         AccountDto accountDto = (AccountDto) httpSession.getAttribute(ACCOUNT_OBJECT_ATTRIBUTE);
         ValidatorController validatorController = AccountValidatorControllerImpl.getInstance();
@@ -101,10 +105,14 @@ public class ChangeAccountCommand implements Command {
 
 
         } catch (ServiceException e) {
-            //log
+            log.error(ERROR_ATTRIBUTE,e);
             requestContext.setAttribute(ERROR_ATTRIBUTE, MESSAGE_ERROR_ATTRIBUTE + ": " + e.getMessage());
-
+            isException = true;
         }
+
+           if(isException){
+               return SHOW_ERROR_PAGE;
+           }
 
         return SHOW_PROFILE_PAGE;
     }

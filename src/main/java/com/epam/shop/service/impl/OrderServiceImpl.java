@@ -160,6 +160,21 @@ public class OrderServiceImpl implements OrderService {
 
     }
 
+    public List<ProductDto> returnListProduct(Map<ProductDto,Integer>mapProducts){
+        List<ProductDto> list = new ArrayList<>();
+
+        if(mapProducts!=null) {
+            for (Map.Entry<ProductDto, Integer> entry : mapProducts.entrySet()) {
+                int iter = 0;
+                while (entry.getValue() != iter) {
+                    list.add(entry.getKey());
+                    iter++;
+                }
+            }
+        }
+        return list;
+    }
+
     private OrderDto calculateTheOrder(OrderDto orderDto) {
         orderDto.setOrderCost(BigDecimal.ZERO);
         for (Map.Entry<ProductDto, Integer> entry : orderDto.getMapProducts().entrySet()) {
@@ -190,5 +205,6 @@ public class OrderServiceImpl implements OrderService {
         }
         return orderDto;
     }
+
 
 }

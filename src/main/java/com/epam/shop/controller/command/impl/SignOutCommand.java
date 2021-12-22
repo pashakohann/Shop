@@ -8,17 +8,21 @@ import com.epam.shop.service.api.BasketService;
 import com.epam.shop.service.dto.model.ProductDto;
 import com.epam.shop.service.exception.ServiceException;
 import com.epam.shop.service.impl.BasketServiceImpl;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import javax.servlet.http.HttpSession;
 
 public class SignOutCommand implements Command {
     public static Command command;
-    private static final String SHOW_DEFAULT_PAGE = "/jsp/main.jsp";
+    private static final String SHOW_DEFAULT_PAGE = "WEB-INF/jsp/main.jsp";
     private static final String ERROR_PARAM = "error";
     private static final String MESSAGE_PARAM = "message";
     private static final String BASKET_PARAM = "basketSize";
     private static final String BASKET_MAP_PARAM = "userBasket";
     private static final String BASKET_USER_OBJECT ="basketObject";
+
+    private static final Logger log = LogManager.getLogger( SignOutCommand.class);
 
     private SignOutCommand() {
     }
@@ -44,7 +48,7 @@ public class SignOutCommand implements Command {
 
 
     @Override
-    public ResponseContext execute(RequestContext requestContext) throws ServiceException {
+    public ResponseContext execute(RequestContext requestContext) {
         BasketService<ProductDto,BasketServiceImpl> basketService;
         HttpSession httpSession = null;
         try {
@@ -56,7 +60,7 @@ public class SignOutCommand implements Command {
 
            requestContext.invalidateCurrentSession();
         }catch (ServiceException e){
-            //logg
+            log.error(ERROR_PARAM,e);
             httpSession.setAttribute(ERROR_PARAM,MESSAGE_PARAM + ":" + e.getMessage());
         }
 

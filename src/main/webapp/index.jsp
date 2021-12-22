@@ -4,8 +4,9 @@
 
 <html>
 <head>
+<meta http-Equiv = "Content-Type" content = "text / html; charset = utf-8">
 <meta charset ="UTF-8"/>
-<title>First JSP</title>
+<title>Shop</title>
 </head>
 <body>
 

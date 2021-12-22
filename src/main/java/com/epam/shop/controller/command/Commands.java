@@ -19,6 +19,7 @@ import com.epam.shop.controller.command.impl.ReturnBackActionCommand;
 import com.epam.shop.controller.command.impl.SignOutCommand;
 import com.epam.shop.controller.command.impl.TopUpMoneyCommand;
 import com.epam.shop.controller.command.impl.show_page.LookUserCommand;
+import com.epam.shop.controller.command.impl.show_page.ShowAccountPanelPageCommand;
 import com.epam.shop.controller.command.impl.show_page.WhoseOrderCommand;
 import com.epam.shop.controller.command.impl.show_page.WhoseUserCommand;
 import com.epam.shop.controller.command.impl.show_page.LookOrderPageCommand;
@@ -42,7 +43,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public enum Commands {
-    DEFAULT(ShowDefaultPageCommand.getInstance(), UserRoleDto.UNAUTHORIZED, UserRoleDto.USER, UserRoleDto.ADMIN),
+    DEFAULT(ShowDefaultPageCommand.getInstance(), UserRoleDto.UNAUTHORIZED,UserRoleDto.USER, UserRoleDto.ADMIN),
     FIND_PRODUCTS_CATEGORY_BRAND(FindProductsByCategoryBrandCommand.getInstance(), UserRoleDto.USER, UserRoleDto.ADMIN, UserRoleDto.UNAUTHORIZED),
     FIND_PRODUCTS_CATEGORY(FindProductsByCategoryCommand.getInstance(), UserRoleDto.USER, UserRoleDto.ADMIN, UserRoleDto.UNAUTHORIZED),
     SHOW_SIGN_UP_PAGE(ShowSignUpPageCommand.getInstance(), UserRoleDto.USER, UserRoleDto.ADMIN, UserRoleDto.UNAUTHORIZED),
@@ -75,7 +76,8 @@ public enum Commands {
     DELETE_USER_COMMAND(DeleteUserCommand.getInstance(),UserRoleDto.ADMIN),
     LOOK_ACCOUNT_ORDER_COMMAND(WhoseOrderCommand.getInstance(),UserRoleDto.ADMIN),
     LOOK_ACCOUNT_USER_COMMAND(WhoseUserCommand.getInstance(),UserRoleDto.ADMIN),
-    LOOK_USER_COMMAND(LookUserCommand.getInstance(),UserRoleDto.ADMIN);
+    LOOK_USER_COMMAND(LookUserCommand.getInstance(),UserRoleDto.ADMIN),
+    SHOW_ACCOUNT_PANEL_COMMAND(ShowAccountPanelPageCommand.getInstance(),UserRoleDto.ADMIN, UserRoleDto.USER);
 
     private final Command command;
     private final List<UserRoleDto> allowedRoles;

@@ -8,7 +8,7 @@ import com.epam.shop.service.exception.ServiceException;
 
 public class ShowPageAddProductCommand implements Command {
     public static Command command;
-    private static final String ALL_ORDERS_PATH = "/jsp/create_product.jsp";
+    private static final String ALL_ORDERS_PATH = "WEB-INF/jsp/create_product.jsp";
 
 
     private ShowPageAddProductCommand() {
@@ -35,7 +35,7 @@ public class ShowPageAddProductCommand implements Command {
     };
 
     @Override
-    public ResponseContext execute(RequestContext requestContext) throws ServiceException {
+    public ResponseContext execute(RequestContext requestContext) {
 
 
         return SHOW_ADD_PRODUCT_PAGE;

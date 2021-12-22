@@ -3,11 +3,11 @@ package com.epam.shop.controller.command.impl.show_page;
 import com.epam.shop.controller.command.api.Command;
 import com.epam.shop.controller.context.api.RequestContext;
 import com.epam.shop.controller.context.api.ResponseContext;
-import com.epam.shop.service.exception.ServiceException;
+
 
 public class ShowSignInPageCommand implements Command {
     public static Command command;
-    private static final String SIGN_IN_PATH = "/jsp/sign_in.jsp";
+    private static final String SIGN_IN_PATH = "WEB-INF/jsp/sign_in.jsp";
 
     private ShowSignInPageCommand() {
     }
@@ -33,7 +33,7 @@ public class ShowSignInPageCommand implements Command {
     };
 
     @Override
-    public ResponseContext execute(RequestContext requestContext) throws ServiceException {
+    public ResponseContext execute(RequestContext requestContext)  {
 
         return SHOW_SIGN_IN_PAGE;
     }

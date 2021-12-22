@@ -10,6 +10,8 @@ import com.epam.shop.service.dto.model.UserDto;
 import com.epam.shop.service.dto.model.UserRoleDto;
 import com.epam.shop.service.exception.ServiceException;
 import com.epam.shop.service.factory.FactoryService;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import javax.servlet.http.HttpSession;
 import java.math.BigDecimal;
@@ -19,15 +21,16 @@ import java.util.Map;
 
 public class DeleteOrderCommand implements Command {
     private static Command command;
-    private static final String ORDER_PATH = "/jsp/all_orders.jsp";
+    private static final String ORDER_PATH = "WEB-INF/jsp/all_orders.jsp";
     private static String ORDERS_LIST_PARAM = "ordersList";
     private static String COST_PRODUCT_PARAM = "orderCost";
     private static final String ORDER_ID_ATTRIBUTE = "orderId";
     private static final String ERROR_PARAM = "error";
     private static final String MESSAGE_PARAM = "message";
     private static final String ACCOUNT_OBJECT_PARAM = "account";
-    ;
     private static final String CURRENT_USER_PARAM = "currentUser";
+
+    private static final Logger log = LogManager.getLogger( DeleteOrderCommand.class);
 
 
     private DeleteOrderCommand() {
@@ -53,14 +56,15 @@ public class DeleteOrderCommand implements Command {
     };
 
     @Override
-    public ResponseContext execute(RequestContext requestContext) throws ServiceException {
+    public ResponseContext execute(RequestContext requestContext)  {
         HttpSession httpSession = requestContext.getCurrentSession().get();
-        OrderDto orderDto = FactoryService.getOrderServiceInstance().getById(Integer.valueOf(requestContext.getParameter(ORDER_ID_ATTRIBUTE)));
+
         List<OrderDto> listOrders;
         UserDto userDto = (UserDto) httpSession.getAttribute(CURRENT_USER_PARAM);
         AccountDto accountDto = (AccountDto) httpSession.getAttribute(ACCOUNT_OBJECT_PARAM);
 
         try {
+            OrderDto orderDto = FactoryService.getOrderServiceInstance().getById(Integer.valueOf(requestContext.getParameter(ORDER_ID_ATTRIBUTE)));
             accountDto.setAmount(accountDto.getAmount().add(new BigDecimal(requestContext.getParameter(COST_PRODUCT_PARAM))));
            accountDto = FactoryService.getAccountServiceInstance().update(accountDto);
             FactoryService.getOrderServiceInstance().delete(orderDto);
@@ -72,7 +76,7 @@ public class DeleteOrderCommand implements Command {
             httpSession.setAttribute(ORDERS_LIST_PARAM, listOrders);
             httpSession.setAttribute(ACCOUNT_OBJECT_PARAM,accountDto);
         } catch (ServiceException e) {
-            //log
+           log.error(ERROR_PARAM,e);
             requestContext.setAttribute(ERROR_PARAM, MESSAGE_PARAM + ":" + e.getMessage());
         }
 

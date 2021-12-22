@@ -5,15 +5,20 @@ import com.epam.shop.controller.context.api.RequestContext;
 import com.epam.shop.controller.context.api.ResponseContext;
 
 import com.epam.shop.service.exception.ServiceException;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import javax.servlet.http.HttpSession;
 
 
 public class ReturnBackActionCommand implements Command {
     private static Command command;
-    private static String BASKET_PAGE = "/jsp/personal_acc.jsp";
+    private static String BASKET_PAGE = "WEB-INF/jsp/personal_acc.jsp";
     private static final String ERROR_PARAM = "error";
     private static final String MESSAGE_PARAM = "message";
+
+
+    private static final Logger log = LogManager.getLogger( ReturnBackActionCommand.class);
 
 
     private ReturnBackActionCommand() {
@@ -32,13 +37,13 @@ public class ReturnBackActionCommand implements Command {
         }
 
         public boolean isRedirect() {
-            return true;
+            return false;
         }
 
     };
 
     @Override
-    public ResponseContext execute(RequestContext requestContext) throws ServiceException {
+    public ResponseContext execute(RequestContext requestContext)  {
         HttpSession httpSession = requestContext.getCurrentSession().get();
         httpSession.getAttribute("basketSize");
 

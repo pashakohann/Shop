@@ -10,6 +10,8 @@ import com.epam.shop.service.dto.model.UserRoleDto;
 import com.epam.shop.service.exception.ServiceException;
 import com.epam.shop.service.factory.FactoryService;
 import com.epam.shop.service.impl.BasketServiceImpl;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
@@ -19,9 +21,9 @@ import java.util.List;
 public class AuthorizationCommand implements Command {
     private static Command command;
     private BasketService<ProductDto, BasketServiceImpl> basket;
-    private static final String PANEL_USER_PAGE_PATH = "/jsp/personal_acc.jsp";
-    private static final String ERROR_PAGE = "/jsp/sign_in.jsp";
-    private static final String ERROR_404 = "/jsp/404.jsp";
+    private static final String PANEL_USER_PAGE_PATH = "/shop?command=show_account_panel_command";
+    private static final String ERROR_PAGE = "WEB-INF/jsp/sign_in.jsp";
+    private static final String ERROR_404 = "WEB-INF/jsp/404.jsp";
     private static final String USER_ROLE_ATTRIBUTE_NAME = "currentUser";
     private static final String LOGIN_PARAM = "login";
     private static final String PASSWORD_PARAM = "password";
@@ -32,6 +34,8 @@ public class AuthorizationCommand implements Command {
     private static final String BASKET_USER_OBJECT ="basketObject";
     private static final String BASKET_PARAM = "basketSize";
     private static final String USER_NAME = "userLogin";
+
+    private static final Logger log = LogManager.getLogger( AuthorizationCommand.class);
 
     private AuthorizationCommand() {
     }
@@ -83,7 +87,7 @@ public class AuthorizationCommand implements Command {
     };
 
     @Override
-    public ResponseContext execute(RequestContext requestContext) throws ServiceException {
+    public ResponseContext execute(RequestContext requestContext)  {
         basket = new BasketServiceImpl();
         List<ProductDto> productslist = new ArrayList<>();
         final String userName = requestContext.getParameter(LOGIN_PARAM);
@@ -98,22 +102,25 @@ public class AuthorizationCommand implements Command {
 
             userDto = FactoryService.getUserServiceInstance().findUser(userDto);
 
+            httpSession.setAttribute(ACCOUNT_OBJECT_PARAM, FactoryService.getAccountServiceInstance().findByUserId(userDto.getId()));
+            httpSession.setAttribute(USER_ROLE_ATTRIBUTE_NAME, userDto);
+            httpSession.setAttribute(BASKET_USER_OBJECT,basket);
+            httpSession.setAttribute(BASKET_PARAM,basket.basketSize());
+            requestContext.setAttribute(USER_NAME,userDto.getAccount());
+
         } catch (ServiceException e) {
+            log.error(ERROR_ATTRIBUTE,e);
             requestContext.setAttribute(ERROR_ATTRIBUTE, MESSAGE_ERROR_ATTRIBUTE + ":" + e.getMessage());
             isError = true;
         }
-        System.out.println(userDto);
+
         if (isError) {
             return SHOW_ERROR_PAGE;
 
         }
-        System.out.println(FactoryService.getAccountServiceInstance().findByUserId(userDto.getId())+" sdadaqeqeq");
-        httpSession.setAttribute(ACCOUNT_OBJECT_PARAM, FactoryService.getAccountServiceInstance().findByUserId(userDto.getId()));
-        httpSession.setAttribute(USER_ROLE_ATTRIBUTE_NAME, userDto);
-        httpSession.setAttribute(BASKET_USER_OBJECT,basket);
-        httpSession.setAttribute(BASKET_PARAM,basket.basketSize());
-        requestContext.setAttribute(USER_NAME,userDto.getAccount());
 
+
+        System.out.println(requestContext.getContextPath());
         return LOGIN_SUCCESS_PAGE;
 
     }

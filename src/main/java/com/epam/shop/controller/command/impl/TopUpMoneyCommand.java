@@ -8,18 +8,25 @@ import com.epam.shop.service.exception.ServiceException;
 import com.epam.shop.service.exception.string_exception.ServiceAccountExceptionString;
 import com.epam.shop.service.factory.FactoryService;
 import com.epam.shop.service.validation.validation_string.AccountValidationString;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import javax.servlet.http.HttpSession;
 import java.math.BigDecimal;
 
 
 public class TopUpMoneyCommand implements Command {
     public static Command command;
-    private static final String BACK_TO_WALLET_PATH = "/jsp/your_wallet.jsp";
+    private static final String BACK_TO_WALLET_PATH = "shop?command=show_wallet_command";
+    private static final String ERROR_PATH = "WEB-INF/jsp/your_wallet.jsp";
+
 
     private static final String ACCOUNT_AMOUNT_ATTRIBUTE = "amount";
     private static final String ACCOUNT_OBJECT_ATTRIBUTE = "account";
-    private static final String MESSAGE_ERROR_ATTRIBUTE = "message";
+    private static final String MESSAGE_ERROR_ATTRIBUTE = "message :";
     private static final String ERROR_ATTRIBUTE = "error";
+
+    private static final Logger log = LogManager.getLogger( TopUpMoneyCommand.class);
 
 
     private TopUpMoneyCommand() {
@@ -46,9 +53,11 @@ public class TopUpMoneyCommand implements Command {
     };
 
     private static final ResponseContext ERROR_PAGE = new ResponseContext() {
+
         @Override
         public String getPath() {
-            return BACK_TO_WALLET_PATH;
+
+            return ERROR_PATH;
         }
 
         @Override
@@ -60,30 +69,34 @@ public class TopUpMoneyCommand implements Command {
 
 
     @Override
-    public ResponseContext execute(RequestContext requestContext) throws ServiceException {
+    public ResponseContext execute(RequestContext requestContext)  {
         HttpSession httpSession = requestContext.getCurrentSession().get();
         boolean isException = false;
         try {
             validateAmount(requestContext.getParameter(ACCOUNT_AMOUNT_ATTRIBUTE));
+
             BigDecimal bigDecimal = new BigDecimal(requestContext.getParameter(ACCOUNT_AMOUNT_ATTRIBUTE));
             AccountDto accountDto = (AccountDto) httpSession.getAttribute(ACCOUNT_OBJECT_ATTRIBUTE);
             accountDto.setAmount(accountDto.getAmount().add(bigDecimal));
             accountDto = FactoryService.getAccountServiceInstance().update(accountDto);
             httpSession.setAttribute(ACCOUNT_OBJECT_ATTRIBUTE, accountDto);
         } catch (ServiceException e) {
-            //log
-            requestContext.setAttribute(ERROR_ATTRIBUTE, MESSAGE_ERROR_ATTRIBUTE + ": " + e.getMessage());
+            log.error(ERROR_ATTRIBUTE,e);
+            requestContext.setAttribute(ERROR_ATTRIBUTE, MESSAGE_ERROR_ATTRIBUTE + e.getMessage());
             isException = true;
         }
-              if (isException){
-                  return ERROR_PAGE;
-              }
+
+
+        if (isException){
+            System.out.println("aaaaaaaaaeeeerr");
+            return ERROR_PAGE;
+        }
 
         return SHOW_WALLET_PAGE;
     }
 
     private void validateAmount(String amount) throws ServiceException {
-        if (!amount.matches(AccountValidationString.ACCOUNT_AMOUNT_REGEX)) {
+        if (amount==null||!amount.matches(AccountValidationString.ACCOUNT_AMOUNT_REGEX)) {
             throw new ServiceException(ServiceAccountExceptionString.ACCOUNT_AMOUNT_EXCEPTION);
         }
     }

@@ -5,8 +5,8 @@ import com.epam.shop.controller.context.api.RequestContext;
 import com.epam.shop.controller.context.api.ResponseContext;
 
 import com.epam.shop.service.dto.model.ProductDto;
-import com.epam.shop.service.exception.ServiceException;
-
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import javax.servlet.http.HttpSession;
 
@@ -17,12 +17,14 @@ import java.util.Map;
 
 public class LookBasketCommand implements Command {
     private static Command command;
-    private static String BASKET_PAGE = "/jsp/basket.jsp";
+    private static String BASKET_PAGE = "WEB-INF/jsp/basket.jsp";
     private static String PRODUCT_ID_PARAM = "productId";
     private static final String ERROR_PARAM = "error";
     private static final String MESSAGE_PARAM = "message";
     private static final String BASKET_MAP_PARAM = "userBasket";
     private static final String BASKET_LIST_PARAM = "basketList";
+
+    private static final Logger log = LogManager.getLogger( LookBasketCommand.class);
 
 
     private LookBasketCommand() {
@@ -47,7 +49,7 @@ public class LookBasketCommand implements Command {
     };
 
     @Override
-    public ResponseContext execute(RequestContext requestContext) throws ServiceException {
+    public ResponseContext execute(RequestContext requestContext)  {
         HttpSession httpSession = requestContext.getCurrentSession().get();
         List<ProductDto> basket = backToListProducts((Map<ProductDto, Integer>) httpSession.getAttribute(BASKET_MAP_PARAM));
 

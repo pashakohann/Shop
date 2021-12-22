@@ -39,13 +39,14 @@
 
 
 
+
 <!DOCTYPE html>
 <head>
    <meta charset="UTF-8">
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-   <link rel="stylesheet" href="css/style_basket.css">
+   <link rel="stylesheet" href="../css/style_basket.css">
    <title>All accounts</title>
 
 </head>
@@ -112,7 +113,13 @@
              <td>${element.getStreet()}</td>
              <td>${element.getFlat()}</td>
              <td>${element.getAmount()}</td>
-             <td><button class="button" type="button" ><a href="${pageContext.request.contextPath}/shop?command=look_user_command&userIdView=${element.getUserId()}"  style="color:white;background-color: rebeccapurple;">${whose}</a></td>
+             <td><button class="button" type="button" ><a href="${pageContext.request.contextPath}/shop?command=look_user_command&userIdView=${element.getUserId()}"  style="appearance: none;
+                                                                                                                                                                               border: 0;
+                                                                                                                                                                               border-radius: 5px;
+                                                                                                                                                                               background: #4676D7;
+                                                                                                                                                                               color: #fff;
+                                                                                                                                                                               padding: 8px 16px;
+                                                                                                                                                                               font-size: 16px; ">${whose}</a></td>
                <td><button class="button" type="button" style="color:white;background-color: red;" >${deleteProhibited}</td>
            </tr>
 

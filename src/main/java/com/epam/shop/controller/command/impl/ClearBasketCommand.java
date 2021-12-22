@@ -6,22 +6,25 @@ import com.epam.shop.controller.context.api.ResponseContext;
 import com.epam.shop.service.api.BasketService;
 import com.epam.shop.service.dto.model.ProductDto;
 import com.epam.shop.service.exception.ServiceException;
-import com.epam.shop.service.factory.FactoryService;
+
 import com.epam.shop.service.impl.BasketServiceImpl;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import javax.servlet.http.HttpSession;
-import java.rmi.ServerException;
-import java.util.HashMap;
+
 
 public class ClearBasketCommand implements Command {
     private static Command command;
-    private static String RETURN_PAGE = "/jsp/basket.jsp";
+    private static String RETURN_PAGE = "WEB-INF/jsp/basket.jsp";
     private static final String ERROR_PARAM = "error";
     private static final String MESSAGE_PARAM = "message";
     private static final String BASKET_USER_OBJECT ="basketObject";
     private static final String BASKET_MAP_PARAM = "userBasket";
     private static final String BASKET_LIST_PARAM = "basketList";
     private static final String BASKET_SIZE_PARAM = "basketSize";
+
+    private static final Logger log = LogManager.getLogger( ClearBasketCommand.class);
 
     private ClearBasketCommand() {
     }
@@ -47,7 +50,7 @@ public class ClearBasketCommand implements Command {
     };
 
     @Override
-    public ResponseContext execute(RequestContext requestContext) throws ServiceException {
+    public ResponseContext execute(RequestContext requestContext)  {
 
         BasketService<ProductDto,BasketServiceImpl>basketService;
         try {
@@ -66,7 +69,7 @@ public class ClearBasketCommand implements Command {
 
             }
         } catch (ServiceException e) {
-            //log
+            log.error(ERROR_PARAM,e);
             requestContext.setAttribute(ERROR_PARAM, MESSAGE_PARAM + ":" + e.getMessage());
         }
 

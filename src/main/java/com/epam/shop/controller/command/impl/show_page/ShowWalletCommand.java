@@ -3,11 +3,11 @@ package com.epam.shop.controller.command.impl.show_page;
 import com.epam.shop.controller.command.api.Command;
 import com.epam.shop.controller.context.api.RequestContext;
 import com.epam.shop.controller.context.api.ResponseContext;
-import com.epam.shop.service.exception.ServiceException;
+
 
 public class ShowWalletCommand implements Command {
     public static Command command;
-    private static final String PROFILE_PATH = "/jsp/your_wallet.jsp";
+    private static final String PROFILE_PATH = "WEB-INF/jsp/your_wallet.jsp";
     private static final String ACCOUNT_OBJECT_PARAM = "account";
 
 
@@ -35,7 +35,7 @@ public class ShowWalletCommand implements Command {
     };
 
     @Override
-    public ResponseContext execute(RequestContext requestContext) throws ServiceException {
+    public ResponseContext execute(RequestContext requestContext) {
 
         return SHOW_WALLET_PAGE;
     }

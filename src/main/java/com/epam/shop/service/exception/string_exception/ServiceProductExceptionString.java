@@ -14,5 +14,6 @@ public interface ServiceProductExceptionString {
     String DELETE_PRODUCT_FROM_USER = "You cannot delete ordered products, you should delete them from the user's orders";
     String SYMBOLS_IN_LINK_EXCEPTION = "The number of characters in the link must not exceed 200.";
     String FORMAT_PHOTO_EXCEPTION = "For displaying the photo look for the link with .jpeg .jpg .png";
+    String FILL_FIELDS_EXCEPTION  = "You must fill in all fields";
 
 }

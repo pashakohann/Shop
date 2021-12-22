@@ -8,6 +8,8 @@ import com.epam.shop.service.dto.model.ProductDto;
 import com.epam.shop.service.exception.ServiceException;
 import com.epam.shop.service.factory.FactoryService;
 import com.epam.shop.service.impl.BasketServiceImpl;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import javax.servlet.http.HttpSession;
 import java.rmi.ServerException;
@@ -16,8 +18,7 @@ import java.util.Map;
 
 public class AddProductInBasketCommand implements Command {
     private static Command command;
-    // private BasketService<ProductDto,BasketServiceImpl> basket = new BasketServiceImpl();
-    private static String RETURN_PAGE = "/jsp/personal_acc.jsp";
+    private static String RETURN_PAGE = "WEB-INF/jsp/personal_acc.jsp";
     private static String PRODUCT_ID_PARAM = "productId";
     private static final String ERROR_PARAM = "error";
     private static final String MESSAGE_PARAM = "message";
@@ -25,6 +26,8 @@ public class AddProductInBasketCommand implements Command {
     private static final String BASKET_MAP_PARAM = "userBasket";
     private static final String BASKET_USER_OBJECT = "basketObject";
     private BasketService<ProductDto, BasketServiceImpl> basket;
+
+    private static final Logger log = LogManager.getLogger( AddProductInBasketCommand.class);
 
     private AddProductInBasketCommand() {
     }
@@ -50,7 +53,7 @@ public class AddProductInBasketCommand implements Command {
 
 
     @Override
-    public ResponseContext execute(RequestContext requestContext) throws ServiceException {
+    public ResponseContext execute(RequestContext requestContext)  {
         String productId = requestContext.getParameter(PRODUCT_ID_PARAM);
         try {
 
@@ -63,7 +66,7 @@ public class AddProductInBasketCommand implements Command {
                 httpSession.setAttribute(BASKET_USER_OBJECT, basket);
             }
         } catch (ServiceException e) {
-            //log
+            log.error(ERROR_PARAM,e);
             requestContext.setAttribute(ERROR_PARAM, MESSAGE_PARAM + ":" + e.getMessage());
         }
 

@@ -3,11 +3,11 @@ package com.epam.shop.controller.command.impl.show_page;
 import com.epam.shop.controller.command.api.Command;
 import com.epam.shop.controller.context.api.RequestContext;
 import com.epam.shop.controller.context.api.ResponseContext;
-import com.epam.shop.service.exception.ServiceException;
+
 
 public class ShowErrorPageCommand implements Command {
     public static Command command;
-    private static final String ERROR_PAGE_PATH = "/jsp/404.jsp";
+    private static final String ERROR_PAGE_PATH = "WEB-INF/jsp/404.jsp";
 
     private ShowErrorPageCommand() {
     }
@@ -33,7 +33,7 @@ public class ShowErrorPageCommand implements Command {
     };
 
     @Override
-    public ResponseContext execute(RequestContext requestContext) throws ServiceException {
+    public ResponseContext execute(RequestContext requestContext)  {
 
         return SHOW_ERROR_PAGE;
     }
