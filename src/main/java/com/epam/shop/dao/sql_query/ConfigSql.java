@@ -1,5 +1,7 @@
 package com.epam.shop.dao.sql_query;
-
+/**
+ * database connection data
+ */
 public interface ConfigSql {
     String DB_URL = "jdbc:mysql://127.0.0.1:3307/shop";
     String USER = "root";

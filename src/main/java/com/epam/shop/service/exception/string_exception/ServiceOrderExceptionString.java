@@ -1,7 +1,9 @@
 package com.epam.shop.service.exception.string_exception;
 
 
-
+/**
+ * Exception strings for our order implementation on the services layer
+ */
 public interface ServiceOrderExceptionString {
     String NUMBER_OF_PRODUCTS_IN_ORDER_EXCEPTION = "The order must contain products";
     String SAVE_ORDER_EXCEPTION = "Failed to save order";

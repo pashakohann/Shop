@@ -1,5 +1,8 @@
 package com.epam.shop.dao.sql_query;
 
+/**
+ * all queries from product to db
+ */
 public interface ProductSql {
     String SQL_FIND_ALL_PRODUCTS = "SELECT id,name,category_id,brand_id,cost,photo_link FROM products;";
     String SQL_FIND_ALL_PRODUCTS_WITH_CATEGORY = "SELECT id,name,category_id,brand_id,cost,photo_link FROM products WHERE category_id = ?";

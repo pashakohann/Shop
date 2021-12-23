@@ -8,6 +8,10 @@ import com.epam.shop.service.exception.string_exception.ServiceConnectionExcepti
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+/**
+ * @see ConnectionService
+ * @see com.epam.shop.dao.connection_pool.api.ConnectionPool
+ */
 public class ConnectionServiceImpl implements ConnectionService {
     private static ConnectionService instance;
     private final Logger logger = LogManager.getLogger(ConnectionServiceImpl.class);

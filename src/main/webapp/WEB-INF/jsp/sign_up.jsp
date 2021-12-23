@@ -115,17 +115,17 @@ margin-top: 20px;
 
  <div class="form-group">
  <label>${user}</label>
- <input class="form-control" type="login" name="login" id="login" placeholder="${user}"  title="${validationUser}">
+ <input class="form-control" type="type" name="login" id="login" required pattern="^[\w]{5,12}$" placeholder="${user}"    title="${validationUser}">
   <p class="help-block"> ${validationUser}</p>
  </div>
  <div class="form-group">
  <label>${password}</label>
- <input class="form-control" type="password" name="password" id="password" placeholder="${password}"   title="${validationPassword}">
+ <input class="form-control" type="password" name="password" id="password" required pattern="^[\w]{5,12}$" placeholder="${password}"    title="${validationPassword}">
  <p class="help-block"> ${validationPassword}</p>
  </div>
    <div class="form-group">
    <label>secret password</label>
-   <input class="form-control" type="password" name="secret" id="secret" placeholder="secret password for ADMIN"  title="${epam}">
+   <input class="form-control" type="password" name="secret" id="secret"  placeholder="secret password for ADMIN"  title="${epam}">
     <p class="help-block"> secret password : epam</p>
    </div>
  <c:choose>

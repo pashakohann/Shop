@@ -5,7 +5,9 @@ import com.epam.shop.dao.model.Account;
 import com.epam.shop.service.converter.api.Converter;
 import com.epam.shop.service.dto.model.AccountDto;
 
-
+/**
+ * @see Converter
+ */
 public class AccountConverterImpl implements Converter<AccountDto, Account, Integer> {
     private static Converter<AccountDto, Account, Integer> converterInstance;
 

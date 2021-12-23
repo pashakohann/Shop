@@ -12,6 +12,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * @see BasketService
+ */
 public class BasketServiceImpl implements BasketService<ProductDto, BasketServiceImpl> {
     private Map<ProductDto, Integer> basket;
 

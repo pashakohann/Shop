@@ -1,5 +1,8 @@
 package com.epam.shop.dao.exception.string_exception;
 
+/**
+ * Strings for our exceptions from Dao account
+ */
 public interface DaoAccountExceptionString {
     String FIND_ACCOUNT_BY_USER_ID_EXCEPTION = "Account isn't found";
     String SQL_SAVE_ACCOUNT_EXCEPTION = "Failed to save account";

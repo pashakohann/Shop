@@ -1,5 +1,8 @@
 package com.epam.shop.dao.exception;
 
+/**
+ * for our exceptions at the level DAO
+ */
 public class DaoException extends Exception{
     public DaoException() {
     }

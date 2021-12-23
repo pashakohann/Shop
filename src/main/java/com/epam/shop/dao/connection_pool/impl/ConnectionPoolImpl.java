@@ -15,7 +15,9 @@ import java.util.Collection;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
 
-
+/**
+ * @see ConnectionPool
+ */
 public final class ConnectionPoolImpl implements ConnectionPool {
     private static ConnectionPool instance;
     private boolean initialized = false;
@@ -26,11 +28,18 @@ public final class ConnectionPoolImpl implements ConnectionPool {
 
     private final Logger logger = LogManager.getLogger(ConnectionPoolImpl.class);
 
+    /**
+     * creates the maximum volume in blocking queues for connections
+     */
     private ConnectionPoolImpl() {
         availableConnections = new ArrayBlockingQueue<>(INITIAL_POOL_SIZE);
         givenAwayConnections = new ArrayBlockingQueue<>(INITIAL_POOL_SIZE);
     }
 
+    /**
+     *
+     * @return Instance from Connection pool
+     */
     public static ConnectionPool getInstance() {
         if (instance == null) {
             instance = new ConnectionPoolImpl();
@@ -40,6 +49,11 @@ public final class ConnectionPoolImpl implements ConnectionPool {
     }
 
 
+    /**
+     * @see ConnectionPool
+     * @return
+     * @throws DaoException
+     */
     @Override
     public boolean init() throws DaoException {
         if (!initialized) {
@@ -50,7 +64,10 @@ public final class ConnectionPoolImpl implements ConnectionPool {
         return false;
     }
 
-
+    /**
+     *
+     * @return connection from Blocking Queue
+     */
     @Override
     public Connection takeConnection() {
         final ProxyConnection connection;
@@ -65,6 +82,10 @@ public final class ConnectionPoolImpl implements ConnectionPool {
         return null;
     }
 
+    /**
+     *
+     * @param connection to be returned to connection pool
+     */
     @Override
     public void returnConnection(Connection connection) {
         try {
@@ -76,6 +97,11 @@ public final class ConnectionPoolImpl implements ConnectionPool {
 
     }
 
+    /**
+     *
+     * @param amountOfConnections number of connections
+     * @return if it was possible to create the given quantity
+     */
     private boolean initializeConnections(int amountOfConnections) {
         try {
             for (int i = 0; i < amountOfConnections; i++) {
@@ -95,6 +121,11 @@ public final class ConnectionPoolImpl implements ConnectionPool {
         return false;
     }
 
+    /**
+     * @see ConnectionPool
+     * @return
+     * @throws DaoException
+     */
     @Override
     public boolean shutDown() throws DaoException {
         if (initialized) {
@@ -105,17 +136,31 @@ public final class ConnectionPoolImpl implements ConnectionPool {
         return false;
     }
 
+    /**
+     * close connection from Blocking Queues
+     * @throws DaoException if there was a failure
+     */
     private void closeConnections() throws DaoException {
         closeConnections(this.availableConnections);
         closeConnections(this.givenAwayConnections);
     }
 
+    /**
+     *
+     * @param connections Connections to be closed
+     * @throws DaoException if there was a failure
+     */
     private void closeConnections(Collection<ProxyConnection> connections) throws DaoException {
         for (ProxyConnection connection : connections) {
             closeConnection(connection);
         }
     }
 
+    /**
+     *
+     * @param connection here we close our connection, because before that we returned to our queues
+     * @throws DaoException
+     */
     private void closeConnection(ProxyConnection connection) throws DaoException {
         try {
             connection.realClose();

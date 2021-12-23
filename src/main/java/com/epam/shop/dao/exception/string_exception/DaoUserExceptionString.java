@@ -1,5 +1,7 @@
 package com.epam.shop.dao.exception.string_exception;
-
+/**
+ * Strings for our exceptions from Dao user
+ */
 public interface DaoUserExceptionString {
     String SQL_SAVE_USER_EXCEPTION = "failed to save user";
     String SQL_FIND_USER_BY_ID_EXCEPTION = "failed to find user";

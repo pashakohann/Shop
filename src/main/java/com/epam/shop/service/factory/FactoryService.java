@@ -9,7 +9,12 @@ import com.epam.shop.service.impl.AccountServiceImpl;
 import com.epam.shop.service.impl.OrderServiceImpl;
 import com.epam.shop.service.impl.ProductServiceImpl;
 import com.epam.shop.service.impl.UserServiceImpl;
-
+/**
+ * The factory pattern has been implemented
+ * for a convenient opportunity to use different implementations at the dao level.
+ * And The Factory Method pattern allows the
+ * system to remain independent of both the process of generating objects and their types.
+ */
 public class FactoryService {
     private static FactoryService instance;
     private static final AccountService accountServiceInstance = AccountServiceImpl.getInstance();

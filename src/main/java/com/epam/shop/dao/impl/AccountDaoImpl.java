@@ -22,6 +22,11 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * @see AccountDao
+ * @see com.epam.shop.dao.api.Dao
+ *
+ */
 public class AccountDaoImpl implements AccountDao {
     private static AccountDao instance;
     private static final Logger logger = LogManager.getLogger(AccountDaoImpl.class);

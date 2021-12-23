@@ -1,5 +1,7 @@
 package com.epam.shop.dao.exception.string_exception;
-
+/**
+ * Strings for our exceptions from Dao order
+ */
 public interface DaoOrderExceptionString {
     String SQL_SAVE_ORDER_EXCEPTION = "Failed to save order";
     String SQL_FIND_ORDER_BY_ID_EXCEPTION = "Failed to find order";

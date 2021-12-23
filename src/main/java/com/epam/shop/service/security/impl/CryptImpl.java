@@ -3,6 +3,9 @@ package com.epam.shop.service.security.impl;
 import at.favre.lib.crypto.bcrypt.BCrypt;
 import com.epam.shop.service.security.api.Crypt;
 
+/**
+ * @see Crypt
+ */
 public class CryptImpl implements Crypt {
     private static Crypt instance;
 

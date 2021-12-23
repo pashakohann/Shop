@@ -11,7 +11,9 @@ import com.epam.shop.service.dto.model.ProductDto;
 
 import java.util.HashMap;
 import java.util.Map;
-
+/**
+ * @see Converter
+ */
 public class OrderConverterImpl implements Converter<OrderDto, Order, Integer> {
     private static Converter<OrderDto, Order, Integer> converterInstance;
     private static Converter<ProductDto, Product, Integer> converterProduct = ProductConverterImpl.getConverterInstance();

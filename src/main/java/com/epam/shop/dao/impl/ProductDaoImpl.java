@@ -19,6 +19,10 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * @see ProductDao
+ * @see com.epam.shop.dao.api.Dao
+ */
 public class ProductDaoImpl implements ProductDao {
     private static ProductDao instance;
     private static final Logger logger = LogManager.getLogger(ProductDaoImpl.class);

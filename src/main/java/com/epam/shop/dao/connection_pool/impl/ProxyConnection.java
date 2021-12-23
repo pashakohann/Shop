@@ -21,6 +21,12 @@ import java.sql.DatabaseMetaData;
 import java.util.Properties;
 import java.util.concurrent.Executor;
 
+/**
+ * @see Connection
+ * ProxyConnection has one overriden method like
+ * @method close(), which serves to return, not to close our connection
+ * @method realClose() which serves as a real closure of the connection
+ */
 public class ProxyConnection implements Connection {
     private final Connection connection;
     private final ConnectionPool connectionPool;
@@ -70,6 +76,10 @@ public class ProxyConnection implements Connection {
         this.connection.rollback();
     }
 
+    /**
+     * return our connection to queue
+     * @throws SQLException if failed to add
+     */
     @Override
     public void close() throws SQLException {
         this.connectionPool.returnConnection(connection);
@@ -300,6 +310,10 @@ public class ProxyConnection implements Connection {
         return this.connection.isWrapperFor(iface);
     }
 
+    /**
+     * close our connection
+     * @throws SQLException if connection failed to close
+     */
     public void realClose() throws SQLException {
         this.connection.close();
     }

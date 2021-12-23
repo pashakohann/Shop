@@ -22,6 +22,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * @see OrderService
+ * @see com.epam.shop.service.api.Service
+ */
 public class OrderServiceImpl implements OrderService {
     private static OrderService instance;
     private final Validator<OrderDto, Integer> validatorInstance = OrderValidatorImpl.getInstance();

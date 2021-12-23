@@ -1,5 +1,8 @@
 package com.epam.shop.service.exception.string_exception;
 
+/**
+ * Strings for our exceptions from Service account
+ */
 public interface ServiceAccountExceptionString {
     String CHECK_EMAIL_EXCEPTION = "You entered an invalid email... Example : 'super@gmail.com'";
     String CHECK_TELEPHONE_NUMBER_EXCEPTION = "You entered an invalid mobile phone number...Example : +375291142342 or 80293245421";

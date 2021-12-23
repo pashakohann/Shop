@@ -1,5 +1,9 @@
 package com.epam.shop.dao.model;
 
+/**
+ *
+ * @param <T> id for our models
+ */
 public class AbstractModel<T> {
     protected T id;
 

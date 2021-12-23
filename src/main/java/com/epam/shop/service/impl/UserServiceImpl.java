@@ -23,6 +23,10 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * @see UserService
+ * @see com.epam.shop.service.api.Service
+ */
 public class UserServiceImpl implements UserService {
     private static UserService instance;
     private final Validator<UserDto, Integer> validatorInstance = UserValidatorImpl.getInstance();

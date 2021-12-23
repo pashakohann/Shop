@@ -24,6 +24,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * @see OrderDao
+ * @see com.epam.shop.dao.api.Dao
+ */
 public class OrderDaoImpl implements OrderDao {
     private static OrderDao instance;
     private static final Logger logger = LogManager.getLogger(OrderDaoImpl.class);

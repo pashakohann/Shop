@@ -4,6 +4,13 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.Objects;
 
+/**
+ * in this model was implemented pattern Builder
+ *The Builder pattern separates the algorithm for the step-by-step construction of
+ * a complex product (object) from its external representation so that different
+ * representations of this product can be obtained using the same algorithm.
+ * Building a product step by step means building it piece by piece.
+ */
 public class Account extends AbstractModel<Integer> {
     private String firstName;
     private String lastName;

@@ -1,5 +1,8 @@
 package com.epam.shop.dao.sql_query;
 
+/**
+ * all queries from account to db
+ */
 public interface AccountSql {
     String FIND_ACCOUNT_BY_ID = "SELECT id,first_name,last_name,date_of_birth,telephone_number,email,city,street,flat,amount,user_id FROM accounts WHERE id=?";
     String SQL_SAVE_ACCOUNT = "INSERT INTO accounts (first_name,last_name,date_of_birth,telephone_number,email,city,street,flat,amount,user_id)  VALUES(?,?,?,?,?,?,?,?,?,?)";

@@ -19,6 +19,10 @@ import org.apache.logging.log4j.Logger;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * @see ProductService
+ * @see com.epam.shop.service.api.Service
+ */
 public class ProductServiceImpl implements ProductService {
     private static ProductService instance;
     private final Validator<ProductDto, Integer> validatorInstance = ProductValidatorImpl.getInstance();
@@ -126,7 +130,7 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public List<ProductDto> findProductsByCategoryAndBrand(Integer category, Integer brand) throws ServiceException {
+    public List<ProductDto> findProductsByCategoryAndBrand(int category, int brand) throws ServiceException {
 
         try {
 

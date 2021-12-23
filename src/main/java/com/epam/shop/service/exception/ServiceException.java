@@ -1,5 +1,8 @@
 package com.epam.shop.service.exception;
 
+/**
+ * for throwing errors on the service layer
+ */
 public class ServiceException extends Exception {
     public ServiceException() {
     }

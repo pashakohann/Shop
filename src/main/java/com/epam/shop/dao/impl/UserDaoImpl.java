@@ -22,7 +22,10 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-
+/**
+ * @see UserDao
+ * @see com.epam.shop.dao.api.Dao
+ */
 public class UserDaoImpl implements UserDao {
     private static final Logger logger = LogManager.getLogger(UserDaoImpl.class);
     private static final ConnectionPool connectionPool = ConnectionPoolImpl.getInstance();

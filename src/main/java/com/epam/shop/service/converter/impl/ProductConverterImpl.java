@@ -6,7 +6,9 @@ import com.epam.shop.dao.model.Product;
 import com.epam.shop.service.converter.api.Converter;
 import com.epam.shop.service.dto.model.ProductDto;
 
-
+/**
+ * @see Converter
+ */
 public class ProductConverterImpl implements Converter<ProductDto, Product, Integer> {
     private static Converter<ProductDto, Product, Integer> converterInstance;
 

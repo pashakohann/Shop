@@ -9,6 +9,12 @@ import com.epam.shop.dao.impl.OrderDaoImpl;
 import com.epam.shop.dao.impl.ProductDaoImpl;
 import com.epam.shop.dao.impl.UserDaoImpl;
 
+/**
+ * The factory pattern has been implemented
+ * for a convenient opportunity to use different implementations at the dao level.
+ * And The Factory Method pattern allows the
+ * system to remain independent of both the process of generating objects and their types.
+ */
 public class FactoryDao {
 
     private static FactoryDao factoryDao;

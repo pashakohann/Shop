@@ -21,6 +21,11 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * @see AccountService
+ * @see com.epam.shop.service.api.Service
+ * this class is assigned default values when creating.
+ */
 public class AccountServiceImpl implements AccountService {
     private static AccountService instance;
     private final Validator<AccountDto, Integer> validatorInstance = AccountValidatorImpl.getInstance();
