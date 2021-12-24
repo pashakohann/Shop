@@ -101,7 +101,7 @@ public class RegistrationCommand implements Command {
             session.setAttribute(ACCOUNT_OBJECT_PARAM,accountDto);
             session.setAttribute(BASKET_USER_OBJECT,basket);
             session.setAttribute(BASKET_PARAM,basket.basketSize());
-            requestContext.setAttribute(USER_NAME,userDto.getAccount());
+            session.setAttribute(USER_NAME,userDto.getAccount());
 
         } catch (ServiceException e) {
             log.error(ERROR,e);

@@ -104,7 +104,7 @@ public class AuthorizationCommand implements Command {
             httpSession.setAttribute(USER_ROLE_ATTRIBUTE_NAME, userDto);
             httpSession.setAttribute(BASKET_USER_OBJECT,basket);
             httpSession.setAttribute(BASKET_PARAM,basket.basketSize());
-            requestContext.setAttribute(USER_NAME,userDto.getAccount());
+            httpSession.setAttribute(USER_NAME,userDto.getAccount());
 
         } catch (ServiceException e) {
             log.error(ERROR_ATTRIBUTE,e);

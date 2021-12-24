@@ -1,5 +1,8 @@
 package com.epam.shop.controller.tag;
 
+import com.epam.shop.service.dto.model.UserDto;
+
+import javax.servlet.ServletRequest;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.JspWriter;
 import javax.servlet.jsp.tagext.TagSupport;
@@ -25,8 +28,8 @@ public class GreetingTag extends TagSupport {
     }
 
     private String buildWelcomeMessage() {
-        return Optional.ofNullable(pageContext.getRequest())
-                .map(req -> req.getParameter(USER_NAME_SESSION_ATTRIB))
+        return Optional.ofNullable(pageContext.getSession())
+                .map(session ->session.getAttribute (USER_NAME_SESSION_ATTRIB))
                 .map(name -> String.format(USER_WELCOME_MESSAGE, name))
                 .orElse(DEFAULT_WELCOME_MESSAGE);
     }

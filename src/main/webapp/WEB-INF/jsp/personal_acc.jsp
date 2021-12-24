@@ -169,7 +169,7 @@
                 </c:when>
 
                 </c:choose>
-
+                 <shp:welcomeText />
                 <form class="d-flex">
 
                   <button type="submit" class="btn btn-primary position-relative"><a href="${pageContext.request.contextPath}/shop?command=show_basket_command" style="color: white;">
