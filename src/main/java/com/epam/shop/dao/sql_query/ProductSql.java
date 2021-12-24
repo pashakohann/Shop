@@ -12,5 +12,4 @@ public interface ProductSql {
     String SQL_SAVE_PRODUCT = "INSERT INTO products(name,cost,category_id,brand_id,photo_link)VALUES (?,?,?,?,?)";
     String SQL_DELETE_PRODUCT = "DELETE FROM products WHERE id=?";
     String SQL_UPDATE_PRODUCT = "UPDATE products SET name=?,cost=?,category_id=?,brand_id=?,photo_link=? WHERE id=?";
-
 }

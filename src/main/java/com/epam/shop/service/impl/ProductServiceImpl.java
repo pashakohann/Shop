@@ -34,6 +34,7 @@ public class ProductServiceImpl implements ProductService {
     }
 
     public static ProductService getInstance() {
+
         if (instance == null) {
             instance = new ProductServiceImpl();
         }
@@ -41,7 +42,7 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public ProductDto create(ProductDto product) throws ServiceException {
+    public  ProductDto create(ProductDto product) throws ServiceException {
 
         try {
             validatorInstance.validate(product);
