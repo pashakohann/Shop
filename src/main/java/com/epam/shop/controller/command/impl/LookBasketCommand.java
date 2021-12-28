@@ -51,12 +51,18 @@ public class LookBasketCommand implements Command {
 
     @Override
     public ResponseContext execute(RequestContext requestContext)  {
-        HttpSession httpSession = requestContext.getCurrentSession().get();
-        List<ProductDto> basket = FactoryService.getOrderServiceInstance().
-                returnListProduct((Map<ProductDto, Integer>) httpSession.getAttribute(BASKET_MAP_PARAM));
+
+         if(requestContext.getCurrentSession().isPresent()){
+             HttpSession httpSession = requestContext.getCurrentSession().get();
+             List<ProductDto> basket = FactoryService.getOrderServiceInstance().
+                     returnListProduct((Map<ProductDto, Integer>) httpSession.getAttribute(BASKET_MAP_PARAM));
+             httpSession.setAttribute(BASKET_LIST_PARAM, basket);
+         }else {
+             System.out.println("You have a problem with session!!!");
+         }
 
 
-        httpSession.setAttribute(BASKET_LIST_PARAM, basket);
+
 
         return SHOW_BASKET;
     }
