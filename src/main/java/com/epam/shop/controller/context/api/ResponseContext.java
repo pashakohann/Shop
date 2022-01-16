@@ -4,4 +4,5 @@ public interface ResponseContext {
     String getPath();
 
     boolean isRedirect();
+
 }

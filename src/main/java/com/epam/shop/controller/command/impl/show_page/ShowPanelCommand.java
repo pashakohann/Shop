@@ -50,10 +50,13 @@ public class ShowPanelCommand implements Command {
 
 
              try {
-
-                 List<UserDto> userList = FactoryService.getUserServiceInstance().getAll();
-                 HttpSession httpSession = requestContext.getCurrentSession().get();
-                 httpSession.setAttribute(LIST_USERS_ATTRIBUTE, userList);
+                             if(requestContext.getCurrentSession().isPresent()) {
+                                 List<UserDto> userList = FactoryService.getUserServiceInstance().getAll();
+                                 HttpSession httpSession = requestContext.getCurrentSession().get();
+                                 httpSession.setAttribute(LIST_USERS_ATTRIBUTE, userList);
+                             }else {
+                                 System.out.println("You have a problem with session!!!!");
+                             }
 
              }catch (ServiceException e){
                  log.error(ERROR_ATTRIBUTE,e);

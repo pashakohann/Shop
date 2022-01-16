@@ -164,10 +164,10 @@ public class OrderServiceImpl implements OrderService {
 
     }
 
-    public List<ProductDto> returnListProduct(Map<ProductDto,Integer>mapProducts){
+    public List<ProductDto> returnListProduct(Map<ProductDto, Integer> mapProducts) {
         List<ProductDto> list = new ArrayList<>();
 
-        if(mapProducts!=null) {
+        if (mapProducts != null) {
             for (Map.Entry<ProductDto, Integer> entry : mapProducts.entrySet()) {
                 int iter = 0;
                 while (entry.getValue() != iter) {

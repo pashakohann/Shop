@@ -17,12 +17,12 @@ public interface RequestContext {
     void setAttribute(String name, Object value);
 
 
-    public String getHeader();
+    String getHeader();
 
 
-    public String getContextPath();
+    String getContextPath();
 
 
-    public Cookie[] getCookies();
+     Cookie[] getCookies();
 
 }
